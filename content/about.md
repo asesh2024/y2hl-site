@@ -28,7 +28,7 @@ My research interests include post‑quantum cryptography, decentralised system 
 
 ### Why Y2HL
 
-Y2HL ("Coding for New‑Gens") is where I publish my teaching materials. They are open to every student, at my university or any other, and to anyone teaching a similar course.
+Y2HL ("Yes to Happy Learning") is where I publish my teaching materials. They are open to every student, at my university or any other, and to anyone teaching a similar course.
 
 ### Using these materials
 
