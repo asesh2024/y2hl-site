@@ -43,8 +43,11 @@
     vizReady.then(function (viz) {
       blocks.forEach(function (code) {
         try {
+          // Automata read left to right by default; a diagram can say rankdir=TB (e.g. parse trees).
+          var graph = { bgcolor: "transparent", fontname: "Inter" };
+          if (!/rankdir/.test(code.textContent)) graph.rankdir = "LR";
           var svg = viz.renderSVGElement(code.textContent, {
-            graphAttributes: { bgcolor: "transparent", rankdir: "LR", fontname: "Inter" },
+            graphAttributes: graph,
             nodeAttributes: { fontname: "Inter", fontsize: 13 },
             edgeAttributes: { fontname: "JetBrains Mono", fontsize: 12 }
           });

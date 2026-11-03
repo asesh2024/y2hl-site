@@ -1,0 +1,62 @@
+[
+  {
+    "q": "What is the usual safe order for simplifying a CFG?",
+    "options": ["Remove ε-productions, then unit productions, then useless symbols", "Remove useless symbols, then unit productions, then ε-productions", "Remove unit productions, then ε-productions, then useless symbols", "The order never matters"],
+    "answer": 0,
+    "explain": "Removing ε can create unit productions, and both steps can make symbols useless. So useless symbols are removed last."
+  },
+  {
+    "q": "A variable A is <em>nullable</em> when…",
+    "options": ["A ⇒* ε", "A never appears on the right side of a production", "A has no productions", "A → A is a production"],
+    "answer": 0,
+    "explain": "Nullable variables can derive the empty string. They are found by a fixpoint: A → ε, or A → B₁…Bₖ with every Bᵢ nullable."
+  },
+  {
+    "q": "A symbol is <em>useless</em> when it is…",
+    "options": ["not generating or not reachable", "both generating and reachable", "a terminal", "used in more than one production"],
+    "answer": 0,
+    "explain": "A useful symbol must derive some terminal string (generating) and appear in some derivation from S (reachable). Failing either one makes it useless."
+  },
+  {
+    "q": "When removing useless symbols, which should be removed first?",
+    "options": ["Non-generating variables", "Unreachable symbols", "Terminals", "The start symbol"],
+    "answer": 0,
+    "explain": "Removing non-generating variables can cut off other symbols, making them unreachable. Doing reachability first can leave useless symbols behind."
+  },
+  {
+    "q": "Simplify S → AB | a, A → a, B → bB. What remains?",
+    "options": ["S → a", "S → AB | a, A → a", "S → a, A → a", "S → AB, A → a, B → b"],
+    "answer": 0,
+    "explain": "B is non-generating (it never terminates), so S → AB goes. Then A is unreachable from S. Only S → a is left."
+  },
+  {
+    "q": "Which of these is a unit production?",
+    "options": ["A → B", "A → a", "A → BC", "A → ε"],
+    "answer": 0,
+    "explain": "A unit production has exactly one variable on the right side. A → a is a terminal rule, and A → BC is a binary rule."
+  },
+  {
+    "q": "Removing ε-productions from S → aSb | ε (ignoring whether ε itself stays in the language) gives…",
+    "options": ["S → aSb | ab", "S → aSb", "S → ab", "S → aSb | ab | ε"],
+    "answer": 0,
+    "explain": "S is nullable, so S → aSb gets a copy without S, which is S → ab. The result generates aⁿbⁿ for n ≥ 1. A new start rule is added if ε must be kept."
+  },
+  {
+    "q": "In S → AB, A → aA | ε, B → bB | ε, which variables are nullable?",
+    "options": ["S, A and B", "A and B only", "S only", "None of them"],
+    "answer": 0,
+    "explain": "A → ε and B → ε make A and B nullable. Then S → AB has both symbols nullable, so S is nullable too."
+  },
+  {
+    "type": "tf",
+    "q": "Simplifying a CFG never changes the language it generates, apart from possibly having to treat ε separately.",
+    "answer": 0,
+    "explain": "True. Every step is designed to keep exactly the same set of terminal strings. Only ε may need a special start rule after the ε-productions are removed."
+  },
+  {
+    "q": "In S → aA | B, A → a, B → bB, which variable is non-generating?",
+    "options": ["B", "A", "S", "None of them"],
+    "answer": 0,
+    "explain": "Every B-production contains B again, so B never yields a terminal string. S still generates 'aa' through A."
+  }
+]

@@ -1,0 +1,62 @@
+[
+  {
+    "q": "In a leftmost derivation, each step rewrites…",
+    "options": ["the leftmost variable in the current string", "the leftmost terminal", "the start symbol only", "any variable you like"],
+    "answer": 0,
+    "explain": "Leftmost derivations always expand the leftmost variable. Rightmost derivations expand the rightmost one."
+  },
+  {
+    "q": "A grammar is ambiguous when…",
+    "options": ["some string has two different parse trees", "some string has both a leftmost and a rightmost derivation", "it contains ε-productions", "it has more than one start symbol"],
+    "answer": 0,
+    "explain": "Every derivable string has both an LMD and an RMD, which is normal. Ambiguity means two different trees, or equivalently two different leftmost derivations."
+  },
+  {
+    "q": "With S → S + S | S * S | id, how many different parse trees does <code>id + id * id</code> have?",
+    "options": ["2", "1", "3", "4"],
+    "answer": 0,
+    "explain": "Either + is at the root, giving id + (id * id), or * is at the root, giving (id + id) * id."
+  },
+  {
+    "q": "In the grammar E → E + T | T, T → T * F | F, F → ( E ) | id, why does * bind tighter than +?",
+    "options": ["* is produced by T, which sits below + in every parse tree", "* appears later in the list of rules", "The grammar is ambiguous", "Parentheses are compulsory"],
+    "answer": 0,
+    "explain": "Each precedence level has its own variable. A + can only combine T's, and a * is formed inside a T, so * is always grouped first."
+  },
+  {
+    "type": "tf",
+    "q": "The grammar S → aS | A, A → aA | b is ambiguous.",
+    "answer": 0,
+    "explain": "True. For 'ab', S ⇒ aS ⇒ aA ⇒ ab and S ⇒ A ⇒ aA ⇒ ab are two different leftmost derivations (two different trees). The language is a*b, and S → aS | b generates it unambiguously."
+  },
+  {
+    "type": "tf",
+    "q": "Some context-free languages are inherently ambiguous: every grammar for them is ambiguous.",
+    "answer": 0,
+    "explain": "True. The standard example is {aⁱbʲcᵏ | i = j or j = k}. Strings with i = j = k always get two parse trees."
+  },
+  {
+    "q": "The <em>yield</em> of a parse tree is…",
+    "options": ["the leaves read from left to right", "the root symbol", "the number of internal nodes", "the longest path from root to leaf"],
+    "answer": 0,
+    "explain": "Concatenating the leaf labels (terminals, with ε as nothing) left to right gives the derived string."
+  },
+  {
+    "q": "How many leftmost derivations does a single parse tree correspond to?",
+    "options": ["Exactly one", "Exactly two", "As many as there are variables", "It depends on the string length"],
+    "answer": 0,
+    "explain": "A parse tree fixes every production used and where. Expanding the leftmost variable each time then gives one specific order. So a string has two trees exactly when it has two LMDs."
+  },
+  {
+    "type": "tf",
+    "q": "There is an algorithm that decides, for any context-free grammar, whether it is ambiguous.",
+    "answer": 1,
+    "explain": "False. Ambiguity of CFGs is undecidable in general. You can show that a particular grammar is ambiguous by finding two trees, but no algorithm settles every grammar."
+  },
+  {
+    "q": "In a parse tree, which nodes may have children?",
+    "options": ["Only variables (non-terminals)", "Only terminals", "Both terminals and variables", "Only the root"],
+    "answer": 0,
+    "explain": "Internal nodes are variables, expanded by a production. Terminals and ε are always leaves."
+  }
+]

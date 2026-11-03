@@ -1,0 +1,63 @@
+[
+  {
+    "q": "A context-free grammar is a 4-tuple. What are its parts?",
+    "options": ["(V, T, P, S): variables, terminals, productions, start symbol", "(Q, Σ, δ, q₀): states, alphabet, transitions, start state", "(V, T, S, F): variables, terminals, start, final symbols", "(Q, Σ, Γ, δ): states, input, stack, transitions"],
+    "answer": 0,
+    "explain": "A CFG has variables V, terminals T, productions P and a start symbol S ∈ V."
+  },
+  {
+    "q": "What makes a grammar <em>context-free</em>?",
+    "options": ["The left side of every production is a single variable", "The right side of every production is a single terminal", "No production contains ε", "Every production has exactly two symbols on the right"],
+    "answer": 0,
+    "explain": "A → α can rewrite A wherever it appears, whatever surrounds it. Rules like aAb → ab depend on context, and are not allowed."
+  },
+  {
+    "q": "What language does S → aSb | ε generate?",
+    "options": ["{aⁿbⁿ | n ≥ 0}", "a*b*", "(ab)*", "{aⁿbⁿ | n ≥ 1}"],
+    "answer": 0,
+    "explain": "Each step adds one a on the left and one b on the right. S → ε stops the derivation and also gives ε (n = 0)."
+  },
+  {
+    "q": "What language does S → aSa | bSb | c generate?",
+    "options": ["{wcwᴿ | w ∈ {a, b}*}", "{wcw | w ∈ {a, b}*}", "All palindromes over {a, b}", "{aⁿcbⁿ}"],
+    "answer": 0,
+    "explain": "Matching letters are added on both sides around the centre c, so the right half is the reverse of the left half."
+  },
+  {
+    "q": "The grammar is S → aSb | A, A → bA | ε. Which strings does it generate?",
+    "type": "multi",
+    "options": ["<code>aabbb</code>", "<code>aab</code>", "<code>abb</code>", "<code>ba</code>"],
+    "answer": [0, 2],
+    "explain": "L = {aⁿbⁿ⁺ᵐ | n, m ≥ 0}: all a's come first, and there are at least as many b's as a's. aab has too few b's, and ba has a b before an a."
+  },
+  {
+    "type": "tf",
+    "q": "Every regular language is context-free.",
+    "answer": 0,
+    "explain": "True. A right-linear grammar is a special CFG. The inclusion is strict: {aⁿbⁿ} is context-free but not regular."
+  },
+  {
+    "q": "Which grammar generates exactly the strings over {a, b} with equal numbers of a's and b's?",
+    "options": ["S → aSbS | bSaS | ε", "S → aSb | ε", "S → abS | baS | ε", "S → aS | bS | ε"],
+    "answer": 0,
+    "explain": "S → aSb | ε gives only aⁿbⁿ, missing 'ba'. S → abS | baS | ε misses 'aabb'. S → aS | bS | ε gives every string. The first grammar pairs each first symbol with a matching partner."
+  },
+  {
+    "q": "Which of these languages is <strong>not</strong> context-free?",
+    "options": ["{aⁿbⁿcⁿ | n ≥ 0}", "{aⁿbⁿ | n ≥ 0}", "Palindromes over {a, b}", "Balanced parentheses"],
+    "answer": 0,
+    "explain": "A CFG can match two counts, but not three at once. The pumping lemma for CFLs (topic 17) proves that aⁿbⁿcⁿ is not context-free."
+  },
+  {
+    "q": "Which grammar generates all palindromes over {a, b}, including ε?",
+    "options": ["S → aSa | bSb | a | b | ε", "S → aSa | bSb | ε", "S → aSa | bSb | c", "S → aS | bS | ε"],
+    "answer": 0,
+    "explain": "Odd-length palindromes need a single middle letter (a or b), and even-length ones need ε. Leaving out a | b loses aba, a and b."
+  },
+  {
+    "q": "S ⇒* w means…",
+    "options": ["w can be derived from S in zero or more steps", "w is derived from S in exactly one step", "S is derived from w", "w contains the symbol S"],
+    "answer": 0,
+    "explain": "⇒ is one production step, and ⇒* is its reflexive–transitive closure. L(G) is the set of terminal strings w with S ⇒* w."
+  }
+]

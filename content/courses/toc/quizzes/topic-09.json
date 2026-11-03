@@ -1,0 +1,63 @@
+[
+  {
+    "q": "In the pumping lemma for regular languages, w = xyz must satisfy which conditions?",
+    "options": ["|xy| ≤ p, |y| ≥ 1, and xyⁱz ∈ L for all i ≥ 0", "|xy| ≥ p, |y| ≥ 0, and xyⁱz ∈ L for some i", "|y| ≤ p, |x| ≥ 1, and xyⁱz ∉ L for all i ≥ 2", "|xyz| ≤ p and y = ε"],
+    "answer": 0,
+    "explain": "The loop y is non-empty, it lies within the first p symbols, and it can be repeated any number of times, including zero."
+  },
+  {
+    "type": "tf",
+    "q": "If a language satisfies the conditions of the pumping lemma, it must be regular.",
+    "answer": 1,
+    "explain": "False. The lemma is only a necessary condition. Some non-regular languages can still be pumped, so the lemma can only prove non-regularity."
+  },
+  {
+    "q": "In a pumping-lemma proof that L is not regular, which choices are <strong>yours</strong>?",
+    "options": ["The string w and the number i", "The pumping length p", "The split w = xyz", "Both p and the split"],
+    "answer": 0,
+    "explain": "p and the split are given to you by the lemma, so your argument must work for any of them. You pick w ∈ L with |w| ≥ p, and the i that breaks it."
+  },
+  {
+    "q": "To show {aⁿbⁿ} is not regular, you choose w = aᵖbᵖ. What does the condition |xy| ≤ p tell you about y?",
+    "options": ["y consists only of a's", "y consists only of b's", "y contains both a's and b's", "y must equal ab"],
+    "answer": 0,
+    "explain": "The first p symbols of aᵖbᵖ are all a's, and xy lies inside them. So y = aᵏ with k ≥ 1, and pumping it unbalances the counts."
+  },
+  {
+    "q": "Which of these languages are regular?",
+    "type": "multi",
+    "options": ["{aⁿbⁿ | n ≥ 0}", "{aⁿbᵐ | n, m ≥ 0}", "{ww | w ∈ {a, b}*}", "{a²ⁿ | n ≥ 0}"],
+    "answer": [1, 3],
+    "explain": "aⁿbᵐ is just a*b*, and a²ⁿ is (aa)*. The other two need unbounded memory, and both can be proved non-regular with the pumping lemma."
+  },
+  {
+    "q": "Is L = {a<sup>n²</sup> | n ≥ 0} (a's of square length) regular?",
+    "options": ["No", "Yes", "Only over a two-letter alphabet", "It cannot be decided"],
+    "answer": 0,
+    "explain": "Pump w = a<sup>p²</sup>: y = aᵏ with 1 ≤ k ≤ p, so xy²z has length between p² + 1 and p² + p. That is strictly between p² and (p + 1)² = p² + 2p + 1, so the length is not a square."
+  },
+  {
+    "type": "tf",
+    "q": "Every finite language is regular.",
+    "answer": 0,
+    "explain": "True. List its strings in a regular expression: w₁ + w₂ + … + wₖ. Choosing p longer than the longest string makes the pumping lemma hold vacuously."
+  },
+  {
+    "q": "Where does the pumping length p come from, in the proof of the lemma?",
+    "options": ["The number of states of a DFA for L", "The length of the shortest string in L", "The size of the alphabet", "The number of final states"],
+    "answer": 0,
+    "explain": "With p states, any path of p symbols visits p + 1 states, so some state repeats. The cycle between the two visits is y."
+  },
+  {
+    "q": "Pumping with i = 0 means…",
+    "options": ["removing y, leaving xz", "leaving w unchanged", "doubling y", "removing x and z"],
+    "answer": 0,
+    "explain": "xy⁰z = xz: skip the loop entirely. 'Pumping down' is often the easiest contradiction, for example in {aⁿbᵐ | n > m}."
+  },
+  {
+    "q": "Which language is <strong>not</strong> regular?",
+    "options": ["Palindromes over {a, b}", "Strings over {a, b} containing aba", "Strings over {a, b} of odd length", "{aⁿbⁿ | n ≤ 100}"],
+    "answer": 0,
+    "explain": "Recognising palindromes needs the whole first half remembered, which is unbounded memory. The others are regular, and the last is finite."
+  }
+]

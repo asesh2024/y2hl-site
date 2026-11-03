@@ -1,0 +1,62 @@
+[
+  {
+    "q": "L₁ and L₂ are regular. Which of these operations can produce a <strong>non-regular</strong> language?",
+    "options": ["None of them", "L₁ ∪ L₂", "L₁ ∩ L₂", "L₁ − L₂"],
+    "answer": 0,
+    "explain": "Regular languages are closed under union, intersection and difference (and complement, concatenation, star, reversal and homomorphism)."
+  },
+  {
+    "q": "Which construction directly proves that L₁ ∩ L₂ is regular when L₁ and L₂ are?",
+    "options": ["The product DFA, with a pair final when both components are final", "The subset construction", "Thompson's construction", "Swapping final and non-final states of M₁"],
+    "answer": 0,
+    "explain": "Run both DFAs in parallel on pairs of states (p, q). For intersection, (p, q) is final when p and q are both final."
+  },
+  {
+    "type": "tf",
+    "q": "Every subset of a regular language is regular.",
+    "answer": 1,
+    "explain": "False. {aⁿbⁿ | n ≥ 0} is a subset of the regular language a*b*, but it is not regular."
+  },
+  {
+    "type": "tf",
+    "q": "If L is regular, then its reversal Lᴿ is also regular.",
+    "answer": 0,
+    "explain": "True. Reverse every arrow of a DFA for L, make the old final states the starting points, and make the old start state final. The result is an NFA for Lᴿ."
+  },
+  {
+    "q": "A union of <em>infinitely many</em> regular languages is…",
+    "options": ["not necessarily regular", "always regular", "always finite", "always context-free but never regular"],
+    "answer": 0,
+    "explain": "Each {aⁿbⁿ} for one fixed n is finite, so regular. The union over all n is {aⁿbⁿ | n ≥ 0}, which is not regular. Closure under union covers only finitely many languages."
+  },
+  {
+    "q": "Which production forms are allowed in a right-linear grammar? (A, B are variables and a is a terminal.)",
+    "options": ["A → aB, A → a, A → ε", "A → Ba, A → a, A → ε", "A → BC, A → a", "A → aBb, A → ε"],
+    "answer": 0,
+    "explain": "In a right-linear grammar, the variable (if any) is at the right end. A → Ba is the left-linear form, and A → BC is Chomsky normal form."
+  },
+  {
+    "q": "What language does the grammar S → aS | bA, A → bA | ε generate?",
+    "options": ["a*bb* (some a's, then at least one b)", "a*b*", "(ab)*", "aⁿbⁿ"],
+    "answer": 0,
+    "explain": "S produces any number of a's, then must switch to A with a b. A then adds any number of further b's and stops."
+  },
+  {
+    "q": "A right-linear grammar generates the strings over {a, b} whose number of a's is divisible by 3. How many variables does the natural construction need?",
+    "options": ["3", "1", "2", "6"],
+    "answer": 0,
+    "explain": "One variable for each remainder mod 3 (0, 1, 2), matching the three states of the DFA: S → bS | aA | ε, A → bA | aB, B → bB | aS."
+  },
+  {
+    "q": "To prove that L = {w : w has equally many 0s and 1s} is not regular using closure, intersect L with…",
+    "options": ["0*1*", "(01)*", "Σ*", "∅"],
+    "answer": 0,
+    "explain": "L ∩ 0*1* = {0ⁿ1ⁿ}, which is not regular. If L were regular, this intersection would be regular too, which is a contradiction."
+  },
+  {
+    "q": "The grammar S → aA, A → Sb | b mixes right-linear (S → aA) and left-linear (A → Sb) rules. What does it generate?",
+    "options": ["{aⁿbⁿ | n ≥ 1}, which is not regular", "a*b*", "(ab)*", "a⁺b⁺"],
+    "answer": 0,
+    "explain": "Every a pairs with a b: S ⇒ aA ⇒ aSb ⇒ aaAb ⇒ … This is why left- and right-linear rules may not be mixed in a regular grammar."
+  }
+]

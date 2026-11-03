@@ -1,0 +1,62 @@
+[
+  {
+    "q": "Which production forms are allowed in Chomsky normal form (apart from S → ε)?",
+    "options": ["A → BC and A → a", "A → aα, with α a string of variables", "A → aB and A → a", "A → α, for any string α"],
+    "answer": 0,
+    "explain": "CNF allows exactly two variables, or exactly one terminal, on the right side. A → aα is Greibach normal form."
+  },
+  {
+    "q": "In Greibach normal form, every production has the form…",
+    "options": ["A → aα, where α is a (possibly empty) string of variables", "A → BC", "A → αa", "A → aBb"],
+    "answer": 0,
+    "explain": "Each production starts with exactly one terminal, followed only by variables."
+  },
+  {
+    "q": "A grammar is in CNF. How many derivation steps does it take to derive a string of length n ≥ 1?",
+    "options": ["2n − 1", "n", "n − 1", "2n"],
+    "answer": 0,
+    "explain": "It takes n − 1 steps of the form A → BC to create n variables, then n steps of the form A → a to turn them into terminals."
+  },
+  {
+    "q": "A grammar is in GNF. How many derivation steps does it take to derive a string of length n?",
+    "options": ["n", "2n − 1", "n + 1", "log₂ n"],
+    "answer": 0,
+    "explain": "Each GNF step produces exactly one terminal, so n terminals need exactly n steps."
+  },
+  {
+    "type": "tf",
+    "q": "The grammar S → aSb | ab is in Chomsky normal form.",
+    "answer": 1,
+    "explain": "False. Both right sides mix terminals or have more than two symbols. CNF needs A → BC or A → a."
+  },
+  {
+    "q": "Which grammar is a correct CNF version of S → aSb | ab?",
+    "options": ["S → XT | XY, T → SY, X → a, Y → b", "S → aT | ab, T → Sb", "S → XSY | XY, X → a, Y → b", "S → aSb | XY, X → a, Y → b"],
+    "answer": 0,
+    "explain": "Terminals are replaced by X → a and Y → b, and the three-symbol rule XSY is split using T → SY. Every rule then has the form A → BC or A → a."
+  },
+  {
+    "type": "tf",
+    "q": "Left recursion (A → Aα) must be removed when converting a grammar to Greibach normal form.",
+    "answer": 0,
+    "explain": "True. A left-recursive rule starts with a variable, and keeps doing so however far you expand it. Rewrite A → Aα | β as A → β | βA′ and A′ → α | αA′."
+  },
+  {
+    "q": "Which grammar is in Greibach normal form?",
+    "options": ["S → aSB | aB, B → b", "S → aSb | ab", "S → SA | a, A → a", "S → AB, A → a, B → b"],
+    "answer": 0,
+    "explain": "Each rule of the first grammar is a terminal followed only by variables. aSb ends with a terminal, SA starts with a variable, and AB has no leading terminal."
+  },
+  {
+    "q": "Which parsing algorithm needs its grammar in Chomsky normal form?",
+    "options": ["CYK (Cocke–Younger–Kasami)", "Subset construction", "Thompson's construction", "Table-filling minimisation"],
+    "answer": 0,
+    "explain": "CYK fills a table of substrings, combining two smaller parts at each step. That relies on every rule being A → BC or A → a."
+  },
+  {
+    "q": "In a CNF parse tree of a string of length n ≥ 1, how many internal nodes use a rule of the form A → BC?",
+    "options": ["n − 1", "n", "2n − 1", "n + 1"],
+    "answer": 0,
+    "explain": "A binary tree with n leaf-parents (one for each A → a) has n − 1 binary branching nodes."
+  }
+]

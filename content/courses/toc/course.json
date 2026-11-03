@@ -41,7 +41,7 @@
     {"num": 5, "co": "CO1", "title": "Minimisation of DFA"},
     {"num": 6, "co": "CO1", "title": "Moore machines"},
     {"num": 7, "co": "CO1", "title": "Mealy machines and Moore–Mealy conversion"},
-    {"num": 8, "co": "CO2", "title": "Closure properties of regular languages"},
+    {"num": 8, "co": "CO2", "title": "Closure properties and regular grammars"},
     {"num": 9, "co": "CO2", "title": "Pumping lemma for regular languages"},
     {"num": 10, "co": "CO2", "title": "Context-free grammars"},
     {"num": 11, "co": "CO2", "title": "Derivations, parse trees and ambiguity"},
