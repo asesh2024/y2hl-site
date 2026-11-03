@@ -1,0 +1,62 @@
+[
+  {
+    "q": "What is the Floyd–Warshall recurrence?",
+    "options": ["D_k[i][j] = min(D_{k−1}[i][j], D_{k−1}[i][k] + D_{k−1}[k][j])", "D_k[i][j] = D_{k−1}[i][j] + D_{k−1}[k][j]", "D_k[i][j] = max(D_{k−1}[i][k], D_{k−1}[k][j])", "D_k[i][j] = D_{k−1}[i][j] · D_{k−1}[k][j]"],
+    "answer": 0,
+    "explain": "For each pair, either the best path avoids vertex k, or it goes i → k → j using only vertices 1..k−1 in between."
+  },
+  {
+    "q": "What is the time complexity of Floyd–Warshall on V vertices?",
+    "options": ["Θ(V³)", "Θ(V²)", "Θ(V·E)", "Θ(V² log V)"],
+    "answer": 0,
+    "explain": "There are three nested loops over the vertices, with O(1) work inside. The space needed is Θ(V²) for the matrix."
+  },
+  {
+    "q": "In the three nested loops, which loop must be the outermost?",
+    "options": ["The loop over the intermediate vertex k", "The loop over the source i", "The loop over the destination j", "Any order works"],
+    "answer": 0,
+    "explain": "Paths through k may only be used once D_{k−1} is complete for all pairs. Putting k inside breaks the dynamic-programming order."
+  },
+  {
+    "q": "How does Floyd–Warshall reveal a negative-weight cycle?",
+    "options": ["Some diagonal entry D[i][i] becomes negative", "Some entry becomes ∞", "The algorithm loops forever", "Two rows become equal"],
+    "answer": 0,
+    "explain": "D[i][i] < 0 means there is a route from i back to i with negative total weight, so i lies on a negative cycle."
+  },
+  {
+    "q": "In the page example (1→2 3, 1→4 7, 2→1 8, 2→3 2, 3→1 5, 3→4 1, 4→1 2), what is the final shortest distance from 2 to 1?",
+    "options": ["5", "8", "7", "3"],
+    "answer": 0,
+    "explain": "The path 2 → 3 → 4 → 1 costs 2 + 1 + 2 = 5, which beats the direct edge (8) and 2 → 3 → 1 (7)."
+  },
+  {
+    "q": "What do the values on the diagonal of D₀ start as?",
+    "options": ["0", "∞", "The weight of the cheapest outgoing edge", "1"],
+    "answer": 0,
+    "explain": "The distance from a vertex to itself, without moving, is 0. Starting at ∞ would make every D[i][i] wrong."
+  },
+  {
+    "q": "What does Warshall's algorithm (the boolean version) compute?",
+    "options": ["The transitive closure: whether any path exists from i to j", "Shortest path lengths", "A minimum spanning tree", "The number of paths from i to j"],
+    "answer": 0,
+    "explain": "Replace min with or and + with and: R[i][j] becomes true when j is reachable from i."
+  },
+  {
+    "type": "tf",
+    "q": "Floyd–Warshall works correctly with negative edge weights as long as there is no negative cycle.",
+    "answer": 0,
+    "explain": "True. The recurrence considers every possible set of intermediate vertices, so it does not rely on a greedy choice the way Dijkstra does."
+  },
+  {
+    "q": "For a large sparse graph with non-negative weights, which is usually faster for all-pairs shortest paths?",
+    "options": ["Running Dijkstra from every vertex", "Floyd–Warshall", "Running Bellman–Ford from every vertex", "They are always the same"],
+    "answer": 0,
+    "explain": "V runs of heap-based Dijkstra cost O(V(V + E) log V). With E close to V, that is about V² log V, much less than V³."
+  },
+  {
+    "q": "What does the matrix D_k represent?",
+    "options": ["Shortest distances using only vertices 1..k as intermediate vertices", "Distances using exactly k edges", "Distances from vertex k only", "The k-th row of the final answer"],
+    "answer": 0,
+    "explain": "The index k limits which vertices may appear in the middle of a path. That is different from limiting the number of edges, which is what Bellman–Ford rounds do."
+  }
+]

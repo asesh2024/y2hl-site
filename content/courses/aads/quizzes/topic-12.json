@@ -1,0 +1,62 @@
+[
+  {
+    "q": "Which data structure does BFS use to decide which vertex to visit next?",
+    "options": ["A queue (first in, first out)", "A stack (last in, first out)", "A priority queue", "A hash table only"],
+    "answer": 0,
+    "explain": "The queue makes BFS finish all vertices at distance d before any at distance d + 1. DFS uses a stack, often the recursion stack."
+  },
+  {
+    "q": "What is the running time of BFS or DFS on a graph with V vertices and E edges, stored as adjacency lists?",
+    "options": ["O(V + E)", "O(V²)", "O(V·E)", "O(E log V)"],
+    "answer": 0,
+    "explain": "Each vertex is processed once, and each adjacency list is scanned once. With an adjacency matrix it becomes O(V²)."
+  },
+  {
+    "q": "In an <em>unweighted</em> graph, which algorithm finds shortest paths (fewest edges) from a source?",
+    "options": ["BFS", "DFS", "Topological sort", "Any traversal: they all give shortest paths"],
+    "answer": 0,
+    "explain": "BFS reaches vertices in order of distance, so the first discovery of a vertex uses a shortest path. DFS can reach a vertex by a long detour first."
+  },
+  {
+    "q": "In the example graph (A–B, A–C, B–D, C–D, C–E, D–F, E–F) with neighbours in alphabetical order, what is the BFS order from A?",
+    "options": ["A B C D E F", "A B D C E F", "A C E F D B", "A B D F E C"],
+    "answer": 0,
+    "explain": "Distance 0: A. Distance 1: B, C. Distance 2: D (from B), then E (from C). Distance 3: F. 'A B D C E F' is the DFS order."
+  },
+  {
+    "q": "During DFS of a <em>directed</em> graph, which kind of edge shows that the graph has a cycle?",
+    "options": ["A back edge (to an ancestor that is still open)", "A tree edge", "A forward edge", "A cross edge"],
+    "answer": 0,
+    "explain": "A back edge (u, v) with v an ancestor of u closes the cycle v → … → u → v. A directed graph is acyclic exactly when DFS finds no back edges."
+  },
+  {
+    "q": "How do you obtain a topological order of a DAG from DFS?",
+    "options": ["List the vertices in decreasing order of finish time", "List the vertices in order of discovery time", "List the vertices in BFS order", "Sort the vertices alphabetically"],
+    "answer": 0,
+    "explain": "For every edge (u, v) in a DAG, v finishes before u. So reversing the finishing order puts every edge forward."
+  },
+  {
+    "q": "In BFS, when should a vertex be marked as visited?",
+    "options": ["When it is added to the queue", "When it is removed from the queue", "After all its neighbours are processed", "It does not matter"],
+    "answer": 0,
+    "explain": "Marking on enqueue stops a vertex from being added to the queue several times. Marking on dequeue would still find the same order but can bloat the queue."
+  },
+  {
+    "type": "tf",
+    "q": "A topological ordering exists for every directed graph.",
+    "answer": 1,
+    "explain": "False. Only directed acyclic graphs (DAGs) have one. If there is a cycle, some vertex on it would have to come before itself."
+  },
+  {
+    "q": "For a sparse graph with 10⁶ vertices and 3 × 10⁶ edges, which representation should you choose?",
+    "options": ["Adjacency lists", "An adjacency matrix", "An incidence matrix", "An edge list sorted by weight only"],
+    "answer": 0,
+    "explain": "A matrix would need 10¹² cells. Adjacency lists need O(V + E), about 4 × 10⁶ entries, and they let BFS and DFS run in O(V + E)."
+  },
+  {
+    "q": "How can BFS test whether an undirected connected graph is bipartite?",
+    "options": ["Colour vertices by distance parity, and check that no edge joins two vertices at the same distance", "Check whether the number of edges is even", "Check whether DFS and BFS give the same order", "Check that every vertex has even degree"],
+    "answer": 0,
+    "explain": "Even and odd BFS levels are the natural two sides. An edge between two vertices on the same level closes an odd cycle, so the graph is not bipartite."
+  }
+]

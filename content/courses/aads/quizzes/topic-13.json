@@ -1,0 +1,62 @@
+[
+  {
+    "q": "Dijkstra's algorithm requires that…",
+    "options": ["all edge weights are non-negative", "the graph is undirected", "the graph is acyclic", "all edge weights are distinct"],
+    "answer": 0,
+    "explain": "The greedy choice is safe only if adding edges can never make a path shorter. Negative weights break that. Cycles and directed edges are fine."
+  },
+  {
+    "q": "What does 'relaxing' the edge (u, v) do?",
+    "options": ["If d[u] + w(u, v) < d[v], lower d[v] to d[u] + w(u, v) and set v's parent to u", "Removes the edge if it is too long", "Sets d[v] = 0", "Adds the edge to a spanning tree"],
+    "answer": 0,
+    "explain": "Relaxation tests whether going through u gives a shorter route to v. All the shortest-path algorithms in this course are built from it."
+  },
+  {
+    "q": "Which vertex does Dijkstra settle next?",
+    "options": ["The unsettled vertex with the smallest tentative distance", "The vertex with the most edges", "The most recently discovered vertex", "The vertex nearest in BFS order"],
+    "answer": 0,
+    "explain": "Choosing the smallest d among unsettled vertices is the greedy step. With non-negative weights, that distance is already final."
+  },
+  {
+    "q": "What is Dijkstra's running time with a binary-heap priority queue?",
+    "options": ["O((V + E) log V)", "O(V + E)", "O(V·E)", "O(V³)"],
+    "answer": 0,
+    "explain": "Each of the V extract-min operations and the up to E decrease-key (or push) operations costs O(log V). The simple array version is O(V²)."
+  },
+  {
+    "q": "In the example graph (A→B 4, A→C 1, C→B 2, B→D 1, C→D 5, C→E 8, D→E 3, D→F 6, E→F 1), what is the shortest distance from A to F?",
+    "options": ["8", "10", "7", "11"],
+    "answer": 0,
+    "explain": "The path A → C → B → D → E → F costs 1 + 2 + 1 + 3 + 1 = 8. Going through D → F directly gives 4 + 6 = 10."
+  },
+  {
+    "q": "In the same trace, in what order are the vertices settled?",
+    "options": ["A, C, B, D, E, F", "A, B, C, D, E, F", "A, C, D, B, E, F", "A, B, D, C, E, F"],
+    "answer": 0,
+    "explain": "The settled distances are A 0, C 1, B 3, D 4, E 7, F 8, always taking the smallest unsettled value next."
+  },
+  {
+    "type": "tf",
+    "q": "With non-negative weights, once Dijkstra removes a vertex from the priority queue, its distance never changes again.",
+    "answer": 0,
+    "explain": "True. That is the correctness argument: any other route must pass through an unsettled vertex whose distance is at least as large."
+  },
+  {
+    "q": "Edges S→A (2), S→B (3) and B→A (−2). What does Dijkstra (settling each vertex once) report as the distance to A, and what is the true distance?",
+    "options": ["Reports 2; the true distance is 1", "Reports 1; the true distance is 1", "Reports 3; the true distance is 2", "Reports 2; the true distance is 2"],
+    "answer": 0,
+    "explain": "A is settled with d = 2 before B is processed. The route S → B → A costs 3 − 2 = 1, but A is already final, so the negative edge is ignored."
+  },
+  {
+    "q": "For a dense graph where E is close to V², which version of Dijkstra is asymptotically better?",
+    "options": ["The O(V²) array version", "The O((V + E) log V) binary-heap version", "Both are the same", "Neither: use BFS"],
+    "answer": 0,
+    "explain": "With E ≈ V², the heap version is O(V² log V), while the plain array version stays O(V²)."
+  },
+  {
+    "q": "How do you recover the actual shortest path, not just its length?",
+    "options": ["Store each vertex's parent when relaxing, then follow parents back from the target", "Run BFS afterwards", "Sort the distance table", "Store all paths in the heap"],
+    "answer": 0,
+    "explain": "The parent pointers form a shortest-path tree rooted at the source. Walking back from the target and reversing gives the path."
+  }
+]

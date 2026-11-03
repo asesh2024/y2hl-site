@@ -1,0 +1,27 @@
+[
+  {
+    "q": "Kruskal's algorithm runs on edges P–Q 6, P–R 1, Q–R 5, Q–S 3, R–S 5, R–T 6, S–T 4, S–U 2, T–U 6, with ties broken in the listed order. In what order are edges <strong>accepted</strong>?",
+    "options": ["P–R, S–U, Q–S, S–T, Q–R", "P–R, R–Q, Q–S, S–U, S–T", "P–R, S–U, Q–S, Q–R, S–T", "S–U, P–R, Q–S, S–T, R–S"],
+    "answer": 0,
+    "explain": "<pre>sorted: P–R 1, S–U 2, Q–S 3, S–T 4, Q–R 5, R–S 5, P–Q 6, R–T 6, T–U 6\nP–R 1 accept   {P,R}\nS–U 2 accept   {S,U}\nQ–S 3 accept   {Q,S,U}\nS–T 4 accept   {Q,S,T,U}\nQ–R 5 accept   all six joined → stop (5 edges = V − 1)</pre>"
+  },
+  {
+    "type": "nat",
+    "q": "A union–find structure uses union by rank (without path compression), starting from 16 singleton sets. What is the largest possible height (in edges) of any tree, no matter which unions are performed?",
+    "answer": 4,
+    "explain": "<p>With union by rank, a tree of height h contains at least 2ʰ nodes. That is by induction: height grows only when two trees of equal height h − 1 merge, each with at least 2^(h−1) nodes. With 16 elements, 2ʰ ≤ 16 gives h ≤ 4, which is reached by merging pairs, then pairs of pairs, and so on.</p>"
+  },
+  {
+    "type": "nat",
+    "q": "Kruskal's algorithm is run on a connected graph with 10 vertices and 25 edges. It examines edges in sorted order and stops as soon as the tree is complete. What is the minimum number of edges it can examine?",
+    "answer": 9,
+    "explain": "<p>It needs to accept exactly V − 1 = 9 edges. In the best case, the 9 lightest edges already form a spanning tree, so none are rejected and only 9 are examined. In the worst case it examines all 25.</p>"
+  },
+  {
+    "type": "multi",
+    "q": "Which statements about Kruskal's algorithm are true?",
+    "options": ["Its running time is O(E log E)", "At every step, the accepted edges form a single connected tree", "It is a greedy algorithm", "It works correctly on graphs with negative edge weights"],
+    "answer": [0, 2, 3],
+    "explain": "<p>(A): sorting dominates. (C): it always takes the cheapest safe edge. (D): only the order of the weights matters, so negative weights are fine for MSTs, unlike for Dijkstra.</p><p>(B) is false: the partial result is a forest, not a single tree. That is Prim's behaviour.</p>"
+  }
+]

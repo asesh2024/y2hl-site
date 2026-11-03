@@ -1,0 +1,62 @@
+[
+  {
+    "q": "Which conditions must a feasible flow satisfy?",
+    "options": ["0 ≤ f(e) ≤ c(e) on every edge, and flow in = flow out at every vertex except s and t", "Every edge must be full", "Flow in = flow out at every vertex, including s and t", "Every path from s to t must carry the same flow"],
+    "answer": 0,
+    "explain": "Capacity constraints on edges, and conservation at intermediate vertices. The source and sink are the only places where flow is created and absorbed."
+  },
+  {
+    "q": "What does a backward edge v→u in the residual graph represent?",
+    "options": ["Flow already sent on u→v that can be cancelled (rerouted)", "A pipe that runs the other way in the original network", "Unused capacity on u→v", "An error in the flow"],
+    "answer": 0,
+    "explain": "Its capacity equals f(u, v). Pushing flow along it reduces the flow on u→v, which lets later augmentations fix earlier bad choices."
+  },
+  {
+    "q": "What is an augmenting path?",
+    "options": ["An s–t path in the residual graph whose every edge has positive residual capacity", "Any s–t path in the original network", "A path containing only full edges", "A cycle through s"],
+    "answer": 0,
+    "explain": "Flow can be increased along it by its bottleneck, the smallest residual capacity on the path."
+  },
+  {
+    "q": "How does Edmonds–Karp differ from the general Ford–Fulkerson method?",
+    "options": ["It always picks a shortest augmenting path (fewest edges), using BFS", "It uses DFS", "It never uses backward edges", "It augments by 1 unit at a time"],
+    "answer": 0,
+    "explain": "Choosing shortest paths bounds the number of augmentations by O(V·E), which gives O(V·E²) time whatever the capacities."
+  },
+  {
+    "q": "What is the running time of Edmonds–Karp?",
+    "options": ["O(V·E²)", "O(E·|f*|)", "O(V + E)", "O(V³) always"],
+    "answer": 0,
+    "explain": "O(V·E) augmentations, each found with an O(E) BFS. O(E·|f*|) is the general Ford–Fulkerson bound for integer capacities."
+  },
+  {
+    "q": "What is the maximum flow in the page example (s→a 10, s→c 10, a→b 4, a→c 2, a→d 8, c→d 9, d→b 6, b→t 10, d→t 10)?",
+    "options": ["19", "20", "14", "16"],
+    "answer": 0,
+    "explain": "Four augmentations give 4 + 6 + 4 + 5 = 19. The full edges s→a (10) and c→d (9) form a cut of capacity 19, which proves optimality."
+  },
+  {
+    "type": "tf",
+    "q": "If all capacities are integers, Ford–Fulkerson finds a maximum flow in which every edge carries an integer amount.",
+    "answer": 0,
+    "explain": "True. Every bottleneck is an integer, so every augmentation keeps the flow integral. This is the integrality theorem, and it is what makes matching via flow work."
+  },
+  {
+    "q": "When does the Ford–Fulkerson method stop?",
+    "options": ["When the residual graph has no s–t path", "When some edge becomes full", "After V − 1 augmentations", "When the flow out of s equals the capacity out of s"],
+    "answer": 0,
+    "explain": "No augmenting path means the flow is maximum, by the max-flow min-cut theorem (topic 19). Full edges and the capacity out of s are not the stopping test."
+  },
+  {
+    "q": "Why can plain Ford–Fulkerson (with arbitrary path choice) be slow even on a 4-vertex network?",
+    "options": ["Bad choices can augment by only 1 unit each time, needing as many steps as the flow value", "It cannot handle more than 4 vertices", "It recomputes the whole flow each time", "Its BFS is quadratic"],
+    "answer": 0,
+    "explain": "Its time is O(E·|f*|). With capacities like 1000 and an unlucky path through a capacity-1 edge, it can take 2000 augmentations. Edmonds–Karp needs only 2."
+  },
+  {
+    "q": "How do you handle a network with several sources and several sinks?",
+    "options": ["Add a super-source with edges to every source and a super-sink fed by every sink, then run max flow once", "Run max flow for every source–sink pair and add the results", "Pick the largest source only", "Max flow cannot handle that"],
+    "answer": 0,
+    "explain": "Giving the new edges infinite (or large enough) capacity turns the problem into an ordinary single-source, single-sink flow problem."
+  }
+]

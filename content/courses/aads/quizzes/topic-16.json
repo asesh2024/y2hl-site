@@ -1,0 +1,62 @@
+[
+  {
+    "q": "How many edges does a minimum spanning tree of a connected graph with V vertices have?",
+    "options": ["V − 1", "V", "E − V", "V(V − 1)/2"],
+    "answer": 0,
+    "explain": "Every spanning tree on V vertices has exactly V − 1 edges: enough to connect everything, and none to spare for a cycle."
+  },
+  {
+    "q": "At each step, which edge does Prim's algorithm add?",
+    "options": ["The cheapest edge joining a tree vertex to a non-tree vertex", "The cheapest edge in the whole graph not yet used", "The edge with the smallest total distance from the start", "Any edge that does not form a cycle"],
+    "answer": 0,
+    "explain": "Prim grows a single tree and only looks at edges that cross from the tree to the rest of the graph. 'Cheapest unused edge overall' describes Kruskal."
+  },
+  {
+    "q": "Which property guarantees that Prim's greedy choice is safe?",
+    "options": ["The cut property: the cheapest edge crossing any cut belongs to some MST", "The pumping lemma", "The optimal-substructure property of shortest paths", "The triangle inequality"],
+    "answer": 0,
+    "explain": "Prim's tree and the rest of the graph form a cut, and the cheapest crossing edge can always be added safely."
+  },
+  {
+    "q": "What is the MST weight of the example graph (A–B 4, A–C 3, B–C 1, B–D 2, C–D 4, C–E 5, D–E 7, D–F 6, E–F 2, E–G 3, F–G 4)?",
+    "options": ["16", "15", "18", "20"],
+    "answer": 0,
+    "explain": "The MST edges are A–C 3, C–B 1, B–D 2, C–E 5, E–F 2 and E–G 3: total 16."
+  },
+  {
+    "q": "In the example, starting from A, which is the fourth edge Prim adds?",
+    "options": ["C–E (5)", "D–F (6)", "C–D (4)", "E–F (2)"],
+    "answer": 0,
+    "explain": "After A–C, C–B and B–D, the tree is {A, B, C, D}. The crossing edges are C–E 5, D–E 7 and D–F 6, and C–D now lies inside the tree. The cheapest is C–E."
+  },
+  {
+    "q": "What is Prim's running time with a binary heap?",
+    "options": ["O(E log V)", "O(V + E)", "O(V³)", "O(E²)"],
+    "answer": 0,
+    "explain": "Each edge can cause a heap operation costing O(log V). With an adjacency matrix and a plain array, it is O(V²) instead."
+  },
+  {
+    "type": "tf",
+    "q": "If all edge weights are distinct, the minimum spanning tree is unique.",
+    "answer": 0,
+    "explain": "True. With distinct weights, every cut has a single cheapest crossing edge, so there are never two equally good choices."
+  },
+  {
+    "type": "tf",
+    "q": "The path between two vertices in an MST is always a shortest path between them in the graph.",
+    "answer": 1,
+    "explain": "False. An MST minimises the total weight of the whole tree, not individual paths. For example, in a triangle with weights 1, 1, 1.5, the MST uses the two edges of weight 1, so the path between the ends of the 1.5 edge has length 2."
+  },
+  {
+    "q": "How do Prim's algorithm and Dijkstra's algorithm differ in what they compare?",
+    "options": ["Prim compares single edge weights into the tree; Dijkstra compares total distances from the source", "They are the same algorithm", "Prim needs negative edges; Dijkstra does not", "Dijkstra builds an MST; Prim builds a shortest-path tree"],
+    "answer": 0,
+    "explain": "The code looks similar, with a heap and a growing set, but the key differs: w(u, v) for Prim, and d[u] + w(u, v) for Dijkstra."
+  },
+  {
+    "q": "Prim's algorithm is started from a different vertex. What can change?",
+    "options": ["The order in which edges are added (and, with tied weights, possibly which edges are chosen)", "The total weight of the MST", "The number of edges in the MST", "Whether the result is a tree"],
+    "answer": 0,
+    "explain": "Every MST has the same minimum total weight and V − 1 edges. The start vertex only changes the order, or which of several equal-weight MSTs is found."
+  }
+]

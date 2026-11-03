@@ -1,0 +1,27 @@
+[
+  {
+    "type": "nat",
+    "q": "In the network s→a (10), s→c (10), a→b (4), a→c (2), a→d (8), c→d (9), d→b (6), b→t (10), d→t (10), what is the capacity of the cut S = {s, a, c}, T = {b, d, t}?",
+    "answer": 21,
+    "explain": "<p>Count only the edges going from S to T:</p><pre>a→b  4\na→d  8\nc→d  9\n(a→c and s→a, s→c stay inside S; nothing from T to S is counted)\ncapacity = 4 + 8 + 9 = 21</pre><p>This is larger than the minimum cut (19), so it is not minimum.</p>"
+  },
+  {
+    "type": "nat",
+    "q": "A bipartite graph has left vertices L1, L2, L3, L4 and right vertices R1, R2, R3, with edges L1–R1, L2–R1, L3–R1, L3–R2, L4–R2. What is the size of a maximum matching?",
+    "answer": 2,
+    "explain": "<p>R3 has no edges, so at most R1 and R2 can be matched. Two matches are possible: L1–R1 and L3–R2, for example.</p><p>In the flow network, the edges R1→t and R2→t (capacity 1 each) form a cut of capacity 2. So no flow, and no matching, can exceed 2, and the matching above reaches it.</p>"
+  },
+  {
+    "type": "multi",
+    "q": "f is a maximum flow and (S, T) is the cut where S = vertices reachable from s in the residual graph. Which statements must hold?",
+    "options": ["Every edge from S to T is saturated (flow = capacity)", "Every edge from T to S carries zero flow", "The flow value equals the capacity of (S, T)", "Every edge inside S is saturated"],
+    "answer": [0, 1, 2],
+    "explain": "<p>(A): if an S→T edge had spare capacity, its head would be reachable. (B): flow on a T→S edge would create a backward residual edge into T. (C) follows from (A) and (B).</p><p>(D) is false: edges inside S can have spare capacity, which is exactly why those vertices are reachable.</p>"
+  },
+  {
+    "q": "A network's maximum flow is 12. Which of these can be the capacity of some s–t cut?",
+    "options": ["Only values ≥ 12", "Only values ≤ 12", "Exactly 12 for every cut", "Any value"],
+    "answer": 0,
+    "explain": "<p>Every flow is at most every cut's capacity, so no cut can have capacity below the maximum flow, 12. At least one cut has capacity exactly 12, and the others can be larger.</p>"
+  }
+]

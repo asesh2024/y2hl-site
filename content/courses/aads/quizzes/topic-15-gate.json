@@ -1,0 +1,27 @@
+[
+  {
+    "type": "nat",
+    "q": "A directed graph on vertices 1–4 has edges 1→2 (4), 1→3 (11), 2→3 (−2), 2→4 (6), 3→4 (3), 3→1 (7), 4→1 (1). Floyd–Warshall is run. What is the entry D₂[1][4] (shortest 1→4 distance using only vertices 1 and 2 as intermediates)?",
+    "answer": 10,
+    "explain": "<pre>D₀[1][4] = ∞            (no direct edge)\nk = 1: 1→1→4 adds nothing → ∞\nk = 2: 1→2→4 = 4 + 6 = 10 → D₂[1][4] = 10</pre><p>Allowing vertex 3 later (k = 3) improves it to 1→2→3→4 = 4 − 2 + 3 = 5.</p>"
+  },
+  {
+    "type": "nat",
+    "q": "For the same graph, what is the final shortest distance from vertex 2 to vertex 1?",
+    "answer": 2,
+    "explain": "<p>Vertex 2 has no direct edge to 1. The candidate routes are:</p><pre>2→3→1        = −2 + 7 = 5\n2→4→1        =  6 + 1 = 7\n2→3→4→1      = −2 + 3 + 1 = 2   ← best</pre>"
+  },
+  {
+    "type": "nat",
+    "q": "For the same graph, what is the final shortest distance from vertex 3 to vertex 2?",
+    "answer": 8,
+    "explain": "<pre>3→1→2     = 7 + 4 = 11\n3→4→1→2   = 3 + 1 + 4 = 8   ← best</pre>"
+  },
+  {
+    "type": "multi",
+    "q": "Which statements about Floyd–Warshall are true?",
+    "options": ["It is a dynamic-programming algorithm", "It needs Θ(V³) time regardless of the number of edges", "It can be used to compute the transitive closure of a directed graph", "It requires all edge weights to be non-negative"],
+    "answer": [0, 1, 2],
+    "explain": "<p>(A): it builds D_k from D_{k−1}. (B): the triple loop always runs V³ times. (C): that is Warshall's boolean version.</p><p>(D) is false: negative edges are allowed, and only negative cycles are a problem, which the diagonal reveals.</p>"
+  }
+]

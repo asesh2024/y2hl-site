@@ -1,0 +1,62 @@
+[
+  {
+    "q": "How many rounds of relaxing all edges does Bellman–Ford need on a graph with V vertices (and no negative cycle)?",
+    "options": ["V − 1", "V", "E", "log V"],
+    "answer": 0,
+    "explain": "A shortest path without a negative cycle is simple, so it has at most V − 1 edges. Each round makes one more edge of every shortest path correct."
+  },
+  {
+    "q": "How does Bellman–Ford detect a negative-weight cycle?",
+    "options": ["After V − 1 rounds, one more pass still finds an edge that can be relaxed", "A distance becomes negative", "The algorithm runs forever", "Two vertices end with the same distance"],
+    "answer": 0,
+    "explain": "Without a negative cycle, all distances are final after V − 1 rounds. Any further improvement proves a reachable negative cycle. Negative distances by themselves are perfectly normal."
+  },
+  {
+    "q": "What is the time complexity of Bellman–Ford?",
+    "options": ["O(V·E)", "O((V + E) log V)", "O(V + E)", "O(V³) always"],
+    "answer": 0,
+    "explain": "It makes V − 1 rounds, each relaxing all E edges."
+  },
+  {
+    "q": "When must you use Bellman–Ford instead of Dijkstra?",
+    "options": ["When some edge weights are negative, or you must detect negative cycles", "When the graph is undirected", "When the graph is very large and sparse", "When all weights are equal"],
+    "answer": 0,
+    "explain": "Dijkstra is faster but needs non-negative weights. Bellman–Ford handles negative edges and reports negative cycles."
+  },
+  {
+    "type": "tf",
+    "q": "A graph with a negative edge weight always has undefined shortest paths.",
+    "answer": 1,
+    "explain": "False. Only a negative-weight <em>cycle</em> reachable from the source makes shortest paths undefined. Negative edges alone are fine for Bellman–Ford."
+  },
+  {
+    "q": "In the page example (edges in the order S→A 6, S→B 7, A→B 8, A→C 5, A→D −4, B→C −3, B→D 9, C→A −2, D→S 2, D→C 7), what is the final distance from S to D?",
+    "options": ["−2", "2", "6", "−4"],
+    "answer": 0,
+    "explain": "The path S → B → C → A → D costs 7 − 3 − 2 − 4 = −2. The direct route S → A → D gives 6 − 4 = 2."
+  },
+  {
+    "q": "Why can Bellman–Ford sometimes finish in fewer than V − 1 rounds?",
+    "options": ["If a whole round changes nothing, all distances are already final", "Because negative edges speed it up", "Because it skips vertices with distance ∞", "It never can"],
+    "answer": 0,
+    "explain": "A round with no change means no later round can change anything either, so an early exit is safe. How soon that happens depends on the edge order."
+  },
+  {
+    "q": "An undirected graph has an edge u–v of weight −3. What does that mean for shortest paths?",
+    "options": ["It is a negative cycle u → v → u, so shortest paths through it are undefined", "Nothing special", "Dijkstra handles it correctly", "The edge should be ignored"],
+    "answer": 0,
+    "explain": "An undirected edge can be used in both directions, so u → v → u has weight −6. That is why negative weights are usually discussed for directed graphs."
+  },
+  {
+    "q": "Which real application naturally needs Bellman–Ford?",
+    "options": ["Detecting currency arbitrage using −log(exchange rate) as edge weights", "Finding a minimum spanning tree", "Searching a word in a text", "Sorting numbers"],
+    "answer": 0,
+    "explain": "A sequence of trades whose rates multiply to more than 1 is a cycle whose −log weights sum to less than 0, which is a negative cycle."
+  },
+  {
+    "q": "In a DAG that has negative edges, which method finds single-source shortest paths in O(V + E)?",
+    "options": ["Relax the edges in topological order of their source vertices, once", "Dijkstra", "Bellman–Ford with V − 1 rounds", "BFS"],
+    "answer": 0,
+    "explain": "In topological order, every predecessor of v is final before v's incoming edges are relaxed. A DAG has no cycles, so there are no negative cycles."
+  }
+]

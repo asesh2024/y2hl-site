@@ -1,0 +1,27 @@
+[
+  {
+    "type": "nat",
+    "q": "A flow network has edges s→a (3), s→b (2), a→b (1), a→c (3), b→d (2), c→d (1), c→t (2), d→t (3). What is the value of the maximum s–t flow?",
+    "answer": 5,
+    "explain": "<p>Edmonds–Karp (BFS paths):</p><pre>s→a→c→t     bottleneck 2  (c→t)  total 2\ns→b→d→t     bottleneck 2  (s→b)  total 4\ns→a→c→d→t   bottleneck 1  (s→a has 1 left, c→d = 1)  total 5</pre><p>Now s→a (3) and s→b (2) are both full, and the cut {s} | rest has capacity 3 + 2 = 5. So 5 is the maximum.</p>"
+  },
+  {
+    "type": "nat",
+    "q": "In the page example network, how many augmenting paths does Edmonds–Karp (BFS, neighbours in alphabetical order) use before it stops?",
+    "answer": 4,
+    "explain": "<pre>1. s→a→b→t     +4\n2. s→a→d→t     +6\n3. s→c→d→t     +4\n4. s→c→d→b→t   +5   → total 19, no more s–t paths in the residual graph</pre>"
+  },
+  {
+    "type": "multi",
+    "q": "Which statements about the Ford–Fulkerson method are correct?",
+    "options": ["With integer capacities it terminates, and the maximum flow found is an integer", "Using BFS to choose augmenting paths gives O(V·E²) time", "Backward residual edges are needed to guarantee a maximum flow", "Its running time never depends on the capacity values"],
+    "answer": [0, 1, 2],
+    "explain": "<p>(A) is the integrality property. (B) is Edmonds–Karp. (C): without backward edges, a greedy first path can block the optimum.</p><p>(D) is false: plain Ford–Fulkerson takes O(E·|f*|), which grows with the capacities.</p>"
+  },
+  {
+    "q": "A network has edges s→x (5), s→y (7), x→y (3), y→x (2), x→t (4), y→t (6). What is the maximum flow from s to t?",
+    "options": ["10", "12", "9", "11"],
+    "answer": 0,
+    "explain": "<p>The edges into t have capacities 4 + 6 = 10, so the cut {s, x, y} | {t} limits the flow to 10. The flow s→x→t (4) plus s→y→t (6) achieves 10. The edges between x and y are not needed.</p>"
+  }
+]

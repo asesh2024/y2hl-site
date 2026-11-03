@@ -1,0 +1,27 @@
+[
+  {
+    "type": "nat",
+    "q": "Bellman–Ford is run from s on a directed graph whose edges are relaxed in this fixed order in every pass: a→b (−1), b→c (3), s→a (4), s→b (5), c→d (2), b→d (7), a→c (6). Initially d[s] = 0 and the rest are ∞. What is d[d] after the <strong>first</strong> pass?",
+    "answer": 12,
+    "explain": "<pre>a→b: d[a] = ∞, no change\nb→c: d[b] = ∞, no change\ns→a: d[a] = 4\ns→b: d[b] = 5\nc→d: d[c] = ∞, no change\nb→d: d[d] = 5 + 7 = 12\na→c: d[c] = 4 + 6 = 10\nafter pass 1: a=4, b=5, c=10, d=12</pre><p>The edge order matters: a→b came before d[a] was known, so the cheaper route s→a→b (= 3) only shows up in pass 2.</p>"
+  },
+  {
+    "type": "nat",
+    "q": "For the same graph and edge order, what is the final shortest distance from s to d?",
+    "answer": 8,
+    "explain": "<pre>pass 2: a→b: b = 4 − 1 = 3\n        b→c: c = 3 + 3 = 6\n        c→d: d = 6 + 2 = 8\npass 3: no change → done</pre><p>The path is s → a → b → c → d = 4 − 1 + 3 + 2 = 8.</p>"
+  },
+  {
+    "type": "multi",
+    "q": "Which statements about Bellman–Ford on a graph with V vertices and E edges are true?",
+    "options": ["It correctly handles negative edge weights if no negative cycle is reachable from the source", "It runs in O(V·E) time", "It can tell whether a negative cycle is reachable from the source", "It requires the graph to be acyclic"],
+    "answer": [0, 1, 2],
+    "explain": "<p>(A), (B) and (C) are its defining properties. (D) is false: cycles are fine, and only negative-weight cycles are a problem. Detecting them is one of the algorithm's jobs.</p>"
+  },
+  {
+    "q": "A directed graph has edges x→y (1), y→z (−2), z→y (1). Bellman–Ford is run from x. What happens?",
+    "options": ["It reports a negative-weight cycle (y → z → y has weight −1)", "d[z] = −1, and no cycle is reported", "It reports d[y] = 1 and d[z] = −1", "It loops forever"],
+    "answer": 0,
+    "explain": "<p>The cycle y → z → y has weight −2 + 1 = −1, and it is reachable from x. After V − 1 = 2 passes, the check pass still finds y→z or z→y improvable, so the algorithm reports the cycle. The demo in the page's code does exactly this.</p>"
+  }
+]

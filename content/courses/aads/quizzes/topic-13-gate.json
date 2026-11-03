@@ -1,0 +1,27 @@
+[
+  {
+    "type": "nat",
+    "q": "A directed graph has edges S→A (7), S→B (2), S→C (9), A→D (1), B→A (3), B→C (5), B→E (10), C→E (2), D→E (4), D→T (8), E→T (3). What is the shortest distance from S to T?",
+    "answer": 12,
+    "explain": "<pre>settle S (0): A=7, B=2, C=9\nsettle B (2): A=min(7,5)=5, C=min(9,7)=7, E=12\nsettle A (5): D=6\nsettle D (6): E=min(12,10)=10, T=14\nsettle C (7): E=min(10,9)=9\nsettle E (9): T=min(14,12)=12\nsettle T (12)</pre><p>The path is S → B → C → E → T = 2 + 5 + 2 + 3 = 12.</p>"
+  },
+  {
+    "q": "For the same graph, in what order does Dijkstra's algorithm (from S) settle the vertices?",
+    "options": ["S, B, A, D, C, E, T", "S, B, C, A, D, E, T", "S, A, B, C, D, E, T", "S, B, A, C, D, E, T"],
+    "answer": 0,
+    "explain": "<p>The final distances are S 0, B 2, A 5, D 6, C 7, E 9, T 12, and Dijkstra settles vertices in increasing order of final distance. A is reached cheaply through B (2 + 3), and D right after A (5 + 1), so both come before C.</p>"
+  },
+  {
+    "type": "multi",
+    "q": "Which statements about Dijkstra's algorithm are true?",
+    "options": ["It produces a shortest-path tree rooted at the source", "It works correctly if some edges have weight 0", "It can detect a negative-weight cycle", "Using a binary heap, it runs in O((V + E) log V) time"],
+    "answer": [0, 1, 3],
+    "explain": "<p>(A): the parent pointers form a tree. (B): zero weights are non-negative, so they are fine. (D) is the heap bound.</p><p>(C) is false: Dijkstra has no mechanism to detect negative cycles, and gives wrong answers with negative edges. Bellman–Ford detects them.</p>"
+  },
+  {
+    "q": "Every edge weight of a graph is multiplied by 3. What happens to the shortest paths found by Dijkstra from a fixed source?",
+    "options": ["The same paths remain shortest; every distance triples", "The paths may change", "Dijkstra no longer works", "Every distance increases by 3"],
+    "answer": 0,
+    "explain": "<p>Multiplying every weight by a positive constant multiplies every path's length by that constant, so the order between paths is kept. Adding a constant to every edge is different: it penalises paths with more edges and can change which path is shortest.</p>"
+  }
+]

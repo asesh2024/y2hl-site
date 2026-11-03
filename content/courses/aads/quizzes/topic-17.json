@@ -1,0 +1,62 @@
+[
+  {
+    "q": "In which order does Kruskal's algorithm consider the edges?",
+    "options": ["In increasing order of weight", "In decreasing order of weight", "In BFS order from a start vertex", "In the order they are given"],
+    "answer": 0,
+    "explain": "Sorting is the first step. Cheap edges are tried first, and each is kept unless it would close a cycle."
+  },
+  {
+    "q": "When does Kruskal reject an edge (u, v)?",
+    "options": ["When u and v are already in the same component (the edge would form a cycle)", "When u has already been used by another edge", "When the edge is heavier than the previous one", "Never: it keeps every edge"],
+    "answer": 0,
+    "explain": "Only same-component edges close a cycle. One endpoint having other edges does not matter."
+  },
+  {
+    "q": "Which data structure makes Kruskal's cycle test fast?",
+    "options": ["Union–find (disjoint sets)", "A binary heap", "A stack", "An adjacency matrix"],
+    "answer": 0,
+    "explain": "find tells you which component a vertex is in, and union merges two components after an edge is accepted."
+  },
+  {
+    "q": "What is the running time of Kruskal's algorithm?",
+    "options": ["O(E log E), dominated by sorting", "O(V²)", "O(V + E)", "O(E·V)"],
+    "answer": 0,
+    "explain": "Sorting costs O(E log E). With union by rank and path compression, the union–find work is almost linear, O(E α(V))."
+  },
+  {
+    "q": "What does path compression do in find(x)?",
+    "options": ["Makes every node on the path from x point directly to the root", "Deletes the path", "Moves x to the root position", "Merges two sets"],
+    "answer": 0,
+    "explain": "Later finds on those nodes become one step. Combined with union by rank, the amortised cost per operation is α(n), which is effectively constant."
+  },
+  {
+    "q": "In the page example, which edges does Kruskal reject?",
+    "options": ["A–B 4, C–D 4, F–G 4", "B–C 1, B–D 2", "C–E 5", "D–F 6 only"],
+    "answer": 0,
+    "explain": "When the weight-4 edges are reached, A, B, C and D are already connected, and so are E, F and G. All three of those edges would close cycles. C–E 5 is then accepted, and the algorithm stops with 6 edges."
+  },
+  {
+    "type": "tf",
+    "q": "Kruskal's and Prim's algorithms always give MSTs of the same total weight on the same connected graph.",
+    "answer": 0,
+    "explain": "True. Both find a minimum spanning tree, and all MSTs share the same minimum weight. They may pick different edges when weights tie."
+  },
+  {
+    "q": "During Kruskal, before it finishes, what does the set of accepted edges form?",
+    "options": ["A forest (possibly several trees)", "Always a single tree", "A cycle", "A path"],
+    "answer": 0,
+    "explain": "Accepted edges can be far apart in the graph, so the partial result is a forest that merges into one tree at the end. Prim, by contrast, always has one tree."
+  },
+  {
+    "q": "How can Kruskal's algorithm be stopped early to split points into k clusters?",
+    "options": ["Stop when exactly k components remain", "Stop after k edges", "Stop at the k-th heaviest edge", "Sort in decreasing order and take k edges"],
+    "answer": 0,
+    "explain": "Each accepted edge merges two clusters. Stopping at k components leaves the k clusters as far apart as possible: this is single-linkage clustering."
+  },
+  {
+    "q": "A graph has V vertices. When can Kruskal stop scanning edges?",
+    "options": ["As soon as V − 1 edges have been accepted", "Only after every edge has been examined", "After V edges", "After half of the edges"],
+    "answer": 0,
+    "explain": "A spanning tree has exactly V − 1 edges. Once that many have been accepted, every remaining edge would close a cycle."
+  }
+]

@@ -1,0 +1,27 @@
+[
+  {
+    "type": "nat",
+    "q": "An undirected graph has edges P–Q 6, P–R 1, Q–R 5, Q–S 3, R–S 5, R–T 6, S–T 4, S–U 2, T–U 6. What is the weight of its minimum spanning tree?",
+    "answer": 15,
+    "explain": "<p>Prim from P:</p><pre>P–R 1  → {P,R}\nR–Q 5 or R–S 5 (tie; take R–Q) → {P,R,Q}\nQ–S 3  → {P,Q,R,S}\nS–U 2  → +U\nS–T 4  → +T\ntotal = 1 + 5 + 3 + 2 + 4 = 15</pre><p>Taking R–S instead of R–Q also gives 15. Ties can produce different MSTs with the same weight.</p>"
+  },
+  {
+    "q": "For the same graph, Prim's algorithm is started at P and breaks ties by taking the edge listed first (Q–R before R–S). In what order does it add the edges?",
+    "options": ["P–R, R–Q, Q–S, S–U, S–T", "P–R, S–U, Q–S, S–T, Q–R", "P–R, R–S, S–U, Q–S, S–T", "P–R, Q–S, S–U, S–T, R–Q"],
+    "answer": 0,
+    "explain": "<p>Prim always grows one connected tree. After P–R, the only crossing edges are P–Q 6, R–Q 5, R–S 5 and R–T 6, so a weight-5 edge comes next. Option B is Kruskal's global order, which is not possible for Prim, because S–U is not adjacent to the tree after the first step.</p>"
+  },
+  {
+    "type": "nat",
+    "q": "A graph on four vertices W, X, Y, Z has edges W–X 1, Y–Z 1, X–Y 2, Z–W 2, W–Y 2. How many different minimum spanning trees does it have?",
+    "answer": 3,
+    "explain": "<p>Any MST must contain both weight-1 edges (W–X and Y–Z), which form two pieces {W,X} and {Y,Z}. It then needs exactly one weight-2 edge joining the pieces, and all three qualify:</p><pre>X–Y,  Z–W,  W–Y   → 3 MSTs, each of weight 1 + 1 + 2 = 4</pre>"
+  },
+  {
+    "type": "multi",
+    "q": "Let G be a connected undirected graph with distinct edge weights. Which statements are true?",
+    "options": ["The lightest edge of G is in every MST", "The heaviest edge of G is never in the MST", "For any cut, the lightest edge crossing it is in the MST", "If the heaviest edge on some cycle is strictly the heaviest, it is not in the MST"],
+    "answer": [0, 2, 3],
+    "explain": "<p>(A) and (C) follow from the cut property: put one endpoint of the lightest edge alone on one side. (D) is the cycle property.</p><p>(B) is false: if the heaviest edge is a bridge, meaning the only connection to some vertex, every spanning tree must include it.</p>"
+  }
+]

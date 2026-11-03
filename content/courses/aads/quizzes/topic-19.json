@@ -1,0 +1,62 @@
+[
+  {
+    "q": "What does the max-flow min-cut theorem state?",
+    "options": ["The value of a maximum flow equals the capacity of a minimum s–t cut", "The maximum flow is twice the minimum cut", "Every cut has the same capacity", "The maximum flow equals the number of edges in the minimum cut"],
+    "answer": 0,
+    "explain": "Any flow is at most any cut's capacity, and at the maximum there is a cut that is exactly tight."
+  },
+  {
+    "q": "Which edges count towards the capacity of an s–t cut (S, T)?",
+    "options": ["Only edges from S to T", "Edges in both directions between S and T", "Only edges from T to S", "All edges inside S"],
+    "answer": 0,
+    "explain": "Cut capacity measures what can flow from the source side to the sink side. Edges pointing back into S are ignored."
+  },
+  {
+    "q": "After a maximum flow is found, how is a minimum cut obtained?",
+    "options": ["S = all vertices reachable from s in the residual graph", "S = all vertices adjacent to s", "S = the vertices on the last augmenting path", "S = the vertices with full outgoing edges"],
+    "answer": 0,
+    "explain": "No augmenting path remains, so t is unreachable. Every edge leaving the reachable set is saturated, which makes the cut tight."
+  },
+  {
+    "q": "In the page example, which cut is minimum?",
+    "options": ["S = {s, c}: edges s→a (10) and c→d (9), total 19", "S = {s}: s→a and s→c, total 20", "S = {s, a, c, d}: total 20", "S = {s, a}: total 24"],
+    "answer": 0,
+    "explain": "{s} has capacity 20 and {s, a} has 24, but {s, c} has only 10 + 9 = 19, which equals the maximum flow."
+  },
+  {
+    "type": "tf",
+    "q": "If a flow's value equals the capacity of some cut, that flow is maximum and the cut is minimum.",
+    "answer": 0,
+    "explain": "True. Every flow is at most every cut's capacity, so equality means neither can be improved. This is how a cut certifies an optimal flow."
+  },
+  {
+    "q": "How is maximum bipartite matching turned into a flow problem?",
+    "options": ["s → each left vertex, left → right for allowed pairs, right → t, all with capacity 1", "Give every edge capacity ∞", "Connect s directly to t", "Use the number of vertices as the capacities"],
+    "answer": 0,
+    "explain": "Unit capacities make each vertex match at most once. An integer maximum flow then picks a maximum set of disjoint pairs."
+  },
+  {
+    "q": "Students Asha (P1, P2), Ravi (P1) and Meena (P2, P3) list the projects they accept, and each project can take one student. What is the maximum number of students who can get a project?",
+    "options": ["3", "2", "1", "5"],
+    "answer": 0,
+    "explain": "Ravi → P1, Asha → P2, Meena → P3. All three are matched, and the flow formulation finds this automatically."
+  },
+  {
+    "q": "What extra work does finding the minimum cut take, once the maximum flow is known?",
+    "options": ["One BFS/DFS on the residual graph: O(V + E)", "Another full max-flow computation", "Trying all 2^V cuts", "O(V³)"],
+    "answer": 0,
+    "explain": "Simply mark the vertices reachable from s using edges with positive residual capacity."
+  },
+  {
+    "type": "tf",
+    "q": "A network always has exactly one minimum cut.",
+    "answer": 1,
+    "explain": "False. Several different cuts can share the minimum capacity. They all equal the maximum flow value."
+  },
+  {
+    "q": "How can you find the maximum number of edge-disjoint paths from s to t?",
+    "options": ["Give every edge capacity 1 and compute the maximum flow", "Count the edges out of s", "Run Dijkstra repeatedly without changes", "Find the minimum spanning tree"],
+    "answer": 0,
+    "explain": "With unit capacities, an integer flow of value k breaks into k paths that share no edge. This is Menger's theorem as a flow statement."
+  }
+]
