@@ -4,7 +4,7 @@ topic: 3
 co: "CO1"
 description: "A compact algebra for describing patterns, the identities it obeys, and Kleene's theorem: regular expressions and finite automata describe exactly the same languages."
 outcomes: ["Write regular expressions for languages described in words, and read them back", "Use the identities of regular expressions to simplify or prove equalities", "Convert a regular expression to an ε-NFA (Thompson's construction)", "Convert a finite automaton to a regular expression by state elimination"]
-reading: ["Sipser, §1.3 Regular expressions", "Hopcroft–Motwani–Ullman, §3.1–3.2 Regular expressions; finite automata and regular expressions", "Linz, §3.1–3.2 Regular expressions; connection with regular languages"]
+reading: ["Textbook 1, §1.3 Regular expressions", "Textbook 2, §3.1–3.2 Regular expressions; finite automata and regular expressions", "Textbook 3, §3.1–3.2 Regular expressions; connection with regular languages"]
 videos: [{"title": "MIT 18.404J, Lecture 2: Regular expressions → finite automata", "url": "https://ocw.mit.edu/courses/18-404j-theory-of-computation-fall-2020/resources/nondeterminism-closure-properties-regular-expressions-2192-finite-automata/"}, {"title": "MIT 18.404J, Lecture 3: Finite automata → regular expressions", "url": "https://ocw.mit.edu/courses/18-404j-theory-of-computation-fall-2020/resources/regular-pumping-lemma-finite-automata-2192-regular-expressions-cfgs/"}]
 ---
 

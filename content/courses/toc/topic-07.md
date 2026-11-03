@@ -4,7 +4,7 @@ topic: 7
 co: "CO1"
 description: "Output on the transitions instead of the states, and how to convert between Mealy and Moore machines without changing what they compute."
 outcomes: ["Define a Mealy machine and trace it on an input string", "Convert a Moore machine to an equivalent Mealy machine", "Convert a Mealy machine to an equivalent Moore machine by splitting states", "Explain in what sense Moore and Mealy machines are equivalent"]
-reading: ["K. L. P. Mishra and N. Chandrasekaran, §3.8–3.9 Moore and Mealy machines; transforming one into the other", "Linz, exercises on finite-state transducers"]
+reading: ["Reference book 2, §3.8–3.9 Moore and Mealy machines; transforming one into the other", "Textbook 3, exercises on finite-state transducers"]
 videos: [{"title": "NPTEL: Introduction to Automata, Languages and Computation, IIT Kharagpur", "url": "https://nptel.ac.in/courses/106105196"}]
 ---
 

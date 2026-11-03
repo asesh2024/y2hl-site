@@ -5,6 +5,7 @@
     <p class="crumbs"><a href="/courses/">Courses</a> / {{ course.short }}</p>
     <p class="eyebrow">{{ course.code }} · {{ course.language }} · {{ course.level }}</p>
     <h1>{{ course.title }}</h1>
+    {% if course.byline %}<p class="byline">by <a href="/about/">{{ site.author.title }} {{ site.author.name }}</a></p>{% endif %}
     <p class="lead">{{ course.tagline }}. {{ course.summary }}</p>
     <ul class="stats big">
       {% for s in course.stats %}<li><strong>{{ s.value }}</strong>{{ s.label }}</li>{% endfor %}

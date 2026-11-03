@@ -4,7 +4,7 @@ topic: 2
 co: "CO1"
 description: "Machines that may guess: nondeterministic finite automata, ε-moves, and the subset construction that turns any NFA back into a DFA."
 outcomes: ["Define an NFA and an ε-NFA, and explain when they accept a string", "Compute ε-closures and trace an NFA on a string", "Convert an NFA (with or without ε-moves) to an equivalent DFA by the subset construction", "Explain why NFAs and DFAs recognise exactly the same languages"]
-reading: ["Sipser, §1.2 Nondeterminism", "Hopcroft–Motwani–Ullman, §2.3 Nondeterministic finite automata and §2.5 Finite automata with ε-transitions", "Linz, §2.2–2.3 Nondeterministic finite accepters and equivalence"]
+reading: ["Textbook 1, §1.2 Nondeterminism", "Textbook 2, §2.3 Nondeterministic finite automata and §2.5 Finite automata with ε-transitions", "Textbook 3, §2.2–2.3 Nondeterministic finite accepters and equivalence"]
 videos: [{"title": "MIT 18.404J, Lecture 2: Nondeterminism, closure properties, regular expressions → finite automata", "url": "https://ocw.mit.edu/courses/18-404j-theory-of-computation-fall-2020/resources/nondeterminism-closure-properties-regular-expressions-2192-finite-automata/"}]
 ---
 

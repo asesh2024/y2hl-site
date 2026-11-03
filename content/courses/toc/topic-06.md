@@ -4,7 +4,7 @@ topic: 6
 co: "CO1"
 description: "Finite automata that produce output instead of a yes/no answer: in a Moore machine, every state carries an output symbol."
 outcomes: ["Define a Moore machine as a 6-tuple and explain how it produces output", "Trace a Moore machine on an input string", "Design Moore machines for counting and pattern-detection tasks"]
-reading: ["K. L. P. Mishra and N. Chandrasekaran, §3.8–3.9 Finite automata with outputs (Moore and Mealy machines)", "Linz, §1.3 and §2.4 exercises on transducers", "Hopcroft–Motwani–Ullman, Ch. 2 (finite-state transducers, background)"]
+reading: ["Reference book 2, §3.8–3.9 Finite automata with outputs (Moore and Mealy machines)", "Textbook 3, §1.3 and §2.4 exercises on transducers", "Textbook 2, Ch. 2 (finite-state transducers, background)"]
 videos: [{"title": "NPTEL: Introduction to Automata, Languages and Computation, IIT Kharagpur", "url": "https://nptel.ac.in/courses/106105196"}]
 ---
 

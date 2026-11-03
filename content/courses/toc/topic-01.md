@@ -4,7 +4,7 @@ topic: 1
 co: "CO1"
 description: "The simplest model of a computer: a machine with a fixed, finite memory that reads a string once, left to right, and says yes or no."
 outcomes: ["State the formal definition of a DFA as a 5-tuple", "Design a DFA from a description of a language, and draw its state diagram and transition table", "Trace a DFA on a string and decide acceptance", "Build DFAs for the complement and intersection of languages"]
-reading: ["Sipser, §1.1 Finite automata", "Hopcroft–Motwani–Ullman, §2.2 Deterministic finite automata", "Linz, §2.1 Deterministic finite accepters"]
+reading: ["Textbook 1, §1.1 Finite automata", "Textbook 2, §2.2 Deterministic finite automata", "Textbook 3, §2.1 Deterministic finite accepters"]
 videos: [{"title": "MIT 18.404J, Lecture 1: Introduction, finite automata, regular expressions", "url": "https://ocw.mit.edu/courses/18-404j-theory-of-computation-fall-2020/resources/introduction-finite-automata-regular-expressions/"}]
 ---
 

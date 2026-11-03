@@ -47,21 +47,23 @@ The course has no prerequisites beyond school mathematics: sets, functions and p
 
 ### Textbooks
 
-1. Michael Sipser, *Introduction to the Theory of Computation*, 3rd edition, Cengage, 2015.
-2. John E. Hopcroft, Rajeev Motwani and Jeffrey D. Ullman, *Introduction to Automata Theory, Languages and Computation*, 3rd edition, Pearson, 2008.
-3. Peter Linz, *An Introduction to Formal Languages and Automata*, 6th edition, Jones and Bartlett, 2016.
+Topic pages refer to these books by number.
 
-**Further reading:**
-- John C. Martin, *Introduction to Languages and the Theory of Computation*, 3rd edition.
-- K. L. P. Mishra and N. Chandrasekaran, *Theory of Computer Science: Automata, Languages and Computation*, 3rd edition, PHI. Its finite-automata chapter covers Moore and Mealy machines and Arden's theorem.
-- Dexter C. Kozen, *Automata and Computability*, Springer.
+1. **Textbook 1:** *Introduction to the Theory of Computation*, 3rd edition, Cengage, 2015.
+2. **Textbook 2:** *Introduction to Automata Theory, Languages and Computation*, 3rd edition, Pearson, 2008.
+3. **Textbook 3:** *An Introduction to Formal Languages and Automata*, 6th edition, Jones and Bartlett, 2016.
+
+**Reference books:**
+1. *Introduction to Languages and the Theory of Computation*, 3rd edition.
+2. *Theory of Computer Science: Automata, Languages and Computation*, 3rd edition, PHI. Its finite-automata chapter covers Moore and Mealy machines and Arden's theorem.
+3. *Automata and Computability*, Springer.
 
 ### Free online lectures
 
-- [MIT 18.404J Theory of Computation](https://ocw.mit.edu/courses/18-404j-theory-of-computation-fall-2020/), Michael Sipser. Full video lectures that follow textbook 1.
-- [NPTEL: Theory of Computation](https://nptel.ac.in/courses/106104148), IIT Kanpur, Prof. Raghunath Tewari.
-- [NPTEL: Theory of Computation](https://nptel.ac.in/courses/106106242), IIT Hyderabad, Prof. Subrahmanyam Kalyanasundaram.
-- [NPTEL: Theory of Automata and Formal Languages](https://nptel.ac.in/courses/106103070), IIT Guwahati, Prof. Diganta Goswami.
-- [NPTEL: Introduction to Automata, Languages and Computation](https://nptel.ac.in/courses/106105196), IIT Kharagpur, Prof. Sourav Mukhopadhyay.
-- [NPTEL: Theory of Automata, Formal Languages and Computation](https://nptel.ac.in/courses/106106049), IIT Madras, Prof. Kamala Krithivasan.
-- [Stanford Online: Automata Theory](https://online.stanford.edu/courses/soe-ycsautomata-automata-theory), Jeff Ullman.
+- [MIT 18.404J Theory of Computation](https://ocw.mit.edu/courses/18-404j-theory-of-computation-fall-2020/): full video lectures that follow textbook 1.
+- [NPTEL: Theory of Computation](https://nptel.ac.in/courses/106104148), IIT Kanpur.
+- [NPTEL: Theory of Computation](https://nptel.ac.in/courses/106106242), IIT Hyderabad.
+- [NPTEL: Theory of Automata and Formal Languages](https://nptel.ac.in/courses/106103070), IIT Guwahati.
+- [NPTEL: Introduction to Automata, Languages and Computation](https://nptel.ac.in/courses/106105196), IIT Kharagpur.
+- [NPTEL: Theory of Automata, Formal Languages and Computation](https://nptel.ac.in/courses/106106049), IIT Madras.
+- [Stanford Online: Automata Theory](https://online.stanford.edu/courses/soe-ycsautomata-automata-theory).

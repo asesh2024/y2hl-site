@@ -12,6 +12,7 @@
     {"value": "4", "label": "CO tests"},
     {"value": "4", "label": "course outcomes"}
   ],
+  "byline": true,
   "unit": "Topic",
   "unit_plural": "topics",
   "unit_prefix": "topic",

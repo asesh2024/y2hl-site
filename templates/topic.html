@@ -7,6 +7,7 @@
     <p class="crumbs"><a href="/courses/">Courses</a> / <a href="{{ course.base }}">{{ course.short }}</a> / {{ course.unit }} {{ week.num }}</p>
     <p class="eyebrow"><span class="co co-{{ m.co|lower }}">{{ m.co }}</span> {{ course.unit }} {{ week.num }} of {{ course.planned | length or course.weeks | length }}</p>
     <h1>{{ m.title }}</h1>
+    {% if course.byline %}<p class="byline">by <a href="/about/">{{ site.author.title }} {{ site.author.name }}</a></p>{% endif %}
     <p class="lead">{{ m.description }}</p>
 
     <div class="glance">

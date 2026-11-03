@@ -4,7 +4,7 @@ topic: 5
 co: "CO1"
 description: "Every regular language has one smallest DFA. Find it by removing unreachable states and merging states that no string can tell apart."
 outcomes: ["Explain when two states are equivalent (indistinguishable)", "Minimise a DFA with the partition (k-equivalence) method", "Minimise a DFA with the table-filling method", "State the Myhill–Nerode theorem and use it to count the states a language needs"]
-reading: ["Hopcroft–Motwani–Ullman, §4.4 Equivalence and minimization of automata", "Linz, §2.4 Reduction of the number of states in finite automata", "Sipser, Problem 1.52 (Myhill–Nerode)"]
+reading: ["Textbook 2, §4.4 Equivalence and minimization of automata", "Textbook 3, §2.4 Reduction of the number of states in finite automata", "Textbook 1, Problem 1.52 (Myhill–Nerode)"]
 videos: [{"title": "NPTEL: Theory of Computation, IIT Kanpur (see the DFA minimisation lectures)", "url": "https://nptel.ac.in/courses/106104148"}]
 ---
 

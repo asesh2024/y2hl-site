@@ -4,7 +4,7 @@ topic: 4
 co: "CO1"
 description: "An algebraic way to turn a finite automaton into a regular expression: write one equation per state and solve them with Arden's rule R = QP*."
 outcomes: ["State and prove Arden's theorem, including the condition ε ∉ P", "Write the state equations of a finite automaton", "Solve the equations by substitution and Arden's rule to get a regular expression", "Use Arden's theorem to prove two regular expressions equal"]
-reading: ["K. L. P. Mishra and N. Chandrasekaran, Ch. 5: Regular sets and regular grammars (Arden's theorem)", "Hopcroft–Motwani–Ullman, §3.2 From DFAs to regular expressions (for the state-elimination alternative)", "Linz, §3.2 Regular expressions for regular languages"]
+reading: ["Reference book 2, Ch. 5: Regular sets and regular grammars (Arden's theorem)", "Textbook 2, §3.2 From DFAs to regular expressions (for the state-elimination alternative)", "Textbook 3, §3.2 Regular expressions for regular languages"]
 videos: [{"title": "MIT 18.404J, Lecture 3: Finite automata → regular expressions", "url": "https://ocw.mit.edu/courses/18-404j-theory-of-computation-fall-2020/resources/regular-pumping-lemma-finite-automata-2192-regular-expressions-cfgs/"}]
 ---
 
