@@ -79,10 +79,16 @@ def load_quiz(path):
         kind, options, answer = q.get("type", "single"), q.get("options", []), q.get("answer")
         if kind == "tf":
             options = q["options"] = ["True", "False"]
-        if kind not in ("single", "multi", "tf"):
+        if kind not in ("single", "multi", "tf", "nat"):
             errors.append(f"{where}: unknown type {kind!r}")
         if not q.get("q") or not q.get("explain"):
             errors.append(f"{where}: needs both 'q' and 'explain'")
+        if kind == "nat":
+            # GATE numerical-answer type: a number, marked within an optional tolerance.
+            number = lambda v: isinstance(v, (int, float)) and not isinstance(v, bool)
+            if options or not number(answer) or not number(q.get("tolerance", 0)) or q.get("tolerance", 0) < 0:
+                errors.append(f"{where}: 'nat' needs a numeric answer, no options, and a tolerance >= 0 if given")
+            continue
         if len(options) < 2 or len(set(options)) != len(options):
             errors.append(f"{where}: needs at least 2 options, all different")
         answers = answer if isinstance(answer, list) else [answer]
@@ -119,6 +125,9 @@ def load_course(folder):
         quiz = folder / "quizzes" / f"{path.stem}.json"
         if quiz.exists():
             unit["quiz"] = load_quiz(quiz)
+        gate = folder / "quizzes" / f"{path.stem}-gate.json"
+        if gate.exists():
+            unit["gate"] = load_quiz(gate)
         course["weeks"].append(unit)
     course["has_quizzes"] = any("quiz" in w for w in course["weeks"])
     # CO tests draw from the quizzes of every published unit under that CO.
@@ -138,7 +147,8 @@ def build():
     # Files in public/ are copied unchanged to the site root (e.g. Google verification files).
     shutil.copytree(ROOT / "public", OUT, dirs_exist_ok=True)
 
-    courses = [load_course(p) for p in sorted((CONTENT / "courses").iterdir()) if (p / "course.json").exists()]
+    courses = [load_course(p) for p in (CONTENT / "courses").iterdir() if (p / "course.json").exists()]
+    courses.sort(key=lambda c: (c.get("order", 99), c["slug"]))
 
     write("index.html", "home.html", courses=courses, page={"title": SITE["name"], "description": SITE["description"]})
 
@@ -167,14 +177,15 @@ def build():
                 "title": f"{course['unit']} {w['num']}: {w['meta']['title']}",
                 "description": w["meta"]["description"]},
                 prev=weeks[i - 1] if i else None, next=weeks[i + 1] if i + 1 < len(weeks) else None,
-                current=w["slug"], quiz=quiz_json(w["quiz"]) if "quiz" in w else None)
+                current=w["slug"], quiz=quiz_json(w["quiz"]) if "quiz" in w else None,
+                gate=quiz_json(w["gate"]) if "gate" in w else None)
         for t in course["tests"]:
             write(f"{root}/{t['slug']}.html", "quiz_test.html", course=course, test=t, quiz=quiz_json(t["pool"]),
                   current=t["slug"], page={"title": f"{t['co']} test: {t['label']}",
                                            "description": f"A {t['size']}-question test on {t['co']}, drawn at random from its topic quizzes."})
         if course["has_quizzes"]:
             marks = {"topics": [{"slug": w["slug"], "num": w["num"], "title": w["meta"]["title"], "co": w["meta"]["co"],
-                                 "total": len(w["quiz"])} for w in weeks if "quiz" in w],
+                                 "total": len(w["quiz"]), "gate_total": len(w.get("gate", []))} for w in weeks if "quiz" in w],
                      "tests": [{"slug": t["slug"], "co": t["co"], "total": t["size"]} for t in course["tests"]],
                      "outcomes": course["outcomes"], "course": course["title"]}
             write(f"{root}/marks.html", "marks.html", course=course, marks=quiz_json(marks), current="marks",

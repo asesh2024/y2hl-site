@@ -55,7 +55,7 @@
     var self = this;
     var chosen = this.pick ? shuffle(this.bank).slice(0, this.pick) : shuffle(this.bank);
     this.items = chosen.map(function (q) {
-      var order = q.type === "tf" ? [0, 1] : shuffle(q.options.map(function (_, i) { return i; }));
+      var order = q.type === "nat" ? [] : q.type === "tf" ? [0, 1] : shuffle(q.options.map(function (_, i) { return i; }));
       return { q: q, order: order };
     });
 
@@ -72,10 +72,10 @@
     var form = el("form", "quiz-form");
     form.noValidate = true;
     this.items.forEach(function (item, n) {
-      var q = item.q, multi = q.type === "multi";
+      var q = item.q, multi = q.type === "multi", nat = q.type === "nat";
       var fs = el("fieldset", "quiz-q");
-      fs.appendChild(el("legend", null, "<span class=\"qnum\">" + (n + 1) + ".</span> " + q.q +
-        (multi ? " <span class=\"qhint\">(select all that apply)</span>" : "")));
+      var hint = multi ? " <span class=\"qhint\">(select all that apply)</span>" : nat ? " <span class=\"qhint\">(type a number)</span>" : "";
+      fs.appendChild(el("legend", null, "<span class=\"qnum\">" + (n + 1) + ".</span> " + q.q + hint));
       if (q.dot) {
         var pre = el("pre"), code = el("code", "language-dot");
         code.textContent = q.dot;
@@ -83,6 +83,16 @@
         fs.appendChild(pre);
       }
       var opts = el("div", "quiz-options");
+      if (nat) {
+        var box = document.createElement("input");
+        box.type = "text";
+        box.inputMode = "decimal";
+        box.autocomplete = "off";
+        box.className = "quiz-nat";
+        box.name = "q" + n;
+        box.setAttribute("aria-label", "Your answer to question " + (n + 1));
+        opts.appendChild(box);
+      }
       item.order.forEach(function (orig) {
         var label = el("label", "quiz-opt");
         var input = document.createElement("input");
@@ -109,7 +119,10 @@
 
     form.addEventListener("submit", function (e) {
       e.preventDefault();
-      var blank = self.items.filter(function (_, n) { return !form.querySelector("[name=q" + n + "]:checked"); }).length;
+      var blank = self.items.filter(function (it, n) {
+        if (it.q.type === "nat") return !form.querySelector("[name=q" + n + "]").value.trim();
+        return !form.querySelector("[name=q" + n + "]:checked");
+      }).length;
       if (blank && !form.dataset.warned) {
         form.dataset.warned = "1";
         note.textContent = blank + " question" + (blank > 1 ? "s are" : " is") + " unanswered and will score 0. Press Submit again to finish.";
@@ -126,6 +139,20 @@
     var self = this, score = 0;
     this.items.forEach(function (item, n) {
       var q = item.q;
+      if (q.type === "nat") {
+        var fsN = form.querySelectorAll(".quiz-q")[n];
+        var input = fsN.querySelector(".quiz-nat");
+        var raw = input.value.trim().replace(",", ".");
+        var given = raw === "" ? NaN : Number(raw);
+        var ok = !isNaN(given) && Math.abs(given - q.answer) <= (q.tolerance || 0) + 1e-9;
+        if (ok) score++;
+        input.disabled = true;
+        fsN.classList.add(ok ? "is-right" : "is-wrong");
+        var range = q.tolerance ? " (accepted range " + (q.answer - q.tolerance) + " to " + (q.answer + q.tolerance) + ")" : "";
+        input.insertAdjacentHTML("afterend", " <span class=\"nat-answer\">Answer: <strong>" + q.answer + "</strong>" + range + "</span>");
+        fsN.querySelector("legend").insertAdjacentHTML("beforeend", " <span class=\"verdict\">" + (ok ? "✓ Correct" : "✗ " + (raw ? "Incorrect" : "Not answered")) + "</span>");
+        return;
+      }
       var want = (Array.isArray(q.answer) ? q.answer : [q.answer]).slice().sort().join(",");
       var picked = Array.prototype.map.call(form.querySelectorAll("[name=q" + n + "]:checked"), function (i) { return +i.value; });
       var right = picked.slice().sort().join(",") === want;
@@ -154,7 +181,8 @@
     rec.updated = new Date().toISOString();
     marks[this.slug] = rec;
     write(MARKS_KEY, marks);
-    if (rec.passed && !this.pick) {
+    // Only the main topic quiz ticks a topic off; CO tests and GATE practice do not.
+    if (rec.passed && !this.pick && !/-gate$/.test(this.slug)) {
       var done = read(DONE_KEY, {});
       done[this.slug] = true;
       write(DONE_KEY, done);
@@ -190,8 +218,13 @@
 
   Marks.prototype.rows = function () {
     var marks = read(MARKS_KEY, {});
-    var rows = this.data.topics.map(function (t) {
-      return { slug: t.slug, label: "Topic " + t.num + ": " + t.title, co: t.co, total: t.total, rec: marks[t.slug], kind: "quiz" };
+    var rows = [];
+    this.data.topics.forEach(function (t) {
+      rows.push({ slug: t.slug, label: "Topic " + t.num + ": " + t.title, co: t.co, total: t.total, rec: marks[t.slug], kind: "quiz" });
+      if (t.gate_total) {
+        rows.push({ slug: t.slug + "-gate", href: t.slug + ".html#gate", label: "Topic " + t.num + ": GATE-style practice", co: t.co,
+                    total: t.gate_total, rec: marks[t.slug + "-gate"], kind: "gate" });
+      }
     });
     this.data.tests.forEach(function (t) {
       rows.push({ slug: t.slug, label: t.co + " test", co: t.co, total: t.total, rec: marks[t.slug], kind: "test" });
@@ -221,23 +254,29 @@
     wrap.appendChild(summary);
 
     // Per-CO summary.
+    var gates = rows.filter(function (r) { return r.kind === "gate"; });
+    function cell(list) {
+      if (!list.length) return "—";
+      var g = sum(list, function (r) { return r.rec ? r.rec.best : 0; }), m = sum(list, function (r) { return r.total; });
+      return g + "/" + m + " <span class=\"muted\">(" + pct(g, m) + "%)</span>";
+    }
     var coRows = Object.keys(this.data.outcomes).map(function (co) {
       var q = quizzes.filter(function (r) { return r.co === co; });
       var t = tests.filter(function (r) { return r.co === co; })[0];
       if (!q.length) return "";
-      var qg = sum(q, function (r) { return r.rec ? r.rec.best : 0; }), qm = sum(q, function (r) { return r.total; });
       return "<tr><td><span class=\"co co-" + co.toLowerCase() + "\">" + co + "</span> " + esc(self.data.outcomes[co]) + "</td>" +
-        "<td>" + qg + "/" + qm + " <span class=\"muted\">(" + pct(qg, qm) + "%)</span></td>" +
+        "<td>" + cell(q) + "</td>" + (gates.length ? "<td>" + cell(gates.filter(function (r) { return r.co === co; })) + "</td>" : "") +
         "<td>" + (t && t.rec ? t.rec.best + "/" + t.total + " <span class=\"muted\">(" + pct(t.rec.best, t.total) + "%)</span>" : "—") + "</td></tr>";
     }).join("");
     wrap.appendChild(el("h2", null, "By course outcome"));
-    wrap.appendChild(el("div", "table-wrap", "<table><thead><tr><th>Outcome</th><th>Topic quizzes (best)</th><th>CO test (best)</th></tr></thead><tbody>" + coRows + "</tbody></table>"));
+    wrap.appendChild(el("div", "table-wrap", "<table><thead><tr><th>Outcome</th><th>Topic quizzes (best)</th>" +
+      (gates.length ? "<th>GATE-style (best)</th>" : "") + "<th>CO test (best)</th></tr></thead><tbody>" + coRows + "</tbody></table>"));
 
     // Every quiz and test.
     var body = rows.map(function (r) {
       var rec = r.rec, when = rec ? new Date(rec.updated).toLocaleDateString() : "";
       var status = !rec ? "<span class=\"muted\">Not attempted</span>" : rec.passed ? "<span class=\"ok\">Passed</span>" : "<span class=\"low\">Below pass</span>";
-      return "<tr><td><a href=\"" + COURSE + "/" + r.slug + ".html\">" + esc(r.label) + "</a></td><td>" + r.co + "</td>" +
+      return "<tr><td><a href=\"" + COURSE + "/" + (r.href || r.slug + ".html") + "\">" + esc(r.label) + "</a></td><td>" + r.co + "</td>" +
         "<td>" + (rec ? rec.best + "/" + r.total : "—") + "</td><td>" + (rec ? rec.last + "/" + r.total : "—") + "</td>" +
         "<td>" + (rec ? rec.attempts : 0) + "</td><td>" + status + "</td><td>" + when + "</td></tr>";
     }).join("");

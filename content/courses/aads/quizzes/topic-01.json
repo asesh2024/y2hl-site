@@ -1,0 +1,62 @@
+[
+  {
+    "q": "Which statement is the binary-search-tree property?",
+    "options": ["Every key in a node's left subtree is smaller, and every key in its right subtree is larger", "Each node is smaller than both of its children", "Each node's left child is smaller and its right child is larger (only the children are compared)", "All leaves are at the same depth"],
+    "answer": 0,
+    "explain": "The property is about whole subtrees, not just the two children. Comparing only children can accept trees that are not BSTs. 'Smaller than both children' is the min-heap property."
+  },
+  {
+    "q": "An inorder traversal of a binary search tree lists its keys…",
+    "options": ["in increasing (sorted) order", "in the order they were inserted", "level by level from the root", "in decreasing order"],
+    "answer": 0,
+    "explain": "Inorder visits the left subtree (all smaller keys), then the node, then the right subtree (all larger keys), so the output is sorted."
+  },
+  {
+    "q": "The keys 15, 10, 20, 8, 12, 17, 25 are inserted in that order into an empty BST. What is the postorder traversal?",
+    "options": ["8 12 10 17 25 20 15", "8 10 12 15 17 20 25", "15 10 8 12 20 17 25", "12 8 10 25 17 20 15"],
+    "answer": 0,
+    "explain": "The tree has root 15, left child 10 (children 8, 12) and right child 20 (children 17, 25). Postorder is left, right, node: 8 12 10, then 17 25 20, then 15."
+  },
+  {
+    "q": "The keys 1, 2, 3, …, n are inserted into an empty BST in increasing order. What is the height of the tree (in edges)?",
+    "options": ["n − 1", "⌊log₂ n⌋", "n", "n/2"],
+    "answer": 0,
+    "explain": "Each new key is larger than everything so far, so it becomes the right child of the previous one. The tree is a chain of n nodes, which has n − 1 edges from root to leaf."
+  },
+  {
+    "q": "To delete a node that has two children, the standard method replaces its key with…",
+    "options": ["its inorder successor: the smallest key in its right subtree", "the key of its left child", "the largest key in the whole tree", "the key of its parent"],
+    "answer": 0,
+    "explain": "The inorder successor is the next key in sorted order, so putting it in the deleted node's place keeps the BST property. The successor has no left child, so deleting it is an easy case. The inorder predecessor works equally well."
+  },
+  {
+    "q": "Where in a BST does a newly inserted key always end up?",
+    "options": ["As a new leaf", "At the root", "As the parent of the smallest key", "Wherever there is free space on the lowest level"],
+    "answer": 0,
+    "explain": "Insertion searches for the key and attaches it where the search falls off the tree, which is always a new leaf. (Splay trees, topic 4, then move it to the root.)"
+  },
+  {
+    "q": "What is the worst-case time to search an unbalanced BST with n keys?",
+    "options": ["O(n)", "O(log n)", "O(1)", "O(n log n)"],
+    "answer": 0,
+    "explain": "Search costs O(h). In the worst case, for example after sorted insertions, the tree is a chain with h = n − 1."
+  },
+  {
+    "q": "How many structurally different binary search trees can hold the three keys 1, 2, 3?",
+    "options": ["5", "3", "6", "8"],
+    "answer": 0,
+    "explain": "Root 1: 2 shapes for {2, 3}. Root 2: 1 shape. Root 3: 2 shapes for {1, 2}. Total 2 + 1 + 2 = 5, the Catalan number C₃."
+  },
+  {
+    "q": "Where is the smallest key in a non-empty BST?",
+    "options": ["At the leftmost node: keep going left from the root", "At the root", "At the leftmost leaf of the bottom level", "At the rightmost node"],
+    "answer": 0,
+    "explain": "Every left step leads to smaller keys. The node with no left child at the end of that walk is the minimum. It need not be a leaf, because it may have a right child."
+  },
+  {
+    "type": "tf",
+    "q": "In a BST, the inorder successor of a node that has two children never has a left child.",
+    "answer": 0,
+    "explain": "True. The successor is the leftmost node of the right subtree. If it had a left child, that child would be smaller and would be the successor instead."
+  }
+]

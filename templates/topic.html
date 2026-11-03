@@ -29,7 +29,7 @@
 
     <nav class="toc" aria-label="On this page">
       <p>On this page</p>
-      <ul>{% for t in week.toc %}<li><a href="#{{ t.id }}">{{ t.name }}</a></li>{% endfor %}{% if quiz %}<li><a href="#quiz">Quiz ({{ week.quiz | length }} questions)</a></li>{% endif %}</ul>
+      <ul>{% for t in week.toc %}<li><a href="#{{ t.id }}">{{ t.name }}</a></li>{% endfor %}{% if quiz %}<li><a href="#quiz">Quiz ({{ week.quiz | length }} questions)</a></li>{% endif %}{% if gate %}<li><a href="#gate">GATE-style practice ({{ week.gate | length }} questions)</a></li>{% endif %}</ul>
     </nav>
 
     <div class="prose week-body">{{ week.html | safe }}</div>
@@ -40,6 +40,17 @@
       <div class="quiz" data-quiz="{{ week.slug }}" data-pass="{{ course.pass_percent }}">
         <script type="application/json" class="quiz-data">{{ quiz | safe }}</script>
         <noscript><p>The quiz needs JavaScript turned on.</p></noscript>
+      </div>
+    </section>
+    {% endif %}
+
+    {% if gate %}
+    <section class="quiz-section gate-section" id="gate">
+      <h2>GATE-style practice</h2>
+      <p class="muted">Questions in the GATE CSE formats: MCQ (one correct option), MSQ (one or more correct options) and NAT (type a number). Each comes with a full worked solution. These are original practice questions, not past papers; for the real thing, see the <a href="https://gate2026.iitg.ac.in/" rel="noopener">official GATE site</a> and its previous question papers.</p>
+      <div class="quiz" data-quiz="{{ week.slug }}-gate" data-pass="{{ course.pass_percent }}">
+        <script type="application/json" class="quiz-data">{{ gate | safe }}</script>
+        <noscript><p>The practice questions need JavaScript turned on.</p></noscript>
       </div>
     </section>
     {% endif %}

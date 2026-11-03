@@ -63,7 +63,9 @@ A topic gets a self-marking quiz when `content/courses/<course>/quizzes/<topic-f
 }
 ```
 
-- `type` is `single` (the default, one answer), `multi` (several answers, as a list), or `tf` (true/false: leave out `options`, and use `answer: 0` for True or `1` for False).
+- `type` is `single` (the default, one answer), `multi` (several answers, as a list), `tf` (true/false: leave out `options`, and use `answer: 0` for True or `1` for False), or `nat` (GATE numerical answer: leave out `options`, give a number as `answer`, and optionally a `tolerance` such as `0.01`).
+- A second file, `quizzes/<topic-file-name>-gate.json`, adds a "GATE-style practice" block under the quiz. It uses the same format; its `explain` can hold a full worked solution in HTML (`<p>`, `<pre>`, `<table>`).
+- `"order"` in `course.json` sets the order of courses on the home page and the Courses page.
 - `answer` counts options from 0. The site shuffles the options, so their order in the file does not matter.
 - An optional `dot` field draws a diagram (Graphviz DOT) above the options. In topic pages, a ```` ```dot ```` code block draws one too.
 - The build stops with a clear message if an answer index is out of range, options repeat, or `explain` is missing.

@@ -295,6 +295,14 @@ code, pre { font-family: var(--mono); font-size: .88em; }
 .quiz-q.is-right .verdict { color: var(--accent); }
 .quiz-q.is-wrong { border-color: #dc2626; }
 .quiz-q.is-wrong .verdict { color: #dc2626; }
+.quiz-nat { font: 600 1rem var(--mono); width: 10em; padding: 8px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--ink); }
+.quiz-nat:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+.nat-answer { margin-left: 10px; color: var(--muted); font-size: .92rem; }
+.gate-section > .muted { font-size: .92rem; }
+.quiz-explain pre { background: var(--code-bg); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; overflow-x: auto; font: .85rem/1.5 var(--mono); }
+.quiz-explain table { border-collapse: collapse; margin: 8px 0; font-size: .88rem; }
+.quiz-explain th, .quiz-explain td { border: 1px solid var(--line); padding: 4px 8px; text-align: center; }
+.quiz-explain p { margin: .5em 0; }
 .quiz-explain { display: none; margin-top: 12px; padding: 10px 12px; border-radius: 8px; background: var(--surface-2); font-size: .93rem; }
 .quiz-q.is-right .quiz-explain, .quiz-q.is-wrong .quiz-explain { display: block; }
 .quiz-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 18px; }
