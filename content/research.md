@@ -9,6 +9,8 @@ description: "Publications, patents and research interests of Dr. Asesh Kumar Tr
 
 <p><a class="btn" href="https://scholar.google.com/citations?user=IAgovQIAAAAJ&amp;hl=en" rel="me">Google Scholar profile ↗</a></p>
 
+<!-- books -->
+
 ### Journal articles
 
 <ol class="pubs" reversed>

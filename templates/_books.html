@@ -1,0 +1,14 @@
+{# Books from site.json. Used on the home page and the Research page. #}
+{% for b in site.books %}
+<div class="book">
+  <a class="book-cover" href="{{ b.url }}"><img src="{{ b.cover }}" alt="Cover of {{ b.title }}" width="317" height="500" loading="lazy"></a>
+  <div>
+    <p class="eyebrow">Book</p>
+    <h3 class="book-title">{{ b.title }}</h3>
+    <p class="book-by">by {{ site.author.title }} {{ site.author.name }}</p>
+    <p>{{ b.blurb }}</p>
+    <p class="book-details">{{ b.details }}</p>
+    <a class="btn primary" href="{{ b.url }}" rel="noopener">Buy on {{ b.store }} ↗</a>
+  </div>
+</div>
+{% endfor %}

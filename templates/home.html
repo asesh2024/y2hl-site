@@ -24,6 +24,16 @@
   </div>
 </section>
 
+{% if site.books %}
+<section class="wrap section">
+  <div class="section-head">
+    <h2>New book</h2>
+    <a href="/research/#books">Research &amp; books →</a>
+  </div>
+  {% include "_books.html" %}
+</section>
+{% endif %}
+
 <section class="wrap section how">
   <h2>How every course here works</h2>
   <div class="three">

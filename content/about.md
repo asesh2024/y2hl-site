@@ -12,6 +12,7 @@ description: "Dr. Asesh Kumar Tripathy, Associate Professor of Computer Science 
 <li>PhD, Computer Science and Technology, Berhampur University</li>
 <li>22 years of teaching</li>
 <li>25+ peer-reviewed papers</li>
+<li>Author of <a href="/research/#books"><em>Quantum Computing Made Clear</em></a> (2026)</li>
 <li>Senior Member, IEEE · Member, ACM</li>
 </ul>
 </div>

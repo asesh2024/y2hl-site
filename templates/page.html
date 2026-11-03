@@ -6,6 +6,9 @@
   </div>
 </section>
 <article class="wrap narrow prose section">
-  {{ body | safe }}
+  {# A "<!-- books -->" line in the Markdown is replaced by the books from site.json. #}
+  {% set parts = body.split("<!-- books -->", 1) %}
+  {{ parts[0] | safe }}
+  {% if parts | length > 1 %}<h3 id="books">Books</h3>{% include "_books.html" %}{{ parts[1] | safe }}{% endif %}
 </article>
 {% endblock %}

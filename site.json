@@ -11,5 +11,15 @@
     "photo": "/static/img/asesh-tripathy.jpg",
     "email": "",
     "links": []
-  }
+  },
+  "books": [
+    {
+      "title": "Quantum Computing Made Clear",
+      "blurb": "An accessible introduction to quantum computing for computer science students and beginners: qubits, quantum gates, superposition, entanglement, interference and measurement, then quantum search, factoring, optimisation and machine learning. With quantum circuit diagrams, executable Python programs, worked examples, and exercises with answers.",
+      "details": "Paperback · 98 pages · String Production · 25 October 2026",
+      "cover": "https://m.media-amazon.com/images/I/71wepWfOuLL._SL500_.jpg",
+      "url": "https://www.amazon.in/dp/B0HP8D7WT3",
+      "store": "Amazon.in"
+    }
+  ]
 }
