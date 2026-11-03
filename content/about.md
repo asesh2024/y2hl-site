@@ -4,7 +4,7 @@ description: "Dr. Asesh Kumar Tripathy, Associate Professor of Computer Science 
 ---
 
 <div class="profile">
-<img src="/static/img/asesh-tripathy.jpg" alt="Dr. Asesh Kumar Tripathy" width="354" height="399">
+<div class="photo-frame"><img src="/static/img/asesh-tripathy.jpg" alt="Dr. Asesh Kumar Tripathy" width="350" height="399"></div>
 <div>
 <p class="profile-name">Dr. Asesh Kumar Tripathy</p>
 <p class="profile-role">Associate Professor, Department of Computer Science and Engineering<br>Koneru Lakshmaiah Education Foundation (K L Deemed to be University), Vaddeswaram, Andhra Pradesh, India</p>

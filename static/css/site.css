@@ -112,11 +112,14 @@ code, pre { font-family: var(--mono); font-size: .88em; }
 .three p { margin: 0; color: var(--muted); }
 .num { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: var(--accent-soft); color: var(--accent); font-weight: 700; }
 .about-teaser > div { display: flex; gap: 24px; align-items: center; padding: 28px; border-radius: var(--radius); background: var(--surface-2); }
-.about-teaser img { flex: none; width: 120px; height: auto; border-radius: var(--radius); }
+.about-teaser .photo-frame { flex: none; width: 128px; padding: 5px; }
 .about-teaser h2 { margin: 6px 0; }
 
-.profile { display: grid; grid-template-columns: 200px 1fr; gap: 28px; align-items: start; margin: 8px 0 32px; padding: 24px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
-.profile img { width: 100%; height: auto; border-radius: var(--radius); }
+/* Photo mat: an accent-tinted frame so a white-background portrait doesn't bleed into the page. */
+.photo-frame { padding: 8px; border-radius: 18px; background: linear-gradient(145deg, var(--accent), var(--accent-soft)); box-shadow: 0 12px 28px rgba(0, 0, 0, .14); }
+.photo-frame img { display: block; width: 100%; height: auto; border-radius: 12px; border: 3px solid var(--surface); }
+
+.profile { display: grid; grid-template-columns: 210px 1fr; gap: 28px; align-items: start; margin: 8px 0 32px; padding: 24px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
 .profile p { margin: 0; }
 .profile-name { font-size: 1.4rem; font-weight: 700; }
 .profile-role { color: var(--muted); margin-top: 4px !important; }
@@ -230,7 +233,7 @@ code, pre { font-family: var(--mono); font-size: .88em; }
   .footer-inner p:last-child { text-align: left; }
   .prose td:first-child { white-space: normal; }
   .profile { grid-template-columns: 1fr; padding: 18px; }
-  .profile img { max-width: 180px; }
+  .profile .photo-frame { max-width: 190px; }
   .about-teaser > div { flex-direction: column; align-items: flex-start; }
 }
 @media print {
