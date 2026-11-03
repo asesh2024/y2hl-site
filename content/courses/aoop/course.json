@@ -1,0 +1,30 @@
+{
+  "title": "Advanced Object-Oriented Programming",
+  "short": "AOOP",
+  "code": "25CS2205E",
+  "tagline": "Build a Smart Parking System in 12 weeks",
+  "summary": "A project-based course in software design: one Java codebase grows from four classes into a modular monolith with an architecture dossier, one design idea per week.",
+  "level": "Undergraduate, after a first Java course",
+  "language": "Java 17+",
+  "stats": [
+    {"value": "12", "label": "weeks"},
+    {"value": "48", "label": "sessions"},
+    {"value": "6", "label": "course outcomes"},
+    {"value": "1", "label": "codebase"}
+  ],
+  "guide_pages": ["overview", "how-it-works", "project", "deliverables"],
+  "guide_titles": {
+    "overview": "Overview",
+    "how-it-works": "How the course runs",
+    "project": "The project",
+    "deliverables": "Deliverables"
+  },
+  "outcomes": {
+    "CO1": "Objects that keep their promises",
+    "CO2": "Contracts and substitutability",
+    "CO3": "The cost of change",
+    "CO4": "Designing for failure",
+    "CO5": "Concurrency and transactions",
+    "CO6": "Architecture and the capstone"
+  }
+}

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block main %}
+<div class="wrap course-layout">
+  {% include "_course_nav.html" %}
+  <article class="course-main">
+    <p class="crumbs"><a href="/courses/">Courses</a> / <a href="{{ course.base }}">{{ course.short }}</a></p>
+    <h1>{{ page.title }}</h1>
+    <p class="lead">{{ page.description }}</p>
+    {% if toc|length > 2 %}
+    <nav class="toc" aria-label="On this page">
+      <p>On this page</p>
+      <ul>{% for t in toc %}<li><a href="#{{ t.id }}">{{ t.name }}</a></li>{% endfor %}</ul>
+    </nav>
+    {% endif %}
+    <div class="prose">{{ body | safe }}</div>
+  </article>
+</div>
+{% endblock %}

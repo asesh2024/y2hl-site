@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block main %}
+{% set m = week.meta %}
+<div class="wrap course-layout">
+  {% include "_course_nav.html" %}
+  <article class="course-main" data-week-page="{{ week.slug }}">
+    <p class="crumbs"><a href="/courses/">Courses</a> / <a href="{{ course.base }}">{{ course.short }}</a> / Week {{ m.week }}</p>
+    <p class="eyebrow"><span class="co co-{{ m.co|lower }}">{{ m.co }}</span> Week {{ m.week }} of {{ course.weeks|length }}</p>
+    <h1>{{ m.title }}</h1>
+    <p class="lead">{{ m.description }}</p>
+    {% if m.requirements %}
+    <p class="reqs">Requirements: {% for r in m.requirements.split(', ') %}<a class="chip" href="{{ course.base }}project.html#{{ 'functional-requirements' if r.startswith('FR') else 'non-functional-requirements-the-design-drivers' }}">{{ r }}</a>{% endfor %}</p>
+    {% endif %}
+
+    <div class="glance">
+      <section>
+        <h2>Lecture topics</h2>
+        <ul>{% for t in m.lecture_topics %}<li>{{ t }}</li>{% endfor %}</ul>
+      </section>
+      <section>
+        <h2>Skill focus</h2>
+        <p>{{ m.skill_focus }}</p>
+      </section>
+      {% if m.labs %}
+      <section class="labs">
+        <h2>Lab manual {{ 'program' if m.labs|length == 1 else 'programs' }}</h2>
+        {% for lab in m.labs %}
+        <details>
+          <summary><strong>Lab {{ lab.number }}:</strong> {{ lab.title }}</summary>
+          <p><em>Aim:</em> {{ lab.aim }}</p>
+          <ol>{% for t in lab.tasks %}<li>{{ t }}</li>{% endfor %}</ol>
+          <p class="muted">Submit the Java source, the console output, and 3–5 lines explaining the concept.</p>
+        </details>
+        {% endfor %}
+      </section>
+      {% endif %}
+    </div>
+
+    <nav class="toc" aria-label="On this page">
+      <p>This week's blocks</p>
+      <ul>{% for t in week.toc %}<li><a href="#{{ t.id }}">{{ t.name }}</a></li>{% endfor %}</ul>
+    </nav>
+
+    <div class="prose week-body">{{ week.html | safe }}</div>
+
+    <div class="mark-done">
+      <label><input type="checkbox" data-done="{{ week.slug }}"> I have finished Week {{ m.week }}</label>
+      <span class="muted">Saved in this browser only.</span>
+    </div>
+
+    <nav class="pager" aria-label="Weeks">
+      {% if prev %}<a class="prev" href="{{ course.base }}{{ prev.slug }}.html"><span>← Week {{ prev.meta.week }}</span>{{ prev.meta.title }}</a>{% else %}<a class="prev" href="{{ course.base }}how-it-works.html"><span>← Before you start</span>How the course runs</a>{% endif %}
+      {% if next %}<a class="next" href="{{ course.base }}{{ next.slug }}.html"><span>Week {{ next.meta.week }} →</span>{{ next.meta.title }}</a>{% else %}<a class="next" href="{{ course.base }}deliverables.html"><span>Wrap up →</span>Weekly deliverables</a>{% endif %}
+    </nav>
+  </article>
+</div>
+{% endblock %}
