@@ -22,7 +22,7 @@
   "secondary_link": {"href": "how-to-study.html", "label": "How to study this course"},
   "pass_percent": 60,
   "co_test_size": 20,
-  "guide_pages": ["overview", "how-to-study"],
+  "guide_pages": ["overview", "how-to-study", "labs"],
   "guide_titles": {
     "overview": "Overview",
     "how-to-study": "How to study this course",
