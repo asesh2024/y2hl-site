@@ -88,6 +88,8 @@ def build():
     if OUT.exists():
         shutil.rmtree(OUT)
     shutil.copytree(ROOT / "static", OUT / "static")
+    # Files in public/ are copied unchanged to the site root (e.g. Google verification files).
+    shutil.copytree(ROOT / "public", OUT, dirs_exist_ok=True)
 
     courses = [load_course(p) for p in sorted((CONTENT / "courses").iterdir()) if (p / "course.json").exists()]
 

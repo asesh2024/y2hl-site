@@ -11,6 +11,7 @@ A static website: plain HTML pages generated from Markdown. There is no database
 | `content/courses/aoop/course.json` | Course title, code, tagline, stats, CO names | Yes |
 | `content/courses/aoop/*.md` | Overview, How the course runs, Project, Deliverables and Weeks 1–12 | Yes |
 | `static/` | CSS, JavaScript, images (put your photo here) | When needed |
+| `public/` | Files copied unchanged to the site root, such as Google's verification file | When needed |
 | `templates/` | Page layouts | Rarely |
 | `build.py` | Turns everything above into the `site/` folder | No |
 | `site/` | The generated website. Deleted and rebuilt on every build | Never |
