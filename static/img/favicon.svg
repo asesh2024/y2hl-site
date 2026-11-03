@@ -1,6 +1,21 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="14" fill="#0f766e"/>
-  <path d="M14 20l8 0 6 10 6-10 8 0-10 15v9h-8v-9z" fill="#fff"/>
-  <path d="M40 44c0-6 10-8 10-14 0-3-2-5-5-5-2.6 0-4.4 1.4-5 4" stroke="#7ff0dc" stroke-width="4" fill="none" stroke-linecap="round"/>
-  <path d="M39 44h12" stroke="#7ff0dc" stroke-width="4" stroke-linecap="round"/>
+  <!-- Y2HL "Yes to Happy Learning": a cheering figure whose raised arms are the pages
+       of an open book (learning) and together form a tick (yes), with a smiling sun for a head (happiness). -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#14b8a6"/>
+      <stop offset="1" stop-color="#0f766e"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#bg)"/>
+  <!-- Left page: the short stroke of the tick -->
+  <path d="M8 29c7-1.5 15 3 21 17v6C23 41 16 37.5 8 37z" fill="#ffffff"/>
+  <!-- Right page: the long stroke of the tick -->
+  <path d="M29 46C35 31 44 19 57 13v8.5C46 27 38 38 29 52z" fill="#e6fffb"/>
+  <!-- Page lines -->
+  <path d="M12 32.5c5 .2 9.5 3.5 13.5 9" stroke="#0f766e" stroke-width="1.4" fill="none" stroke-linecap="round" opacity=".45"/>
+  <path d="M34 42c4-8 10-15 18-19.5" stroke="#0f766e" stroke-width="1.4" fill="none" stroke-linecap="round" opacity=".45"/>
+  <!-- Head: a smiling sun -->
+  <circle cx="27" cy="19" r="8" fill="#fbbf24"/>
+  <path d="M23 20c2 3 6 3 8 0" stroke="#0f766e" stroke-width="2" fill="none" stroke-linecap="round"/>
 </svg>
