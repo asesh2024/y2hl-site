@@ -10,5 +10,16 @@
     <p class="book-details">{{ b.details }}</p>
     <a class="btn primary" href="{{ b.url }}" rel="noopener">Buy on {{ b.store }} ↗</a>
   </div>
+  {% if b.reviews %}
+  <div class="book-reviews">
+    <p class="eyebrow">What readers say</p>
+    {% for r in b.reviews %}
+    <figure>
+      <blockquote>“{{ r.quote }}”</blockquote>
+      <figcaption><strong>{{ r.name }}</strong>{% if r.role %}, {{ r.role }}{% endif %}</figcaption>
+    </figure>
+    {% endfor %}
+  </div>
+  {% endif %}
 </div>
 {% endfor %}

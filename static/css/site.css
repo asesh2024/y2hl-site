@@ -133,6 +133,11 @@ code, pre { font-family: var(--mono); font-size: .88em; }
 .prose .book-title, .book-title { margin: 4px 0 2px; padding: 0; border: 0; font-size: 1.45rem; }
 .book-by { margin: 0 0 12px; color: var(--muted); }
 .book-details { color: var(--muted); font-size: .9rem; }
+.book-reviews { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 12px; padding-top: 18px; border-top: 1px solid var(--line); }
+.book-reviews .eyebrow { flex: 1 0 100%; }
+.book-reviews figure { flex: 1 1 260px; margin: 0; padding: 14px 16px; border-left: 3px solid var(--accent); background: var(--surface-2); border-radius: 0 var(--radius) var(--radius) 0; }
+.prose .book-reviews blockquote, .book-reviews blockquote { margin: 0 0 8px; padding: 0; border: 0; background: none; font-size: 1rem; font-style: italic; }
+.book-reviews figcaption { color: var(--muted); font-size: .88rem; }
 
 .pubs { padding-left: 2.2em; }
 .pubs li { margin: 0 0 16px; padding-left: 4px; font-weight: 600; line-height: 1.45; }

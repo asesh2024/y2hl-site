@@ -19,7 +19,14 @@
       "details": "Paperback · 98 pages · String Production · 25 October 2026",
       "cover": "https://m.media-amazon.com/images/I/71wepWfOuLL._SL500_.jpg",
       "url": "https://www.amazon.in/dp/B0HP8D7WT3",
-      "store": "Amazon.in"
+      "store": "Amazon.in",
+      "reviews": [
+        {
+          "quote": "Congratulations for your book on QC. Very well organised content, and this is what we are expecting for students: to keep it simple and clear. I will get one from Amazon.",
+          "name": "Dr V Persis",
+          "role": "Associate Professor, Adikavi Nannaya University, Rajahmundry"
+        }
+      ]
     }
   ]
 }
