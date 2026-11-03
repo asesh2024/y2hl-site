@@ -35,10 +35,13 @@
 
 <section class="wrap section about-teaser">
   <div>
-    <p class="eyebrow">About</p>
-    <h2>{{ site.author.name }}</h2>
-    <p>{{ site.author.role }}.</p>
-    <a class="btn" href="/about/">More about me</a>
+    {% if site.author.photo %}<img src="{{ site.author.photo }}" alt="{{ site.author.title }} {{ site.author.name }}" width="120" height="135">{% endif %}
+    <div>
+      <p class="eyebrow">About</p>
+      <h2>{{ site.author.title }} {{ site.author.name }}</h2>
+      <p>{{ site.author.role }}.</p>
+      <a class="btn" href="/about/">More about me</a>
+    </div>
   </div>
 </section>
 {% endblock %}

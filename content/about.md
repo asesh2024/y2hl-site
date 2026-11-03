@@ -1,11 +1,29 @@
 ---
 title: "About"
-description: "Asesh Kumar Tripathy, and why these course materials are free."
+description: "Dr. Asesh Kumar Tripathy, Associate Professor of Computer Science and Engineering, and why these course materials are free."
 ---
 
-<!-- Edit this page freely: add your photo (static/img/), qualifications, research interests and contact links. -->
+<div class="profile">
+<img src="/static/img/asesh-tripathy.jpg" alt="Dr. Asesh Kumar Tripathy" width="354" height="399">
+<div>
+<p class="profile-name">Dr. Asesh Kumar Tripathy</p>
+<p class="profile-role">Associate Professor, Department of Computer Science and Engineering<br>Koneru Lakshmaiah Education Foundation (K L Deemed to be University), Vaddeswaram, Andhra Pradesh, India</p>
+<ul class="profile-facts">
+<li>PhD, Computer Science and Technology, Berhampur University</li>
+<li>22 years of teaching</li>
+<li>25+ peer-reviewed papers</li>
+<li>Senior Member, IEEE · Member, ACM</li>
+</ul>
+</div>
+</div>
 
-I am **Asesh Kumar Tripathy**, a faculty member in the Department of Computer Science and Engineering at K L Deemed to be University, where I teach Advanced Object‑Oriented Programming (25CS2205E).
+I am an Associate Professor in the Department of Computer Science and Engineering at Koneru Lakshmaiah Education Foundation (K L Deemed to be University), where I teach Advanced Object‑Oriented Programming (25CS2205E). I hold a PhD in Computer Science and Technology from Berhampur University and have been teaching for 22 years.
+
+### Research
+
+My research interests include post‑quantum cryptography, decentralised system security, privacy‑preserving machine learning, and the energy and sustainability implications of digital infrastructure. I have published over 25 peer‑reviewed papers. I am a Senior Member of IEEE and a member of ACM.
+
+### Why Y2HL
 
 Y2HL ("Coding for New‑Gens") is where I publish my teaching materials. They are open to every student, at my university or any other, and to anyone teaching a similar course.
 

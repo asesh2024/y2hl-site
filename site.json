@@ -6,7 +6,9 @@
   "domain": "www.y2hl.in",
   "author": {
     "name": "Asesh Kumar Tripathy",
-    "role": "Faculty, Department of Computer Science and Engineering, K L Deemed to be University",
+    "title": "Dr.",
+    "role": "Associate Professor, Department of Computer Science and Engineering, K L Deemed to be University",
+    "photo": "/static/img/asesh-tripathy.jpg",
     "email": "",
     "links": []
   }

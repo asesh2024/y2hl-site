@@ -111,8 +111,17 @@ code, pre { font-family: var(--mono); font-size: .88em; }
 .three h3 { margin: 10px 0 6px; font-size: 1.15rem; }
 .three p { margin: 0; color: var(--muted); }
 .num { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: var(--accent-soft); color: var(--accent); font-weight: 700; }
-.about-teaser > div { padding: 28px; border-radius: var(--radius); background: var(--surface-2); }
+.about-teaser > div { display: flex; gap: 24px; align-items: center; padding: 28px; border-radius: var(--radius); background: var(--surface-2); }
+.about-teaser img { flex: none; width: 120px; height: auto; border-radius: var(--radius); }
 .about-teaser h2 { margin: 6px 0; }
+
+.profile { display: grid; grid-template-columns: 200px 1fr; gap: 28px; align-items: start; margin: 8px 0 32px; padding: 24px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+.profile img { width: 100%; height: auto; border-radius: var(--radius); }
+.profile p { margin: 0; }
+.profile-name { font-size: 1.4rem; font-weight: 700; }
+.profile-role { color: var(--muted); margin-top: 4px !important; }
+.profile-facts { margin: 14px 0 0; padding-left: 1.1em; }
+.profile-facts li { margin: 3px 0; }
 
 /* Page heads */
 .page-head, .course-hero { padding: 48px 0 24px; border-bottom: 1px solid var(--line); }
@@ -220,6 +229,9 @@ code, pre { font-family: var(--mono); font-size: .88em; }
   .pager .next { text-align: left; }
   .footer-inner p:last-child { text-align: left; }
   .prose td:first-child { white-space: normal; }
+  .profile { grid-template-columns: 1fr; padding: 18px; }
+  .profile img { max-width: 180px; }
+  .about-teaser > div { flex-direction: column; align-items: flex-start; }
 }
 @media print {
   .site-header, .site-footer, .course-nav, .pager, .mark-done, .copy-btn, .theme-toggle { display: none !important; }
