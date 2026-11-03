@@ -3,7 +3,7 @@ title: "Projects guided"
 description: "Student projects guided by Dr. Asesh Kumar Tripathy, including B.Tech capstone projects in cybersecurity."
 ---
 
-<p class="lead">Student projects I guide. Each B.Tech capstone runs over two semesters (CP1 and CP2) and must end in a complete, independently tested engineering system.</p>
+<p class="lead">Student projects I guide. Each B.Tech capstone runs over two semesters (CP1 and CP2) and must end in a complete, independently tested engineering system. Both teams below have already had a paper from their work accepted at a conference.</p>
 
 ### B.Tech capstone projects
 
@@ -20,6 +20,8 @@ Web applications have a huge attack surface, and OWASP Top 10 flaws such as inje
 
 *Team:* Singirikonda Saimahima, Podila Lakshmi Prasanna, Mandru Sirisha.
 
+**Paper accepted:** “Protocol-Invariant Cross-Chain Attack Detection: Domain-Generalized Monitoring for Previously Unseen Bridges”, International Conference on Intelligent Networks and Data-driven Intelligent Applications (ICon INDIA 2026). Registered and presented papers will be considered for IEEE Xplore.
+
 #### C20 (Cyber-20): Federated Collaborative Threat Detection
 
 *Batch:* B66 · *Domain:* Cybersecurity and Blockchain Systems · *Reference:* [Flower federated learning framework](https://flower.ai/)
@@ -32,3 +34,5 @@ Organisations detect threats better together, but privacy and competition stop t
 - **Acceptance:** an independent check that the federated model beats local models under non-IID data.
 
 *Team:* Pavuluri Jeshwanth Sai, Yash Verma, Gujjula Jyothi Sai Venkata Vyshnavi, Kancharla Jo Srinivas.
+
+**Paper accepted for oral presentation:** “Sybil-Resilient and Publicly Verifiable Federated Intrusion Detection for Heterogeneous IoT Networks”, 10th Conference on Information and Communication Technology (CICT 2026), with the IEEE Hyderabad Section, IIITDM Kurnool, 18–20 December 2026. Proceedings to be submitted to IEEE Xplore.
