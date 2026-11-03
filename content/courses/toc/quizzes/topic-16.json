@@ -1,0 +1,62 @@
+[
+  {
+    "type": "tf",
+    "q": "A language is context-free if and only if some pushdown automaton accepts it.",
+    "answer": 0,
+    "explain": "True. CFG → PDA and PDA → CFG are both constructive, so CFGs and (nondeterministic) PDAs describe the same class of languages."
+  },
+  {
+    "q": "In the standard CFG → PDA construction, how many states does the PDA need (accepting by empty stack)?",
+    "options": ["1", "2", "One per variable", "One per production"],
+    "answer": 0,
+    "explain": "All the work happens on the stack. One state q, with expand and match moves, is enough."
+  },
+  {
+    "q": "In the CFG → PDA construction, what happens when a variable A is on top of the stack?",
+    "options": ["An ε-move replaces A with the right side α of some production A → α", "A is matched against the next input symbol", "The PDA rejects", "A is pushed again"],
+    "answer": 0,
+    "explain": "Variables are expanded by guessing a production, without reading input. Only terminals are matched against the input."
+  },
+  {
+    "q": "In the CFG → PDA construction, what happens when a terminal a is on top and the next input symbol is a?",
+    "options": ["Pop a and read the input symbol", "Push a again", "Replace a with a variable", "Move to a final state"],
+    "answer": 0,
+    "explain": "δ(q, a, a) = (q, ε). The terminal predicted by the derivation has been seen in the input, so it is removed."
+  },
+  {
+    "q": "The PDA built from S → aSb | ε starts with S on the stack and reads <code>aabb</code>. What is on the stack (top first) just after the first expansion S → aSb?",
+    "options": ["aSb", "bSa", "S", "ab"],
+    "answer": 0,
+    "explain": "α is pushed with its leftmost symbol on top, so the next step matches a against the input, just as in a leftmost derivation."
+  },
+  {
+    "q": "If the grammar is in GNF, the production A → aα becomes which PDA move?",
+    "options": ["δ(q, a, A) ∋ (q, α): read a, replace A with α", "δ(q, ε, A) ∋ (q, aα)", "δ(q, a, a) ∋ (q, ε)", "δ(q, α, A) ∋ (q, a)"],
+    "answer": 0,
+    "explain": "GNF puts a terminal first, so expanding and then matching it can be combined into one move that reads a."
+  },
+  {
+    "q": "In the PDA → CFG triple construction, the variable [pXq] generates…",
+    "options": ["the strings that take the PDA from state p with X on top to state q, with X popped", "the strings that push X in state p", "all strings ending in state q", "the stack contents between p and q"],
+    "answer": 0,
+    "explain": "[pXq] ⇒* w exactly when the PDA can read w, starting in p with X on top, and end in q with X (and whatever replaced it) gone."
+  },
+  {
+    "q": "With |Q| states and |Γ| stack symbols, how many variables of the form [pXq] can the triple construction create?",
+    "options": ["|Q|² · |Γ|", "|Q| · |Γ|", "|Q| + |Γ|", "2^|Q|"],
+    "answer": 0,
+    "explain": "There is one variable for each choice of start state p, stack symbol X and end state q. Many turn out useless and are removed afterwards."
+  },
+  {
+    "q": "Why does the CFG → PDA construction use nondeterminism?",
+    "options": ["When several productions exist for A, the PDA guesses which one the derivation uses", "To read the input backwards", "To count beyond the stack size", "It never needs nondeterminism"],
+    "answer": 0,
+    "explain": "The PDA does not know in advance which production leads to the input. It tries all of them on different branches, and one successful branch is enough."
+  },
+  {
+    "q": "In the PDA → CFG construction, which productions does the start symbol S get?",
+    "options": ["S → [q₀Z₀q] for every state q", "S → [q₀Z₀q₀] only", "S → Z₀", "S → q₀"],
+    "answer": 0,
+    "explain": "The PDA starts in q₀ with Z₀, and accepts when Z₀ has been popped, in whatever state it ends."
+  }
+]

@@ -1,0 +1,63 @@
+[
+  {
+    "q": "A PDA accepts w <em>by empty stack</em> when…",
+    "options": ["it reads all of w and the stack is completely empty", "it reads all of w and only Z₀ is left", "it reaches a final state at any point", "the stack becomes empty before the input ends"],
+    "answer": 0,
+    "explain": "N(P) = { w | (q₀, w, Z₀) ⊢* (q, ε, ε) }. The input must be used up, and the stack must be truly empty, Z₀ included. The state does not matter."
+  },
+  {
+    "q": "A PDA accepts w <em>by final state</em> when…",
+    "options": ["it reads all of w and ends in a state of F, whatever the stack holds", "it reads all of w and the stack is empty", "it enters a final state after reading any prefix of w", "the stack holds only Z₀"],
+    "answer": 0,
+    "explain": "L(P) = { w | (q₀, w, Z₀) ⊢* (q, ε, γ), q ∈ F }. The remaining stack γ can be anything."
+  },
+  {
+    "type": "tf",
+    "q": "For nondeterministic PDAs, acceptance by final state and acceptance by empty stack define the same class of languages.",
+    "answer": 0,
+    "explain": "True. Each kind of PDA can be converted into the other, so both give exactly the context-free languages."
+  },
+  {
+    "q": "When converting an empty-stack PDA into a final-state PDA, why is a new bottom marker X₀ pushed under Z₀?",
+    "options": ["So the new PDA can tell when the old stack has become empty, and then jump to a final state", "To make the PDA deterministic", "To double the stack capacity", "Because Z₀ cannot be popped"],
+    "answer": 0,
+    "explain": "When X₀ appears on top, the old PDA's stack is empty. That is exactly when the old PDA would accept, so an ε-move to the new final state is taken."
+  },
+  {
+    "q": "When converting a final-state PDA into an empty-stack PDA, what does the new 'drain' state do?",
+    "options": ["Pops every remaining stack symbol using ε-moves", "Pushes Z₀ again", "Reads the rest of the input", "Rejects the input"],
+    "answer": 0,
+    "explain": "From each old final state an ε-move goes to the drain state, which empties the stack, the new marker included."
+  },
+  {
+    "q": "Why is a new bottom marker also needed in the final-state → empty-stack conversion?",
+    "options": ["Otherwise the old PDA might empty its stack in a non-final state and wrongly accept", "Otherwise the PDA cannot read input", "Because empty-stack PDAs need two start states", "It is not needed"],
+    "answer": 0,
+    "explain": "The new marker X₀ can only be popped by the drain state. That way, the stack is empty only when the old PDA has really reached a final state."
+  },
+  {
+    "type": "tf",
+    "q": "For deterministic PDAs, acceptance by empty stack is as powerful as acceptance by final state.",
+    "answer": 1,
+    "explain": "False. A DPDA that accepts by empty stack can only accept prefix-free languages, because it cannot continue once the stack is empty. {a, aa} shows the gap."
+  },
+  {
+    "q": "The PDA has δ(q₀, a, Z₀) = (q₀, AZ₀), δ(q₀, a, A) = (q₀, AA), δ(q₀, b, A) = (q₁, ε), δ(q₁, b, A) = (q₁, ε) and δ(q₁, ε, Z₀) = (q₁, ε), and accepts by empty stack. Which strings does it accept?",
+    "type": "multi",
+    "options": ["<code>ab</code>", "<code>aabb</code>", "<code>aababb</code>", "<code>abb</code>"],
+    "answer": [0, 1],
+    "explain": "It accepts exactly aⁿbⁿ with n ≥ 1. In aababb, an a comes while the PDA is in q₁, where there is no move on a. In abb, the second b finds Z₀ on top, and there is no move for that either."
+  },
+  {
+    "q": "Which language can a DPDA accept by final state but <strong>not</strong> by empty stack?",
+    "options": ["{a, aa}", "{aⁿbⁿ | n ≥ 1}", "{wcwᴿ}", "{ab}"],
+    "answer": 0,
+    "explain": "'a' is a prefix of 'aa'. After accepting 'a' with an empty stack, a DPDA has no stack symbol left to make a move on the second a."
+  },
+  {
+    "q": "Is a stack holding only Z₀ an <em>empty</em> stack?",
+    "options": ["No: Z₀ is a symbol, and empty means no symbols at all", "Yes, Z₀ does not count", "Only in the start state", "Only if F is empty"],
+    "answer": 0,
+    "explain": "Empty-stack acceptance needs Z₀ popped as well. Many PDAs end with an ε-move that pops Z₀ for exactly this reason."
+  }
+]

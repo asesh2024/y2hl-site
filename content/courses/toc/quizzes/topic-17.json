@@ -1,0 +1,63 @@
+[
+  {
+    "q": "In the pumping lemma for CFLs, s = uvwxy must satisfy which conditions?",
+    "options": ["|vwx| ≤ p, |vx| ≥ 1, and uvⁱwxⁱy ∈ L for all i ≥ 0", "|uv| ≤ p, |v| ≥ 1, and uvⁱwxy ∈ L for all i", "|vwx| ≥ p, |w| ≥ 1, and uvwxy ∉ L", "|vx| ≤ p and v = x"],
+    "answer": 0,
+    "explain": "Two pieces, v and x, are pumped together. They sit inside a window of length at most p, and they are not both empty."
+  },
+  {
+    "q": "Which language is <strong>not</strong> context-free?",
+    "options": ["{aⁿbⁿcⁿ | n ≥ 0}", "{aⁿbⁿ | n ≥ 0}", "{aⁿbⁿcᵐ | n, m ≥ 0}", "{wcwᴿ | w ∈ {a, b}*}"],
+    "answer": 0,
+    "explain": "A stack can match one pair of counts, as in aⁿbⁿ and aⁿbⁿcᵐ, but not three equal counts. The pumping lemma proves aⁿbⁿcⁿ is not context-free."
+  },
+  {
+    "q": "Proving aⁿbⁿcⁿ is not context-free with s = aᵖbᵖcᵖ: what does |vwx| ≤ p guarantee?",
+    "options": ["vwx touches at most two of the three letter blocks", "vwx lies entirely in the a's", "v and x are both empty", "vwx contains all three letters"],
+    "answer": 0,
+    "explain": "Each block has length p, so a window of at most p symbols cannot contain both an a and a c. At least one letter count is untouched by pumping."
+  },
+  {
+    "type": "tf",
+    "q": "In the pumping lemma for CFLs, one of v and x may be empty, as long as they are not both empty.",
+    "answer": 0,
+    "explain": "True. The condition is |vx| ≥ 1. For example, v = ε and x non-empty is allowed, so proofs must handle that case too."
+  },
+  {
+    "q": "In the proof of the lemma, the repeated part comes from…",
+    "options": ["a variable that appears twice on a long path of a parse tree", "a state that repeats in a DFA", "a symbol that repeats on the stack", "two identical productions"],
+    "answer": 0,
+    "explain": "In a tall CNF parse tree, some variable A repeats on a path. A ⇒* vAx can then be used any number of times, giving vⁱwxⁱ."
+  },
+  {
+    "q": "Which languages are context-free?",
+    "type": "multi",
+    "options": ["{aⁿbⁿcᵐ | n, m ≥ 0}", "{ww | w ∈ {a, b}*}", "{wwᴿ | w ∈ {a, b}*}", "{aⁿbⁿcⁿ | n ≥ 0}"],
+    "answer": [0, 2],
+    "explain": "aⁿbⁿcᵐ needs only one matching pair, and wwᴿ is a mirror image, which a stack handles naturally. ww (a copy, not a mirror) and aⁿbⁿcⁿ are not context-free."
+  },
+  {
+    "type": "tf",
+    "q": "If a language satisfies the conditions of the CFL pumping lemma, it must be context-free.",
+    "answer": 1,
+    "explain": "False. As with the regular lemma, it is only a necessary condition. It can show that a language is not context-free, but never that it is."
+  },
+  {
+    "q": "To prove {ww | w ∈ {a, b}*} is not context-free, a good choice is…",
+    "options": ["s = aᵖbᵖaᵖbᵖ", "s = (ab)ᵖ(ab)ᵖ", "s = aᵖaᵖ", "s = abab"],
+    "answer": 0,
+    "explain": "Any window of length p can only touch neighbouring blocks, and pumping breaks the copy structure. (ab)ᵖ(ab)ᵖ and aᵖaᵖ can be pumped while staying in the language, and abab is too short."
+  },
+  {
+    "q": "Why does the CFL pumping lemma pump <em>two</em> substrings instead of one?",
+    "options": ["Recursion in a grammar, A ⇒* vAx, adds material on both sides of A at once", "Because a PDA has two stacks", "To make proofs easier", "Because CFLs are closed under union"],
+    "answer": 0,
+    "explain": "A self-embedding variable wraps the inner part w: one copy of v goes on the left and one copy of x on the right, matched in number."
+  },
+  {
+    "q": "The pumping length p for a CFL comes from…",
+    "options": ["the size of a CNF grammar for L (its number of variables)", "the number of states of a DFA", "the length of the shortest word in L", "the size of the alphabet only"],
+    "answer": 0,
+    "explain": "With m variables in CNF, any string longer than 2ᵐ has a parse-tree path long enough to repeat a variable. That gives p = 2ᵐ (or similar)."
+  }
+]

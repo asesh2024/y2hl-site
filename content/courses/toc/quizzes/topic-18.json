@@ -1,0 +1,64 @@
+[
+  {
+    "q": "Context-free languages are closed under which operations?",
+    "type": "multi",
+    "options": ["Union", "Intersection", "Concatenation", "Complement"],
+    "answer": [0, 2],
+    "explain": "Union and concatenation have simple grammar constructions (S → S₁ | S₂ and S → S₁S₂). Intersection and complement can produce non-context-free languages."
+  },
+  {
+    "q": "L₁ = {aⁿbⁿcᵐ} and L₂ = {aᵐbⁿcⁿ} are context-free. What is L₁ ∩ L₂?",
+    "options": ["{aⁿbⁿcⁿ}, which is not context-free", "{aⁿbⁿcᵐ}, which is context-free", "∅", "a*b*c*, which is regular"],
+    "answer": 0,
+    "explain": "A string in both has #a = #b and #b = #c. This is the standard proof that CFLs are not closed under intersection."
+  },
+  {
+    "type": "tf",
+    "q": "If L is context-free and R is regular, then L ∩ R is context-free.",
+    "answer": 0,
+    "explain": "True. Run a PDA for L and a DFA for R in parallel: the product of their states, with the PDA's single stack."
+  },
+  {
+    "q": "Why can CFLs <strong>not</strong> be closed under complement?",
+    "options": ["Closure under union and complement would imply closure under intersection, by De Morgan", "Complementing a PDA always gives a Turing machine", "Every CFL is infinite", "Complement is not defined for CFLs"],
+    "answer": 0,
+    "explain": "L₁ ∩ L₂ is the complement of (L̄₁ ∪ L̄₂). CFLs are closed under union but not under intersection, so they cannot be closed under complement."
+  },
+  {
+    "q": "Which grammar construction proves that CFLs are closed under star?",
+    "options": ["S → S₁S | ε", "S → S₁ | S₂", "S → S₁S₂", "Reverse every right-hand side"],
+    "answer": 0,
+    "explain": "S generates zero or more copies of strings derived from S₁, one after another. The other constructions give union, concatenation and reversal."
+  },
+  {
+    "type": "tf",
+    "q": "Deterministic context-free languages (accepted by DPDAs) are closed under complement.",
+    "answer": 0,
+    "explain": "True. A DPDA can be made to read its whole input and then have its accepting states swapped, with some care about ε-loops. DCFLs are not closed under union, though."
+  },
+  {
+    "q": "To show L = {w ∈ {a, b, c}* : equal numbers of a's, b's and c's} is not context-free, intersect L with…",
+    "options": ["a*b*c*", "(abc)*", "{a, b, c}*", "a*b*"],
+    "answer": 0,
+    "explain": "L ∩ a*b*c* = {aⁿbⁿcⁿ}, which is not context-free. If L were context-free, the intersection with a regular language would be too."
+  },
+  {
+    "q": "Is L = {aⁿbᵐ | n ≠ m} context-free?",
+    "options": ["Yes: it is the union of {n > m} and {n < m}, and both are context-free", "No, by the pumping lemma", "Only if n and m are bounded", "It is regular"],
+    "answer": 0,
+    "explain": "S → A | B, with A for 'more a's' (A → aA | aC, C → aCb | ε) and B for 'more b's' (symmetric). It is not regular, since otherwise aⁿbⁿ would be regular too."
+  },
+  {
+    "q": "L is context-free and R is regular. Which of these is guaranteed to be context-free?",
+    "type": "multi",
+    "options": ["L − R", "L ∪ R", "R − L", "the complement of L"],
+    "answer": [0, 1],
+    "explain": "L − R = L ∩ R̄, and R̄ is regular, so it is safe. L ∪ R is a union of two CFLs. R − L = R ∩ L̄ needs the complement of a CFL, which may not be context-free."
+  },
+  {
+    "q": "Which grammar generates {aⁿbⁿ} ∪ {bⁿaⁿ}?",
+    "options": ["S → A | B, A → aAb | ε, B → bBa | ε", "S → aSb | bSa | ε", "S → AB, A → aAb | ε, B → bBa | ε", "S → aS | bS | ε"],
+    "answer": 0,
+    "explain": "A new start symbol chooses one of the two languages, which is the union construction. S → aSb | bSa | ε would mix them, giving strings such as abab that belong to neither."
+  }
+]

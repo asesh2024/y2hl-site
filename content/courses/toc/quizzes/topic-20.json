@@ -1,0 +1,62 @@
+[
+  {
+    "q": "A linear bounded automaton is a Turing machine that…",
+    "options": ["may only use the tape cells holding its input, between end markers", "has no tape at all", "can only move right", "has two stacks"],
+    "answer": 0,
+    "explain": "The input sits between ⊢ and ⊣. The head may read and write anywhere inside, but never beyond the markers."
+  },
+  {
+    "q": "Nondeterministic LBAs accept exactly the…",
+    "options": ["context-sensitive languages", "context-free languages", "regular languages", "recursively enumerable languages"],
+    "answer": 0,
+    "explain": "CSG ⇄ LBA is the type-1 level of the Chomsky hierarchy. PDAs give the context-free languages, and unrestricted TMs the recursively enumerable ones."
+  },
+  {
+    "type": "tf",
+    "q": "Membership (does the LBA accept w?) is decidable.",
+    "answer": 0,
+    "explain": "True. On input w there are only finitely many configurations (states × head positions × tape contents). A run longer than that is looping, and a simulator can detect it and stop."
+  },
+  {
+    "type": "tf",
+    "q": "Emptiness (does an LBA accept any string at all?) is decidable.",
+    "answer": 1,
+    "explain": "False. Emptiness for LBAs is undecidable, even though membership is decidable."
+  },
+  {
+    "q": "The open 'LBA problem' asks whether…",
+    "options": ["deterministic LBAs are as powerful as nondeterministic ones", "LBAs can accept all context-free languages", "LBAs can simulate DFAs", "LBAs halt on every input"],
+    "answer": 0,
+    "explain": "It is unknown whether DLBA = NLBA. It is known that CSLs are closed under complement (the Immerman–Szelepcsényi theorem)."
+  },
+  {
+    "q": "An LBA has q states, tape alphabet Γ, and input length n. Roughly how many configurations can it be in?",
+    "options": ["q · n · |Γ|ⁿ", "q · n", "|Γ|ⁿ only", "Infinitely many"],
+    "answer": 0,
+    "explain": "A configuration is a state, a head position among the n cells, and the contents of those n cells. That number is finite for each fixed n."
+  },
+  {
+    "q": "How does an LBA for {aⁿbⁿcⁿ} work?",
+    "options": ["Repeatedly cross off one a, one b and one c, and accept if they run out together", "Push the a's on a stack and pop them on the c's", "Use a DFA with 3 states", "Copy the input to a second tape"],
+    "answer": 0,
+    "explain": "Marking symbols in place uses no extra tape, so the machine stays within the input region. One stack could only match two of the counts."
+  },
+  {
+    "q": "Order these by the languages they accept, from smallest class to largest: DFA, LBA, PDA, TM.",
+    "options": ["DFA ⊂ PDA ⊂ LBA ⊂ TM", "DFA ⊂ LBA ⊂ PDA ⊂ TM", "PDA ⊂ DFA ⊂ LBA ⊂ TM", "DFA ⊂ PDA ⊂ TM ⊂ LBA"],
+    "answer": 0,
+    "explain": "Regular ⊂ context-free ⊂ context-sensitive ⊂ recursively enumerable."
+  },
+  {
+    "q": "What do the end markers ⊢ and ⊣ do in an LBA?",
+    "options": ["Stop the head from leaving the input region", "Mark the start and final states", "Separate the input from the output", "Mark the top of the stack"],
+    "answer": 0,
+    "explain": "The head may not move past ⊢ or ⊣, and the markers cannot be overwritten. That is what keeps the memory linear in the input size."
+  },
+  {
+    "q": "Which language can an LBA accept but a PDA cannot?",
+    "options": ["{ww | w ∈ {a, b}*}", "{aⁿbⁿ}", "{wcwᴿ}", "a*b*"],
+    "answer": 0,
+    "explain": "{ww} is not context-free, but an LBA can find the middle and compare the two halves by marking cells in place. The others are context-free."
+  }
+]

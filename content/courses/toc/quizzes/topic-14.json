@@ -1,0 +1,62 @@
+[
+  {
+    "q": "Which component does a PDA have that an NFA does not?",
+    "options": ["A stack alphabet Γ and an initial stack symbol Z₀", "A set of final states", "An input alphabet", "ε-transitions"],
+    "answer": 0,
+    "explain": "A PDA is (Q, Σ, Γ, δ, q₀, Z₀, F). Γ and Z₀ describe the stack. NFAs already have final states and ε-moves."
+  },
+  {
+    "q": "The transition function of a PDA has the type…",
+    "options": ["Q × (Σ ∪ {ε}) × Γ → finite subsets of Q × Γ*", "Q × Σ → Q", "Q × Γ → Q × Σ", "Q × Σ × Γ → Q"],
+    "answer": 0,
+    "explain": "Each move depends on the state, the input symbol (or ε) and the top of the stack. It chooses a new state and a string to push in place of the top."
+  },
+  {
+    "q": "In the ID (q, w, γ) of a PDA, what are w and γ?",
+    "options": ["w is the unread input and γ is the stack contents, top first", "w is the input already read and γ is the output", "w is the stack and γ is the input", "w is the next state and γ is the stack symbol"],
+    "answer": 0,
+    "explain": "An instantaneous description records the current state, what remains of the input, and the whole stack with its top on the left."
+  },
+  {
+    "q": "δ(q, a, X) contains (p, YX). What happens to the stack?",
+    "options": ["Y is pushed on top of X", "X is popped and nothing is pushed", "X is replaced by Y", "X is pushed on top of Y"],
+    "answer": 0,
+    "explain": "The top X is replaced by the string YX, whose leftmost symbol becomes the top. So Y now sits above X."
+  },
+  {
+    "q": "The PDA for aⁿbⁿ pushes A for each a, starting from stack Z₀. After reading <code>aa</code>, the stack (top first) is…",
+    "options": ["AAZ₀", "Z₀AA", "AZ₀", "Z₀"],
+    "answer": 0,
+    "explain": "(q₀, aabb, Z₀) ⊢ (q₀, abb, AZ₀) ⊢ (q₀, bb, AAZ₀). Each a adds one A on top."
+  },
+  {
+    "type": "tf",
+    "q": "Deterministic PDAs recognise exactly the same languages as nondeterministic PDAs.",
+    "answer": 1,
+    "explain": "False. Unlike DFAs and NFAs, DPDAs are strictly weaker. For example, {wwᴿ} needs a guess about where the middle is."
+  },
+  {
+    "q": "Which language needs a PDA's nondeterminism (no DPDA accepts it)?",
+    "options": ["{wwᴿ | w ∈ {a, b}*}", "{wcwᴿ | w ∈ {a, b}*}", "{aⁿbⁿ | n ≥ 0}", "{aⁿbᵐ | n, m ≥ 0}"],
+    "answer": 0,
+    "explain": "With a centre marker c, the PDA knows when to switch from pushing to matching. Without one, it must guess where the middle is."
+  },
+  {
+    "q": "In the ID notation, what does (q, aw, Xβ) ⊢ (p, w, γβ) mean?",
+    "options": ["One move: read a, replace top X with γ, go to p", "Zero or more moves", "The PDA accepts", "The PDA halts with an error"],
+    "answer": 0,
+    "explain": "⊢ is a single move using (p, γ) ∈ δ(q, a, X). ⊢* would mean zero or more moves."
+  },
+  {
+    "q": "Why can a PDA recognise {aⁿbⁿ} when no DFA can?",
+    "options": ["Its stack acts as an unbounded counter", "It has more states", "It can read the input backwards", "It can write on its input"],
+    "answer": 0,
+    "explain": "Pushing one symbol per a and popping one per b compares the two counts, however large n is. A DFA only has finitely many states to count with."
+  },
+  {
+    "q": "The PDA for aⁿbⁿ reads <code>aab</code>. Where is it when the input runs out?",
+    "options": ["In q₁ with AZ₀ on the stack, so it rejects", "In q₂ with Z₀, so it accepts", "In q₀ with AAZ₀", "It is stuck before reading the b"],
+    "answer": 0,
+    "explain": "(q₀, aab, Z₀) ⊢ (q₀, ab, AZ₀) ⊢ (q₀, b, AAZ₀) ⊢ (q₁, ε, AZ₀). An A is still on top, so the ε-move on Z₀ to the final state cannot fire."
+  }
+]

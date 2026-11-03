@@ -1,0 +1,62 @@
+[
+  {
+    "q": "In a (noncontracting) context-sensitive grammar, every production α → β satisfies…",
+    "options": ["|α| ≤ |β|", "|α| = 1", "|β| ≤ 2", "β contains no variables"],
+    "answer": 0,
+    "explain": "Rules never shorten the sentential form. (S → ε is allowed as a special case, if S never appears on a right-hand side.)"
+  },
+  {
+    "q": "In the Chomsky hierarchy, context-sensitive grammars are…",
+    "options": ["Type 1", "Type 0", "Type 2", "Type 3"],
+    "answer": 0,
+    "explain": "Type 0 is unrestricted, type 1 context-sensitive, type 2 context-free and type 3 regular."
+  },
+  {
+    "q": "Which language is context-sensitive but <strong>not</strong> context-free?",
+    "options": ["{aⁿbⁿcⁿ | n ≥ 1}", "{aⁿbⁿ | n ≥ 1}", "a*b*", "{wcwᴿ}"],
+    "answer": 0,
+    "explain": "aⁿbⁿcⁿ fails the CFL pumping lemma, but a noncontracting grammar with rules like CB → BC generates it. The others are already context-free."
+  },
+  {
+    "q": "In the grammar for aⁿbⁿcⁿ (S → aSBC | aBC, CB → BC, aB → ab, bB → bb, bC → bc, cC → cc), what does the rule CB → BC do?",
+    "options": ["Moves B's in front of C's, so they can be sorted", "Deletes a C", "Turns C into c", "Starts a new block of a's"],
+    "answer": 0,
+    "explain": "S lays down a's followed by interleaved B and C. CB → BC swaps them until all the B's come first. Only then can the terminal-making rules finish."
+  },
+  {
+    "type": "tf",
+    "q": "Membership (is w ∈ L(G)?) is decidable for every context-sensitive grammar G.",
+    "answer": 0,
+    "explain": "True. Since no rule shrinks the string, every sentential form on the way to w has length ≤ |w|. There are finitely many of those, so a search always terminates."
+  },
+  {
+    "q": "Which rule is <strong>not</strong> allowed in a context-sensitive grammar?",
+    "options": ["AB → A", "AB → BA", "aA → aab", "S → aSBC"],
+    "answer": 0,
+    "explain": "AB → A shrinks the string from length 2 to length 1. The others keep or increase the length."
+  },
+  {
+    "q": "Which machine model accepts exactly the context-sensitive languages?",
+    "options": ["The linear bounded automaton (LBA)", "The pushdown automaton", "The DFA", "The Turing machine with unlimited tape"],
+    "answer": 0,
+    "explain": "An LBA is a nondeterministic Turing machine restricted to the part of the tape holding its input. Topic 20 covers it in detail."
+  },
+  {
+    "type": "tf",
+    "q": "Every context-free language that does not contain ε is context-sensitive.",
+    "answer": 0,
+    "explain": "True. A CNF grammar has rules A → BC and A → a, which never shrink the string, so it is already context-sensitive."
+  },
+  {
+    "q": "Why is this kind of grammar called <em>context</em>-sensitive?",
+    "options": ["A variable may be rewritten only when the right symbols surround it (αAβ → αγβ)", "It depends on the context of the programming language", "It needs a stack", "Its rules are applied in a fixed order"],
+    "answer": 0,
+    "explain": "In the equivalent form αAβ → αγβ, the rewrite of A to γ depends on its neighbours α and β. A context-free rule rewrites A anywhere."
+  },
+  {
+    "q": "In the aⁿbⁿcⁿ grammar, how many rule applications does the derivation of <code>aabbcc</code> take?",
+    "options": ["7", "6", "5", "8"],
+    "answer": 0,
+    "explain": "S ⇒ aSBC ⇒ aaBCBC ⇒ aaBBCC ⇒ aabBCC ⇒ aabbCC ⇒ aabbcC ⇒ aabbcc. That is 2 steps to lay down symbols, 1 swap and 4 terminal rewrites."
+  }
+]
