@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="10 14 80 80">
+  <!-- Y2HL "Yes to Happy Learning": a happy learner, arms raised in a tick, rising out of an open book.
+       The masks cut transparent gaps around the figure and the head, so the logo works on any background. -->
+  <defs>
+    <path id="body" d="M18.5 36C27 35.5 38 46 50 50.6 60 50.6 70 38 78.5 30.5c2.5-2 5-.3 3.6 3C74 46 58 59 50.2 81 47 66 35 50 19.5 40.5c-2.5-1.5-3-4.3-1-4.5z"/>
+    <mask id="around-body" maskUnits="userSpaceOnUse" x="0" y="0" width="100" height="100">
+      <rect width="100" height="100" fill="#fff"/>
+      <use href="#body" fill="#000" stroke="#000" stroke-width="3.4" stroke-linejoin="round"/>
+    </mask>
+    <mask id="around-head" maskUnits="userSpaceOnUse" x="0" y="0" width="100" height="100">
+      <rect width="100" height="100" fill="#fff"/>
+      <circle cx="50.5" cy="31" r="17.2" fill="#000"/>
+    </mask>
+  </defs>
+  <!-- Book: two pages and the cover beneath -->
+  <g fill="#0f766e" mask="url(#around-body)">
+    <path d="M16 56c12-.7 22 4 27 12 2.5 4 3.8 8.2 4.5 12.5C40 75 27 73 16 76.6z"/>
+    <path d="M84.5 56c-12-.7-22 4-27 12-2.5 4-3.8 8.2-4.5 12.5C60.5 75 73.5 73 84.5 76.6z"/>
+    <path d="M17.5 79.5C30 76 42 78 48 84q2.2 1.9 4.4 0C58.5 78 70.5 76 83 79.5v4c-12.5-3-24.5-1.5-30.5 4q-2.2 2-4.6 0c-6-5.5-18-7-30.4-4z"/>
+  </g>
+  <!-- Figure: arms raised, body tapering into the spine of the book -->
+  <use href="#body" fill="#14b8a6" mask="url(#around-head)"/>
+  <!-- Head: smiling face with happy closed eyes -->
+  <circle cx="50.5" cy="31" r="15" fill="#fbbf24"/>
+  <path d="M41.2 30.6q3-4.6 6-.8M53.6 28.4q3-4.6 6-.8" stroke="#fff" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+  <path d="M44 34.6q6.5 7.6 13-1.6" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+</svg>
