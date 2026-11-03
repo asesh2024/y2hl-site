@@ -48,7 +48,7 @@
     <div class="wrap footer-inner">
       <p><strong>{{ site.name }}</strong> · {{ site.tagline }}<br>Course materials by {{ site.author.name }}. Free for every student.</p>
       <p>
-        <a href="/courses/">Courses</a> · <a href="/research/">Research</a> · <a href="/about/">About</a>{% if site.author.email %} · <a href="mailto:{{ site.author.email }}">Contact</a>{% endif %}
+        <a href="/courses/">Courses</a> · <a href="/research/">Research</a> · <a href="/projects/">Projects guided</a> · <a href="/about/">About</a>{% if site.author.email %} · <a href="mailto:{{ site.author.email }}">Contact</a>{% endif %}
         {% for link in site.author.links %} · <a href="{{ link.url }}" rel="me">{{ link.label }}</a>{% endfor %}
         <br>© {{ year }} {{ site.author.name }}
       </p>

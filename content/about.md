@@ -24,7 +24,7 @@ I am an Associate Professor in the Department of Computer Science and Engineerin
 
 My research interests include post‑quantum cryptography, decentralised system security, privacy‑preserving machine learning, and the energy and sustainability implications of digital infrastructure. I have published over 25 peer‑reviewed papers. I am a Senior Member of IEEE and a member of ACM.
 
-[See my publications and patents →](/research/)
+[See my publications and patents →](/research/) · [Projects I guide →](/projects/)
 
 ### Why Y2HL
 
