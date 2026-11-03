@@ -257,8 +257,79 @@ code, pre { font-family: var(--mono); font-size: .88em; }
   .book-cover { max-width: 160px; }
   .about-teaser > div { flex-direction: column; align-items: flex-start; }
 }
+/* Quizzes, score chips and the marks page */
+.btn.danger { color: #b91c1c; }
+.btn.danger:hover { border-color: #b91c1c; color: #b91c1c; }
+.score-chip { display: none; font: 700 .72rem/1 var(--font); padding: 3px 7px; border-radius: 999px; background: var(--surface-2); color: var(--muted); white-space: nowrap; }
+.score-chip.is-pass, .score-chip.is-low { display: inline-block; }
+.score-chip.is-pass { background: var(--accent-soft); color: var(--accent); }
+.score-chip.is-low { background: var(--fill); color: var(--fill-line); }
+.week-card .score-chip { position: absolute; top: 12px; right: 12px; }
+.score-chip.mini { font-size: .66rem; padding: 2px 5px; align-self: center; }
+.test-card { border-style: dashed; }
+.is-planned { opacity: .6; border-style: dashed; }
+.marks-link { margin-top: 20px; }
+
+.quiz-section { margin-top: 40px; padding-top: 8px; border-top: 1px solid var(--line); }
+.quiz-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 16px; padding: 12px 16px; margin-bottom: 16px; border-radius: var(--radius); background: var(--surface-2); color: var(--muted); font-size: .92rem; }
+.quiz-head strong { color: var(--ink); }
+.quiz-q { margin: 0 0 14px; padding: 16px 18px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); min-width: 0; }
+.quiz-q legend { float: left; width: 100%; padding: 0; margin-bottom: 12px; font-weight: 600; line-height: 1.5; }
+.quiz-q legend + * { clear: both; }
+.quiz-q code { font-family: var(--mono); font-size: .9em; background: var(--code-bg); border: 1px solid var(--line); border-radius: 5px; padding: .05em .3em; }
+.qnum { color: var(--muted); margin-right: 2px; }
+.qhint { color: var(--muted); font-weight: 400; font-size: .88rem; }
+.quiz-options { display: grid; gap: 8px; clear: both; }
+.quiz-opt { display: flex; gap: 10px; align-items: flex-start; padding: 9px 12px; border: 1px solid var(--line); border-radius: 8px; cursor: pointer; line-height: 1.45; }
+.quiz-opt:hover { border-color: var(--accent); }
+.quiz-opt input { margin-top: 3px; accent-color: var(--accent); flex: none; }
+.quiz-opt.is-answer { border-color: var(--accent); background: var(--accent-soft); }
+.quiz-opt.is-chosen-wrong { border-color: #dc2626; background: color-mix(in srgb, #dc2626 12%, transparent); }
+.quiz-q input:disabled { cursor: default; }
+.quiz-q .verdict { font-size: .85rem; margin-left: 6px; }
+.quiz-q.is-right { border-color: var(--accent); }
+.quiz-q.is-right .verdict { color: var(--accent); }
+.quiz-q.is-wrong { border-color: #dc2626; }
+.quiz-q.is-wrong .verdict { color: #dc2626; }
+.quiz-explain { display: none; margin-top: 12px; padding: 10px 12px; border-radius: 8px; background: var(--surface-2); font-size: .93rem; }
+.quiz-q.is-right .quiz-explain, .quiz-q.is-wrong .quiz-explain { display: block; }
+.quiz-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 18px; }
+.quiz-note { font-size: .9rem; }
+.quiz-result { flex: 1; padding: 18px 20px; border-radius: var(--radius); border: 2px solid var(--accent); background: var(--accent-soft); }
+.quiz-result.is-low { border-color: var(--fill-line); background: var(--fill); }
+.quiz-result p { margin: 0 0 8px; }
+.quiz-score { font: 700 2rem/1.1 var(--serif); }
+.quiz-score span { font: 500 1rem var(--font); color: var(--muted); }
+.quiz-result-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
+
+.notice { padding: 12px 16px; border-left: 4px solid var(--fill-line); background: var(--fill); border-radius: 0 var(--radius) var(--radius) 0; font-size: .93rem; }
+.marks-student { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: end; margin: 20px 0; }
+.marks-student label { display: flex; flex-direction: column; gap: 4px; font-size: .85rem; font-weight: 600; color: var(--muted); }
+.marks-student input { font: inherit; font-size: 1rem; padding: 8px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--ink); min-width: 220px; }
+.marks-summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin: 8px 0 24px; }
+.marks-summary div { display: flex; flex-direction: column; padding: 14px 16px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+.marks-summary strong { font: 700 1.6rem/1.2 var(--serif); }
+.marks-summary span { color: var(--muted); font-size: .85rem; }
+.marks-page h2 { font-size: 1.2rem; margin: 28px 0 8px; }
+.marks-page table { width: 100%; border-collapse: collapse; font-size: .92rem; }
+.marks-page th, .marks-page td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.marks-page .ok { color: var(--accent); font-weight: 600; }
+.marks-page .low { color: var(--fill-line); font-weight: 600; }
+.marks-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+.print-only { display: none; }
+
+/* Graphviz diagrams */
+figure.dot { margin: 1.2em 0; padding: 12px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); overflow-x: auto; text-align: center; }
+figure.dot svg { max-width: 100%; height: auto; }
+figure.dot text { fill: var(--ink); }
+figure.dot g.node ellipse, figure.dot g.node polygon, figure.dot g.node path, figure.dot g.edge path { stroke: var(--ink); }
+figure.dot g.edge polygon { stroke: var(--ink); fill: var(--ink); }
+.quiz-q figure.dot { margin: 0 0 12px; clear: both; }
+
 @media print {
-  .site-header, .site-footer, .course-nav, .pager, .mark-done, .copy-btn, .theme-toggle { display: none !important; }
+  .site-header, .site-footer, .course-nav, .pager, .mark-done, .copy-btn, .theme-toggle, .marks-actions, .marks-student .muted, .notice { display: none !important; }
+  .print-only { display: block; }
+  .marks-student input { border: 0; padding: 0; min-width: 0; color: #000; }
   .course-layout { display: block; }
   body { background: #fff; color: #000; }
   .table-wrap { overflow: visible; }

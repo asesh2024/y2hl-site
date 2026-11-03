@@ -10,16 +10,17 @@
       {% for s in course.stats %}<li><strong>{{ s.value }}</strong>{{ s.label }}</li>{% endfor %}
     </ul>
     <div class="actions">
-      <a class="btn primary" href="{{ course.base }}week-01.html" data-continue>Start Week 1</a>
-      <a class="btn" href="{{ course.base }}project.html">Read the project brief</a>
+      {% set first = course.weeks[0] %}
+      <a class="btn primary" href="{{ course.base }}{{ first.slug }}.html" data-continue data-unit="{{ course.unit }}">Start {{ course.unit }} {{ first.num }}</a>
+      {% if course.secondary_link %}<a class="btn" href="{{ course.base }}{{ course.secondary_link.href }}">{{ course.secondary_link.label }}</a>{% endif %}
     </div>
   </div>
 </section>
 
 <section class="wrap section">
   <div class="section-head">
-    <h2>The 12 weeks</h2>
-    <span class="muted" data-progress-label></span>
+    <h2>{{ course.units_heading }}</h2>
+    <span class="muted" data-progress-label data-unit-plural="{{ course.unit_plural }}"></span>
   </div>
   <div class="co-grid">
     {% for co, label in course.outcomes.items() %}
@@ -27,14 +28,28 @@
       <p class="co-head"><span class="co co-{{ co|lower }}">{{ co }}</span>{{ label }}</p>
       {% for w in course.weeks if w.meta.co == co %}
       <a class="week-card" href="{{ course.base }}{{ w.slug }}.html" data-week="{{ w.slug }}">
-        <span class="wk-num">Week {{ w.meta.week }}</span>
+        <span class="wk-num">{{ course.unit }} {{ w.num }}</span>
         <span class="wk-name">{{ w.meta.title }}</span>
-        <span class="done-badge">Done</span>
+        {% if w.quiz %}<span class="score-chip" data-score-for="{{ w.slug }}"></span>{% else %}<span class="done-badge">Done</span>{% endif %}
       </a>
+      {% endfor %}
+      {% for t in course.tests if t.co == co %}
+      <a class="week-card test-card" href="{{ course.base }}{{ t.slug }}.html">
+        <span class="wk-num">{{ co }} test</span>
+        <span class="wk-name">{{ t.size }} questions from these {{ course.unit_plural }}</span>
+        <span class="score-chip" data-score-for="{{ t.slug }}"></span>
+      </a>
+      {% endfor %}
+      {% for p in course.planned if p.co == co and p.num not in course.weeks | map(attribute='num') | list %}
+      <div class="week-card is-planned">
+        <span class="wk-num">{{ course.unit }} {{ p.num }} · coming soon</span>
+        <span class="wk-name">{{ p.title }}</span>
+      </div>
       {% endfor %}
     </div>
     {% endfor %}
   </div>
+  {% if course.has_quizzes %}<p class="marks-link"><a class="btn" href="{{ course.base }}marks.html">See my marks →</a></p>{% endif %}
 </section>
 
 <section class="wrap section">

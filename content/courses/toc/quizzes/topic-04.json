@@ -1,0 +1,62 @@
+[
+  {
+    "q": "Arden's theorem: if ε ∉ P, the equation R = Q + RP has the unique solution…",
+    "options": ["R = QP*", "R = PQ*", "R = Q*P", "R = (Q + P)*"],
+    "answer": 0,
+    "explain": "Substitute to check: Q + QP*P = Q(ε + P*P) = QP*. The repeated part P is starred on the right."
+  },
+  {
+    "q": "Which condition does Arden's theorem need for the solution to be unique?",
+    "options": ["ε ∉ P", "ε ∉ Q", "P and Q have no strings in common", "Q = ε"],
+    "answer": 0,
+    "explain": "If P contains ε, then RP contains R, and many different R satisfy the equation."
+  },
+  {
+    "type": "tf",
+    "q": "If P contains ε, the equation R = Q + RP can have more than one solution.",
+    "answer": 0,
+    "explain": "True. For example, with P = ε, any R that contains Q satisfies R = Q + R."
+  },
+  {
+    "q": "Solve R = a + Rb.",
+    "options": ["ab*", "b*a", "(a + b)*", "a*b"],
+    "answer": 0,
+    "explain": "Here Q = a and P = b, so R = QP* = ab*: an a followed by any number of b's."
+  },
+  {
+    "q": "Solve R = ε + R(a + b).",
+    "options": ["(a + b)*", "ε", "a + b", "(a + b)⁺"],
+    "answer": 0,
+    "explain": "Here Q = ε and P = a + b, so R = ε(a + b)* = (a + b)*."
+  },
+  {
+    "q": "Solve R = b + R(a + b).",
+    "options": ["b(a + b)*", "(a + b)*b", "b*(a + b)", "(ba + bb)*"],
+    "answer": 0,
+    "explain": "Q = b and P = a + b, so R = b(a + b)*: the strings that start with b."
+  },
+  {
+    "q": "When you write state equations for Arden's method, which state's equation gets an extra + ε term?",
+    "options": ["The start state", "Every final state", "Every state with a self-loop", "The dead state"],
+    "answer": 0,
+    "explain": "Each qᵢ stands for the strings that lead from the start to qᵢ. Only the start state is reached by the empty string."
+  },
+  {
+    "q": "A DFA has the transitions q₁ —a→ q₂, q₂ —b→ q₂ and q₂ —a→ q₁. What is the equation for q₂?",
+    "options": ["q₂ = q₁a + q₂b", "q₂ = q₂b + q₁a + ε", "q₂ = q₁b + q₂a", "q₂ = aq₁ + bq₂"],
+    "answer": 0,
+    "explain": "Collect the transitions entering q₂: from q₁ on a, and from q₂ itself on b. The state comes first, then the symbol read."
+  },
+  {
+    "q": "Solve q₁ = ε + q₁a and q₂ = q₁b + q₂b, where q₂ is the only final state. The regular expression is…",
+    "options": ["a*bb*", "a*b*", "(a + b)*b", "ab*"],
+    "answer": 0,
+    "explain": "First q₁ = εa* = a*. Then q₂ = a*b + q₂b gives q₂ = a*b·b* = a*bb*: some a's, then at least one b."
+  },
+  {
+    "q": "Arden's theorem is mainly used to…",
+    "options": ["convert a finite automaton into a regular expression", "minimise a DFA", "convert an NFA into a DFA", "prove that a language is not regular"],
+    "answer": 0,
+    "explain": "The state equations of the automaton are solved with Arden's rule, giving a regular expression for the accepted language."
+  }
+]

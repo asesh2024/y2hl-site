@@ -1,0 +1,62 @@
+[
+  {
+    "q": "In a Moore machine, the output depends on…",
+    "options": ["the current state only", "the current state and the current input symbol", "the input symbol only", "the whole input read so far, stored on a stack"],
+    "answer": 0,
+    "explain": "The output function is λ : Q → Δ, so each state has a fixed output. Output on transitions is the Mealy model."
+  },
+  {
+    "q": "A Moore machine reads an input of length n. How long is its output?",
+    "options": ["n + 1", "n", "n − 1", "2n"],
+    "answer": 0,
+    "explain": "It emits λ(q₀) before reading anything, then one output after every symbol: 1 + n outputs in total."
+  },
+  {
+    "q": "In the 6-tuple (Q, Σ, Δ, δ, λ, q₀) of a Moore machine, λ is a function…",
+    "options": ["from Q to Δ", "from Q × Σ to Δ", "from Q × Σ to Q", "from Δ to Q"],
+    "answer": 0,
+    "explain": "λ assigns an output symbol to each state. δ is the transition function Q × Σ → Q."
+  },
+  {
+    "q": "The mod-3 Moore machine (states q₀/0, q₁/1, q₂/2; reading bit b takes remainder r to (2r + b) mod 3) reads <code>110</code>. What is its output?",
+    "options": ["<code>0100</code>", "<code>010</code>", "<code>0120</code>", "<code>1100</code>"],
+    "answer": 0,
+    "explain": "Start q₀ outputs 0. Reading 1 → q₁ (1), then 1 → (2·1 + 1) mod 3 = 0 → q₀ (0), then 0 → q₀ (0). So the output is 0, 1, 0, 0. Indeed 110 is 6, and 6 mod 3 = 0."
+  },
+  {
+    "type": "tf",
+    "q": "A Moore machine decides whether to accept or reject a string using its set of final states.",
+    "answer": 1,
+    "explain": "False. A Moore machine has no final states. It is a transducer that maps input strings to output strings."
+  },
+  {
+    "q": "What is the minimum number of states in a Moore machine over {0, 1} that outputs 1 when the input so far ends in 1, and 0 otherwise (including at the start)?",
+    "options": ["1", "2", "3", "4"],
+    "answer": 1,
+    "explain": "It needs two states: 'last symbol is not 1' (output 0, also the start) and 'last symbol is 1' (output 1). One state cannot give two different outputs."
+  },
+  {
+    "q": "A Moore machine is best described as…",
+    "options": ["a finite automaton with output", "a finite automaton with a stack", "a Turing machine with one tape", "a DFA with ε-moves"],
+    "answer": 0,
+    "explain": "Moore and Mealy machines are finite-state transducers: DFAs that produce an output string instead of accepting or rejecting."
+  },
+  {
+    "q": "The mod-3 Moore machine reads <code>1010</code>. What is the last symbol of its output?",
+    "options": ["1", "0", "2", "It depends on the first output"],
+    "answer": 0,
+    "explain": "1010 is ten in binary, and 10 mod 3 = 1. The full output is 0 1 2 2 1."
+  },
+  {
+    "q": "A Moore machine has states q₀/a (start) and q₁/b. On 0 it always goes to q₀, and on 1 it always goes to q₁. What does it output on <code>0110</code>?",
+    "options": ["<code>aabba</code>", "<code>abba</code>", "<code>aabb</code>", "<code>babba</code>"],
+    "answer": 0,
+    "explain": "It starts with a (q₀). Then 0 → q₀ (a), 1 → q₁ (b), 1 → q₁ (b), 0 → q₀ (a), giving a a b b a."
+  },
+  {
+    "q": "In a state diagram, where is the output of a Moore machine written?",
+    "options": ["Inside each state, as q / output", "On each arrow, as input / output", "Only on the start state", "On the final states"],
+    "answer": 0,
+    "explain": "Outputs belong to states in a Moore machine. Writing input/output on arrows is the Mealy convention."
+  }
+]

@@ -4,12 +4,12 @@
 <section class="hero">
   <div class="wrap hero-inner">
     <p class="eyebrow">Open course materials</p>
-    <h1>Learn to design software that survives change.</h1>
-    <p class="lead">Free, week-by-week courses by {{ site.author.name }}. Built for my own students and open to students at any university.</p>
+    <h1>Computer science, taught step by step.</h1>
+    <p class="lead">Free, step-by-step courses by {{ site.author.name }}. Built for my own students and open to students at any university.</p>
     <div class="actions">
-      {% set c = courses[0] %}
-      <a class="btn primary" href="{{ c.base }}">Explore {{ c.short }}</a>
-      <a class="btn" href="{{ c.base }}week-01.html">Start at Week 1</a>
+      {% for c in courses %}
+      <a class="btn{% if loop.first %} primary{% endif %}" href="{{ c.base }}">Explore {{ c.short }}</a>
+      {% endfor %}
     </div>
   </div>
 </section>
@@ -37,9 +37,9 @@
 <section class="wrap section how">
   <h2>How every course here works</h2>
   <div class="three">
-    <div><span class="num">1</span><h3>One project, all term</h3><p>Every week adds to the same codebase, so ideas build on each other instead of staying as separate exercises.</p></div>
-    <div><span class="num">2</span><h3>Build, then name it</h3><p>You meet the problem in code first. The lecture then names the principle, using code you wrote.</p></div>
-    <div><span class="num">3</span><h3>Evidence, not notes</h3><p>Each week ends with deliverables in your repository. By the last week, the repository is your portfolio.</p></div>
+    <div><span class="num">1</span><h3>Small steps, in order</h3><p>Each course is split into short weeks or topics. Every step builds on the one before, so nothing arrives out of nowhere.</p></div>
+    <div><span class="num">2</span><h3>Practise, don't just read</h3><p>Programming courses grow one project all term. Theory courses end every topic with a quiz that marks itself and explains each answer.</p></div>
+    <div><span class="num">3</span><h3>See your progress</h3><p>Ticks, quiz marks and a marks page show what you have done and what to revisit. It all stays in your own browser.</p></div>
   </div>
 </section>
 

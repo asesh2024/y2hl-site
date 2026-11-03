@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block main %}
+<div class="wrap course-layout">
+  {% include "_course_nav.html" %}
+  <article class="course-main">
+    <p class="crumbs"><a href="/courses/">Courses</a> / <a href="{{ course.base }}">{{ course.short }}</a> / {{ test.co }} test</p>
+    <p class="eyebrow"><span class="co co-{{ test.co|lower }}">{{ test.co }}</span> End-of-outcome test</p>
+    <h1>{{ test.co }} test: {{ test.label }}</h1>
+    <p class="lead">{{ test.size }} questions picked at random from the {{ course.unit | lower }} quizzes under {{ test.co }}. Every attempt draws a fresh set, so take it more than once.</p>
+    <p class="muted">Covers:
+      {% for w in course.weeks if w.meta.co == test.co %}<a href="{{ course.base }}{{ w.slug }}.html">{{ course.unit }} {{ w.num }}</a>{% if not loop.last %}, {% endif %}{% endfor %}
+    </p>
+    <section class="quiz-section" id="quiz">
+      <div class="quiz" data-quiz="{{ test.slug }}" data-pick="{{ test.size }}" data-pass="{{ course.pass_percent }}">
+        <script type="application/json" class="quiz-data">{{ quiz | safe }}</script>
+        <noscript><p>The test needs JavaScript turned on.</p></noscript>
+      </div>
+    </section>
+  </article>
+</div>
+{% endblock %}

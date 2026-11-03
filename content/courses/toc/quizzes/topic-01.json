@@ -1,0 +1,65 @@
+[
+  {
+    "q": "A DFA is defined as a 5-tuple. Which of these is <strong>not</strong> one of its five parts?",
+    "options": ["A finite set of states Q", "An input alphabet Σ", "A stack alphabet Γ", "A set of final states F"],
+    "answer": 2,
+    "explain": "The five parts are Q, Σ, δ, q₀ and F. A stack alphabet belongs to a pushdown automaton, not a DFA."
+  },
+  {
+    "q": "In a DFA, for a state q and an input symbol a, δ(q, a) is…",
+    "options": ["exactly one state", "a set of states, possibly empty", "at most one state", "a state and a symbol to write"],
+    "answer": 0,
+    "explain": "That is what deterministic means: every state has exactly one move on every symbol. A set of states is the NFA case."
+  },
+  {
+    "q": "The DFA below accepts the strings over {0, 1} that end in 01. Which strings does it accept?",
+    "dot": "digraph { node [shape=circle]; start [shape=none, label=\"\"]; q2 [shape=doublecircle]; start -> q0; q0 -> q1 [label=\"0\"]; q0 -> q0 [label=\"1\"]; q1 -> q1 [label=\"0\"]; q1 -> q2 [label=\"1\"]; q2 -> q1 [label=\"0\"]; q2 -> q0 [label=\"1\"]; }",
+    "type": "multi",
+    "options": ["<code>01</code>", "<code>1101</code>", "<code>0110</code>", "<code>001</code>", "ε (the empty string)"],
+    "answer": [0, 1, 3],
+    "explain": "01, 1101 and 001 all end in 01, and each trace ends in q₂. 0110 ends in q₁. ε leaves the machine in q₀, which is not final."
+  },
+  {
+    "type": "tf",
+    "q": "A DFA accepts the empty string ε if and only if its start state is a final state.",
+    "answer": 0,
+    "explain": "On ε the machine makes no moves, so it stays in q₀. It accepts exactly when q₀ ∈ F."
+  },
+  {
+    "q": "What is the minimum number of states in a DFA over {0, 1} that accepts the strings whose number of 1s is divisible by 3?",
+    "options": ["2", "3", "4", "8"],
+    "answer": 1,
+    "explain": "The machine only needs the count of 1s mod 3, which is 0, 1 or 2. Each remainder needs its own state, and the three are distinguishable."
+  },
+  {
+    "q": "M is a complete DFA for a language L. How do you get a DFA for the complement Σ* − L?",
+    "options": ["Swap the final and non-final states", "Reverse every transition", "Make the start state final", "Add an ε-move from every final state to the start"],
+    "answer": 0,
+    "explain": "A complete DFA ends every string in exactly one state. Flipping which states are final flips accept and reject for every string."
+  },
+  {
+    "q": "M₁ has m states and M₂ has n states. The product construction for L(M₁) ∩ L(M₂) gives a DFA with at most…",
+    "options": ["m + n states", "m · n states", "2<sup>m+n</sup> states", "max(m, n) states"],
+    "answer": 1,
+    "explain": "Each product state is a pair (p, q) with p from M₁ and q from M₂, so there are at most m · n pairs."
+  },
+  {
+    "q": "What language over {a, b} does this DFA accept?",
+    "dot": "digraph { node [shape=circle]; start [shape=none, label=\"\"]; q0 [shape=doublecircle]; start -> q0; q0 -> q1 [label=\"a\"]; q1 -> q0 [label=\"a\"]; q0 -> q0 [label=\"b\"]; q1 -> q1 [label=\"b\"]; }",
+    "options": ["Strings with an even number of a's", "Strings with an odd number of a's", "Strings that start with a", "Strings of even length"],
+    "answer": 0,
+    "explain": "Each a toggles between q₀ and q₁, and b changes nothing. The machine is back in the final state q₀ exactly when it has read an even number of a's, including zero, so ε is accepted."
+  },
+  {
+    "q": "Over Σ = {a}, what is the minimum number of states in a DFA for L = { a<sup>3k</sup> | k > 0 }, that is, a³, a⁶, a⁹ and so on?",
+    "options": ["3", "4", "5", "6"],
+    "answer": 1,
+    "explain": "Counting a's mod 3 needs 3 states. But ε has remainder 0 and is not in L (k > 0), while a³ is. So the start state cannot be the final state, and a fourth state is needed: start → 1 → 2 → final, then back to 1."
+  },
+  {
+    "q": "Which description fits a dead (trap) state?",
+    "options": ["A non-final state whose every transition returns to itself", "A final state with no outgoing transitions", "A state that cannot be reached from the start state", "The start state of a DFA that accepts nothing"],
+    "answer": 0,
+    "explain": "Once the machine enters a dead state it can never leave or accept. Dead states are used to complete a DFA. An unreachable state is a different thing, and can simply be deleted."
+  }
+]

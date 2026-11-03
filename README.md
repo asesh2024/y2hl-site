@@ -47,6 +47,29 @@ python tools/check_links.py
 2. Edit its `course.json` and the Markdown pages; name the week files `week-01.md`, `week-02.md` and so on.
 3. Build. The course appears on the home page and on /courses/ automatically.
 
+A course can use topics instead of weeks: set `"unit": "Topic"`, `"unit_prefix": "topic"` and `"unit_template": "topic.html"` in `course.json` (see `content/courses/toc/course.json`), and name the files `topic-01.md`, `topic-02.md` and so on.
+
+## Quizzes and marks
+
+A topic gets a self-marking quiz when `content/courses/<course>/quizzes/<topic-file-name>.json` exists, for example `quizzes/topic-03.json`. Each question looks like this:
+
+```json
+{
+  "q": "Which strings match (0 + 1)*(00 + 11)(0 + 1)*?",
+  "type": "multi",
+  "options": ["<code>0110</code>", "<code>0101</code>", "<code>1001</code>"],
+  "answer": [0, 2],
+  "explain": "The expression means 'contains 00 or 11'."
+}
+```
+
+- `type` is `single` (the default, one answer), `multi` (several answers, as a list), or `tf` (true/false: leave out `options`, and use `answer: 0` for True or `1` for False).
+- `answer` counts options from 0. The site shuffles the options, so their order in the file does not matter.
+- An optional `dot` field draws a diagram (Graphviz DOT) above the options. In topic pages, a ```` ```dot ```` code block draws one too.
+- The build stops with a clear message if an answer index is out of range, options repeat, or `explain` is missing.
+
+With `"co_test_size": 20` in `course.json`, each course outcome also gets a test of 20 random questions drawn from its topic quizzes. The **My marks** page (`marks.html`) is created automatically. Marks are saved in each student's own browser only.
+
 ## Publish (GitHub Pages, free)
 
 1. Create a GitHub repository (for example `y2hl-site`) and push this folder to its `main` branch.

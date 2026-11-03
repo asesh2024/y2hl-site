@@ -1,0 +1,63 @@
+{
+  "title": "Theory of Computation",
+  "short": "TOC",
+  "code": "24CS3206",
+  "tagline": "Machines, languages and the limits of computation",
+  "summary": "Finite automata, regular expressions, grammars, pushdown automata and Turing machines, built up one topic at a time. Every topic ends with a self-marking quiz, and your marks are kept on a marks page.",
+  "level": "Undergraduate, no prerequisites",
+  "language": "Theory",
+  "stats": [
+    {"value": "26", "label": "topics"},
+    {"value": "26", "label": "quizzes"},
+    {"value": "4", "label": "CO tests"},
+    {"value": "4", "label": "course outcomes"}
+  ],
+  "unit": "Topic",
+  "unit_plural": "topics",
+  "unit_prefix": "topic",
+  "unit_template": "topic.html",
+  "units_heading": "The 26 topics",
+  "secondary_link": {"href": "how-to-study.html", "label": "How to study this course"},
+  "pass_percent": 60,
+  "co_test_size": 20,
+  "guide_pages": ["overview", "how-to-study"],
+  "guide_titles": {
+    "overview": "Overview",
+    "how-to-study": "How to study this course",
+    "workbook": "Tutorial workbook"
+  },
+  "outcomes": {
+    "CO1": "Finite automata and regular languages",
+    "CO2": "Limits of regular languages and context-free grammars",
+    "CO3": "Pushdown automata and context-free languages",
+    "CO4": "Turing machines and decidability"
+  },
+  "planned": [
+    {"num": 1, "co": "CO1", "title": "Deterministic finite automata (DFA)"},
+    {"num": 2, "co": "CO1", "title": "NFA and DFA–NFA equivalence"},
+    {"num": 3, "co": "CO1", "title": "Regular expressions and finite automata"},
+    {"num": 4, "co": "CO1", "title": "Arden's theorem"},
+    {"num": 5, "co": "CO1", "title": "Minimisation of DFA"},
+    {"num": 6, "co": "CO1", "title": "Moore machines"},
+    {"num": 7, "co": "CO1", "title": "Mealy machines and Moore–Mealy conversion"},
+    {"num": 8, "co": "CO2", "title": "Closure properties of regular languages"},
+    {"num": 9, "co": "CO2", "title": "Pumping lemma for regular languages"},
+    {"num": 10, "co": "CO2", "title": "Context-free grammars"},
+    {"num": 11, "co": "CO2", "title": "Derivations, parse trees and ambiguity"},
+    {"num": 12, "co": "CO2", "title": "Simplification of CFGs"},
+    {"num": 13, "co": "CO2", "title": "Chomsky and Greibach normal forms"},
+    {"num": 14, "co": "CO3", "title": "Pushdown automata"},
+    {"num": 15, "co": "CO3", "title": "PDA acceptance: final state and empty stack"},
+    {"num": 16, "co": "CO3", "title": "CFG–PDA equivalence"},
+    {"num": 17, "co": "CO3", "title": "Pumping lemma for context-free languages"},
+    {"num": 18, "co": "CO3", "title": "Closure properties of context-free languages"},
+    {"num": 19, "co": "CO3", "title": "Context-sensitive grammars"},
+    {"num": 20, "co": "CO3", "title": "Linear bounded automata"},
+    {"num": 21, "co": "CO4", "title": "Turing machines: model and notation"},
+    {"num": 22, "co": "CO4", "title": "Turing machine construction techniques"},
+    {"num": 23, "co": "CO4", "title": "Turing machines as language acceptors"},
+    {"num": 24, "co": "CO4", "title": "Recursive and recursively enumerable languages"},
+    {"num": 25, "co": "CO4", "title": "Chomsky hierarchy, universal TM and the halting problem"},
+    {"num": 26, "co": "CO4", "title": "Variants of Turing machines: multi-tape and nondeterministic"}
+  ]
+}

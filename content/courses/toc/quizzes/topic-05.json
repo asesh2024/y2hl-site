@@ -1,0 +1,62 @@
+[
+  {
+    "q": "What should you do first, before merging any states?",
+    "options": ["Remove the states that are unreachable from the start state", "Swap the final and non-final states", "Convert the DFA to an NFA", "Add a dead state to every DFA"],
+    "answer": 0,
+    "explain": "Unreachable states never affect the language, but merging alone cannot remove them. Delete them first."
+  },
+  {
+    "q": "In the partition method, the first partition P₀ separates…",
+    "options": ["final states from non-final states", "the start state from all other states", "states with self-loops from the others", "reachable states from unreachable ones"],
+    "answer": 0,
+    "explain": "P₀ = { F, Q − F }. The empty string ε already distinguishes any final state from any non-final state."
+  },
+  {
+    "q": "States p and q are distinguishable when…",
+    "options": ["some string w leads exactly one of them to a final state", "they have different names", "they have different numbers of outgoing transitions", "one of them is the start state"],
+    "answer": 0,
+    "explain": "If δ̂(p, w) is final and δ̂(q, w) is not, for some w, then p and q behave differently and cannot be merged."
+  },
+  {
+    "q": "A DFA over {0, 1} has transitions A —0→ B, A —1→ C, B —0→ A, B —1→ D, C/D/E —0→ E, C/D/E —1→ F, and F —0, 1→ F. Its final states are C, D and E. How many states does the minimal DFA have?",
+    "options": ["2", "3", "4", "6"],
+    "answer": 1,
+    "explain": "The classes are {A, B}, {C, D, E} and {F}. The language is 'exactly one 1', which needs three states: no 1 yet, one 1, and too many."
+  },
+  {
+    "type": "tf",
+    "q": "Every regular language has a unique minimal DFA, up to renaming its states.",
+    "answer": 0,
+    "explain": "True. This follows from the Myhill–Nerode theorem: the states of the minimal DFA correspond exactly to the equivalence classes of the language."
+  },
+  {
+    "q": "How many states does the minimal DFA over {a, b} for 'strings ending in ab' have?",
+    "options": ["2", "3", "4", "5"],
+    "answer": 1,
+    "explain": "It needs three: the string doesn't end in a or ab; it ends in a; it ends in ab. These three classes are pairwise distinguishable."
+  },
+  {
+    "q": "A complete DFA has every state final, and all states reachable. How many states does its minimal DFA have?",
+    "options": ["1", "2", "The same number as before", "0"],
+    "answer": 0,
+    "explain": "It accepts Σ*. No string can distinguish any two states, so they all merge into one accepting state with a self-loop."
+  },
+  {
+    "q": "In the table-filling method, which pairs are marked at the very start?",
+    "options": ["Pairs with one final and one non-final state", "Pairs of two final states", "Pairs that include the start state", "Pairs with a common successor"],
+    "answer": 0,
+    "explain": "These pairs are distinguished by the empty string. Further pairs are then marked when one of their successor pairs is marked."
+  },
+  {
+    "q": "How many states does the minimal DFA over {0, 1} need for 'the number of 0s is even and the number of 1s is divisible by 3'?",
+    "options": ["5", "6", "3", "2"],
+    "answer": 1,
+    "explain": "It tracks (count of 0s mod 2, count of 1s mod 3), which gives 2 × 3 = 6 combinations. All six are distinguishable."
+  },
+  {
+    "q": "The Myhill–Nerode theorem says that L is regular if and only if…",
+    "options": ["its Myhill–Nerode equivalence relation has finitely many classes", "L can be pumped", "L is accepted by some NFA with ε-moves", "L is finite"],
+    "answer": 0,
+    "explain": "The number of classes equals the number of states in the minimal DFA. Infinitely many classes means no DFA exists. The pumping condition, by contrast, is only a necessary condition, not a characterisation."
+  }
+]

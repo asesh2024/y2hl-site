@@ -27,8 +27,42 @@
     applyHighlightTheme();
   });
 
+  // Diagrams: ```dot blocks become SVG via Graphviz (viz.js), loaded only when a page has one.
+  // If the script can't load, the DOT source stays on the page as plain text.
+  var vizReady = null;
+  function renderDots(scope) {
+    var blocks = (scope || document).querySelectorAll("pre > code.language-dot");
+    if (!blocks.length) return;
+    if (!vizReady) vizReady = new Promise(function (resolve, reject) {
+      var s = document.createElement("script");
+      s.src = "https://cdn.jsdelivr.net/npm/@viz-js/viz@3.11.0/lib/viz-standalone.js";
+      s.onload = function () { window.Viz.instance().then(resolve, reject); };
+      s.onerror = reject;
+      document.head.appendChild(s);
+    });
+    vizReady.then(function (viz) {
+      blocks.forEach(function (code) {
+        try {
+          var svg = viz.renderSVGElement(code.textContent, {
+            graphAttributes: { bgcolor: "transparent", rankdir: "LR", fontname: "Inter" },
+            nodeAttributes: { fontname: "Inter", fontsize: 13 },
+            edgeAttributes: { fontname: "JetBrains Mono", fontsize: 12 }
+          });
+          svg.removeAttribute("width");
+          svg.removeAttribute("height");
+          var fig = document.createElement("figure");
+          fig.className = "dot";
+          fig.appendChild(svg);
+          code.parentNode.replaceWith(fig);
+        } catch (e) { /* leave the DOT text visible */ }
+      });
+    }).catch(function () {});
+  }
+  window.Y2HL = { renderDots: renderDots };
+  renderDots(document);
+
   // Code: highlight, then add a copy button to each block.
-  document.querySelectorAll(".prose pre > code").forEach(function (code) {
+  document.querySelectorAll(".prose pre > code:not(.language-dot)").forEach(function (code) {
     if (window.hljs) window.hljs.highlightElement(code);
     var btn = document.createElement("button");
     btn.type = "button";
@@ -43,7 +77,7 @@
     code.parentNode.appendChild(btn);
   });
 
-  // Progress: which weeks this reader has marked as finished.
+  // Progress: which weeks or topics this reader has finished (ticked by hand, or by passing a quiz).
   var KEY = "y2hl-done:" + location.pathname.split("/").slice(0, 3).join("/");
   var done = {};
   try { done = JSON.parse(store(KEY) || "{}"); } catch (e) { done = {}; }
@@ -60,15 +94,21 @@
     Object.keys(total).forEach(function (slug) { if (done[slug]) finished++; });
     var count = Object.keys(total).length;
     document.querySelectorAll("[data-progress-label]").forEach(function (el) {
-      el.textContent = finished ? finished + " of " + count + " weeks done" : "";
+      el.textContent = finished ? finished + " of " + count + " " + (el.dataset.unitPlural || "weeks") + " done" : "";
     });
     var next = Object.keys(total).sort().find(function (slug) { return !done[slug]; });
     var cont = document.querySelector("[data-continue]");
     if (cont && finished && next) {
-      cont.href = cont.href.replace(/week-\d+\.html$/, next + ".html");
-      cont.textContent = "Continue with Week " + parseInt(next.slice(5), 10);
+      cont.href = cont.href.replace(/[a-z]+-\d+\.html$/, next + ".html");
+      cont.textContent = "Continue with " + (cont.dataset.unit || "Week") + " " + parseInt(next.split("-")[1], 10);
     }
   }
+
+  // quiz.js announces a pass this way, so the ticks update without a reload.
+  window.addEventListener("y2hl:progress", function () {
+    try { done = JSON.parse(store(KEY) || "{}"); } catch (e) { done = {}; }
+    render();
+  });
 
   document.querySelectorAll("[data-done]").forEach(function (box) {
     box.checked = !!done[box.dataset.done];

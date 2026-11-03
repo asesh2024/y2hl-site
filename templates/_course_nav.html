@@ -1,19 +1,25 @@
 <aside class="course-nav" aria-label="{{ course.short }} contents">
   <details class="course-nav-box" open>
-    <summary><span>{{ course.short }} contents</span><span class="progress-label" data-progress-label></span></summary>
+    <summary><span>{{ course.short }} contents</span><span class="progress-label" data-progress-label data-unit-plural="{{ course.unit_plural }}"></span></summary>
     <div class="course-nav-body">
       <p class="nav-title"><a href="{{ course.base }}">{{ course.title }}</a></p>
       <ul class="nav-guides">
         {% for slug in course.guide_pages %}
         <li><a href="{{ course.base }}{% if slug != 'overview' %}{{ slug }}.html{% endif %}"{% if current == slug %} aria-current="page"{% endif %}>{{ course.guide_titles[slug] }}</a></li>
         {% endfor %}
+        {% if course.has_quizzes %}<li><a href="{{ course.base }}marks.html"{% if current == 'marks' %} aria-current="page"{% endif %}>My marks</a></li>{% endif %}
       </ul>
       {% for co, label in course.outcomes.items() %}
       <p class="nav-group"><span class="co co-{{ co|lower }}">{{ co }}</span> {{ label }}</p>
       <ul class="nav-weeks">
         {% for w in course.weeks if w.meta.co == co %}
         <li><a href="{{ course.base }}{{ w.slug }}.html" data-week="{{ w.slug }}"{% if current == w.slug %} aria-current="page"{% endif %}>
-          <span class="wk">{{ w.meta.week }}</span><span class="wk-title">{{ w.meta.title }}</span><span class="done-dot" aria-hidden="true"></span>
+          <span class="wk">{{ w.num }}</span><span class="wk-title">{{ w.meta.title }}</span>{% if w.quiz %}<span class="score-chip mini" data-score-for="{{ w.slug }}"></span>{% endif %}<span class="done-dot" aria-hidden="true"></span>
+        </a></li>
+        {% endfor %}
+        {% for t in course.tests if t.co == co %}
+        <li><a href="{{ course.base }}{{ t.slug }}.html"{% if current == t.slug %} aria-current="page"{% endif %}>
+          <span class="wk">✓</span><span class="wk-title">{{ co }} test</span><span class="score-chip mini" data-score-for="{{ t.slug }}"></span>
         </a></li>
         {% endfor %}
       </ul>

@@ -70,17 +70,64 @@ def write(rel, template, **ctx):
         pages_built.append(url)
 
 
+def load_quiz(path):
+    """Load and check a quiz bank. Stops the build on any mistake, so a broken answer key never ships."""
+    questions = json.loads(path.read_text(encoding="utf-8"))
+    errors = []
+    for i, q in enumerate(questions, 1):
+        where = f"{path.name} question {i}"
+        kind, options, answer = q.get("type", "single"), q.get("options", []), q.get("answer")
+        if kind == "tf":
+            options = q["options"] = ["True", "False"]
+        if kind not in ("single", "multi", "tf"):
+            errors.append(f"{where}: unknown type {kind!r}")
+        if not q.get("q") or not q.get("explain"):
+            errors.append(f"{where}: needs both 'q' and 'explain'")
+        if len(options) < 2 or len(set(options)) != len(options):
+            errors.append(f"{where}: needs at least 2 options, all different")
+        answers = answer if isinstance(answer, list) else [answer]
+        if kind != "multi" and isinstance(answer, list):
+            errors.append(f"{where}: only 'multi' questions may have a list of answers")
+        if not answers or any(not isinstance(a, int) or not 0 <= a < len(options) for a in answers):
+            errors.append(f"{where}: answer {answer!r} is not a valid option index")
+    if errors:
+        sys.exit("Quiz errors:\n  " + "\n  ".join(errors))
+    return questions
+
+
+def quiz_json(questions):
+    """Quiz data for a <script type="application/json"> block."""
+    return json.dumps(questions, ensure_ascii=False).replace("</", "<\\/")
+
+
 def load_course(folder):
     course = json.loads((folder / "course.json").read_text(encoding="utf-8"))
     course["base"] = f"/courses/{folder.name}/"
+    course["slug"] = folder.name
+    # A course is split into numbered units: "Week" for AOOP, "Topic" for TOC.
+    prefix = course.setdefault("unit_prefix", "week")
+    course.setdefault("unit", "Week")
+    course.setdefault("unit_plural", "weeks")
     course["pages"] = []
     for slug in course["guide_pages"]:
         meta, html, toc = read_page(folder / f"{slug}.md")
         course["pages"].append({"slug": slug, "meta": meta, "html": html, "toc": toc})
     course["weeks"] = []
-    for path in sorted(folder.glob("week-*.md")):
+    for path in sorted(folder.glob(f"{prefix}-*.md")):
         meta, html, toc = read_page(path)
-        course["weeks"].append({"slug": path.stem, "meta": meta, "html": html, "toc": toc})
+        unit = {"slug": path.stem, "num": meta[prefix], "meta": meta, "html": html, "toc": toc}
+        quiz = folder / "quizzes" / f"{path.stem}.json"
+        if quiz.exists():
+            unit["quiz"] = load_quiz(quiz)
+        course["weeks"].append(unit)
+    course["has_quizzes"] = any("quiz" in w for w in course["weeks"])
+    # CO tests draw from the quizzes of every published unit under that CO.
+    course["tests"] = []
+    for co, label in course["outcomes"].items():
+        pool = [dict(q, topic=w["slug"]) for w in course["weeks"] if w["meta"]["co"] == co for q in w.get("quiz", [])]
+        if pool and course.get("co_test_size"):
+            course["tests"].append({"slug": f"{co.lower()}-test", "co": co, "label": label, "pool": pool,
+                                    "size": min(course["co_test_size"], len(pool))})
     return course
 
 
@@ -116,11 +163,23 @@ def build():
                   body=p["html"], toc=p["toc"], current=p["slug"])
         weeks = course["weeks"]
         for i, w in enumerate(weeks):
-            write(f"{root}/{w['slug']}.html", "week.html", course=course, week=w, page={
-                "title": f"Week {w['meta']['week']}: {w['meta']['title']}",
+            write(f"{root}/{w['slug']}.html", course.get("unit_template", "week.html"), course=course, week=w, page={
+                "title": f"{course['unit']} {w['num']}: {w['meta']['title']}",
                 "description": w["meta"]["description"]},
                 prev=weeks[i - 1] if i else None, next=weeks[i + 1] if i + 1 < len(weeks) else None,
-                current=w["slug"])
+                current=w["slug"], quiz=quiz_json(w["quiz"]) if "quiz" in w else None)
+        for t in course["tests"]:
+            write(f"{root}/{t['slug']}.html", "quiz_test.html", course=course, test=t, quiz=quiz_json(t["pool"]),
+                  current=t["slug"], page={"title": f"{t['co']} test: {t['label']}",
+                                           "description": f"A {t['size']}-question test on {t['co']}, drawn at random from its topic quizzes."})
+        if course["has_quizzes"]:
+            marks = {"topics": [{"slug": w["slug"], "num": w["num"], "title": w["meta"]["title"], "co": w["meta"]["co"],
+                                 "total": len(w["quiz"])} for w in weeks if "quiz" in w],
+                     "tests": [{"slug": t["slug"], "co": t["co"], "total": t["size"]} for t in course["tests"]],
+                     "outcomes": course["outcomes"], "course": course["title"]}
+            write(f"{root}/marks.html", "marks.html", course=course, marks=quiz_json(marks), current="marks",
+                  page={"title": f"My marks: {course['short']}",
+                        "description": "Your quiz and CO test marks for this course, saved in this browser."})
 
     write("404.html", "404.html", page={"title": "Page not found", "description": ""})
 

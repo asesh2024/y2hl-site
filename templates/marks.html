@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block main %}
+<div class="wrap course-layout">
+  {% include "_course_nav.html" %}
+  <article class="course-main marks-page">
+    <p class="crumbs"><a href="/courses/">Courses</a> / <a href="{{ course.base }}">{{ course.short }}</a> / My marks</p>
+    <h1>My marks</h1>
+    <p class="lead">Your best and latest score on every quiz and CO test in {{ course.title }}.</p>
+    <p class="notice">Marks are saved only in this browser, on this device. They are for checking your own progress, not an official record. Clearing your browser data, or using another browser or device, starts a new record.</p>
+
+    <div class="marks-student">
+      <label>Name <input type="text" data-student="name" autocomplete="name"></label>
+      <label>Student ID <input type="text" data-student="id"></label>
+      <span class="muted">Shown on the printout only.</span>
+    </div>
+
+    <div class="marks" data-marks>
+      <script type="application/json" class="marks-data">{{ marks | safe }}</script>
+      <noscript><p>The marks page needs JavaScript turned on.</p></noscript>
+    </div>
+
+    <div class="marks-actions">
+      <button type="button" class="btn primary" data-marks-csv>Download CSV</button>
+      <button type="button" class="btn" data-marks-print>Print / save as PDF</button>
+      <button type="button" class="btn danger" data-marks-reset>Reset my marks</button>
+    </div>
+  </article>
+</div>
+{% endblock %}

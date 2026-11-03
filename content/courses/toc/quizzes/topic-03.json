@@ -1,0 +1,63 @@
+[
+  {
+    "q": "How is the regular expression <code>a + bc*</code> grouped?",
+    "options": ["a + (b(c*))", "(a + b)(c*)", "(a + bc)*", "a + ((bc)*)"],
+    "answer": 0,
+    "explain": "Star binds tightest, then concatenation, then union. So c* is formed first, then b is joined to it, then the union with a."
+  },
+  {
+    "q": "Which regular expression describes the strings over {a, b} that contain at least one a?",
+    "options": ["(a + b)*a(a + b)*", "a*b*", "(ab)*", "(a + b)*"],
+    "answer": 0,
+    "explain": "Any string, then a required a, then any string. a*b* misses 'ba', (ab)* misses 'a' followed by a, and (a + b)* also includes strings with no a."
+  },
+  {
+    "q": "Which of these identities is <strong>false</strong> in general?",
+    "options": ["(RS)* = R*S*", "R + R = R", "εR = R", "∅* = ε"],
+    "answer": 0,
+    "explain": "Take R = a and S = b: 'aab' is in a*b* but not in (ab)*. The other three are standard identities."
+  },
+  {
+    "q": "Which strings match (0 + 1)*(00 + 11)(0 + 1)*?",
+    "type": "multi",
+    "options": ["<code>0110</code>", "<code>0101</code>", "<code>1001</code>", "<code>10</code>"],
+    "answer": [0, 2],
+    "explain": "The expression means 'contains 00 or 11'. 0110 contains 11 and 1001 contains 00. 0101 and 10 contain neither."
+  },
+  {
+    "q": "Which expression gives exactly the strings over {0, 1} in which every 0 is immediately followed by at least two 1s?",
+    "options": ["(1 + 011)*", "(011)*", "1*(011)*", "(0 + 11)*"],
+    "answer": 0,
+    "explain": "The strings are built from the blocks 1 and 011 in any order. (011)* and 1*(011)* miss strings like 0111 or 1011, and (0 + 11)* allows a lone 0."
+  },
+  {
+    "q": "What is L(∅*)?",
+    "options": ["{ε}", "∅", "Σ*", "It is undefined"],
+    "answer": 0,
+    "explain": "A star always includes zero repetitions, which is ε. With nothing to repeat, ε is all you get."
+  },
+  {
+    "q": "Kleene's theorem states that…",
+    "options": ["a language is regular if and only if some regular expression describes it", "every NFA has a unique minimal DFA", "every context-free language is regular", "regular expressions can describe aⁿbⁿ"],
+    "answer": 0,
+    "explain": "Kleene's theorem links finite automata and regular expressions: they define the same class of languages. aⁿbⁿ is not regular (topic 9)."
+  },
+  {
+    "type": "tf",
+    "q": "(a + b)* = a*(ba*)*",
+    "answer": 0,
+    "explain": "True. Any string over {a, b} is a block of a's, then zero or more groups made of one b followed by a block of a's."
+  },
+  {
+    "q": "Which expression describes the strings over {0, 1} of even length, including ε?",
+    "options": ["((0 + 1)(0 + 1))*", "(00 + 11)*", "(0 + 1)*(0 + 1)", "0*1*"],
+    "answer": 0,
+    "explain": "Repeat any 2-symbol block. (00 + 11)* misses 01 and 10, (0 + 1)*(0 + 1) is every non-empty string, and 0*1* is the wrong idea."
+  },
+  {
+    "q": "Which string is <strong>not</strong> in L(a*b*)?",
+    "options": ["<code>ba</code>", "ε", "<code>aab</code>", "<code>bbb</code>"],
+    "answer": 0,
+    "explain": "a*b* means all a's come before all b's. In 'ba' an a comes after a b."
+  }
+]

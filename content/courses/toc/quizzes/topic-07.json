@@ -1,0 +1,62 @@
+[
+  {
+    "q": "In a Mealy machine, the output depends on…",
+    "options": ["the current state and the input symbol being read", "the current state only", "the input symbol only", "the number of symbols read so far"],
+    "answer": 0,
+    "explain": "λ : Q × Σ → Δ. Each transition carries its own output, written input / output on the arrow."
+  },
+  {
+    "q": "A Mealy machine reads an input of length n. How long is its output?",
+    "options": ["n", "n + 1", "n − 1", "It depends on the number of states"],
+    "answer": 0,
+    "explain": "One output per transition, and there is no extra output at the start, unlike a Moore machine."
+  },
+  {
+    "q": "When you convert a Moore machine to a Mealy machine, the output on the transition q —a→ p is…",
+    "options": ["λ(p), the output of the state entered", "λ(q), the output of the state left", "always the start state's output", "the empty string"],
+    "answer": 0,
+    "explain": "λ′(q, a) = λ(δ(q, a)). When the Moore machine enters p, it prints p's output, so the Mealy transition prints that same symbol."
+  },
+  {
+    "q": "A Moore machine has n states. How many states does the equivalent Mealy machine built by the standard conversion have?",
+    "options": ["n", "n + 1", "2n", "n · |Δ|"],
+    "answer": 0,
+    "explain": "The states and transitions are kept unchanged. Only the outputs move from the states onto the arrows."
+  },
+  {
+    "q": "A Mealy machine has n states and an output alphabet of m symbols. The equivalent Moore machine needs at most about…",
+    "options": ["n · m states", "n states", "n + m states", "2ⁿ states"],
+    "answer": 0,
+    "explain": "Each Mealy state may be split into one copy per output that enters it, which is at most m copies. Sometimes one extra start state is added."
+  },
+  {
+    "q": "The Mealy machine 'output 1 when the current symbol equals the previous one' (q₀ —0/0→ A, q₀ —1/0→ B, A —0/1→ A, A —1/0→ B, B —0/0→ A, B —1/1→ B) reads <code>0011</code>. What is its output?",
+    "options": ["<code>0101</code>", "<code>0110</code>", "<code>1010</code>", "<code>00101</code>"],
+    "answer": 0,
+    "explain": "q₀→A prints 0; A→A on 0 prints 1; A→B on 1 prints 0; B→B on 1 prints 1. So the output is 0101."
+  },
+  {
+    "type": "tf",
+    "q": "A Moore machine and a Mealy machine are considered equivalent if their outputs agree on every input once the Moore machine's first output symbol is ignored.",
+    "answer": 0,
+    "explain": "True. The Moore machine's extra initial output λ(q₀) is not produced by any input, so it is left out of the comparison."
+  },
+  {
+    "q": "What is the minimum number of states in a Mealy machine that outputs the 1's complement of its binary input?",
+    "options": ["1", "2", "3", "4"],
+    "answer": 0,
+    "explain": "One state with two self-loops, 0/1 and 1/0, is enough. Nothing needs to be remembered."
+  },
+  {
+    "q": "When converting a Mealy machine to a Moore machine, when must a state q be split?",
+    "options": ["When the transitions entering q carry different outputs", "When q has a self-loop", "When q has more than two outgoing transitions", "When q is the start state"],
+    "answer": 0,
+    "explain": "A Moore state has exactly one output. If q is entered with outputs 0 and 1, it needs one copy for each."
+  },
+  {
+    "q": "For the same input–output behaviour, which model typically needs fewer states?",
+    "options": ["Mealy machine", "Moore machine", "They always need exactly the same number", "Neither can be compared"],
+    "answer": 0,
+    "explain": "A Mealy machine can attach different outputs to different arrows from one state. A Moore machine may need several copies of a state to do the same."
+  }
+]

@@ -12,6 +12,8 @@
     {"value": "6", "label": "course outcomes"},
     {"value": "1", "label": "codebase"}
   ],
+  "units_heading": "The 12 weeks",
+  "secondary_link": {"href": "project.html", "label": "Read the project brief"},
   "guide_pages": ["overview", "how-it-works", "project", "deliverables"],
   "guide_titles": {
     "overview": "Overview",

@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block main %}
+{% set m = week.meta %}
+<div class="wrap course-layout">
+  {% include "_course_nav.html" %}
+  <article class="course-main" data-week-page="{{ week.slug }}">
+    <p class="crumbs"><a href="/courses/">Courses</a> / <a href="{{ course.base }}">{{ course.short }}</a> / {{ course.unit }} {{ week.num }}</p>
+    <p class="eyebrow"><span class="co co-{{ m.co|lower }}">{{ m.co }}</span> {{ course.unit }} {{ week.num }} of {{ course.planned | length or course.weeks | length }}</p>
+    <h1>{{ m.title }}</h1>
+    <p class="lead">{{ m.description }}</p>
+
+    <div class="glance">
+      <section>
+        <h2>You will be able to</h2>
+        <ul>{% for o in m.outcomes %}<li>{{ o }}</li>{% endfor %}</ul>
+      </section>
+      <section>
+        <h2>Read</h2>
+        <ul>{% for r in m.reading %}<li>{{ r }}</li>{% endfor %}</ul>
+      </section>
+      {% if m.videos %}
+      <section>
+        <h2>Watch</h2>
+        <ul>{% for v in m.videos %}<li><a href="{{ v.url }}" rel="noopener">{{ v.title }}</a></li>{% endfor %}</ul>
+      </section>
+      {% endif %}
+    </div>
+
+    <nav class="toc" aria-label="On this page">
+      <p>On this page</p>
+      <ul>{% for t in week.toc %}<li><a href="#{{ t.id }}">{{ t.name }}</a></li>{% endfor %}{% if quiz %}<li><a href="#quiz">Quiz ({{ week.quiz | length }} questions)</a></li>{% endif %}</ul>
+    </nav>
+
+    <div class="prose week-body">{{ week.html | safe }}</div>
+
+    {% if quiz %}
+    <section class="quiz-section" id="quiz">
+      <h2>Quiz</h2>
+      <div class="quiz" data-quiz="{{ week.slug }}" data-pass="{{ course.pass_percent }}">
+        <script type="application/json" class="quiz-data">{{ quiz | safe }}</script>
+        <noscript><p>The quiz needs JavaScript turned on.</p></noscript>
+      </div>
+    </section>
+    {% endif %}
+
+    <nav class="pager" aria-label="{{ course.unit_plural | capitalize }}">
+      {% if prev %}<a class="prev" href="{{ course.base }}{{ prev.slug }}.html"><span>← {{ course.unit }} {{ prev.num }}</span>{{ prev.meta.title }}</a>{% else %}<a class="prev" href="{{ course.base }}{{ course.guide_pages[1] }}.html"><span>← Before you start</span>{{ course.guide_titles[course.guide_pages[1]] }}</a>{% endif %}
+      {% if next %}<a class="next" href="{{ course.base }}{{ next.slug }}.html"><span>{{ course.unit }} {{ next.num }} →</span>{{ next.meta.title }}</a>{% else %}<a class="next" href="{{ course.base }}marks.html"><span>Check your progress →</span>My marks</a>{% endif %}
+    </nav>
+  </article>
+</div>
+{% endblock %}
