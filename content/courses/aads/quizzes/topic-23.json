@@ -1,0 +1,62 @@
+[
+  {
+    "q": "What two properties must a problem have for a greedy algorithm to be optimal?",
+    "options": ["The greedy-choice property and optimal substructure", "Overlapping subproblems and memoisation", "A sorted input and unique values", "A polynomial number of subproblems"],
+    "answer": 0,
+    "explain": "Some optimal solution must begin with the greedy choice, and the remaining problem must be a smaller instance that is solved the same way."
+  },
+  {
+    "q": "In activity selection, which rule gives a maximum set of non-overlapping activities?",
+    "options": ["Repeatedly pick the compatible activity that finishes earliest", "Pick the shortest activity first", "Pick the activity that starts earliest", "Pick the activity with the fewest overlaps"],
+    "answer": 0,
+    "explain": "Finishing earliest leaves the most room for the rest. Shortest-first and earliest-start can both be beaten by counterexamples."
+  },
+  {
+    "q": "Activities (start–finish): a1 1–4, a2 3–5, a3 0–6, a4 5–7, a5 3–9, a6 5–9, a7 6–10, a8 8–11. How many does the greedy algorithm select?",
+    "options": ["3 (a1, a4, a8)", "4", "2", "5"],
+    "answer": 0,
+    "explain": "a1 finishes first (4). Then a4 (starts at 5, finishes at 7). Then a8 (starts at 8). No other compatible activity remains."
+  },
+  {
+    "q": "With coins {1, 3, 4}, how many coins does greedy use for amount 6, and what is the optimum?",
+    "options": ["Greedy 3 (4 + 1 + 1); optimal 2 (3 + 3)", "Greedy 2; optimal 2", "Greedy 2; optimal 3", "Greedy 6; optimal 2"],
+    "answer": 0,
+    "explain": "Greedy grabs the 4 first and has to finish with 1s. This is the smallest amount where greedy fails for this coin system."
+  },
+  {
+    "type": "tf",
+    "q": "Greedy coin change (largest coin first) gives the minimum number of coins for every coin system.",
+    "answer": 1,
+    "explain": "False. It works for canonical systems such as Indian rupees, but fails for {1, 3, 4} at 6 and {1, 10, 25} at 30 (greedy 25 + 1×5 uses 6 coins; 10 + 10 + 10 uses 3)."
+  },
+  {
+    "q": "What is the time complexity of activity selection on n activities?",
+    "options": ["O(n log n), dominated by sorting by finish time", "O(n²)", "O(2ⁿ)", "O(n)"],
+    "answer": 0,
+    "explain": "After sorting, one linear scan picks the activities. If they are already sorted by finish time, it is O(n)."
+  },
+  {
+    "q": "One activity finishes at time 5 and another starts at time 5. Are they compatible?",
+    "options": ["Yes: compatibility is start ≥ previous finish", "No: they overlap at time 5", "Only if both have the same length", "It depends on the greedy rule"],
+    "answer": 0,
+    "explain": "Activities are usually half-open intervals [start, finish), so one can begin exactly when another ends."
+  },
+  {
+    "q": "How is the greedy choice for activity selection proved correct?",
+    "options": ["Exchange argument: replace the first activity of an optimal schedule by the earliest-finishing one; the schedule stays valid and the same size", "By trying all subsets", "By induction on the number of coins", "It cannot be proved"],
+    "answer": 0,
+    "explain": "The earliest-finishing activity ends no later than the one it replaces, so it cannot clash with the later activities."
+  },
+  {
+    "q": "For which problem is the simple greedy rule (best value per unit weight first) optimal?",
+    "options": ["Fractional knapsack", "0/1 knapsack", "Travelling salesperson", "Graph colouring"],
+    "answer": 0,
+    "explain": "With fractions allowed, filling with the best ratio first is optimal. For 0/1 knapsack you cannot take part of an item, so dynamic programming (topic 27) is needed."
+  },
+  {
+    "q": "Shortest-activity-first is tried on activities a 0–5, b 4–7, c 6–11. How many does it select, and what is the maximum?",
+    "options": ["It selects 1 (b); the maximum is 2 (a, c)", "It selects 2; the maximum is 2", "It selects 3; the maximum is 3", "It selects 2; the maximum is 3"],
+    "answer": 0,
+    "explain": "b is shortest (length 3), but it overlaps both a and c. Earliest-finish picks a, then c."
+  }
+]

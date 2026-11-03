@@ -1,0 +1,27 @@
+[
+  {
+    "type": "nat",
+    "q": "Top-down merge sort (split into ⌊n/2⌋ and ⌈n/2⌉) is run on 8 distinct elements. What is the maximum number of element comparisons it can make?",
+    "answer": 17,
+    "explain": "<p>A merge producing k elements uses at most k − 1 comparisons.</p><pre>4 merges of 1+1 → 4 × 1 = 4\n2 merges of 2+2 → 2 × 3 = 6\n1 merge of 4+4  → 1 × 7 = 7\ntotal worst case = 17</pre><p>In general, the worst case is n⌈log₂ n⌉ − 2^⌈log₂ n⌉ + 1 = 8·3 − 8 + 1 = 17.</p>"
+  },
+  {
+    "type": "nat",
+    "q": "How many inversions (pairs i < j with a[i] > a[j]) does the array [5, 4, 3, 2, 1] have?",
+    "answer": 10,
+    "explain": "<p>Every pair is inverted in a strictly decreasing array, so there are C(5, 2) = 5·4/2 = 10 inversions. This is the maximum for 5 elements.</p>"
+  },
+  {
+    "q": "Solve the recurrence T(n) = 3T(n/4) + n log n.",
+    "options": ["Θ(n log n)", "Θ(n^(log₄ 3))", "Θ(n)", "Θ(n log² n)"],
+    "answer": 0,
+    "explain": "<p>n^(log₄ 3) ≈ n^0.79, and f(n) = n log n is polynomially larger (by n^0.21 or more). The regularity condition holds: 3·(n/4)·log(n/4) ≤ (3/4)·n log n. So case 3 gives T(n) = Θ(f(n)) = Θ(n log n).</p>"
+  },
+  {
+    "type": "multi",
+    "q": "Which statements about merge sort are true?",
+    "options": ["It is stable", "Its worst-case time is Θ(n log n)", "It sorts an array in place with O(1) extra memory", "It is well suited to sorting linked lists and huge files stored on disk"],
+    "answer": [0, 1, 3],
+    "explain": "<p>(A) and (B) are standard. (D): merging only needs sequential access, which is ideal for linked lists and for external sorting of data too big for memory.</p><p>(C) is false: array merge sort needs Θ(n) extra space.</p>"
+  }
+]

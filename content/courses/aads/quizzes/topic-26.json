@@ -1,0 +1,62 @@
+[
+  {
+    "q": "Which of these is a subsequence of 'LONGEST' but <strong>not</strong> a substring?",
+    "options": ["ONE", "LONG", "EST", "GEST"],
+    "answer": 0,
+    "explain": "O, N and E appear in order but not next to each other (G sits between N and E). The other three are contiguous runs, so they are substrings."
+  },
+  {
+    "q": "What is the LCS recurrence when X[i] = Y[j]?",
+    "options": ["L[i][j] = L[i−1][j−1] + 1", "L[i][j] = max(L[i−1][j], L[i][j−1])", "L[i][j] = 0", "L[i][j] = L[i−1][j] + L[i][j−1]"],
+    "answer": 0,
+    "explain": "A matching last character can always be added to an LCS of the two shorter prefixes."
+  },
+  {
+    "q": "What is the LCS recurrence when X[i] ≠ Y[j]?",
+    "options": ["L[i][j] = max(L[i−1][j], L[i][j−1])", "L[i][j] = L[i−1][j−1] + 1", "L[i][j] = 0", "L[i][j] = min(L[i−1][j], L[i][j−1])"],
+    "answer": 0,
+    "explain": "At least one of the two last characters is not in the LCS, so drop one of them and keep the better result. Resetting to 0 would be the longest common substring."
+  },
+  {
+    "q": "What is the LCS length of 'STONE' and 'LONGEST'?",
+    "options": ["3", "2", "4", "5"],
+    "answer": 0,
+    "explain": "'ONE' is common to both. No common subsequence of length 4 exists, as the full table confirms with L[5][7] = 3."
+  },
+  {
+    "q": "What are the time and space of the standard LCS DP for strings of lengths m and n?",
+    "options": ["Θ(m·n) time and Θ(m·n) space", "Θ(m + n) time", "Θ(2^m) time", "Θ(m·n·min(m, n)) time"],
+    "answer": 0,
+    "explain": "There are (m + 1)(n + 1) cells, each filled in O(1). Keeping only two rows reduces the space to Θ(min(m, n)) if only the length is needed."
+  },
+  {
+    "type": "tf",
+    "q": "Two strings always have exactly one longest common subsequence.",
+    "answer": 1,
+    "explain": "False. For example, 'AB' and 'BA' have two LCSs of length 1: 'A' and 'B'. The trace-back finds one of them."
+  },
+  {
+    "q": "During the trace-back, what do you do when X[i] = Y[j]?",
+    "options": ["Take the character and move diagonally to (i−1, j−1)", "Move up", "Move left", "Stop"],
+    "answer": 0,
+    "explain": "Matching cells are where LCS characters come from. On a mismatch, move towards the neighbour with the larger value."
+  },
+  {
+    "q": "What is the LCS of 'AGGTAB' and 'GXTXAYB'?",
+    "options": ["GTAB (length 4)", "GAB (length 3)", "AGTAB (length 5)", "GXTAB"],
+    "answer": 0,
+    "explain": "G, T, A and B appear in order in both strings. A length-5 common subsequence does not exist."
+  },
+  {
+    "q": "How can you find the longest palindromic subsequence of a string s?",
+    "options": ["Compute LCS(s, reverse(s))", "Compute LCS(s, s)", "Sort s and take runs", "Use KMP"],
+    "answer": 0,
+    "explain": "A palindrome reads the same in both directions, so it is common to s and its reverse. For 'CHARACTER' this gives 'CARAC' (length 5)."
+  },
+  {
+    "q": "In terms of the LCS, what is the length of the shortest common supersequence of x and y?",
+    "options": ["|x| + |y| − LCS(x, y)", "|x| + |y|", "max(|x|, |y|)", "LCS(x, y)"],
+    "answer": 0,
+    "explain": "Write both strings out, sharing the LCS characters only once."
+  }
+]

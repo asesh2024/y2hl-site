@@ -1,0 +1,27 @@
+[
+  {
+    "type": "nat",
+    "q": "Activities with (start, finish) times A (0, 3), B (1, 2), C (2, 5), D (4, 6), E (5, 7), F (6, 9), G (8, 10), H (9, 12) compete for one room. What is the maximum number of activities that can be scheduled without overlap? (An activity may start exactly when another finishes.)",
+    "answer": 4,
+    "explain": "<pre>sorted by finish: B(2) A(3) C(5) D(6) E(7) F(9) G(10) H(12)\npick B (ends 2)\nA starts 0 < 2 ✗;  C starts 2 ≥ 2 ✓ (ends 5)\nD starts 4 < 5 ✗;  E starts 5 ≥ 5 ✓ (ends 7)\nF starts 6 < 7 ✗;  G starts 8 ≥ 7 ✓ (ends 10)\nH starts 9 < 10 ✗\n→ B, C, E, G = 4</pre>"
+  },
+  {
+    "type": "nat",
+    "q": "Coins of denominations {1, 5, 6, 9} are available in unlimited supply. What is the minimum number of coins needed to make 11?",
+    "answer": 2,
+    "explain": "<p>5 + 6 = 11 uses 2 coins. Greedy would take 9 first and then need 1 + 1, which is 3 coins, so greedy is not optimal here. One coin cannot make 11, so 2 is the minimum.</p>"
+  },
+  {
+    "type": "nat",
+    "q": "For the coin system {1, 7, 10}, what is the smallest amount for which the greedy algorithm (largest coin first) does <strong>not</strong> give the minimum number of coins?",
+    "answer": 14,
+    "explain": "<pre>amount 14: greedy 10 + 1 + 1 + 1 + 1 = 5 coins;  optimal 7 + 7 = 2 coins\nfor every amount below 14, greedy matches the optimum\n(e.g. 13 = 10 + 1 + 1 + 1 (4 coins) vs. 7 + 1×6 (7 coins): greedy is right)</pre>"
+  },
+  {
+    "type": "multi",
+    "q": "For which problems does a correct greedy algorithm exist (with a suitable greedy rule)?",
+    "options": ["Activity selection (maximum number of non-overlapping intervals)", "Fractional knapsack", "0/1 knapsack in general", "Minimum spanning tree"],
+    "answer": [0, 1, 3],
+    "explain": "<p>Activity selection uses earliest finish, fractional knapsack uses value per weight, and MST uses Prim or Kruskal: all are provably optimal greedy algorithms.</p><p>0/1 knapsack has no known greedy rule that is always optimal. Taking items by value/weight can fail, which is why it is solved by dynamic programming or branch and bound.</p>"
+  }
+]

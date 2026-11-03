@@ -1,0 +1,62 @@
+[
+  {
+    "q": "After one partition step of quicksort, where is the pivot?",
+    "options": ["In its final sorted position", "At the start of the array", "In the middle index of the array", "At the end of the array"],
+    "answer": 0,
+    "explain": "Everything to its left is ≤ the pivot and everything to its right is greater, so it never needs to move again."
+  },
+  {
+    "q": "What is the worst-case running time of quicksort?",
+    "options": ["Θ(n²)", "Θ(n log n)", "Θ(n)", "Θ(n³)"],
+    "answer": 0,
+    "explain": "If the pivot is always the smallest or largest element, the recurrence is T(n) = T(n − 1) + n = Θ(n²)."
+  },
+  {
+    "q": "With 'last element as pivot', which input triggers quicksort's worst case?",
+    "options": ["An already sorted array", "A random permutation", "An array with all distinct values in random order", "An array of length 2"],
+    "answer": 0,
+    "explain": "On sorted input, the last element is the maximum, so every partition splits off nothing on the right and n − 1 elements on the left."
+  },
+  {
+    "q": "What is quicksort's expected running time with a randomly chosen pivot, on any fixed input?",
+    "options": ["Θ(n log n)", "Θ(n²)", "Θ(n)", "Θ(log n)"],
+    "answer": 0,
+    "explain": "Randomisation means no particular input is bad. The expected number of comparisons is about 2n ln n ≈ 1.39 n log₂ n."
+  },
+  {
+    "q": "How many comparisons does one Lomuto partition of n elements make?",
+    "options": ["n − 1", "n log n", "n/2", "2n"],
+    "answer": 0,
+    "explain": "Each element other than the pivot is compared with the pivot exactly once."
+  },
+  {
+    "q": "Lomuto partition of [10, 80, 30, 90, 40, 50, 70] with pivot 70: what is the result?",
+    "options": ["10 30 40 50 70 90 80, with the pivot at index 4", "10 30 40 50 70 80 90, with the pivot at index 4", "70 10 30 40 50 80 90, with the pivot at index 0", "10 30 40 70 50 90 80, with the pivot at index 3"],
+    "answer": 0,
+    "explain": "The four elements ≤ 70 are swapped to the front in scan order. The pivot then swaps with 80 at index 4, which leaves 90 80 unsorted on the right."
+  },
+  {
+    "type": "tf",
+    "q": "Quicksort is a stable sorting algorithm.",
+    "answer": 1,
+    "explain": "False. The long-distance swaps in partitioning can reorder equal keys. Merge sort is stable."
+  },
+  {
+    "q": "How much extra memory does quicksort use on average?",
+    "options": ["O(log n), for the recursion stack", "Θ(n), for a merge buffer", "O(1)", "Θ(n²)"],
+    "answer": 0,
+    "explain": "Partitioning is in place. The recursion depth is O(log n) on average, and recursing on the smaller side first keeps it O(log n) even in the worst case."
+  },
+  {
+    "q": "What happens to standard two-way (Lomuto) quicksort on an array where every element is equal?",
+    "options": ["It degrades to Θ(n²)", "It runs in Θ(n)", "It runs in Θ(n log n)", "It loops forever"],
+    "answer": 0,
+    "explain": "Every element is ≤ the pivot, so each partition is maximally unbalanced. Three-way partitioning handles equal keys in linear time."
+  },
+  {
+    "q": "Which recurrence describes quicksort's best case?",
+    "options": ["T(n) = 2T(n/2) + n", "T(n) = T(n − 1) + n", "T(n) = T(n/2) + 1", "T(n) = 4T(n/2) + n"],
+    "answer": 0,
+    "explain": "A median pivot splits evenly, exactly like merge sort: Θ(n log n)."
+  }
+]

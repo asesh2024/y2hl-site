@@ -1,0 +1,62 @@
+[
+  {
+    "q": "At each step, which two nodes does Huffman's algorithm merge?",
+    "options": ["The two with the smallest frequencies", "The two with the largest frequencies", "The first two in alphabetical order", "One smallest and one largest"],
+    "answer": 0,
+    "explain": "The rarest symbols should end up deepest, with the longest codes. Merging them first places them at the bottom of the tree."
+  },
+  {
+    "q": "Why must a variable-length code be prefix-free?",
+    "options": ["So that a bit stream can be decoded unambiguously without separators", "So that all codes have the same length", "To make encoding faster", "Because computers store bytes"],
+    "answer": 0,
+    "explain": "If no code is the start of another, the decoder knows a symbol has ended as soon as it reaches a leaf."
+  },
+  {
+    "q": "With frequencies A 10, B 15, C 30, D 16, E 29, what is the total length of the Huffman encoding?",
+    "options": ["225 bits", "300 bits", "250 bits", "200 bits"],
+    "answer": 0,
+    "explain": "The merges are 25, 41, 59 and 100, and the total equals the sum of the internal nodes: 25 + 41 + 59 + 100 = 225. A fixed 3-bit code would need 300."
+  },
+  {
+    "q": "What is the running time of Huffman's algorithm on n symbols, using a binary heap?",
+    "options": ["O(n log n)", "O(n²)", "O(n)", "O(2ⁿ)"],
+    "answer": 0,
+    "explain": "There are n − 1 merges, each with two pops and one push, costing O(log n) each."
+  },
+  {
+    "type": "tf",
+    "q": "Huffman coding produces exactly one possible code table for a given set of frequencies.",
+    "answer": 1,
+    "explain": "False. Ties between equal weights and the choice of which child gets 0 or 1 give different tables. All of them have the same, minimum, total length."
+  },
+  {
+    "q": "Decode 0100011 using the table A = 010, B = 011, C = 11, D = 00, E = 10.",
+    "options": ["A D C", "A B C", "D A E", "B D C"],
+    "answer": 0,
+    "explain": "Reading left to right: 010 → A, 00 → D, 11 → C. Being prefix-free means there is only one way to split the bits."
+  },
+  {
+    "q": "In each round of Borůvka's algorithm, what does every component do?",
+    "options": ["Selects its cheapest edge leading to a different component", "Selects its most expensive edge", "Adds one vertex", "Removes its cheapest edge"],
+    "answer": 0,
+    "explain": "All components choose at the same time, and the chosen edges merge components. By the cut property, each such edge is safe."
+  },
+  {
+    "q": "At most how many rounds does Borůvka's algorithm need on V vertices?",
+    "options": ["⌈log₂ V⌉", "V − 1", "V/2", "E"],
+    "answer": 0,
+    "explain": "Every component merges with at least one other in each round, so the number of components at least halves."
+  },
+  {
+    "q": "What is Borůvka's algorithm's running time?",
+    "options": ["O(E log V)", "O(V²)", "O(E·V)", "O(E)"],
+    "answer": 0,
+    "explain": "There are O(log V) rounds, and each scans all E edges once."
+  },
+  {
+    "q": "Why is Borůvka's algorithm well suited to parallel computers?",
+    "options": ["Each component finds its cheapest edge independently, so the work in a round can be split among processors", "It needs no memory", "It never compares weights", "It only works on trees"],
+    "answer": 0,
+    "explain": "Prim's algorithm grows one tree in sequence, while Borůvka's rounds are naturally independent per component."
+  }
+]

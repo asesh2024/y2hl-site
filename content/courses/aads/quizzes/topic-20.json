@@ -1,0 +1,62 @@
+[
+  {
+    "q": "What are the three steps of a divide-and-conquer algorithm?",
+    "options": ["Divide into subproblems, conquer them recursively, combine the results", "Sort, search, merge", "Guess, verify, repeat", "Initialise, iterate, terminate"],
+    "answer": 0,
+    "explain": "Merge sort divides the array in half, sorts each half recursively, and combines them with merge."
+  },
+  {
+    "q": "What is merge sort's running time on an array of n elements?",
+    "options": ["Θ(n log n) in the best, average and worst case", "Θ(n²) in the worst case", "Θ(n) in the best case", "Θ(log n)"],
+    "answer": 0,
+    "explain": "The split is always into halves, whatever the data, so the recursion has log n levels with Θ(n) merge work on each."
+  },
+  {
+    "q": "What recurrence describes merge sort?",
+    "options": ["T(n) = 2T(n/2) + Θ(n)", "T(n) = T(n − 1) + Θ(n)", "T(n) = T(n/2) + Θ(1)", "T(n) = 2T(n − 1) + 1"],
+    "answer": 0,
+    "explain": "There are two half-size subproblems plus a linear merge. T(n − 1) + n is selection sort or worst-case quicksort, and T(n/2) + 1 is binary search."
+  },
+  {
+    "q": "Two sorted lists with m and n elements are merged. What is the maximum number of comparisons?",
+    "options": ["m + n − 1", "m · n", "max(m, n)", "m + n + 1"],
+    "answer": 0,
+    "explain": "Each comparison outputs one element. The last element is always output without a comparison, once one list is empty."
+  },
+  {
+    "q": "Using the master theorem, solve T(n) = 4T(n/2) + n.",
+    "options": ["Θ(n²)", "Θ(n log n)", "Θ(n)", "Θ(n² log n)"],
+    "answer": 0,
+    "explain": "Here n^(log₂ 4) = n², and f(n) = n is polynomially smaller, so case 1 applies: Θ(n²)."
+  },
+  {
+    "q": "Using the master theorem, solve T(n) = 2T(n/2) + n².",
+    "options": ["Θ(n²)", "Θ(n log n)", "Θ(n² log n)", "Θ(n³)"],
+    "answer": 0,
+    "explain": "Here n^(log₂ 2) = n, and f(n) = n² is polynomially larger (with the regularity condition holding), so case 3 applies: Θ(n²)."
+  },
+  {
+    "type": "tf",
+    "q": "Standard merge sort on an array is an in-place sorting algorithm.",
+    "answer": 1,
+    "explain": "False. The merge step needs Θ(n) extra space for the output. Heapsort and quicksort are (nearly) in-place."
+  },
+  {
+    "q": "Why does merge take from the left list when left[i] == right[j]?",
+    "options": ["It keeps equal keys in their original order, which makes the sort stable", "It is faster", "It avoids an infinite loop", "It makes no difference"],
+    "answer": 0,
+    "explain": "Stability matters when sorting records by one field after another. Taking the right element first on ties would still sort correctly, but stability would be lost."
+  },
+  {
+    "q": "How many inversions does the array [2, 4, 1, 3, 5] have?",
+    "options": ["3", "2", "4", "5"],
+    "answer": 0,
+    "explain": "The inversions are the pairs (2, 1), (4, 1) and (4, 3). Merge sort counts them during merging: when a right element is taken, it forms an inversion with every remaining left element."
+  },
+  {
+    "q": "Why does the master theorem not apply to T(n) = T(n − 1) + n?",
+    "options": ["The subproblem is n − 1, not n/b for a constant b > 1", "Because f(n) = n is too large", "Because a = 1", "It does apply, giving Θ(n log n)"],
+    "answer": 0,
+    "explain": "The master theorem needs subproblems that shrink by a constant factor. Unrolling gives n + (n − 1) + … + 1 = Θ(n²)."
+  }
+]

@@ -1,0 +1,62 @@
+[
+  {
+    "q": "Which two properties signal that dynamic programming applies?",
+    "options": ["Optimal substructure and overlapping subproblems", "Greedy choice and sorted input", "Divide into halves and merge", "Randomness and approximation"],
+    "answer": 0,
+    "explain": "Optimal solutions must be built from optimal sub-solutions, and the same subproblems must recur. Otherwise plain divide and conquer is enough."
+  },
+  {
+    "q": "What is memoisation?",
+    "options": ["Top-down recursion that stores each subproblem's answer the first time it is computed", "Filling a table from the bottom up", "Sorting subproblems by size", "Dividing a problem into halves"],
+    "answer": 0,
+    "explain": "Memoisation keeps the natural recursive code and caches the results. Tabulation fills a table iteratively instead."
+  },
+  {
+    "q": "Multiplying a p × q matrix by a q × r matrix costs how many scalar multiplications?",
+    "options": ["p·q·r", "p + q + r", "p·r", "q²"],
+    "answer": 0,
+    "explain": "The result has p·r entries, and each is a dot product of length q."
+  },
+  {
+    "q": "A₁ is 10 × 30, A₂ is 30 × 5 and A₃ is 5 × 60. What is the minimum cost of computing A₁A₂A₃?",
+    "options": ["4500", "27000", "9000", "1500"],
+    "answer": 0,
+    "explain": "(A₁A₂)A₃ costs 10·30·5 + 10·5·60 = 1500 + 3000 = 4500. The other order costs 27000."
+  },
+  {
+    "q": "What is the matrix-chain recurrence?",
+    "options": ["m[i][j] = min over k of m[i][k] + m[k+1][j] + p_{i−1}·p_k·p_j", "m[i][j] = m[i][j−1] + p_j", "m[i][j] = max over k of m[i][k] · m[k+1][j]", "m[i][j] = m[i+1][j] + m[i][j−1]"],
+    "answer": 0,
+    "explain": "Split at k: compute Aᵢ…A_k and A_{k+1}…Aⱼ optimally, then multiply the two results (p_{i−1} × p_k by p_k × p_j)."
+  },
+  {
+    "q": "In what order must the matrix-chain table be filled?",
+    "options": ["By increasing chain length (j − i)", "Row by row from the top-left", "In any order", "From the longest chain down to the shortest"],
+    "answer": 0,
+    "explain": "m[i][j] depends on m[i][k] and m[k+1][j], which are shorter chains, so those must already be known."
+  },
+  {
+    "q": "What is the time complexity of the matrix-chain DP for n matrices?",
+    "options": ["Θ(n³)", "Θ(n²)", "Θ(2ⁿ)", "Θ(n log n)"],
+    "answer": 0,
+    "explain": "There are Θ(n²) table entries, and each tries up to n − 1 split points."
+  },
+  {
+    "q": "What does the table s[i][j] store?",
+    "options": ["The best split point k for Aᵢ…Aⱼ, used to rebuild the bracketing", "The cost of the chain", "The number of bracketings", "The dimensions of the result"],
+    "answer": 0,
+    "explain": "Following s recursively from s[1][n] reconstructs the optimal parenthesisation."
+  },
+  {
+    "type": "tf",
+    "q": "Computing Fibonacci numbers by plain recursion fib(n) = fib(n−1) + fib(n−2) takes time exponential in n, but with memoisation it takes Θ(n).",
+    "answer": 0,
+    "explain": "True. Without caching, the same values are recomputed exponentially often. With caching, each of the n values is computed once."
+  },
+  {
+    "q": "For p = [5, 10, 3, 12, 5], what is the optimal bracketing?",
+    "options": ["(A₁A₂)(A₃A₄), cost 405", "((A₁A₂)A₃)A₄", "A₁(A₂(A₃A₄))", "(A₁(A₂A₃))A₄"],
+    "answer": 0,
+    "explain": "m[1][4] = 405 with split k = 2: m[1][2] + m[3][4] + 5·3·5 = 150 + 180 + 75 = 405."
+  }
+]

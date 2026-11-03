@@ -1,0 +1,62 @@
+[
+  {
+    "q": "What is the time complexity of the brute-force closest-pair method for n points?",
+    "options": ["Θ(n²)", "Θ(n log n)", "Θ(n)", "Θ(n³)"],
+    "answer": 0,
+    "explain": "It checks all n(n − 1)/2 pairs."
+  },
+  {
+    "q": "What is the running time of the divide-and-conquer closest-pair algorithm with presorting?",
+    "options": ["O(n log n)", "O(n²)", "O(n log² n)", "O(n)"],
+    "answer": 0,
+    "explain": "T(n) = 2T(n/2) + O(n), solved like merge sort. Without presorting by y, the strip must be sorted at every level, which gives O(n log² n)."
+  },
+  {
+    "q": "After solving both halves (closest distance δ), which pairs still need checking?",
+    "options": ["Only pairs with one point on each side, both within δ of the dividing line", "Every pair in the left half again", "All pairs in the whole set", "Only the two points next to the line"],
+    "answer": 0,
+    "explain": "Any pair closer than δ must cross the line, and a point further than δ from the line is too far from everything on the other side."
+  },
+  {
+    "q": "In the strip (sorted by y), with how many following points must each point be compared, at most?",
+    "options": ["7", "1", "log n", "All remaining strip points"],
+    "answer": 0,
+    "explain": "A δ × 2δ box can contain at most 8 points that are pairwise at least δ apart, so only the next 7 by y can be closer than δ."
+  },
+  {
+    "q": "How wide is the strip that is checked around the dividing line?",
+    "options": ["2δ: δ on each side", "δ in total", "δ/2", "The whole plane"],
+    "answer": 0,
+    "explain": "A crossing pair closer than δ has both points within δ of the line, on their respective sides."
+  },
+  {
+    "type": "tf",
+    "q": "The strip can contain Θ(n) points, yet the strip check still takes only O(n) time.",
+    "answer": 0,
+    "explain": "True. Each strip point is compared with at most 7 neighbours, giving O(7n) = O(n), even when every point lies in the strip."
+  },
+  {
+    "q": "For the points (2,3), (12,30), (40,50), (5,1), (12,10), (3,4), which pair is closest?",
+    "options": ["(2, 3) and (3, 4)", "(5, 1) and (2, 3)", "(12, 10) and (12, 30)", "(3, 4) and (5, 1)"],
+    "answer": 0,
+    "explain": "Their distance is √(1 + 1) ≈ 1.414. The next candidate, (2,3)–(5,1), is √13 ≈ 3.6."
+  },
+  {
+    "q": "What is the base case of the recursion?",
+    "options": ["2 or 3 points, solved by brute force", "1 point", "An empty set", "n/2 points"],
+    "answer": 0,
+    "explain": "With very few points, checking all pairs directly is cheapest. One point has no pair at all."
+  },
+  {
+    "q": "Why are the points presorted by x?",
+    "options": ["So each split into left and right halves is just taking the first and second halves of the list", "To make the strip smaller", "Because distances need sorted coordinates", "It is not necessary"],
+    "answer": 0,
+    "explain": "With the points sorted by x, the dividing line and the halves come from the middle index in O(1)."
+  },
+  {
+    "q": "In one dimension (points on a line), what is the simplest way to find the closest pair?",
+    "options": ["Sort the points and check consecutive pairs: O(n log n)", "Divide and conquer with a strip", "Check all pairs", "Use a hash table"],
+    "answer": 0,
+    "explain": "On a line, the closest pair must be neighbours in sorted order."
+  }
+]

@@ -1,0 +1,27 @@
+[
+  {
+    "type": "nat",
+    "q": "A knapsack has capacity 10. Four items have (weight, value) = (5, 10), (4, 40), (6, 30), (3, 50). Items cannot be split. What is the maximum total value?",
+    "answer": 90,
+    "explain": "<p>Take items 2 and 4: weight 4 + 3 = 7, value 40 + 50 = 90. Adding any other item would exceed 10. Checking every combination that fits:</p><pre>{2,4} w=7  v=90   ← best\n{3,4} w=9  v=80\n{2,3} w=10 v=70\n{1,4} w=8  v=60\n{1,2} w=9  v=50</pre>"
+  },
+  {
+    "type": "nat",
+    "q": "Capacity W = 20. Items (weight, value): (2, 3), (3, 4), (4, 5), (5, 8), (9, 10). What is the maximum value of a 0/1 knapsack?",
+    "answer": 26,
+    "explain": "<p>The DP gives K[5][20] = 26, by taking items 1, 3, 4 and 5: weight 2 + 4 + 5 + 9 = 20, value 3 + 5 + 8 + 10 = 26.</p><p>Taking all five items would weigh 23, so at least one must be left out. Dropping item 2 (weight 3, value 4) is the cheapest way to get under 20, which gives 30 − 4 = 26.</p>"
+  },
+  {
+    "q": "Capacity 8. Items (weight, value): (3, 2), (4, 3), (6, 1), (5, 4). What is the maximum value?",
+    "options": ["6", "5", "7", "4"],
+    "answer": 0,
+    "explain": "<p>Items 1 and 4 weigh 3 + 5 = 8 and are worth 2 + 4 = 6. The other pairs that fit are items 1 and 2 (weight 7, value 5). No three items fit.</p>"
+  },
+  {
+    "type": "multi",
+    "q": "Which statements about the 0/1 knapsack problem with n items and integer capacity W are true?",
+    "options": ["The DP runs in Θ(n·W) time", "The DP is a polynomial-time algorithm in the size of the input", "Greedy by value/weight ratio always finds the optimal value", "The decision version is NP-complete"],
+    "answer": [0, 3],
+    "explain": "<p>(A) is true. (B) is false: W is encoded in O(log W) bits, so the DP is pseudo-polynomial. (C) is false for 0/1 (it is true only for the fractional version). (D) is true.</p>"
+  }
+]

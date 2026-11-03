@@ -1,0 +1,27 @@
+[
+  {
+    "type": "nat",
+    "q": "What is the length of the longest common subsequence of X = PROGRAM and Y = PARAGRAPH?",
+    "answer": 5,
+    "explain": "<p>One LCS is P R G R A:</p><pre>PROGRAM:   P R O G R A M   → P(1) R(2) G(4) R(5) A(6)\nPARAGRAPH: P A R A G R A P H → P(1) R(3) G(5) R(6) A(7)</pre><p>The DP table gives L[7][9] = 5. A length-6 common subsequence would need six of PROGRAM's seven letters, but O and M do not occur in PARAGRAPH, so 5 is the maximum.</p>"
+  },
+  {
+    "type": "nat",
+    "q": "What is the LCS length of the binary strings 10010101 and 010110110?",
+    "answer": 6,
+    "explain": "<p>Filling the 9 × 10 DP table gives 6. One LCS is 100110:</p><pre>10010101  → 1(1) 0(2) 0(3) 1(4) 1(6) 0(7)\n010110110 → 1(2) 0(3) 0(6) 1(7) 1(8) 0(9)</pre><p>1 0 0 1 1 0 appears in order in both strings, and the table rules out length 7.</p>"
+  },
+  {
+    "type": "nat",
+    "q": "What is the length of the longest palindromic subsequence of the string CHARACTER?",
+    "answer": 5,
+    "explain": "<p>Take LCS(CHARACTER, RETCARAHC). One answer is CARAC, using C(1) A(3) R(4) A(5) C(6). No palindromic subsequence of length 6 or 7 exists, which the DP confirms.</p>"
+  },
+  {
+    "type": "multi",
+    "q": "Which statements about the LCS dynamic program for strings of lengths m and n are true?",
+    "options": ["It fills an (m+1) × (n+1) table in Θ(m·n) time", "If only the length is needed, two rows of the table suffice", "The LCS of two strings is always unique", "The same table can be used to recover an actual LCS by tracing back from the bottom-right cell"],
+    "answer": [0, 1, 3],
+    "explain": "<p>(A), (B) and (D) are standard. (C) is false: for example, 'AB' and 'BA' have two different LCSs of length 1.</p>"
+  }
+]

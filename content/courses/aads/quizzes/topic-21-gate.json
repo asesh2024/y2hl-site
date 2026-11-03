@@ -1,0 +1,27 @@
+[
+  {
+    "type": "nat",
+    "q": "Quicksort with the last element as pivot (Lomuto partition, no randomisation) sorts the array [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]. How many element comparisons are made in total?",
+    "answer": 45,
+    "explain": "<p>On sorted input, the pivot is always the maximum, so each call partitions a subarray of size k with k − 1 comparisons and recurses on size k − 1:</p><pre>9 + 8 + 7 + … + 1 = 10·9/2 = 45</pre><p>This is the Θ(n²) worst case.</p>"
+  },
+  {
+    "type": "nat",
+    "q": "One Lomuto partition (pivot = last element) is applied to [4, 9, 2, 7, 5, 1, 8, 6]. At which index (0-based) does the pivot end up?",
+    "answer": 4,
+    "explain": "<p>The pivot is 6. The elements ≤ 6 are 4, 2, 5 and 1, so four elements go to its left and the pivot lands at index 4.</p><pre>result: [4, 2, 5, 1, 6, 7, 8, 9]</pre><p>The pivot's index always equals the number of other elements that are ≤ it.</p>"
+  },
+  {
+    "q": "Quicksort always chooses the median element as the pivot, using an O(n) median-finding algorithm. What is its worst-case time?",
+    "options": ["Θ(n log n)", "Θ(n²)", "Θ(n)", "Θ(n log² n)"],
+    "answer": 0,
+    "explain": "<p>The partition is perfectly balanced every time: T(n) = 2T(n/2) + Θ(n) (median finding plus partition) = Θ(n log n). In practice the constant factors of linear-time median finding make random pivots faster.</p>"
+  },
+  {
+    "type": "multi",
+    "q": "Which statements about quicksort are correct?",
+    "options": ["Its average-case time is Θ(n log n)", "It sorts in place, apart from the recursion stack", "Its worst case is Θ(n log n) if the pivot is chosen randomly", "Each partition places at least one element in its final position"],
+    "answer": [0, 1, 3],
+    "explain": "<p>(A), (B) and (D) are standard. (C) is false: with random pivots the <em>expected</em> time is Θ(n log n), but the worst case is still Θ(n²), just extremely unlikely.</p>"
+  }
+]
