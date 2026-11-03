@@ -31,6 +31,7 @@
       </a>
       <nav class="main-nav" aria-label="Main">
         <a href="/courses/"{% if url.startswith('/courses') %} aria-current="page"{% endif %}>Courses</a>
+        <a href="/research/"{% if url.startswith('/research') %} aria-current="page"{% endif %}>Research</a>
         <a href="/about/"{% if url.startswith('/about') %} aria-current="page"{% endif %}>About</a>
         <button class="theme-toggle" type="button" aria-label="Switch colour theme" title="Switch colour theme">
           <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.39 5.39 0 0 1-4.4 2.26 5.4 5.4 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1Z"/></svg>
@@ -47,7 +48,7 @@
     <div class="wrap footer-inner">
       <p><strong>{{ site.name }}</strong> · {{ site.tagline }}<br>Course materials by {{ site.author.name }}. Free for every student.</p>
       <p>
-        <a href="/courses/">Courses</a> · <a href="/about/">About</a>{% if site.author.email %} · <a href="mailto:{{ site.author.email }}">Contact</a>{% endif %}
+        <a href="/courses/">Courses</a> · <a href="/research/">Research</a> · <a href="/about/">About</a>{% if site.author.email %} · <a href="mailto:{{ site.author.email }}">Contact</a>{% endif %}
         {% for link in site.author.links %} · <a href="{{ link.url }}" rel="me">{{ link.label }}</a>{% endfor %}
         <br>© {{ year }} {{ site.author.name }}
       </p>

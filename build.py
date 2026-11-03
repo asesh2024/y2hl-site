@@ -98,6 +98,9 @@ def build():
     about_meta, about_html, _ = read_page(CONTENT / "about.md")
     write("about/index.html", "page.html", page=about_meta, body=about_html, section="about")
 
+    research_meta, research_html, _ = read_page(CONTENT / "research.md")
+    write("research/index.html", "page.html", page=research_meta, body=research_html, section="research")
+
     write("courses/index.html", "courses.html", courses=courses,
           page={"title": "Courses", "description": "Free, open course materials for students at any university."})
 
