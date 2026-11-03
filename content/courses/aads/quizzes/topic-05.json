@@ -1,0 +1,62 @@
+[
+  {
+    "q": "Why are B-trees used for databases and file systems instead of binary search trees?",
+    "options": ["Each node holds many keys and fills one disk block, so the tree is shallow and a search reads few blocks", "B-trees use less memory per key", "B-trees never need rebalancing", "B-trees store keys unsorted, which is faster to update"],
+    "answer": 0,
+    "explain": "A disk read is extremely slow compared with a CPU step. With hundreds of keys per node, millions of keys fit in a tree of height 2 or 3, so a search touches only a few blocks."
+  },
+  {
+    "q": "In a B-tree of minimum degree t, how many keys can a non-root node hold?",
+    "options": ["Between t − 1 and 2t − 1", "Between t and 2t", "Exactly t", "Between 1 and t"],
+    "answer": 0,
+    "explain": "Every node except the root has at least t − 1 and at most 2t − 1 keys. The root may have as few as 1."
+  },
+  {
+    "q": "In a B-tree, which leaves are at the same depth?",
+    "options": ["All of them, always", "Only leaves under the same parent", "Leaves can differ in depth by at most one", "None: depths are unrestricted"],
+    "answer": 0,
+    "explain": "B-trees grow only at the root, when a full root is split. So every leaf stays at exactly the same depth."
+  },
+  {
+    "q": "A full node (2t − 1 keys) is split during insertion. What happens to its middle key?",
+    "options": ["It moves up into the parent", "It is discarded", "It goes to the new right node", "It stays in the left node"],
+    "answer": 0,
+    "explain": "The node splits into two nodes of t − 1 keys each, and the middle key goes up to the parent to separate them."
+  },
+  {
+    "q": "Keys 10, 20, 30, 40, 50, 60 are inserted into an empty B-tree with t = 2 (at most 3 keys per node). What is the root at the end?",
+    "options": ["[20, 40]", "[30]", "[20]", "[40]"],
+    "answer": 0,
+    "explain": "Inserting 40 splits the full root [10 20 30], and 20 moves up. Inserting 60 splits the full leaf [30 40 50], and 40 moves up. The tree is [20 40] over [10] [30] [50 60]."
+  },
+  {
+    "q": "How does a B-tree get taller?",
+    "options": ["Only when the root is split, which creates a new root", "Whenever a leaf is split", "When a key is inserted into a leaf at the bottom level", "By rotations, like AVL trees"],
+    "answer": 0,
+    "explain": "Splitting any other node just adds a key to its parent. Only a root split adds a new level, and it adds it at the top, which keeps all leaves level."
+  },
+  {
+    "q": "What is the main structural difference between a B+ tree and a B-tree?",
+    "options": ["In a B+ tree all data records are in the leaves, which are linked together", "A B+ tree is binary", "A B+ tree has leaves at different depths", "A B+ tree stores keys unsorted"],
+    "answer": 0,
+    "explain": "Internal nodes of a B+ tree only route searches. Keeping all records in linked leaves makes range scans very efficient."
+  },
+  {
+    "q": "A B-tree with t = 2 has height 1 (a root and one level of leaves). What is the most keys it can hold?",
+    "options": ["15", "7", "9", "12"],
+    "answer": 0,
+    "explain": "Each node can hold 2t − 1 = 3 keys and have 4 children. The root holds 3, and its 4 leaves hold 3 each: 3 + 12 = 15 = (2t)^(h+1) − 1 = 4² − 1."
+  },
+  {
+    "type": "tf",
+    "q": "The search time of a B-tree with n keys and minimum degree t is O(log_t n) node visits.",
+    "answer": 0,
+    "explain": "True. The height is at most log_t((n + 1)/2), and a search visits one node per level."
+  },
+  {
+    "q": "In a B-tree, an internal node with k keys has how many children?",
+    "options": ["k + 1", "k", "2k", "k − 1"],
+    "answer": 0,
+    "explain": "The k sorted keys divide the key range into k + 1 intervals, and there is one child subtree for each."
+  }
+]

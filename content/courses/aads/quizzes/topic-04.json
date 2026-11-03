@@ -1,0 +1,62 @@
+[
+  {
+    "q": "What does a splay tree do every time a key is accessed?",
+    "options": ["Rotates that key's node up to the root", "Rebalances the whole tree", "Moves the key one level up", "Recolours the path to the key"],
+    "answer": 0,
+    "explain": "Splaying brings the accessed node, or the last node on its search path, all the way to the root, using zig, zig-zig and zig-zag steps."
+  },
+  {
+    "q": "What balance information does a splay tree store in each node?",
+    "options": ["None", "A height", "A colour bit", "A balance factor"],
+    "answer": 0,
+    "explain": "Splay trees are self-adjusting: they need no extra fields. AVL trees store heights, and red-black trees store colours."
+  },
+  {
+    "q": "When is the zig-zig step used to splay x (parent p, grandparent g)?",
+    "options": ["When x and p are both left children (or both right children)", "When p is the root", "When x is a left child and p is a right child", "When x is a leaf"],
+    "answer": 0,
+    "explain": "Zig is for when p is the root, and zig-zag for when x and p are on opposite sides. Zig-zig handles the straight-line case, rotating at g first and then at p."
+  },
+  {
+    "q": "In a zig-zig step, which rotation is done first?",
+    "options": ["The rotation at the grandparent g", "The rotation at the parent p", "Both at the same time", "The rotation at x"],
+    "answer": 0,
+    "explain": "Rotating at g first is what roughly halves the depth of the nodes on the path. Rotating at p first (a plain move-to-root) does not give the amortised O(log n) bound."
+  },
+  {
+    "q": "What is the amortised cost of an operation on a splay tree with n nodes?",
+    "options": ["O(log n)", "O(1)", "O(n)", "O(√n)"],
+    "answer": 0,
+    "explain": "Any sequence of m operations takes O(m log n) time in total, so the average per operation is O(log n), even though a single one can take O(n)."
+  },
+  {
+    "type": "tf",
+    "q": "In a splay tree, a single search can take O(n) time.",
+    "answer": 0,
+    "explain": "True. After inserting keys in sorted order the tree is a chain, and searching for the deepest key walks the whole chain. That expensive access then flattens the tree for the future."
+  },
+  {
+    "q": "Keys 5, 4, 3, 2, 1 are inserted in that order into an empty splay tree (each new key is splayed to the root). What is the preorder traversal?",
+    "options": ["1, 2, 3, 4, 5", "5, 4, 3, 2, 1", "3, 1, 2, 4, 5", "1, 5, 4, 3, 2"],
+    "answer": 0,
+    "explain": "Each new key is smaller than everything so far, so it becomes the new root, with the old tree as its right child. The result is the right-leaning chain 1 → 2 → 3 → 4 → 5."
+  },
+  {
+    "q": "How is a key deleted from a splay tree?",
+    "options": ["Splay it to the root, remove it, splay the largest key in the left subtree, and attach the right subtree to it", "Replace it with its inorder successor without splaying", "Mark it deleted and leave it in place", "Rebuild the tree from scratch"],
+    "answer": 0,
+    "explain": "After removing the root, the largest key of the left part has no right child once it is splayed to the top. So the right subtree can hang there directly."
+  },
+  {
+    "q": "For which workload do splay trees shine compared with AVL or red-black trees?",
+    "options": ["A few keys are accessed far more often than the rest", "Every key is accessed exactly once in random order", "Hard real-time systems where every single operation must be fast", "Storing keys on disk blocks"],
+    "answer": 0,
+    "explain": "Frequently used keys stay near the root, so they become nearly O(1) to access. Splay trees are a poor fit for hard real-time use, because a single operation can be O(n). Disk storage is the job of B-trees (topic 5)."
+  },
+  {
+    "type": "tf",
+    "q": "Splaying changes the inorder (sorted) sequence of keys in the tree.",
+    "answer": 1,
+    "explain": "False. Splaying is made of rotations, and rotations preserve BST order."
+  }
+]

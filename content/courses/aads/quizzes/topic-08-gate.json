@@ -1,0 +1,27 @@
+[
+  {
+    "type": "nat",
+    "q": "The words bear, bell, bid, bull, buy, sell, stock, stop are inserted into an empty standard trie (one character per edge). How many nodes does the trie have, including the root?",
+    "answer": 22,
+    "explain": "<p>A standard trie has exactly one node per distinct prefix, plus the root for the empty prefix:</p><pre>root                                   1\nb, be, bea, bear, bel, bell            6\nbi, bid                                2\nbu, bul, bull, buy                     4\ns, se, sel, sell                       4\nst, sto, stoc, stock, stop             5\ntotal                                 22</pre>"
+  },
+  {
+    "type": "nat",
+    "q": "Same words, now in a compressed trie: only the root, branching nodes and word ends remain as nodes, and single-child chains become string-labelled edges. How many nodes does it have?",
+    "answer": 14,
+    "explain": "<p>Keep the root, every node with two or more children, and every node where a word ends:</p><pre>root, b, be, bear, bell, bid, bu, bull, buy,\ns, sell, sto, stock, stop                 → 14</pre><p>Nodes such as 'bea', 'bul', 'se', 'st' and 'stoc' have one child and are not word ends, so they vanish into edge labels.</p>"
+  },
+  {
+    "type": "multi",
+    "q": "Which statements about tries storing n words of maximum length m over an alphabet Σ are correct?",
+    "options": ["Searching a word takes O(m) time", "A standard trie can have up to n·m + 1 nodes", "Listing all words in alphabetical order is possible by a depth-first traversal that visits children in alphabetical order", "Search time grows as O(log n) with the number of words"],
+    "answer": [0, 1, 2],
+    "explain": "<p>(A) holds: one step per character. (B) holds: with no shared prefixes, each word needs m nodes, plus the root. (C) holds: a preorder walk with sorted children lists the words in lexicographic order.</p><p>(D) is false: a trie's search time does not depend on n at all.</p>"
+  },
+  {
+    "q": "A dictionary holds 10⁶ English words of average length 8. A spell-checker must also suggest all words beginning with a typed prefix. Which structure is most appropriate?",
+    "options": ["A trie (or a compressed trie)", "An unsorted array", "A hash table only", "A max-heap"],
+    "answer": 0,
+    "explain": "<p>A trie answers 'is this a word?' in O(word length) and 'which words start with this prefix?' by walking to one node and listing its subtree. A hash table gives fast exact lookups but no prefix search. An unsorted array or a heap would need full scans.</p>"
+  }
+]

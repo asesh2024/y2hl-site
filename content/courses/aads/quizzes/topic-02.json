@@ -1,0 +1,62 @@
+[
+  {
+    "q": "In an AVL tree, what values may the balance factor (height of left subtree − height of right subtree) take at every node?",
+    "options": ["−1, 0 or +1", "0 only", "−2 to +2", "Any value, as long as the root is balanced"],
+    "answer": 0,
+    "explain": "AVL trees allow the two subtree heights to differ by at most one, at every node. Reaching ±2 triggers a rotation."
+  },
+  {
+    "q": "Keys 30, 20, 10 are inserted into an empty AVL tree. Which rotation happens, and what is the root afterwards?",
+    "options": ["LL case: a right rotation at 30; the root becomes 20", "RR case: a left rotation at 30; the root becomes 10", "LR case: a double rotation; the root becomes 10", "No rotation; the root stays 30"],
+    "answer": 0,
+    "explain": "After inserting 10, node 30 has balance +2 and the new key went left, then left. A single right rotation at 30 makes 20 the root with children 10 and 30."
+  },
+  {
+    "q": "Keys 10, 30, 20 are inserted into an empty AVL tree. Which case is this?",
+    "options": ["RL: right rotation at 30, then left rotation at 10", "RR: one left rotation at 10", "LR: left rotation at 30, then right rotation at 10", "LL: one right rotation at 10"],
+    "answer": 0,
+    "explain": "10 has balance −2, and the path to the new key goes right (to 30), then left (to 20): a zig-zag. Straighten it with a right rotation at 30, then left-rotate at 10. The root becomes 20."
+  },
+  {
+    "q": "After an insertion unbalances an AVL tree, at which node is the rotation applied?",
+    "options": ["The lowest node on the insertion path whose balance factor becomes ±2", "Always the root", "The parent of the inserted node", "The highest node whose balance factor changed"],
+    "answer": 0,
+    "explain": "Fixing the lowest unbalanced node restores that subtree to its original height, so every ancestor above it becomes balanced again automatically."
+  },
+  {
+    "q": "How many rotations does a single insertion into an AVL tree need, at most?",
+    "options": ["2 (one double rotation)", "1", "O(log n)", "O(n)"],
+    "answer": 0,
+    "explain": "One fix, single or double, at the lowest unbalanced node is enough after an insertion. Deletion is different: it may need a rotation at several ancestors."
+  },
+  {
+    "q": "What is the minimum number of nodes in an AVL tree of height 4 (height counted in edges, so a single node has height 0)?",
+    "options": ["12", "7", "15", "20"],
+    "answer": 0,
+    "explain": "N(h) = N(h−1) + N(h−2) + 1 with N(0) = 1 and N(1) = 2 gives 1, 2, 4, 7, 12. So a height-4 AVL tree needs at least 12 nodes."
+  },
+  {
+    "q": "The keys 1, 2, 3, …, 7 are inserted in increasing order into an empty AVL tree. What is the height of the result?",
+    "options": ["2", "6", "3", "4"],
+    "answer": 0,
+    "explain": "The rotations keep rebalancing, and the result is the perfectly balanced tree with root 4, children 2 and 6, and leaves 1, 3, 5, 7. That has height 2. A plain BST would have height 6."
+  },
+  {
+    "type": "tf",
+    "q": "A rotation in an AVL tree changes the inorder sequence of the keys.",
+    "answer": 1,
+    "explain": "False. Rotations only restructure the tree. Every key in the moved subtree T lies between the two rotated nodes, so BST order, and therefore the inorder sequence, is unchanged."
+  },
+  {
+    "q": "Why is the height of an AVL tree with n nodes O(log n)?",
+    "options": ["The minimum number of nodes for height h grows like the Fibonacci numbers, which is exponential in h", "Because all its leaves are on the same level", "Because each node has exactly two children", "Because rotations happen at every insertion"],
+    "answer": 0,
+    "explain": "N(h) = N(h−1) + N(h−2) + 1 grows exponentially, so h ≤ about 1.44 log₂ n. AVL leaves need not all be on one level."
+  },
+  {
+    "q": "During a right rotation at z (with left child y), what happens to y's right subtree T?",
+    "options": ["It becomes z's new left subtree", "It becomes y's left subtree", "It is deleted", "It becomes z's right subtree"],
+    "answer": 0,
+    "explain": "Every key in T is greater than y and smaller than z. After y moves up and z becomes y's right child, T fits exactly as z's left subtree."
+  }
+]

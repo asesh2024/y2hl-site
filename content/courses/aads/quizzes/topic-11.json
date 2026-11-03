@@ -1,0 +1,62 @@
+[
+  {
+    "q": "What problem does Aho–Corasick solve?",
+    "options": ["Finding all occurrences of many patterns in one pass over the text", "Finding one pattern with as few comparisons as possible", "Sorting a list of strings", "Compressing text"],
+    "answer": 0,
+    "explain": "It builds one automaton from the whole dictionary of patterns and reads the text once, reporting every match of every pattern."
+  },
+  {
+    "q": "On which data structure is the Aho–Corasick automaton built?",
+    "options": ["A trie of all the patterns, with failure links added", "A suffix tree of the text", "A balanced BST of the patterns", "A hash table of the text's substrings"],
+    "answer": 0,
+    "explain": "The trie handles shared prefixes. The failure links, like KMP's prefix function, say where to continue after a mismatch."
+  },
+  {
+    "q": "The failure link of a trie node u (representing string s) points to the node for…",
+    "options": ["the longest proper suffix of s that is also a prefix of some pattern (a node in the trie)", "the parent of u", "the root, always", "the longest pattern in the dictionary"],
+    "answer": 0,
+    "explain": "On a mismatch, the most text you can keep is the longest suffix of what you have read that still starts some pattern."
+  },
+  {
+    "q": "In what order must the failure links be computed?",
+    "options": ["Breadth-first (level by level from the root)", "Depth-first", "In order of decreasing depth", "Any order"],
+    "answer": 0,
+    "explain": "A node's failure link is found through its parent's failure chain, which consists only of shallower nodes. Those must already be finished, so BFS is used."
+  },
+  {
+    "q": "For the patterns {he, she, his, hers}, how many trie nodes are there, counting the root?",
+    "options": ["10", "12", "4", "13"],
+    "answer": 0,
+    "explain": "Count the distinct prefixes: ε, h, he, her, hers, hi, his, s, sh, she, which makes 10. The patterns' total length is 12, but 'he' and 'hers' share 'h' and 'he', and 'his' shares 'h'."
+  },
+  {
+    "q": "Searching 'ushers' for {he, she, his, hers}, how does the algorithm report 'he' (at position 2)?",
+    "options": ["Through the output link: the node 'she' fails to 'he', so 'he' is in output(she)", "By starting a second pass at position 2", "It does not report 'he'", "By backtracking in the text"],
+    "answer": 0,
+    "explain": "Output links make the algorithm report every pattern that ends at the current position, including ones that are suffixes of longer matches."
+  },
+  {
+    "q": "What is the total running time of Aho–Corasick, where n is the text length, M the total length of the patterns and z the number of matches?",
+    "options": ["O(n + M + z)", "O(n·M)", "O(n·k) for k patterns", "O(M log n)"],
+    "answer": 0,
+    "explain": "Building takes O(M) (for a fixed alphabet), and searching takes O(n + z), because each match must be printed. There is no factor k for the number of patterns."
+  },
+  {
+    "type": "tf",
+    "q": "With a single pattern, the Aho–Corasick failure links correspond exactly to KMP's prefix function.",
+    "answer": 0,
+    "explain": "True. With one pattern the trie is a path, and each node's failure link points to the depth π[q] given by the prefix function."
+  },
+  {
+    "q": "Which application is a natural fit for Aho–Corasick?",
+    "options": ["Scanning files for thousands of known virus signatures", "Finding shortest paths in a road map", "Sorting exam marks", "Balancing a binary search tree"],
+    "answer": 0,
+    "explain": "Many fixed patterns and one pass over large inputs is exactly the setting the algorithm was designed for. The original use was searching bibliographies."
+  },
+  {
+    "q": "During a search the current node has no edge for the next character c. What happens?",
+    "options": ["Follow failure links until a node with a c-edge is found (or the root is reached), then take the edge", "Restart from the root and re-read the last few characters", "Skip c", "Stop the search"],
+    "answer": 0,
+    "explain": "The text pointer never goes back. The automaton only moves along failure links to shorter matching suffixes."
+  }
+]

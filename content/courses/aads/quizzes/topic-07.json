@@ -1,0 +1,62 @@
+[
+  {
+    "q": "In the left-child right-sibling representation of an N-ary tree, what does each node's two pointers point to?",
+    "options": ["Its first child and its next sibling", "Its left child and its right child", "Its parent and its first child", "Its first and last child"],
+    "answer": 0,
+    "explain": "Any N-ary tree becomes a binary tree this way. Following 'first child' goes down, and following 'next sibling' goes across."
+  },
+  {
+    "q": "A suffix tree of a text T of length n is built. How long does it take to check whether a pattern P of length m occurs in T?",
+    "options": ["O(m)", "O(n)", "O(n + m)", "O(n·m)"],
+    "answer": 0,
+    "explain": "Every substring of T is a prefix of some suffix, so you just walk P down from the root, one character at a time. The text length no longer matters."
+  },
+  {
+    "q": "Why is a unique end marker such as $ appended to the text before building its suffix tree?",
+    "options": ["So that no suffix is a prefix of another, and every suffix ends at its own leaf", "To make the text length even", "To mark where the pattern starts", "Because suffix trees need a binary alphabet"],
+    "answer": 0,
+    "explain": "In 'banana', the suffix 'a' is a prefix of 'ana', so it would end in the middle of an edge. With 'a$' and 'ana$', each suffix ends at a distinct leaf."
+  },
+  {
+    "q": "How many leaves does the suffix tree of a text with n characters (plus the end marker $) have?",
+    "options": ["n + 1, one per suffix including '$'", "n/2", "2n", "It depends on the alphabet"],
+    "answer": 0,
+    "explain": "Each suffix, including the one-character suffix '$', ends at its own leaf. 'banana$' has 7 leaves."
+  },
+  {
+    "q": "Why does a <em>compressed</em> suffix tree have only O(n) nodes, while the suffix trie can have O(n²)?",
+    "options": ["Chains of single-child nodes are merged into one edge, and every internal node has at least two children", "It stores only half the suffixes", "It uses hashing", "It removes repeated characters"],
+    "answer": 0,
+    "explain": "With n leaves and every internal node branching at least twice, there are at most n − 1 internal nodes."
+  },
+  {
+    "q": "In a suffix tree, where is the longest repeated substring found?",
+    "options": ["At the deepest internal node (by string length)", "At the deepest leaf", "On the edge from the root with the longest label", "At the root"],
+    "answer": 0,
+    "explain": "An internal node means at least two suffixes share the path to it, so its path string occurs at least twice. For 'banana' it is 'ana'."
+  },
+  {
+    "q": "In the suffix tree of 'banana$', the pattern 'ana' ends at a node with 2 leaves below it, labelled 1 and 3. What does that tell you?",
+    "options": ["'ana' occurs twice, starting at positions 1 and 3", "'ana' occurs once", "'ana' does not occur", "'ana' is the longest suffix"],
+    "answer": 0,
+    "explain": "Each leaf below the end point is a suffix that starts with 'ana', so the leaf labels are the occurrence positions."
+  },
+  {
+    "q": "Which algorithm builds a suffix tree in linear time for a fixed alphabet?",
+    "options": ["Ukkonen's algorithm", "Kruskal's algorithm", "Boyer–Moore", "Dijkstra's algorithm"],
+    "answer": 0,
+    "explain": "Ukkonen's algorithm is the standard linear-time online construction. Inserting suffixes one by one, as in the page's code, takes O(n²)."
+  },
+  {
+    "type": "tf",
+    "q": "Every substring of a text T is a prefix of some suffix of T.",
+    "answer": 0,
+    "explain": "True. The substring T[i..j] is the first j − i + 1 characters of the suffix that starts at i. That is the key idea that makes suffix trees work."
+  },
+  {
+    "q": "An N-ary tree has 10 nodes. How many edges does it have?",
+    "options": ["9", "10", "It depends on N", "20"],
+    "answer": 0,
+    "explain": "Every node except the root has exactly one edge to its parent, so any tree with n nodes has n − 1 edges, whatever its branching."
+  }
+]

@@ -1,0 +1,27 @@
+[
+  {
+    "type": "nat",
+    "q": "The pattern P = 'ABC' is searched for in T = 'ABAAABCD' using Boyer–Moore with the bad-character rule only (shift = max(1, j − last[c])). How many alignments are tried, including the successful one?",
+    "answer": 4,
+    "explain": "<pre>last: A=0, B=1, C=2\ns=0: compare P[2]=C vs T[2]=A  ✗  j=2, last[A]=0 → shift 2\ns=2: compare P[2]=C vs T[4]=A  ✗  j=2, last[A]=0 → shift 2\ns=4: compare P[2]=C vs T[6]=C  ✓, P[1]=B vs T[5]=B ✓, P[0]=A vs T[4]=A ✓ → match at 4\n     after the match, shift by 1\ns=5: compare P[2]=C vs T[7]=D  ✗  D not in P → shift 3 → s=8 > n−m, stop</pre><p>The alignments tried are 0, 2, 4 and 5: four in all.</p>"
+  },
+  {
+    "type": "nat",
+    "q": "Using the bad-character rule only, how many alignments does Boyer–Moore try when searching P = 'baaa' in T = 'aaaaaaaaaa' (10 a's)?",
+    "answer": 7,
+    "explain": "<p>At every alignment s, the comparisons from the right match a, a, a, and then 'b' meets an 'a' at j = 0. last[a] = 3, so j − last[a] = −3, and the shift falls back to 1.</p><pre>alignments s = 0, 1, 2, 3, 4, 5, 6   (n − m + 1 = 7)</pre><p>That is 7 alignments with 4 comparisons each: the Θ(n·m) worst case of the bad-character rule. The good-suffix rule would jump much further.</p>"
+  },
+  {
+    "q": "What is the bad-character table (rightmost index of each character) for P = 'ABCDABD'?",
+    "options": ["A:4, B:5, C:2, D:6", "A:0, B:1, C:2, D:3", "A:4, B:1, C:2, D:3", "A:0, B:5, C:2, D:6"],
+    "answer": 0,
+    "explain": "<pre>index:  0 1 2 3 4 5 6\nchar:   A B C D A B D\nrightmost: A→4, B→5, C→2, D→6</pre>"
+  },
+  {
+    "type": "multi",
+    "q": "Which statements comparing Boyer–Moore (BM) and Knuth–Morris–Pratt (KMP) are correct?",
+    "options": ["BM can skip text characters without reading them; KMP reads every text character", "KMP guarantees O(n + m) time in the worst case", "BM always makes fewer comparisons than KMP on every input", "BM's shifts tend to grow as the pattern gets longer"],
+    "answer": [0, 1, 3],
+    "explain": "<p>(A) and (D) are BM's strengths, and (B) is KMP's guarantee.</p><p>(C) is false: on some inputs, such as very repetitive text and patterns, BM does more comparisons than KMP, up to Θ(n·m) without the good-suffix refinements.</p>"
+  }
+]

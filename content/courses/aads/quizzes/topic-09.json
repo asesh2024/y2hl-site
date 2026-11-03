@@ -1,0 +1,62 @@
+[
+  {
+    "q": "What is the running time of KMP for a text of length n and a pattern of length m?",
+    "options": ["O(n + m)", "O(n·m)", "O(n log m)", "O(m²)"],
+    "answer": 0,
+    "explain": "Computing the prefix function takes O(m) and scanning the text takes O(n). The text pointer never moves backwards."
+  },
+  {
+    "q": "π[q] in KMP's prefix function is the length of…",
+    "options": ["the longest proper prefix of P[0..q] that is also a suffix of P[0..q]", "the longest suffix of the whole pattern", "the number of times P[q] occurs in P", "the shift used by the naive algorithm"],
+    "answer": 0,
+    "explain": "Such a prefix-and-suffix is called a border. 'Proper' means the whole string itself does not count."
+  },
+  {
+    "q": "What is the prefix function of 'ababaca'?",
+    "options": ["0 0 1 2 3 0 1", "0 1 2 3 4 5 6", "0 0 1 2 0 0 1", "0 0 0 1 2 0 1"],
+    "answer": 0,
+    "explain": "Borders of each prefix: a (0), ab (0), aba (1: a), abab (2: ab), ababa (3: aba), ababac (0), ababaca (1: a)."
+  },
+  {
+    "q": "What is the prefix function of 'aaaa'?",
+    "options": ["0 1 2 3", "0 0 0 0", "1 2 3 4", "0 1 1 1"],
+    "answer": 0,
+    "explain": "'aa' has border 'a' (1), 'aaa' has 'aa' (2), and 'aaaa' has 'aaa' (3). The first entry is always 0."
+  },
+  {
+    "q": "KMP has matched q > 0 pattern characters, and the next text character mismatches P[q]. What does KMP do?",
+    "options": ["Sets q ← π[q − 1] and compares again, without moving in the text", "Moves the text pointer back q positions", "Restarts with q = 0 at the next text position", "Skips m characters of the text"],
+    "answer": 0,
+    "explain": "The longest border of the matched part tells KMP how much of the pattern still lines up. It may repeat this fall-back several times."
+  },
+  {
+    "q": "How many times does KMP find 'abab' in 'abababab', counting overlapping matches?",
+    "options": ["3", "2", "4", "1"],
+    "answer": 0,
+    "explain": "The matches start at positions 0, 2 and 4. After each match KMP continues from q = π[3] = 2, so it finds overlapping occurrences."
+  },
+  {
+    "type": "tf",
+    "q": "In KMP, the index into the text never decreases.",
+    "answer": 0,
+    "explain": "True. Only the pattern index q falls back. That is why the matching phase is O(n)."
+  },
+  {
+    "q": "Which input makes the naive matcher take Θ(n·m) comparisons, where KMP takes O(n + m)?",
+    "options": ["T = aaaa…a and P = aa…ab", "T and P with no letters in common", "P longer than T", "T = P"],
+    "answer": 0,
+    "explain": "The naive matcher compares almost all of P at every position before failing on the final b. KMP reuses the matched a's through π."
+  },
+  {
+    "q": "What is π[0], the prefix-function value of the first character, for any pattern?",
+    "options": ["0", "1", "−1", "It depends on the pattern"],
+    "answer": 0,
+    "explain": "A one-character string has no non-empty proper prefix, so its longest border is empty."
+  },
+  {
+    "q": "The prefix function of a string s of length n is computed. What is the shortest period of s?",
+    "options": ["n − π[n − 1]", "π[n − 1]", "n / π[n − 1]", "n − 1"],
+    "answer": 0,
+    "explain": "If s has a border of length b, then s repeats with period n − b. The longest border gives the shortest period. For example, 'abcabcabcab' has π = 8 at the end, so its period is 11 − 8 = 3."
+  }
+]

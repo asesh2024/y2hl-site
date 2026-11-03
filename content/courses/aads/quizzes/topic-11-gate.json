@@ -1,0 +1,27 @@
+[
+  {
+    "type": "nat",
+    "q": "The Aho–Corasick automaton for the patterns {ab, bc, abc, c} is run on the text 'abcbc'. How many pattern occurrences are reported in total?",
+    "answer": 6,
+    "explain": "<pre>end at 1: 'ab' (start 0)\nend at 2: 'abc' (start 0), 'bc' (start 1), 'c' (start 2)\nend at 4: 'bc' (start 3), 'c' (start 4)\ntotal = 6</pre><p>At position 2 the node 'abc' reports itself, then 'bc' through its failure link to 'bc', then 'c' through 'bc''s failure link to 'c'. Output links collect all three.</p>"
+  },
+  {
+    "type": "nat",
+    "q": "How many nodes, including the root, does the trie of the Aho–Corasick automaton for {a, ab, bab, bc, bca, c, caa} have?",
+    "answer": 11,
+    "explain": "<p>Count the distinct prefixes of the patterns, plus the root:</p><pre>ε, a, ab, b, ba, bab, bc, bca, c, ca, caa  → 11</pre>"
+  },
+  {
+    "q": "In the automaton for {he, she, his, hers}, where does the failure link of the node 'his' point?",
+    "options": ["To the node 's'", "To the root", "To the node 'hi'", "To the node 'she'"],
+    "answer": 0,
+    "explain": "<p>The proper suffixes of 'his' are 'is' and 's'. 'is' is not a prefix of any pattern, but 's' is (the start of 'she'). The longest qualifying suffix is 's', so fail(his) = s.</p>"
+  },
+  {
+    "type": "multi",
+    "q": "k patterns of total length M are searched for in a text of length n. Which statements are true?",
+    "options": ["Running KMP once per pattern costs O(k·n + M)", "Aho–Corasick costs O(n + M + z), where z is the number of matches", "Aho–Corasick needs to read the text k times", "Aho–Corasick can report overlapping matches of different patterns"],
+    "answer": [0, 1, 3],
+    "explain": "<p>(A): each KMP run scans the whole text. (B) is the Aho–Corasick bound, which removes the factor k. (D): output links report every pattern ending at each position, overlaps included.</p><p>(C) is false: one pass over the text is the whole point.</p>"
+  }
+]

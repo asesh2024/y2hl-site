@@ -1,0 +1,62 @@
+[
+  {
+    "q": "A segment tree supports range-sum queries and point updates. What does each operation cost on an array of n elements?",
+    "options": ["O(log n) each", "Query O(1), update O(n)", "Query O(n), update O(1)", "O(n) each"],
+    "answer": 0,
+    "explain": "Both walk O(log n) levels and visit a constant number of nodes per level. Prefix sums give O(1) queries but O(n) updates."
+  },
+  {
+    "q": "What does each node of a range-sum segment tree store?",
+    "options": ["The sum of the array segment that node covers", "A single array element", "The prefix sum up to its index", "The number of nodes below it"],
+    "answer": 0,
+    "explain": "The root covers the whole array, each child covers half of its parent's segment, and the leaves cover single elements."
+  },
+  {
+    "q": "During a query, what happens at a node whose segment lies completely inside the query range [l, r]?",
+    "options": ["Its stored value is used, and its children are not visited", "Both children are always visited", "It contributes 0", "The query restarts from the root"],
+    "answer": 0,
+    "explain": "A fully covered node already holds the answer for its whole segment. That is why only O(log n) nodes contribute."
+  },
+  {
+    "q": "How many nodes does a segment tree on n elements have (using the halving construction)?",
+    "options": ["2n − 1", "n", "n log n", "4n"],
+    "answer": 0,
+    "explain": "It is a full binary tree with n leaves, so it has n − 1 internal nodes, 2n − 1 in total. (The array is often allocated with 4n slots, because the array layout leaves gaps.)"
+  },
+  {
+    "q": "For a = [1, 3, 5, 7, 9, 11], what is the range sum over positions 1 to 4 (0-based, inclusive)?",
+    "options": ["24", "25", "16", "36"],
+    "answer": 0,
+    "explain": "3 + 5 + 7 + 9 = 24. The tree combines the nodes [1], [2] and [3..4]: 3 + 5 + 16."
+  },
+  {
+    "q": "Which operation can a segment tree <strong>not</strong> handle directly by just changing the combine step?",
+    "options": ["Range average, without storing extra information", "Range minimum", "Range maximum", "Range gcd"],
+    "answer": 0,
+    "explain": "Min, max and gcd are associative, so children's results combine directly. The average of two halves is not the average of their averages when the halves differ in size, so store sum and count instead."
+  },
+  {
+    "q": "A 2-D range tree answers 'how many points lie in the rectangle [x₁, x₂] × [y₁, y₂]?' How long does a query take, in the version where each node keeps a sorted list of y-values?",
+    "options": ["O(log² n)", "O(log n)", "O(n)", "O(√n)"],
+    "answer": 0,
+    "explain": "The x-range splits into O(log n) canonical nodes, and each needs an O(log n) binary search on its y-list. (Fractional cascading improves this to O(log n).)"
+  },
+  {
+    "q": "How much space does that 2-D range tree use?",
+    "options": ["O(n log n)", "O(n)", "O(n²)", "O(log n)"],
+    "answer": 0,
+    "explain": "Each point appears in the y-list of one node per level, and there are O(log n) levels."
+  },
+  {
+    "type": "tf",
+    "q": "After a point update a[i] = v, a segment tree must recompute every node in the tree.",
+    "answer": 1,
+    "explain": "False. Only the nodes on the path from leaf i up to the root cover position i, so only those O(log n) sums change."
+  },
+  {
+    "q": "Many range queries arrive on an array that <strong>never changes</strong>. What is simplest and fastest for range sums?",
+    "options": ["A prefix-sum array: O(n) to build, O(1) per query", "A segment tree", "A 2-D range tree", "Sorting the array"],
+    "answer": 0,
+    "explain": "sum(l..r) = P[r+1] − P[l]. The segment tree's advantage only appears when the array is also being updated."
+  }
+]

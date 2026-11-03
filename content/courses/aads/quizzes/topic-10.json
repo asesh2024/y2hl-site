@@ -1,0 +1,62 @@
+[
+  {
+    "q": "In which direction does Boyer–Moore compare the pattern against the text at each alignment?",
+    "options": ["Right to left, starting from the pattern's last character", "Left to right", "From the middle outwards", "In random order"],
+    "answer": 0,
+    "explain": "Starting at the end means a mismatched text character tells you as much as possible about how far the pattern can safely jump."
+  },
+  {
+    "q": "The mismatched text character c does not occur in the pattern at all, and the mismatch happened at pattern position j. What does the bad-character rule say?",
+    "options": ["Shift the pattern past c entirely: shift = j + 1", "Shift by 1", "Shift by m", "Restart at the beginning of the text"],
+    "answer": 0,
+    "explain": "last[c] = −1, so the shift is j − (−1) = j + 1. No alignment that still covers c can match."
+  },
+  {
+    "q": "What is the bad-character table (rightmost positions) for P = 'EXAMPLE'?",
+    "options": ["E:6, X:1, A:2, M:3, P:4, L:5", "E:0, X:1, A:2, M:3, P:4, L:5", "E:1, X:1, A:1, M:1, P:1, L:1", "E:6, X:5, A:4, M:3, P:2, L:1"],
+    "answer": 0,
+    "explain": "Each character maps to its rightmost index. E occurs at 0 and at 6, and the rightmost one, 6, is kept."
+  },
+  {
+    "q": "What is Boyer–Moore's typical (best-case) behaviour on long patterns over a large alphabet?",
+    "options": ["Sub-linear: about n/m alignments, so many text characters are never read", "Exactly n comparisons", "Θ(n·m)", "Θ(n log n)"],
+    "answer": 0,
+    "explain": "Mismatches on characters absent from P give jumps of about m positions. The longer the pattern, the faster the search."
+  },
+  {
+    "q": "What does the good-suffix rule use?",
+    "options": ["The part of the pattern already matched, to find where that suffix appears again in the pattern", "The text character that caused the mismatch", "The longest border of the whole text", "The frequency of each letter in the text"],
+    "answer": 0,
+    "explain": "If P[j+1..m−1] matched, the pattern can shift to the next place where that same string (or a prefix of P that is a suffix of it) occurs."
+  },
+  {
+    "q": "After a mismatch, how are the two rules combined?",
+    "options": ["Take the larger of the two shifts", "Take the smaller", "Add them", "Use only the good-suffix shift"],
+    "answer": 0,
+    "explain": "Each rule on its own never skips over a possible match, so the larger of the two is also safe, and it saves more work."
+  },
+  {
+    "type": "tf",
+    "q": "With only the bad-character rule, Boyer–Moore can take Θ(n·m) time in the worst case.",
+    "answer": 0,
+    "explain": "True. For example, T = aaaa…a and P = baaa…a: every alignment matches m − 1 characters and then shifts by just 1. The good-suffix rule fixes this case."
+  },
+  {
+    "q": "Searching 'EXAMPLE' in 'HERE IS A SIMPLE EXAMPLE' with both rules, how many alignments are tried?",
+    "options": ["5", "18", "7", "3"],
+    "answer": 0,
+    "explain": "The alignments start at positions 0, 7, 9, 15 and 17, and the last one is the match. The naive method would try all 18 positions."
+  },
+  {
+    "q": "For which situation is KMP usually a better choice than Boyer–Moore?",
+    "options": ["Text arriving as a stream over a tiny alphabet, such as DNA {A, C, G, T}", "Searching an English word in a large document", "A very long pattern over a large alphabet", "Searching a word in a text editor"],
+    "answer": 0,
+    "explain": "KMP reads each character once, left to right, which suits streams. Over a tiny alphabet, Boyer–Moore's bad-character jumps are short."
+  },
+  {
+    "q": "In the bad-character rule, what shift should be used when j − last[c] is negative (c's last occurrence lies to the right of j)?",
+    "options": ["At least 1 (or the good-suffix shift)", "The negative value, moving the pattern back", "Zero", "m"],
+    "answer": 0,
+    "explain": "Moving backwards could loop forever. A plain bad-character implementation uses max(1, j − last[c]), and with the good-suffix rule the maximum of the two is always positive."
+  }
+]

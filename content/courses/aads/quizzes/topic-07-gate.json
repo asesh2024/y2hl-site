@@ -1,0 +1,27 @@
+[
+  {
+    "type": "nat",
+    "q": "How many internal nodes, not counting the root, does the compressed suffix tree of 'banana$' have?",
+    "answer": 3,
+    "explain": "<p>Group the suffixes by their shared prefixes:</p><pre>a…   : anana$, ana$, a$      → node 'a'   (3 suffixes)\nana… : anana$, ana$          → node 'ana' (2 suffixes, below 'a')\nna…  : nana$, na$            → node 'na'  (2 suffixes)\nb…, $: banana$, $            → single leaves under the root</pre><p>So the internal nodes are 'a', 'ana' and 'na': 3. This fits the bound of at most n − 1 internal nodes.</p>"
+  },
+  {
+    "type": "nat",
+    "q": "How many distinct non-empty substrings does the string 'banana' have?",
+    "answer": 15,
+    "explain": "<p>Count distinct substrings by length:</p><pre>length 1: b, a, n                         → 3\nlength 2: ba, an, na                      → 3\nlength 3: ban, ana, nan                   → 3\nlength 4: bana, anan, nana                → 3\nlength 5: banan, anana                    → 2\nlength 6: banana                          → 1\ntotal = 15</pre><p>In the suffix tree this equals the total length of all edge labels, ignoring '$'. Every point on an edge is one distinct substring.</p>"
+  },
+  {
+    "q": "What is the longest substring that occurs at least twice in 'mississippi'?",
+    "options": ["issi", "ssi", "iss", "sip"],
+    "answer": 0,
+    "explain": "<p>'issi' starts at positions 1 and 4: m<u>issi</u>ssippi and miss<u>issi</u>ppi. The occurrences overlap, which is allowed. No substring of length 5 occurs twice (for example, 'issis' and 'ssiss' each occur once). In the suffix tree, 'issi' is the deepest internal node.</p>"
+  },
+  {
+    "type": "multi",
+    "q": "A suffix tree is built for a text T of length n over a fixed alphabet. Which of these can it do efficiently?",
+    "options": ["Test whether a pattern of length m occurs, in O(m) time", "Report all k occurrences of a pattern in O(m + k) time", "Find the longest repeated substring in O(n) time after construction", "Sort an arbitrary list of numbers in O(n) time"],
+    "answer": [0, 1, 2],
+    "explain": "<p>(A), (B) and (C) are classic suffix-tree applications: walk the pattern, collect the leaves below it, or find the deepest internal node. (D) has nothing to do with suffix trees, and comparison sorting needs Ω(n log n).</p>"
+  }
+]

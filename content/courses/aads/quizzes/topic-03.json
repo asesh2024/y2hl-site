@@ -1,0 +1,62 @@
+[
+  {
+    "q": "Which of these is <strong>not</strong> one of the red-black tree properties?",
+    "options": ["The heights of the left and right subtrees of every node differ by at most one", "The root is black", "A red node cannot have a red child", "Every path from a node to its NIL leaves has the same number of black nodes"],
+    "answer": 0,
+    "explain": "The height-difference rule is the AVL condition. Red-black trees use colours instead, and their subtrees can differ in height by more than one."
+  },
+  {
+    "q": "What colour is a newly inserted node given in a red-black tree, before any fix-up?",
+    "options": ["Red", "Black", "The colour of its parent", "The opposite of its parent's colour"],
+    "answer": 0,
+    "explain": "A red node does not change any black-height, so rule 5 stays true. The only possible problem is a red-red pair, which the fix-up repairs."
+  },
+  {
+    "q": "During insertion fix-up, the new node's parent is red and its <strong>uncle is red</strong>. What is done?",
+    "options": ["Recolour: parent and uncle become black, grandparent becomes red, then continue from the grandparent", "A single rotation at the grandparent", "A double rotation", "Delete the uncle"],
+    "answer": 0,
+    "explain": "Case 1 is fixed by recolouring alone. It may push the red-red problem two levels up, so the loop continues from the grandparent."
+  },
+  {
+    "q": "What is the maximum number of rotations a red-black insertion performs?",
+    "options": ["2", "1", "3", "O(log n)"],
+    "answer": 0,
+    "explain": "Recolouring (case 1) can repeat up the tree, but the rotation cases 2 and 3 happen once, and then the loop ends: at most 2 rotations. Deletion needs at most 3."
+  },
+  {
+    "q": "A red-black tree has n internal nodes. Its height is at most…",
+    "options": ["2·log₂(n + 1)", "log₂(n + 1)", "1.44·log₂ n", "n/2"],
+    "answer": 0,
+    "explain": "A subtree with black-height b has at least 2ᵇ − 1 nodes, and the black-height is at least half the height (no two reds in a row). That gives h ≤ 2·log₂(n + 1). The 1.44 factor is the AVL bound."
+  },
+  {
+    "type": "tf",
+    "q": "In a red-black tree, the longest root-to-leaf path is at most twice as long as the shortest.",
+    "answer": 0,
+    "explain": "True. All paths have the same number of black nodes, and red nodes cannot be adjacent. So the longest path (alternating red and black) is at most twice the shortest (all black)."
+  },
+  {
+    "q": "Keys 1, 2, 3, 4, 5 are inserted in order into an empty red-black tree. Which nodes are red at the end?",
+    "options": ["3 and 5", "1 and 2", "4 only", "None of them"],
+    "answer": 0,
+    "explain": "Inserting 3 rotates to make 2 the black root, with 1 and 3 red. Inserting 4 recolours 1 and 3 to black. Inserting 5 rotates at 3, making 4 black with red children 3 and 5. The result has root 2B, children 1B and 4B, and 4's children 3R and 5R."
+  },
+  {
+    "q": "Why do Java's TreeMap and C++'s std::map use red-black trees instead of AVL trees?",
+    "options": ["Updates need fewer rotations, while lookups are still O(log n)", "Red-black trees are perfectly balanced", "Red-black trees need no extra storage per node", "AVL trees cannot delete keys"],
+    "answer": 0,
+    "explain": "AVL trees are more strictly balanced, which makes lookups slightly faster, but they may rotate more on updates. Red-black trees need at most 2 or 3 rotations per update. Both store extra information per node."
+  },
+  {
+    "q": "Black-height bh(x) is defined as…",
+    "options": ["the number of black nodes on any path from x (not counting x) down to a NIL leaf", "the total number of black nodes in the tree", "the height of x counting only black nodes above it", "the number of black children of x"],
+    "answer": 0,
+    "explain": "Rule 5 guarantees every downward path from x has the same count, so bh(x) is well defined."
+  },
+  {
+    "type": "tf",
+    "q": "A red node in a red-black tree may have exactly one red child, as long as the other child is black.",
+    "answer": 1,
+    "explain": "False. Rule 4 says both children of a red node must be black. No red node may have a red child at all."
+  }
+]

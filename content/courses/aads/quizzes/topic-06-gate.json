@@ -1,0 +1,27 @@
+[
+  {
+    "type": "nat",
+    "q": "A segment tree for range sums is built on a = [5, 2, 8, 1, 9, 3, 7, 4] (positions 0–7). The update a[4] = 0 is applied. What does the query sum(2..6) return afterwards?",
+    "answer": 19,
+    "explain": "<pre>before: a[2..6] = 8 + 1 + 9 + 3 + 7 = 28\nupdate: a[4] 9 → 0  (the leaf [4] and its ancestors [4..5], [4..7], [0..7] change)\nafter:  8 + 1 + 0 + 3 + 7 = 19</pre>"
+  },
+  {
+    "type": "nat",
+    "q": "A segment tree is built on an array of 8 elements by repeatedly halving segments. The query covers positions 1 to 6. How many nodes are 'fully inside' the query range and contribute their stored value directly?",
+    "answer": 4,
+    "explain": "<p>The query [1..6] is split into maximal tree segments:</p><pre>[0..7] → [0..3] and [4..7]\n[0..3] → [0..1] (partial) and [2..3] (inside ✓)\n[0..1] → [0] (outside) and [1] (inside ✓)\n[4..7] → [4..5] (inside ✓) and [6..7] (partial)\n[6..7] → [6] (inside ✓) and [7] (outside)</pre><p>The canonical nodes are [1], [2..3], [4..5] and [6]: 4 nodes.</p>"
+  },
+  {
+    "type": "multi",
+    "q": "Which statements are true for a segment tree storing range minimums over n elements?",
+    "options": ["A query takes O(log n) time", "Building it takes O(n log n) time at least", "A node with no overlap with the query should return +∞", "Its leaves hold the original array elements"],
+    "answer": [0, 2, 3],
+    "explain": "<p>(A) holds as for sums. (C): +∞ is the identity for min, so a non-overlapping node must not affect the answer. (D) holds by construction.</p><p>(B) is false: building bottom-up visits each of the 2n − 1 nodes once, which is O(n).</p>"
+  },
+  {
+    "q": "You must answer 10⁵ queries 'sum of a[l..r]' on an array of 10⁵ integers, interleaved with 10⁵ updates 'a[i] = v'. Which choice gives the best total time?",
+    "options": ["Segment tree: about 2 × 10⁵ × log₂ 10⁵ ≈ 3.4 × 10⁶ steps", "Prefix sums rebuilt after every update: about 10¹⁰ steps", "Summing each range directly: about 10¹⁰ steps in the worst case", "Sorting the array before each query"],
+    "answer": 0,
+    "explain": "<p>Prefix sums cost O(n) per update, giving 10⁵ × 10⁵ = 10¹⁰. Direct summing costs O(n) per query, also up to 10¹⁰. The segment tree pays O(log n) ≈ 17 steps for each of the 2 × 10⁵ operations, a few million steps in all.</p>"
+  }
+]

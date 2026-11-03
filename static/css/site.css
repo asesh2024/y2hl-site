@@ -333,9 +333,12 @@ code, pre { font-family: var(--mono); font-size: .88em; }
 /* Graphviz diagrams */
 figure.dot { margin: 1.2em 0; padding: 12px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); overflow-x: auto; text-align: center; }
 figure.dot svg { max-width: 100%; height: auto; }
-figure.dot text { fill: var(--ink); }
-figure.dot g.node ellipse, figure.dot g.node polygon, figure.dot g.node path, figure.dot g.edge path { stroke: var(--ink); }
-figure.dot g.edge polygon { stroke: var(--ink); fill: var(--ink); }
+/* Recolour only Graphviz's default black so diagrams follow the theme; explicit colours are kept. */
+figure.dot text:not([fill]), figure.dot text[fill="black"] { fill: var(--ink); }
+figure.dot [stroke="black"] { stroke: var(--ink); }
+figure.dot polygon[fill="black"] { fill: var(--ink); }
+/* Text inside a filled node keeps a dark colour so it stays readable on the fill. */
+figure.dot g.node:has(> :is(ellipse, polygon, path):not([fill="none"])) text:not([fill]) { fill: #111417; }
 .quiz-q figure.dot { margin: 0 0 12px; clear: both; }
 
 @media print {

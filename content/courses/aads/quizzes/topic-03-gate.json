@@ -1,0 +1,27 @@
+[
+  {
+    "type": "nat",
+    "q": "Using the bound h ≤ 2·log₂(n + 1), what is the largest height that a red-black tree with 15 internal nodes could have?",
+    "answer": 8,
+    "explain": "<pre>h ≤ 2·log₂(15 + 1) = 2·log₂ 16 = 2 × 4 = 8</pre><p>The bound comes from n ≥ 2^bh − 1 and bh ≥ h/2. (Real trees with 15 keys are usually much shorter. The bound is a worst-case guarantee.)</p>"
+  },
+  {
+    "type": "nat",
+    "q": "Keys 50, 40, 30, 20, 10 are inserted, in that order, into an initially empty red-black tree (standard insertion with recolouring and rotations). How many red nodes does the final tree have?",
+    "answer": 2,
+    "explain": "<pre>insert 50        → 50B\ninsert 40        → 50B, 40R as its left child\ninsert 30        → red-red, uncle NIL (black), outer: rotate right at 50\n                   → 40B with children 30R, 50R\ninsert 20        → parent 30R, uncle 50R: recolour → 30B, 50B, 40 stays B (root)\ninsert 10        → parent 20R, uncle NIL (black), outer: rotate right at 30\n                   → 20B with children 10R, 30R\nfinal: 40B ( 20B (10R, 30R), 50B )</pre><p>Two red nodes: 10 and 30.</p>"
+  },
+  {
+    "type": "multi",
+    "q": "Which statements about red-black trees are true?",
+    "options": ["An insertion performs at most two rotations", "Every red-black tree satisfies the AVL balance condition", "Both children of a red node are black", "The root may be red if the tree has only one node"],
+    "answer": [0, 2],
+    "explain": "<p>(A) is true: only the final case-2/case-3 fix rotates. (C) is rule 4.</p><p>(B) is false. A red-black tree can have subtree heights differing by more than one; it only guarantees longest path ≤ 2 × shortest. (D) is false: the root is always black, which the fix-up enforces as its last step.</p>"
+  },
+  {
+    "q": "In a red-black tree, every path from the root down to a NIL leaf contains exactly 3 black internal nodes (the root included, NIL leaves not counted). What is the largest number of internal nodes such a path can contain?",
+    "options": ["6", "3", "7", "9"],
+    "answer": 0,
+    "explain": "<p>The 3 black nodes are fixed. Red nodes can only be squeezed in where they do not touch another red: at most one red directly below each black node. (A red right above a NIL leaf is fine, because NIL leaves are black.)</p><pre>root(B) → R → B → R → B → R → NIL\nblack internal nodes: 3     red nodes: 3     total: 6</pre><p>The root must be black, so no red can come before it. That gives a maximum of 3 + 3 = 6, which is exactly the factor of 2 behind the bound h ≤ 2·log₂(n + 1).</p>"
+  }
+]

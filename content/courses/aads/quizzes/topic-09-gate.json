@@ -1,0 +1,27 @@
+[
+  {
+    "q": "What is the KMP prefix (failure) function of the pattern 'aabaaab'?",
+    "options": ["0 1 0 1 2 2 3", "0 1 0 1 2 3 4", "0 1 2 0 1 2 3", "0 0 1 0 1 2 3"],
+    "answer": 0,
+    "explain": "<table><tr><th>q</th><th>prefix</th><th>longest border</th><th>π</th></tr><tr><td>0</td><td>a</td><td>—</td><td>0</td></tr><tr><td>1</td><td>aa</td><td>a</td><td>1</td></tr><tr><td>2</td><td>aab</td><td>—</td><td>0</td></tr><tr><td>3</td><td>aaba</td><td>a</td><td>1</td></tr><tr><td>4</td><td>aabaa</td><td>aa</td><td>2</td></tr><tr><td>5</td><td>aabaaa</td><td>aa</td><td>2</td></tr><tr><td>6</td><td>aabaaab</td><td>aab</td><td>3</td></tr></table><p>At q = 5, the border 'aab' does not fit ('aabaaa' does not end in 'aab'), so π falls back to 'aa'.</p>"
+  },
+  {
+    "type": "nat",
+    "q": "For the pattern 'aabaabaaa', what is the value of the prefix function at the last position, π[8]?",
+    "answer": 2,
+    "explain": "<p>Up to position 7, the borders keep growing: π = 0 1 0 1 2 3 4 5. That is, 'aabaabaa' has border 'aabaa' (5).</p><pre>q = 8, character 'a': try to extend the border of length 5 → P[5] = 'b' ≠ 'a'\nfall back: k = π[4] = 2 → P[2] = 'b' ≠ 'a'\nfall back: k = π[1] = 1 → P[1] = 'a' = 'a' → k = 2\nπ[8] = 2</pre><p>Check: 'aabaabaaa' ends with 'aa' and begins with 'aa'. No longer border fits.</p>"
+  },
+  {
+    "type": "nat",
+    "q": "Using the KMP prefix function, what is the length of the shortest period of the string 'abcabcabcab'? (A period p means s[i] = s[i + p] for all valid i.)",
+    "answer": 3,
+    "explain": "<pre>s = abcabcabcab,  n = 11\nlongest border = 'abcabcab' (length 8), so π[10] = 8\nshortest period = n − π[n−1] = 11 − 8 = 3   ('abc' repeated)</pre>"
+  },
+  {
+    "type": "multi",
+    "q": "Which statements about the KMP algorithm are true?",
+    "options": ["Its matching phase makes at most 2n character comparisons on a text of length n", "It needs to back up in the text after a mismatch", "Its preprocessing depends only on the pattern", "It reports overlapping occurrences if it continues from π[m−1] after a match"],
+    "answer": [0, 2, 3],
+    "explain": "<p>(A) holds: each comparison either advances the text index (at most n times) or decreases q (at most n times in total). (C) holds: π is computed from P alone. (D) holds: continuing from the longest border finds the next overlapping occurrence.</p><p>(B) is false. Never backing up in the text is exactly KMP's advantage, and it makes KMP usable on streaming input.</p>"
+  }
+]

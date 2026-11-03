@@ -7,6 +7,7 @@
 Everything you edit lives in site.json, content/ and static/. Never edit site/: it is
 deleted and regenerated on every build.
 """
+import hashlib
 import json
 import os
 import re
@@ -28,6 +29,9 @@ SITE = json.loads((ROOT / "site.json").read_text(encoding="utf-8"))
 BASE_PATH = os.environ.get("BASE_PATH", "").rstrip("/")
 env = Environment(loader=FileSystemLoader(ROOT / "templates"), autoescape=select_autoescape(["html"]))
 env.globals.update(site=SITE, year=date.today().year)
+# A short fingerprint of the CSS/JS, appended as ?v=… so browsers fetch them again whenever they change.
+env.globals["asset_version"] = hashlib.sha1(b"".join(
+    p.read_bytes() for p in sorted((ROOT / "static").rglob("*")) if p.suffix in (".css", ".js"))).hexdigest()[:8]
 
 pages_built = []
 

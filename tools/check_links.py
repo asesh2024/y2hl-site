@@ -22,6 +22,7 @@ def main():
             if href.startswith(("http:", "https:", "mailto:")):
                 continue
             path, _, frag = href.partition("#")
+            path = path.split("?")[0]                      # ignore ?v=… cache-busting queries
             if BASE_PATH and path.startswith(BASE_PATH + "/"):
                 path = path[len(BASE_PATH):]
             target = page if not path else (SITE / path.lstrip("/") if path.startswith("/") else page.parent / path)

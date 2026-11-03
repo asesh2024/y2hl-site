@@ -1,0 +1,27 @@
+[
+  {
+    "type": "nat",
+    "q": "What is the minimum number of nodes in an AVL tree of height 6? (Height is counted in edges, so a single node has height 0.)",
+    "answer": 33,
+    "explain": "<p>The sparsest AVL tree of height h has a root, one subtree of height h−1 and one of height h−2, each as sparse as possible:</p><pre>N(h) = N(h−1) + N(h−2) + 1,  N(0) = 1, N(1) = 2\nN(2) = 4, N(3) = 7, N(4) = 12, N(5) = 20, N(6) = 33</pre>"
+  },
+  {
+    "type": "nat",
+    "q": "What is the maximum possible height of an AVL tree with 20 nodes? (Height in edges.)",
+    "answer": 5,
+    "explain": "<p>A height-h AVL tree needs at least N(h) nodes: 1, 2, 4, 7, 12, 20, 33, … With 20 nodes we can reach N(5) = 20, but not N(6) = 33. So the maximum height is 5.</p>"
+  },
+  {
+    "q": "Keys 40, 20, 60, 10, 30, 25 are inserted, in that order, into an empty AVL tree. What is the preorder traversal of the final tree?",
+    "options": ["30, 20, 10, 25, 40, 60", "40, 20, 10, 30, 25, 60", "20, 10, 40, 30, 25, 60", "30, 20, 10, 40, 25, 60"],
+    "answer": 0,
+    "explain": "<p>After 40, 20, 60, 10, 30 the tree is balanced, with root 40, left child 20 (children 10, 30) and right child 60. Inserting 25 (as the left child of 30) makes 40 +2. The path from 40 goes left (20), then right (30): an <strong>LR</strong> case.</p><p>Left-rotate at 20 (30 moves up, 20 becomes its left child, and 25 becomes 20's right child). Then right-rotate at 40 (30 becomes the root).</p><pre>        30\n       /  \\\n     20    40\n    /  \\     \\\n  10   25    60</pre><p>Preorder: 30, 20, 10, 25, 40, 60.</p>"
+  },
+  {
+    "type": "multi",
+    "q": "Which statements about AVL trees are true?",
+    "options": ["Search, insertion and deletion all take O(log n) time in the worst case", "An insertion needs at most one single or one double rotation", "A deletion needs at most one rotation", "Every AVL tree is a complete binary tree"],
+    "answer": [0, 1],
+    "explain": "<p>(A) is true because the height is O(log n). (B) is true: fixing the lowest unbalanced node restores the subtree's height, so nothing higher changes.</p><p>(C) is false. A deletion can shorten a subtree, and then several ancestors may each need a rotation, up to O(log n). (D) is false. AVL trees need not have every level full or be filled left to right; the Fibonacci-shaped minimal trees are far from complete.</p>"
+  }
+]

@@ -1,0 +1,27 @@
+[
+  {
+    "type": "nat",
+    "q": "Keys 1, 2, 3, 4, 5, 6, 7 are inserted in that order into an empty splay tree (each insertion splays the new key to the root). Then key 1 is searched for, which splays it to the root. What is the height of the tree after the search? (Height in edges.)",
+    "answer": 4,
+    "explain": "<p>After the 7 insertions the tree is a chain: 7 at the root, 6 below it, …, down to 1 (each new key became the root with the old tree as its left child). Height 6.</p><p>Splaying 1 from depth 6 takes three zig-zig steps, each rotating at the grandparent first:</p><pre>preorder after splay(1): 1, 6, 4, 2, 3, 5, 7\n        1\n         \\\n          6\n         / \\\n        4   7\n       / \\\n      2   5\n       \\\n        3</pre><p>The longest path is 1 → 6 → 4 → 2 → 3, so the height is 4. One expensive access cut the height from 6 to 4. That is the self-adjusting effect.</p>"
+  },
+  {
+    "q": "In the chain 5–4–3–2–1 (5 is the root, and each node is the left child of the one above), node 1 is splayed. Which steps are used?",
+    "options": ["Two zig-zig steps", "Four zig steps", "One zig-zag and one zig", "Two zig-zag steps"],
+    "answer": 0,
+    "explain": "<p>Node 1 is at depth 4. Splaying takes two levels at a time: (2, 3) above 1 are on the same side, so the first step is zig-zig; then (4, 5) above it are also on the same side, so the second step is zig-zig too. No single zig is needed, because the depth is even.</p><pre>result: 1 at the root, right child 4;\n4 has left child 2 (with right child 3) and right child 5</pre>"
+  },
+  {
+    "type": "multi",
+    "q": "Which statements about splay trees are true?",
+    "options": ["Any sequence of m operations on an n-node splay tree takes O(m log n) time", "Every individual operation takes O(log n) time in the worst case", "After a successful search, the found key is at the root", "Splay trees need a balance factor in each node"],
+    "answer": [0, 2],
+    "explain": "<p>(A) is the amortised bound. (C) holds by definition of splaying.</p><p>(B) is false: a single access can cost O(n), but it pays for itself later. (D) is false: splay trees store no balance data.</p>"
+  },
+  {
+    "q": "A splay tree with n nodes receives the accesses 1, 2, 3, …, n (in order, each once). Which bound is correct for the total time?",
+    "options": ["O(n)", "Θ(n²)", "Θ(n log² n)", "O(1)"],
+    "answer": 0,
+    "explain": "<p>This is the sequential access property of splay trees: accessing all keys in sorted order costs O(n) in total, which is O(1) amortised per access. The first access may be expensive, but each splay leaves the next key just one or two steps below the root.</p><p>The general amortised bound alone would give O(n log n). The sharper O(n) is a known theorem for sequential access.</p>"
+  }
+]
