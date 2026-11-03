@@ -1,0 +1,63 @@
+[
+  {
+    "type": "tf",
+    "q": "Multi-tape Turing machines can recognise languages that single-tape Turing machines cannot.",
+    "answer": 1,
+    "explain": "False. A single tape can simulate k tapes side by side. Multi-tape machines are faster, but not more powerful."
+  },
+  {
+    "q": "A k-tape TM runs for t steps. Simulating it on a single-tape TM takes about…",
+    "options": ["O(t²) steps", "O(t) steps", "O(2ᵗ) steps", "O(log t) steps"],
+    "answer": 0,
+    "explain": "Each simulated step sweeps over the used part of the single tape, which is O(t) long. Over t steps that gives O(t²)."
+  },
+  {
+    "q": "A nondeterministic TM accepts w when…",
+    "options": ["at least one branch of its computation accepts", "every branch accepts", "the majority of branches accept", "the first branch it tries accepts"],
+    "answer": 0,
+    "explain": "As with NFAs and PDAs, nondeterministic acceptance needs just one successful branch."
+  },
+  {
+    "q": "To simulate an NDTM, a deterministic TM should explore the computation tree…",
+    "options": ["breadth-first", "depth-first", "in random order", "from the leaves up"],
+    "answer": 0,
+    "explain": "Depth-first could follow an infinite branch forever and miss an accepting branch elsewhere. Breadth-first finds any accepting branch at a finite depth."
+  },
+  {
+    "type": "tf",
+    "q": "Nondeterministic Turing machines recognise exactly the same languages as deterministic ones.",
+    "answer": 0,
+    "explain": "True. The breadth-first simulation shows it, though the simulation may take exponentially more time."
+  },
+  {
+    "q": "The deterministic simulation of an NDTM with branching factor b, accepting at depth t, can take time about…",
+    "options": ["bᵗ (exponential)", "t (linear)", "t²", "b · t"],
+    "answer": 0,
+    "explain": "There can be up to bᵗ branches at depth t. Whether this blow-up is avoidable is essentially the P vs NP question."
+  },
+  {
+    "q": "Which models are equivalent in power to a standard Turing machine?",
+    "type": "multi",
+    "options": ["A PDA with two stacks", "A TM with a semi-infinite tape", "A multi-track TM", "A PDA with one stack"],
+    "answer": [0, 1, 2],
+    "explain": "Two stacks can simulate a tape (one stack for each side of the head). A PDA with one stack only reaches the context-free languages."
+  },
+  {
+    "q": "In a multi-tape TM, the head moves are usually chosen from {L, R, S}. What does S mean?",
+    "options": ["Stay: the head does not move", "Skip the next cell", "Stop the machine", "Swap two tapes"],
+    "answer": 0,
+    "explain": "S lets a head stay where it is while the others move. It adds convenience, not power."
+  },
+  {
+    "q": "Which task does the 'guess and check' style of an NDTM suit?",
+    "options": ["Deciding whether n is composite: guess a factor, then check that it divides n", "Adding two unary numbers", "Copying a string", "Reading the input once from left to right"],
+    "answer": 0,
+    "explain": "Nondeterminism shines when a solution is hard to find but easy to verify, which is the hallmark of NP."
+  },
+  {
+    "q": "That so many different models (multi-tape, nondeterministic, two-stack, λ-calculus, real languages) all compute the same functions is evidence for…",
+    "options": ["the Church–Turing thesis", "the pumping lemma", "Arden's theorem", "the Myhill–Nerode theorem"],
+    "answer": 0,
+    "explain": "Every reasonable formalisation of 'algorithm' turns out equivalent to Turing machines. That robustness is the main argument for the thesis."
+  }
+]

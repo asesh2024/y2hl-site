@@ -1,0 +1,63 @@
+[
+  {
+    "q": "The transition function of a (deterministic) Turing machine has the type…",
+    "options": ["δ : Q × Γ → Q × Γ × {L, R}", "δ : Q × Σ → Q", "δ : Q × Σ × Γ → Q × Γ*", "δ : Q → Γ × {L, R}"],
+    "answer": 0,
+    "explain": "From the state and the symbol under the head, the TM chooses a new state, a symbol to write, and a direction to move."
+  },
+  {
+    "q": "What does δ(q₁, a) = (q₂, b, R) mean?",
+    "options": ["In q₁ reading a: write b, move right, go to q₂", "In q₁ reading b: write a, move right, go to q₂", "In q₂ reading a: write b, move left, go to q₁", "Push b on the stack and go to q₂"],
+    "answer": 0,
+    "explain": "The arguments are the current state and the scanned symbol. The result is the next state, the symbol written, and the head move."
+  },
+  {
+    "q": "In the ID <code>XX q₁ Yb</code>, which symbol is the head on?",
+    "options": ["Y", "X", "b", "The blank after b"],
+    "answer": 0,
+    "explain": "In α q β, the head is on the first symbol of β, immediately to the right of the state."
+  },
+  {
+    "q": "Which symbol is in Γ but never in Σ?",
+    "options": ["The blank B", "Every input symbol", "The start state q₀", "ε"],
+    "answer": 0,
+    "explain": "The tape alphabet Γ contains Σ, the blank B, and often marker symbols like X and Y. B is never an input symbol."
+  },
+  {
+    "type": "tf",
+    "q": "A Turing machine that halts has accepted its input.",
+    "answer": 1,
+    "explain": "False. A TM accepts only if it enters a final state. Halting in a non-final state, because no move is defined, is a rejection."
+  },
+  {
+    "type": "tf",
+    "q": "On some inputs, a Turing machine may run forever without halting.",
+    "answer": 0,
+    "explain": "True. This is exactly what separates recognisers from deciders (topic 24), and it leads to the halting problem (topic 25)."
+  },
+  {
+    "q": "The marking TM for aⁿbⁿ (mark an a with X, then the matching b with Y) is given <code>aabb</code>. What is on the tape when it accepts?",
+    "options": ["XXYY", "aabb", "XYXY", "BBBB"],
+    "answer": 0,
+    "explain": "Each round turns one a into X and one b into Y. After two rounds, q₃ checks that only Y's remain and accepts."
+  },
+  {
+    "q": "What can a TM do that a PDA cannot?",
+    "type": "multi",
+    "options": ["Move its head left over the input", "Overwrite symbols it has already read", "Recognise {aⁿbⁿcⁿ}", "Use a finite set of states"],
+    "answer": [0, 1, 2],
+    "explain": "Two-way movement and rewriting let a TM revisit and mark its input, which is enough for aⁿbⁿcⁿ. Both machines have finitely many states."
+  },
+  {
+    "q": "The marking TM for aⁿbⁿ is run on <code>aab</code>. What happens?",
+    "options": ["It halts and rejects: q₁ finds a blank where it needs a b", "It accepts", "It loops forever", "It halts in q₃ and accepts"],
+    "answer": 0,
+    "explain": "After matching the first a with the only b, the second a sends q₁ right past the Y to a blank. There is no move there, so it halts in a non-final state."
+  },
+  {
+    "q": "How many parts are in the standard formal definition of a Turing machine?",
+    "options": ["7: (Q, Σ, Γ, δ, q₀, B, F)", "5: (Q, Σ, δ, q₀, F)", "6: (Q, Σ, Δ, δ, λ, q₀)", "4: (V, T, P, S)"],
+    "answer": 0,
+    "explain": "A DFA has 5 parts, a Moore or Mealy machine 6, and a CFG 4. A TM adds the tape alphabet Γ and the blank B to the DFA's five."
+  }
+]

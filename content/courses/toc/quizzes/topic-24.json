@@ -1,0 +1,63 @@
+[
+  {
+    "q": "A language is <em>recursive</em> when…",
+    "options": ["some TM halts on every input and accepts exactly the strings in L", "some TM accepts exactly the strings in L, possibly looping on others", "some PDA accepts it", "it is infinite"],
+    "answer": 0,
+    "explain": "Recursive means decidable: there is an always-halting TM for L. RE only asks for a recogniser."
+  },
+  {
+    "q": "L is recursive if and only if…",
+    "options": ["both L and its complement are RE", "L is RE", "the complement of L is RE", "L is context-free"],
+    "answer": 0,
+    "explain": "Run recognisers for L and L̄ in parallel. One of them must accept every input, so the combined machine always halts with the right answer."
+  },
+  {
+    "q": "Which class of languages is <strong>not</strong> closed under complement?",
+    "options": ["Recursively enumerable languages", "Recursive languages", "Regular languages", "Context-sensitive languages"],
+    "answer": 0,
+    "explain": "If RE languages were closed under complement, every RE language would be recursive by the key theorem. A<sub>TM</sub> shows that is false."
+  },
+  {
+    "q": "A<sub>TM</sub> = {⟨M, w⟩ : M accepts w} is…",
+    "options": ["RE but not recursive", "recursive", "not RE", "regular"],
+    "answer": 0,
+    "explain": "A universal TM recognises A<sub>TM</sub> by simulating M on w. But no TM can decide it (topic 25)."
+  },
+  {
+    "q": "If L is RE but not recursive, then its complement is…",
+    "options": ["not RE", "recursive", "RE but not recursive", "regular"],
+    "answer": 0,
+    "explain": "If L̄ were RE too, then L would be recursive by the key theorem, which is a contradiction."
+  },
+  {
+    "q": "Which languages are recursive (decidable)?",
+    "type": "multi",
+    "options": ["A<sub>DFA</sub> = {⟨D, w⟩ : DFA D accepts w}", "Every context-free language", "A<sub>TM</sub> = {⟨M, w⟩ : TM M accepts w}", "HALT = {⟨M, w⟩ : M halts on w}"],
+    "answer": [0, 1],
+    "explain": "Simulating a DFA always halts, and CFG membership is decidable (for example with CYK). A<sub>TM</sub> and HALT are RE but undecidable."
+  },
+  {
+    "type": "tf",
+    "q": "Recursive languages are closed under union, intersection and complement.",
+    "answer": 0,
+    "explain": "True. Run the deciders one after the other and combine their answers. For complement, swap accept and reject."
+  },
+  {
+    "q": "A language is RE exactly when…",
+    "options": ["some enumerator can list all its strings", "some DFA accepts it", "its complement is finite", "it has a CFG"],
+    "answer": 0,
+    "explain": "An enumerator runs a recogniser on all strings, alternating steps, and prints each one that is accepted. This gives a list of L."
+  },
+  {
+    "q": "Why are most languages not RE?",
+    "options": ["There are countably many TMs but uncountably many languages", "Most languages are finite", "TMs have finite tapes", "Because of the pumping lemma"],
+    "answer": 0,
+    "explain": "Each TM has a finite description, so there are countably many. The subsets of Σ* are uncountable, so most languages have no TM at all."
+  },
+  {
+    "type": "tf",
+    "q": "Every context-sensitive language is recursive.",
+    "answer": 0,
+    "explain": "True. Membership in a CSL can be decided by searching the finitely many sentential forms of length ≤ |w|, or by simulating an LBA, which has finitely many configurations."
+  }
+]

@@ -1,0 +1,63 @@
+[
+  {
+    "q": "Run on an input, a Turing machine can…",
+    "type": "multi",
+    "options": ["halt and accept", "halt and reject", "run forever", "halt in two states at once"],
+    "answer": [0, 1, 2],
+    "explain": "Exactly one of accept, reject or loop happens. A deterministic TM is only ever in one state."
+  },
+  {
+    "q": "M <em>decides</em> L when…",
+    "options": ["L(M) = L and M halts on every input", "L(M) = L, even if M loops on some strings outside L", "M accepts every string", "M halts on every string in L"],
+    "answer": 0,
+    "explain": "A decider always halts, with a definite yes or no. A recogniser only has to accept the strings in L."
+  },
+  {
+    "type": "tf",
+    "q": "Every decidable language is Turing-recognisable.",
+    "answer": 0,
+    "explain": "True. A decider is a recogniser that also happens to halt on everything. The converse is false (topic 24)."
+  },
+  {
+    "q": "Which strings are in L(M)?",
+    "options": ["Exactly the strings that M accepts", "The strings on which M halts", "The strings that M rejects", "The strings on which M loops"],
+    "answer": 0,
+    "explain": "Rejected strings and looping strings are both outside L(M)."
+  },
+  {
+    "q": "The Church–Turing thesis says that…",
+    "options": ["every effectively computable function can be computed by a Turing machine", "every Turing machine halts", "P = NP", "Turing machines are faster than real computers"],
+    "answer": 0,
+    "explain": "It identifies the informal idea of 'algorithm' with Turing-machine computability."
+  },
+  {
+    "q": "Why is the Church–Turing statement called a <em>thesis</em> rather than a theorem?",
+    "options": ["'Effective procedure' is an informal notion, so it cannot be formally proved", "It has been disproved", "It only applies to finite automata", "It was never published"],
+    "answer": 0,
+    "explain": "You cannot prove a formal statement about an informal concept. The thesis is supported by every reasonable model of computation turning out to be equivalent."
+  },
+  {
+    "q": "M₁ recognises L₁ and M₂ recognises L₂. How should a TM recognise L₁ ∪ L₂?",
+    "options": ["Alternate steps of M₁ and M₂ on w, and accept if either accepts", "Run M₁ to completion, then run M₂", "Run M₂ only", "Accept if both accept"],
+    "answer": 0,
+    "explain": "If M₁ loops on w ∈ L₂, running it first would never let M₂ start. Dovetailing (interleaving the steps) avoids that."
+  },
+  {
+    "q": "The palindrome TM erases one symbol at each end per round. Why does it always halt?",
+    "options": ["Each round makes the remaining input shorter, so the rounds must end", "It has a final state", "It never moves left", "Palindromes are finite"],
+    "answer": 0,
+    "explain": "Every round removes two symbols, or stops early. With finitely many symbols, there are finitely many rounds, so the machine is a decider."
+  },
+  {
+    "type": "tf",
+    "q": "If a TM M does not accept w, then M rejects w.",
+    "answer": 1,
+    "explain": "False. M might loop forever on w. 'Not accepting' covers both rejecting and looping."
+  },
+  {
+    "q": "Which language can a TM decide but no PDA can recognise?",
+    "options": ["{ww | w ∈ {a, b}*}", "{aⁿbⁿ}", "{wcwᴿ}", "Palindromes"],
+    "answer": 0,
+    "explain": "{ww} is not context-free, but a TM can find the middle and compare the two halves. The others are context-free."
+  }
+]

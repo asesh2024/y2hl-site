@@ -1,0 +1,63 @@
+[
+  {
+    "q": "Match the grammar type to its machine: Type 1 (context-sensitive) corresponds to…",
+    "options": ["Linear bounded automata", "Pushdown automata", "Finite automata", "Turing machines"],
+    "answer": 0,
+    "explain": "Type 0 goes with Turing machines, type 1 with LBAs, type 2 with PDAs, and type 3 with finite automata."
+  },
+  {
+    "q": "Which is the correct order of strict inclusions?",
+    "options": ["regular ⊂ context-free ⊂ context-sensitive ⊂ recursively enumerable", "context-free ⊂ regular ⊂ context-sensitive ⊂ RE", "regular ⊂ context-sensitive ⊂ context-free ⊂ RE", "RE ⊂ context-sensitive ⊂ context-free ⊂ regular"],
+    "answer": 0,
+    "explain": "Each level of the Chomsky hierarchy strictly contains the one below it."
+  },
+  {
+    "q": "In the Chomsky hierarchy, what is the highest-numbered (most restrictive) type that {aⁿbⁿcⁿ | n ≥ 1} belongs to?",
+    "options": ["Type 1 (context-sensitive)", "Type 2 (context-free)", "Type 3 (regular)", "Only type 0"],
+    "answer": 0,
+    "explain": "It is not context-free (topic 17), but a noncontracting grammar generates it (topic 19)."
+  },
+  {
+    "q": "What does a universal Turing machine U take as input?",
+    "options": ["An encoding ⟨M, w⟩ of a TM M together with an input w", "Only the input string w", "A regular expression", "Two DFAs"],
+    "answer": 0,
+    "explain": "U reads the description of M and simulates M on w. The stored-program computer is built on the same idea."
+  },
+  {
+    "q": "HALT = {⟨M, w⟩ : M halts on w} is…",
+    "options": ["RE but not recursive", "recursive", "not RE", "context-free"],
+    "answer": 0,
+    "explain": "Simulating M on w recognises HALT: accept if the simulation stops. But the diagonal argument shows that no TM decides it."
+  },
+  {
+    "q": "In the diagonal proof, D(⟨M⟩) does the opposite of what H predicts about M on ⟨M⟩. Running D on ⟨D⟩ shows that…",
+    "options": ["D halts on ⟨D⟩ exactly when it does not, so H cannot exist", "D always halts", "H is a universal TM", "D never halts, so H exists"],
+    "answer": 0,
+    "explain": "Feeding the machine its own description creates the contradiction. The only assumption made was that H exists, so H cannot exist."
+  },
+  {
+    "type": "tf",
+    "q": "Because the halting problem is undecidable, no program can ever determine whether any specific program halts.",
+    "answer": 1,
+    "explain": "False. Many specific programs can be analysed. What is impossible is a single algorithm that is correct for every program and input."
+  },
+  {
+    "q": "To prove a new problem P undecidable using reductions, you show that…",
+    "options": ["a decider for P could be used to build a decider for HALT (or A<sub>TM</sub>)", "a decider for HALT could solve P", "P is RE", "P has a finite answer"],
+    "answer": 0,
+    "explain": "You reduce from the known undecidable problem to P. If P were decidable, HALT would be too, which is impossible."
+  },
+  {
+    "q": "Which problems about Turing machines are undecidable?",
+    "type": "multi",
+    "options": ["Is L(M) empty?", "Does M accept ε?", "Is L(M) regular?", "Does M have more than 10 states?"],
+    "answer": [0, 1, 2],
+    "explain": "The first three are properties of the language L(M), and Rice's theorem makes each of them undecidable. The number of states can simply be read from ⟨M⟩."
+  },
+  {
+    "q": "Type 3 grammars (regular) allow which productions?",
+    "options": ["A → aB, A → a, A → ε (or the left-linear forms)", "A → γ, for any string γ", "α → β with |α| ≤ |β|", "Any α → β"],
+    "answer": 0,
+    "explain": "Regular grammars are right-linear (or left-linear). The other rule forms belong to types 2, 1 and 0."
+  }
+]

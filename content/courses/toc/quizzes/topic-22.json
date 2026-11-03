@@ -1,0 +1,62 @@
+[
+  {
+    "q": "In unary notation, how is the pair (3, 2) usually written for a Turing machine?",
+    "options": ["<code>111011</code>", "<code>11010</code>", "<code>3 0 2</code>", "<code>110111</code>"],
+    "answer": 0,
+    "explain": "3 is 111 and 2 is 11, with a 0 as separator."
+  },
+  {
+    "q": "The unary-addition TM turns the separator 0 into a 1, then erases the last 1. On input <code>111011</code>, what does it leave on the tape?",
+    "options": ["<code>11111</code>", "<code>111111</code>", "<code>111011</code>", "<code>1111</code>"],
+    "answer": 0,
+    "explain": "Joining the blocks gives six 1s, one too many. Erasing the last one leaves five 1s, which is 3 + 2."
+  },
+  {
+    "q": "What is 'storage in the state'?",
+    "options": ["Using states like q[a] to remember a symbol, a finite amount of information", "Writing the state number on the tape", "Adding an extra tape for storage", "Saving the whole input inside the state"],
+    "answer": 0,
+    "explain": "The finite control can remember any bounded amount of information. It cannot hold the whole input, whose length is unbounded."
+  },
+  {
+    "type": "tf",
+    "q": "Adding multiple tracks to a Turing machine lets it compute functions that a single-track TM cannot.",
+    "answer": 1,
+    "explain": "False. A tuple of track symbols is just one bigger tape symbol. Multiple tracks are a design convenience, not extra power."
+  },
+  {
+    "q": "A TM increments a binary number written with the least significant bit first. What does <code>101</code> (which is 5) become?",
+    "options": ["<code>011</code>", "<code>110</code>", "<code>100</code>", "<code>1011</code>"],
+    "answer": 0,
+    "explain": "The first bit is 1: turn it into 0 and carry. The next bit is 0: write 1 and stop. The result 011, read with the LSB first, is 6."
+  },
+  {
+    "q": "What is the proper subtraction m ∸ n?",
+    "options": ["max(m − n, 0)", "|m − n|", "m − n, which may be negative", "n − m"],
+    "answer": 0,
+    "explain": "Proper (or monus) subtraction never goes below zero, so it stays a natural number, which a unary tape can represent."
+  },
+  {
+    "q": "A function f is <em>Turing-computable</em> when…",
+    "options": ["some TM, started with w on the tape, always halts with f(w) on the tape", "some DFA outputs f(w)", "f has a closed-form formula", "f is defined only on finitely many inputs"],
+    "answer": 0,
+    "explain": "The TM acts as a transducer: input w in, output f(w) out, halting on every input in the domain."
+  },
+  {
+    "q": "Which technique does the aⁿbⁿ machine from topic 21 rely on?",
+    "options": ["Checking off symbols (X, Y)", "Shifting over", "Multiple tapes", "Storage of the whole input in the state"],
+    "answer": 0,
+    "explain": "Each a used is replaced by X, and each matched b by Y. That keeps track of what has already been paired."
+  },
+  {
+    "q": "What is the usual idea for a TM that multiplies two unary numbers?",
+    "options": ["For each 1 of m, copy n to the end of the tape", "Add m and n, then square the result", "Convert to binary first", "Multiplication is not Turing-computable"],
+    "answer": 0,
+    "explain": "Repeated addition: a copy subroutine runs m times, each time appending n ones."
+  },
+  {
+    "q": "The unary-addition TM is given <code>0</code>, meaning 0 + 0. What does it leave on the tape?",
+    "options": ["An empty tape (0 in unary)", "<code>1</code>", "<code>0</code>", "It loops forever"],
+    "answer": 0,
+    "explain": "The 0 becomes 1, and the machine then erases the last 1, which is that same 1. The empty block means 0."
+  }
+]
