@@ -1,0 +1,27 @@
+[
+  {
+    "type": "nat",
+    "q": "Four cities have the symmetric cost matrix below (∞ on the diagonal). What is the root lower bound obtained by row reduction followed by column reduction?<pre>      1   2   3   4\n1     ∞   5   9   4\n2     5   ∞   6   8\n3     9   6   ∞   3\n4     4   8   3   ∞</pre>",
+    "answer": 16,
+    "explain": "<p>The row minima are 4, 5, 3 and 3, which total 15. After subtracting them:</p><pre>      1   2   3   4\n1     ∞   1   5   0\n2     0   ∞   1   3\n3     6   3   ∞   0\n4     1   5   0   ∞</pre><p>Column 2 still has minimum 1, and the other columns already contain a 0. The bound is 15 + 1 = 16.</p>"
+  },
+  {
+    "type": "nat",
+    "q": "For the same matrix, what is the cost of an optimal tour?",
+    "answer": 18,
+    "explain": "<p>With 4 cities and a symmetric matrix there are only 3 distinct tours:</p><pre>1-2-3-4-1: 5 + 6 + 3 + 4 = 18   ← optimal\n1-2-4-3-1: 5 + 8 + 3 + 9 = 25\n1-3-2-4-1: 9 + 6 + 8 + 4 = 27</pre>"
+  },
+  {
+    "type": "nat",
+    "q": "For the same matrix, after the root reduction (bound 16), what is the bound of the child node for the edge 1 → 2 in the reduced-cost-matrix method?",
+    "answer": 18,
+    "explain": "<p>In the reduced matrix A[1][2] = 0. Set row 1 and column 2 to ∞, and also A[2][1]:</p><pre>      1   2   3   4\n2     ∞   ∞   1   3\n3     6   ∞   ∞   0\n4     1   ∞   0   ∞</pre><p>Row 2 has minimum 1 and row 4 has minimum 0. After subtracting, column 1 has minimum 1. So the reduction is 1 + 1 = 2, and the bound is 16 + 0 + 2 = 18. This equals the optimal tour cost, so LC branch and bound reaches the answer quickly.</p>"
+  },
+  {
+    "type": "multi",
+    "q": "Which statements about branch and bound for TSP are true?",
+    "options": ["The bound of a complete tour (a leaf) equals its exact cost", "LC branch and bound usually expands fewer nodes than FIFO", "Reducing only the rows gives a bound at least as large as reducing rows and columns", "The worst-case running time is polynomial in n"],
+    "answer": [0, 1],
+    "explain": "<p>(A) is true when the final step keeps the edge back to the start, as on the page. (B) is true in practice: on the page's example LC expands 4 nodes and FIFO 12. (C) is false: column reduction can only add to the bound. (D) is false: TSP is NP-hard.</p>"
+  }
+]

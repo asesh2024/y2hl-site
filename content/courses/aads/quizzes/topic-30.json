@@ -1,0 +1,62 @@
+[
+  {
+    "q": "What does a Hamiltonian cycle do?",
+    "options": ["Visits every vertex exactly once and returns to the start", "Uses every edge exactly once", "Visits every vertex at least once", "Finds the shortest cycle"],
+    "answer": 0,
+    "explain": "Using every edge exactly once is an Euler circuit, which is a different and much easier problem."
+  },
+  {
+    "q": "Which problem has a simple polynomial-time test?",
+    "options": ["Does the graph have an Euler circuit?", "Does the graph have a Hamiltonian cycle?", "Does the graph have a Hamiltonian path?", "None of these"],
+    "answer": 0,
+    "explain": "A connected graph has an Euler circuit exactly when every vertex has even degree. The Hamiltonian problems are NP-complete."
+  },
+  {
+    "q": "How many Hamiltonian cycles does the complete graph K₅ have (each cycle counted once)?",
+    "options": ["12", "24", "120", "60"],
+    "answer": 0,
+    "explain": "(n − 1)! / 2 = 4! / 2 = 12. 24 would count each cycle in both directions."
+  },
+  {
+    "q": "In the backtracking search, when is vertex u allowed as the next vertex on the path?",
+    "options": ["When u is adjacent to the last vertex and not already on the path", "When u has the smallest degree", "When u is adjacent to the start vertex", "Always"],
+    "answer": 0,
+    "explain": "Adjacency to the start is checked only at the very end, to close the cycle."
+  },
+  {
+    "q": "The path contains all n vertices. When is it a Hamiltonian cycle?",
+    "options": ["When its last vertex is adjacent to its first vertex", "Always", "When n is even", "When every vertex has degree 2"],
+    "answer": 0,
+    "explain": "Otherwise it is only a Hamiltonian path, and the search must backtrack."
+  },
+  {
+    "type": "tf",
+    "q": "Every connected graph in which every vertex has degree at least 2 has a Hamiltonian cycle.",
+    "answer": 1,
+    "explain": "False. The Petersen graph is connected and 3-regular, yet has no Hamiltonian cycle."
+  },
+  {
+    "q": "Why does the complete bipartite graph K₂,₃ have no Hamiltonian cycle?",
+    "options": ["A cycle must alternate sides, so both sides need the same number of vertices", "It is not connected", "It has a vertex of degree 1", "It has an odd number of edges"],
+    "answer": 0,
+    "explain": "Every edge goes between the two sides, so a cycle through all vertices would need 2 = 3."
+  },
+  {
+    "q": "What is the worst-case running time of the backtracking search on n vertices?",
+    "options": ["O(n!)", "O(n²)", "O(2ⁿ)", "O(n log n)"],
+    "answer": 0,
+    "explain": "It can try every ordering of the other n − 1 vertices. Dynamic programming over subsets improves this to O(2ⁿ · n²)."
+  },
+  {
+    "type": "tf",
+    "q": "Each Hamiltonian cycle of an undirected graph is found twice by a search that does not check direction.",
+    "answer": 0,
+    "explain": "True. From a fixed start, 1-2-3-4-1 and 1-4-3-2-1 are the same cycle. The page's code keeps only the version with path[1] < path[−1]."
+  },
+  {
+    "q": "A knight's tour of a chessboard is an example of which problem?",
+    "options": ["Hamiltonian path", "Euler path", "Minimum spanning tree", "Graph colouring"],
+    "answer": 0,
+    "explain": "Squares are vertices and knight moves are edges. The tour must visit every square exactly once."
+  }
+]

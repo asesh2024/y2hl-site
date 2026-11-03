@@ -1,0 +1,27 @@
+[
+  {
+    "type": "nat",
+    "q": "The formula (x1 ∨ ¬x2 ∨ x3) ∧ (¬x1 ∨ x2 ∨ x3) ∧ (x1 ∨ x2 ∨ ¬x3) is converted to a clique instance: one vertex per literal occurrence, and an edge between two vertices exactly when they are in different clauses and are not complementary literals. How many edges does the graph have?",
+    "answer": 21,
+    "explain": "<p>There are 3 clauses with 3 literals each, so 3 × (3 · 3) = 27 pairs of vertices in different clauses. Remove the complementary pairs:</p><pre>C1 x1  – C2 ¬x1      C1 ¬x2 – C2 x2\nC1 ¬x2 – C3 x2       C1 x3  – C3 ¬x3\nC2 x3  – C3 ¬x3      C2 ¬x1 – C3 x1</pre><p>27 − 6 = 21.</p>"
+  },
+  {
+    "type": "nat",
+    "q": "A graph G has 10 vertices, and its largest clique has 4 vertices. What is the size of a minimum vertex cover of the complement graph of G?",
+    "answer": 6,
+    "explain": "<p>S is a clique in G if and only if V − S is a vertex cover of the complement. So the minimum cover has size n − (maximum clique) = 10 − 4 = 6.</p>"
+  },
+  {
+    "q": "Let A ≤ₚ B denote a polynomial-time reduction from A to B. Suppose A is NP-complete and B is in NP. Which statement is correct?",
+    "options": ["B is NP-complete", "B is in P", "A is in P", "B is not NP-hard"],
+    "answer": 0,
+    "explain": "<p>Every NP problem reduces to A, and A reduces to B. Reductions compose, so B is NP-hard. Together with B ∈ NP, B is NP-complete.</p>"
+  },
+  {
+    "type": "multi",
+    "q": "Assume P ≠ NP. Which of the following statements are true?",
+    "options": ["3-SAT cannot be solved in polynomial time", "2-SAT can be solved in polynomial time", "Every problem in NP is NP-complete", "The halting problem is NP-hard"],
+    "answer": [0, 1, 3],
+    "explain": "<p>(A) If 3-SAT were in P, every NP problem would be, so P = NP. (B) 2-SAT is in P whatever the answer to P vs NP. (C) is false: problems in P are in NP but not NP-complete when P ≠ NP. (D) is true: any NP problem can be reduced to halting.</p>"
+  }
+]

@@ -1,0 +1,62 @@
+[
+  {
+    "q": "What does branch and bound use that plain backtracking does not?",
+    "options": ["A bound on the best value reachable below each node, compared with the best solution so far", "Recursion", "A feasibility test", "A state space tree"],
+    "answer": 0,
+    "explain": "Both use a state space tree and feasibility tests. Branch and bound also prunes nodes that cannot beat the current best."
+  },
+  {
+    "q": "For a maximisation knapsack, which bound is used at a node?",
+    "options": ["Value so far plus the fractional-knapsack value of the remaining items", "Value so far only", "Sum of all remaining values, ignoring weight", "The greedy 0/1 value"],
+    "answer": 0,
+    "explain": "The fractional value is an upper bound: allowing fractions can only help. Ignoring weight entirely would also be an upper bound, but a much weaker one."
+  },
+  {
+    "q": "Which data structure holds the live nodes in least-cost (LC) branch and bound?",
+    "options": ["A priority queue", "A FIFO queue", "A stack", "A hash table"],
+    "answer": 0,
+    "explain": "LC always expands the live node with the best bound. A queue gives FIFO branch and bound, and a stack behaves like backtracking."
+  },
+  {
+    "q": "W = 10. Items (weight, value) in ratio order: (3, 30), (4, 32), (5, 35), (6, 30). What is the root's upper bound?",
+    "options": ["83", "62", "97", "127"],
+    "answer": 0,
+    "explain": "Take items 1 and 2 (weight 7, value 62), then 3/5 of item 3: 62 + 21 = 83."
+  },
+  {
+    "q": "A live node has upper bound 64 and the best complete solution found so far is 65. What happens to it?",
+    "options": ["It is pruned", "It is expanded next", "It becomes the new best", "It is moved to the back of the queue"],
+    "answer": 0,
+    "explain": "Nothing below it can reach more than 64, which is less than 65."
+  },
+  {
+    "type": "tf",
+    "q": "Branch and bound guarantees a polynomial running time for the 0/1 knapsack problem.",
+    "answer": 1,
+    "explain": "False. In the worst case it may still explore an exponential number of nodes."
+  },
+  {
+    "q": "Why must items be sorted by value/weight before computing the fractional bound?",
+    "options": ["Otherwise the bound can be too small and wrongly prune the optimum", "To make the heap work", "To find the answer in O(n)", "It is not necessary"],
+    "answer": 0,
+    "explain": "The fractional optimum fills the capacity in ratio order. Any other order may give a value below the true fractional optimum, which is then not a valid upper bound."
+  },
+  {
+    "type": "tf",
+    "q": "When a 'take item i' child is feasible, its value so far is a valid solution and may update the best.",
+    "answer": 0,
+    "explain": "True. Leaving all later items out is always allowed, so any feasible partial selection is a complete solution."
+  },
+  {
+    "q": "What is the main advantage of branch and bound over the DP of topic 27 for 0/1 knapsack?",
+    "options": ["Its running time does not grow with the capacity W", "It is always polynomial", "It uses no memory", "It never needs sorting"],
+    "answer": 0,
+    "explain": "The DP is Θ(n·W), which is hopeless for huge W. Branch and bound depends on how well it prunes, not on the size of W."
+  },
+  {
+    "q": "FIFO branch and bound explores the state space tree in which order?",
+    "options": ["Level by level (breadth-first)", "Depth-first", "Best bound first", "Random"],
+    "answer": 0,
+    "explain": "A queue processes nodes in the order they were generated, one level at a time."
+  }
+]

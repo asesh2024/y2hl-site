@@ -1,0 +1,62 @@
+[
+  {
+    "q": "Backtracking explores the state space tree in which order?",
+    "options": ["Depth-first", "Breadth-first", "By least cost first", "Randomly"],
+    "answer": 0,
+    "explain": "It extends one partial solution as far as possible and goes back only when stuck. Branch and bound (topics 31–32) uses breadth-first or least-cost order."
+  },
+  {
+    "q": "What is the bounding function in backtracking?",
+    "options": ["A test that kills a partial solution which cannot lead to a valid answer", "A limit on the recursion depth", "The cost of the best solution so far", "A function that sorts the choices"],
+    "answer": 0,
+    "explain": "If the test fails, the whole subtree below that node is skipped. For N-Queens the test is 'the new queen is not attacked'."
+  },
+  {
+    "q": "Queens are at (row, column) = (1, 2) and (2, 4). Can a third queen go at (3, 1)?",
+    "options": ["Yes", "No, same column as a queen", "No, same diagonal as (1, 2)", "No, same diagonal as (2, 4)"],
+    "answer": 0,
+    "explain": "Column 1 is free. |1 − 2| = 1 ≠ 3 − 1 = 2 and |1 − 4| = 3 ≠ 3 − 2 = 1, so no diagonal clash. This is the partial solution (2, 4, 1) that leads to (2, 4, 1, 3)."
+  },
+  {
+    "q": "How many solutions does the 4-Queens problem have?",
+    "options": ["2", "1", "4", "0"],
+    "answer": 0,
+    "explain": "(2, 4, 1, 3) and its mirror image (3, 1, 4, 2)."
+  },
+  {
+    "q": "How many solutions does the 8-Queens problem have?",
+    "options": ["92", "12", "64", "40"],
+    "answer": 0,
+    "explain": "92 in total. Grouping rotations and reflections together leaves 12 essentially different ones."
+  },
+  {
+    "q": "Two queens at (r1, c1) and (r2, c2) are on the same diagonal exactly when…",
+    "options": ["|c1 − c2| = |r1 − r2|", "c1 + c2 = r1 + r2", "c1 − c2 = r1 + r2", "r1 = r2"],
+    "answer": 0,
+    "explain": "Moving along a diagonal changes the row and the column by the same amount."
+  },
+  {
+    "type": "tf",
+    "q": "Backtracking always runs in polynomial time because it prunes the tree.",
+    "answer": 1,
+    "explain": "False. Pruning helps a lot in practice, but the worst case is still exponential."
+  },
+  {
+    "q": "What must the code do right after the recursive call returns?",
+    "options": ["Undo the choice that was made before the call", "Print the board", "Stop the search", "Sort the remaining choices"],
+    "answer": 0,
+    "explain": "Removing the queen (and its column and diagonals) restores the state so the next choice starts from a correct board."
+  },
+  {
+    "q": "In the Python code, all squares on one '\\' diagonal share which value?",
+    "options": ["r − c", "r + c", "r · c", "max(r, c)"],
+    "answer": 0,
+    "explain": "Moving down-right adds 1 to both r and c, so r − c stays the same. The '/' diagonals share r + c."
+  },
+  {
+    "q": "Which problem is NOT usually solved by backtracking?",
+    "options": ["Single-source shortest paths with non-negative weights", "Sum of subsets", "Graph colouring", "Hamiltonian cycle"],
+    "answer": 0,
+    "explain": "Dijkstra solves shortest paths in polynomial time. The other three are NP-hard search problems where backtracking is the standard exact method."
+  }
+]

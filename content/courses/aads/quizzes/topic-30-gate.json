@@ -1,0 +1,27 @@
+[
+  {
+    "type": "nat",
+    "q": "How many distinct Hamiltonian cycles does the complete graph K₆ have? (A cycle and its reverse are the same cycle, and so are its rotations.)",
+    "answer": 60,
+    "explain": "<p>Fix vertex 1 as the start to remove rotations. The other 5 vertices can follow in 5! = 120 orders. Each cycle is counted twice, once per direction:</p><pre>(6 − 1)! / 2 = 120 / 2 = 60</pre>"
+  },
+  {
+    "type": "nat",
+    "q": "The 3-dimensional cube graph has 8 vertices labelled 000 to 111, and two vertices are adjacent when their labels differ in exactly one bit. How many distinct Hamiltonian cycles does it have (each cycle counted once, ignoring the start and the direction)?",
+    "answer": 6,
+    "explain": "<p>Fix 000 as the start. An exhaustive backtracking search over orderings of the other 7 vertices finds 12 cycles; each cycle appears once in each direction, so there are 12 / 2 = 6. One of them is the Gray code 000 → 001 → 011 → 010 → 110 → 111 → 101 → 100 → 000.</p>"
+  },
+  {
+    "q": "Which of these graphs has a Hamiltonian cycle?",
+    "options": ["K₃,₃", "K₂,₃", "The Petersen graph", "A tree with 5 vertices"],
+    "answer": 0,
+    "explain": "<p>K₃,₃ does: 1 → 4 → 2 → 5 → 3 → 6 → 1 alternates sides. K₂,₃ has unequal sides, the Petersen graph is a well-known non-Hamiltonian graph, and a tree has no cycles at all.</p>"
+  },
+  {
+    "type": "multi",
+    "q": "Which statements are true?",
+    "options": ["Deciding whether a graph has a Hamiltonian cycle is NP-complete", "Deciding whether a connected graph has an Euler circuit takes polynomial time", "A bipartite graph with an odd number of vertices has no Hamiltonian cycle", "A graph with a vertex of degree 1 can still have a Hamiltonian cycle"],
+    "answer": [0, 1, 2],
+    "explain": "<p>(A) and (B) are standard. (C) is true: a cycle in a bipartite graph alternates sides, so it has an even length. (D) is false: on a cycle, every vertex is entered once and left once, so it needs degree at least 2.</p>"
+  }
+]

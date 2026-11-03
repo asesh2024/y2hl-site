@@ -1,0 +1,62 @@
+[
+  {
+    "q": "What is the travelling salesperson problem asking for?",
+    "options": ["A minimum-cost cycle that visits every city exactly once", "A minimum spanning tree", "The shortest path between two cities", "A cycle using every road exactly once"],
+    "answer": 0,
+    "explain": "It is a minimum-cost Hamiltonian cycle. Using every road once would be an Euler circuit."
+  },
+  {
+    "q": "How many different tours start at a fixed city in a TSP with n cities and an asymmetric cost matrix?",
+    "options": ["(n − 1)!", "n!", "2ⁿ", "n²"],
+    "answer": 0,
+    "explain": "The other n − 1 cities can be visited in any order. If the matrix is symmetric, each tour and its reverse cost the same, which halves this."
+  },
+  {
+    "q": "Why is the total subtracted by reducing the cost matrix a lower bound on every tour?",
+    "options": ["Every tour uses exactly one entry from each row and each column", "Because the matrix is symmetric", "Because the smallest entries form a tour", "Because the diagonal is ∞"],
+    "answer": 0,
+    "explain": "A tour leaves each city once (one entry per row) and enters each city once (one per column), so it pays at least each row's and each column's minimum."
+  },
+  {
+    "q": "The rows of a 4 × 4 cost matrix have minima 10, 8, 7 and 6. After subtracting them, the column minima are 0, 0, 0 and 1. What is the root bound?",
+    "options": ["32", "31", "1", "33"],
+    "answer": 0,
+    "explain": "31 from the rows plus 1 from the columns."
+  },
+  {
+    "q": "To compute the child for edge (i, j), which entries are set to ∞ before reducing?",
+    "options": ["Row i, column j and the entry (j, start)", "Only the entry (i, j)", "Row j and column i", "The whole diagonal"],
+    "answer": 0,
+    "explain": "City i is left only once and city j is entered only once. Blocking (j, start) stops the tour from closing early."
+  },
+  {
+    "q": "What is the bound of the child for edge (i, j)?",
+    "options": ["bound(parent) + A[i][j] + reduction of the child matrix", "bound(parent) + cost[i][j]", "reduction of the child matrix only", "bound(parent) − A[i][j]"],
+    "answer": 0,
+    "explain": "A is the parent's reduced matrix: its entry (i, j) is the extra cost of using that edge above what the bound already counts."
+  },
+  {
+    "q": "Which live node does LC branch and bound expand next in a minimisation problem?",
+    "options": ["The one with the smallest lower bound", "The oldest one", "The newest one", "The one with the largest bound"],
+    "answer": 0,
+    "explain": "Least-cost means the most promising node first. FIFO takes the oldest node."
+  },
+  {
+    "type": "tf",
+    "q": "In FIFO branch and bound, the first complete tour found is always optimal.",
+    "answer": 1,
+    "explain": "False. In the page's example FIFO first finds a tour of cost 54 and only later the optimal 38."
+  },
+  {
+    "q": "On the 4-city example on this page, how many nodes do LC and FIFO expand?",
+    "options": ["LC 4, FIFO 12", "LC 12, FIFO 4", "Both 16", "Both 4"],
+    "answer": 0,
+    "explain": "LC goes straight down the cheapest branch; FIFO must finish two whole levels first."
+  },
+  {
+    "type": "tf",
+    "q": "The reduced-matrix bound works for asymmetric cost matrices as well as symmetric ones.",
+    "answer": 0,
+    "explain": "True. The argument (one entry per row and per column) never uses symmetry."
+  }
+]

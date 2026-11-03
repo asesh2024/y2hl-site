@@ -1,0 +1,62 @@
+[
+  {
+    "q": "A problem B is NP-complete when…",
+    "options": ["B is in NP and every problem in NP reduces to B in polynomial time", "B is not in P", "B needs exponential time", "B reduces to every problem in NP"],
+    "answer": 0,
+    "explain": "NP-complete = in NP + NP-hard. Nobody has proved that NP-complete problems need exponential time."
+  },
+  {
+    "q": "What does the Cook–Levin theorem state?",
+    "options": ["SAT is NP-complete", "P ≠ NP", "3-SAT is in P", "Every NP problem can be solved in exponential time"],
+    "answer": 0,
+    "explain": "It was the first NP-completeness proof. Every later one reduces from SAT, directly or through a chain of reductions."
+  },
+  {
+    "q": "To show that a new problem B is NP-hard, you reduce…",
+    "options": ["a known NP-complete problem to B", "B to a known NP-complete problem", "B to a problem in P", "B to itself"],
+    "answer": 0,
+    "explain": "A ≤ₚ B means B is at least as hard as A. Reducing B to SAT would only show B ∈ NP."
+  },
+  {
+    "q": "If A ≤ₚ B and B can be solved in polynomial time, what follows?",
+    "options": ["A can be solved in polynomial time", "B is NP-complete", "A is NP-hard", "Nothing"],
+    "answer": 0,
+    "explain": "Transform the A instance in polynomial time, then run B's algorithm."
+  },
+  {
+    "q": "In the 3-SAT to CDP reduction, two literal-vertices are joined by an edge when…",
+    "options": ["they are in different clauses and are not x and ¬x", "they are in the same clause", "they are the same literal", "they are x and ¬x"],
+    "answer": 0,
+    "explain": "A clique then picks one non-contradictory literal from each clause."
+  },
+  {
+    "q": "A formula has k clauses. The CDP instance asks for a clique of what size?",
+    "options": ["k", "3k", "number of variables", "k − 1"],
+    "answer": 0,
+    "explain": "One vertex per clause: one true literal in each clause."
+  },
+  {
+    "q": "G has n vertices and a clique of size k. What does its complement G′ have?",
+    "options": ["A node cover of size n − k", "A node cover of size k", "A clique of size n − k", "A Hamiltonian cycle"],
+    "answer": 0,
+    "explain": "The vertices outside the clique touch every edge of G′, because G′ has no edge inside the clique."
+  },
+  {
+    "type": "tf",
+    "q": "2-SAT is NP-complete.",
+    "answer": 1,
+    "explain": "False. 2-SAT is solvable in linear time with an implication graph and strongly connected components. 3-SAT is NP-complete."
+  },
+  {
+    "type": "tf",
+    "q": "Every NP-hard problem is in NP.",
+    "answer": 1,
+    "explain": "False. The halting problem is NP-hard but undecidable. Optimisation versions of NP-complete problems are NP-hard but are not decision problems."
+  },
+  {
+    "q": "If someone found a polynomial-time algorithm for the node cover decision problem, what would follow?",
+    "options": ["P = NP", "P ≠ NP", "Only NCDP would be in P", "SAT would become undecidable"],
+    "answer": 0,
+    "explain": "NCDP is NP-complete, so every problem in NP reduces to it."
+  }
+]

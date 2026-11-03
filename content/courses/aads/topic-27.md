@@ -5,7 +5,7 @@ co: "CO3"
 description: "Choose a subset of items, each taken whole or not at all, to get the most value within a weight limit. Greedy fails here, and a table indexed by item and capacity solves it in O(n·W)."
 outcomes: ["State the 0/1 knapsack problem and explain why greedy by value/weight fails", "Write the knapsack recurrence and fill the table by hand", "Trace back through the table to find the chosen items", "Explain why O(n·W) is pseudo-polynomial"]
 reading: ["Textbook 1, §16.2 (0/1 vs fractional knapsack) and Ch. 15 Dynamic programming", "Textbook 2, §5.7 0/1 knapsack", "Textbook 5, Ch. on dynamic programming"]
-videos: [{"title": "NPTEL: Design and Analysis of Algorithms (dynamic programming lectures)", "url": "https://nptel.ac.in/courses/106106131"}]
+videos: [{"title": "Coursera: Algorithmic Toolbox (dynamic programming: knapsack)", "url": "https://www.coursera.org/learn/algorithmic-toolbox"}]
 ---
 
 ### Intuition

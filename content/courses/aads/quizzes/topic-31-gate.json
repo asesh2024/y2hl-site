@@ -1,0 +1,27 @@
+[
+  {
+    "type": "nat",
+    "q": "A 0/1 knapsack has capacity 16 and items (weight, value): (2, 40), (5, 30), (10, 50), (5, 10). Branch and bound uses the fractional-knapsack upper bound. What is the upper bound at the root?",
+    "answer": 115,
+    "explain": "<p>The ratios are 20, 6, 5 and 2, already in order. Take item 1 and item 2 whole, then fill the rest with part of item 3:</p><pre>items 1, 2: weight 7, value 70\nremaining capacity 9 → 9/10 of item 3 = 45\nbound = 70 + 45 = 115</pre>"
+  },
+  {
+    "type": "nat",
+    "q": "For the same instance (capacity 16; items (2, 40), (5, 30), (10, 50), (5, 10)), what is the optimal 0/1 knapsack value?",
+    "answer": 90,
+    "explain": "<p>Items 1 and 3 weigh 12 and are worth 90. The other options are worse:</p><pre>{1,2,4} w=12 v=80\n{1,3}   w=12 v=90   ← best\n{1,2}   w=7  v=70\n{2,3}   w=15 v=80</pre><p>Items 1, 2 and 3 together weigh 17, which is over the capacity.</p>"
+  },
+  {
+    "q": "In LC branch and bound for a maximisation problem, the best solution found so far has value 65. Four live nodes have upper bounds 72, 60, 65 and 70. How many of them can be pruned immediately?",
+    "options": ["2", "1", "3", "0"],
+    "answer": 0,
+    "explain": "<p>A node is pruned when its bound is at most the best value: 60 ≤ 65 and 65 ≤ 65. The nodes with bounds 72 and 70 might still contain a better solution, and LC expands the 72 node next.</p>"
+  },
+  {
+    "type": "multi",
+    "q": "Which statements about branch and bound are true?",
+    "options": ["FIFO branch and bound keeps live nodes in a queue", "LC branch and bound expands the live node with the best bound", "A node whose bound is worse than the best known solution can be discarded", "Branch and bound always explores fewer nodes than backtracking"],
+    "answer": [0, 1, 2],
+    "explain": "<p>(A), (B) and (C) describe the method. (D) is false: it usually helps, but there is no such guarantee, and both are exponential in the worst case.</p>"
+  }
+]

@@ -1,0 +1,62 @@
+[
+  {
+    "q": "What does NP stand for?",
+    "options": ["Nondeterministic polynomial time", "Not polynomial", "Non-parallel", "Numeric problems"],
+    "answer": 0,
+    "explain": "Problems solvable in polynomial time by a nondeterministic algorithm. It does not mean 'not polynomial'."
+  },
+  {
+    "q": "Which statement about P and NP is known to be true?",
+    "options": ["P ⊆ NP", "P = NP", "P ≠ NP", "NP ⊆ P"],
+    "answer": 0,
+    "explain": "A deterministic algorithm is a nondeterministic one that never uses choice. Whether P = NP is an open problem."
+  },
+  {
+    "q": "What does choice(S) do in a nondeterministic algorithm?",
+    "options": ["Picks an element of S that leads to success, if one exists", "Picks a random element of S", "Picks the smallest element of S", "Tries every element of S in turn"],
+    "answer": 0,
+    "explain": "It is an idealised 'lucky guess'. Trying every element in turn is how a deterministic machine has to simulate it."
+  },
+  {
+    "q": "A problem is in NP if, for every 'yes' instance…",
+    "options": ["a certificate exists that can be verified in polynomial time", "it can be solved in polynomial time", "no polynomial algorithm exists", "a certificate can be found in polynomial time"],
+    "answer": 0,
+    "explain": "Checking must be fast; finding the certificate may be slow. Solving it in polynomial time would put it in P."
+  },
+  {
+    "q": "Which is the decision version of the travelling salesperson problem?",
+    "options": ["Is there a tour of cost at most k?", "What is the cheapest tour?", "List all tours", "Which city should be visited first?"],
+    "answer": 0,
+    "explain": "Complexity classes are defined for yes/no questions."
+  },
+  {
+    "q": "Which of these problems is known to be in P?",
+    "options": ["Is there an Euler circuit?", "Is there a Hamiltonian cycle?", "Is the graph 3-colourable?", "Is there a subset with sum exactly T?"],
+    "answer": 0,
+    "explain": "The Euler test only checks degrees and connectivity. The other three are NP-complete."
+  },
+  {
+    "type": "tf",
+    "q": "Sorting (as a decision problem, e.g. 'is this array a sorted permutation of that one?') is in NP.",
+    "answer": 0,
+    "explain": "True. It is in P, and P ⊆ NP. Being in NP says nothing about being hard."
+  },
+  {
+    "q": "How long does verifying a subset-sum certificate (a list of indices) take?",
+    "options": ["O(n)", "O(2ⁿ)", "O(n!)", "O(n³)"],
+    "answer": 0,
+    "explain": "Check the indices are distinct and valid, and add up the chosen numbers."
+  },
+  {
+    "type": "tf",
+    "q": "The O(n·W) dynamic program shows that the 0/1 knapsack decision problem is in P.",
+    "answer": 1,
+    "explain": "False. W takes only about log W bits to write down, so n·W can be exponential in the input length. The algorithm is pseudo-polynomial."
+  },
+  {
+    "q": "How many branches can a deterministic simulation of n binary choices need to explore?",
+    "options": ["2ⁿ", "n", "n²", "2n"],
+    "answer": 0,
+    "explain": "Each choice doubles the number of possible computation paths."
+  }
+]

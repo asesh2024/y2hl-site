@@ -1,0 +1,62 @@
+[
+  {
+    "q": "What is the chromatic number χ(G) of a graph?",
+    "options": ["The fewest colours needed so that adjacent vertices differ", "The number of edges", "The largest degree", "The number of connected components"],
+    "answer": 0,
+    "explain": "For example, a triangle needs 3 colours, and any bipartite graph with at least one edge needs exactly 2."
+  },
+  {
+    "q": "What is χ of a cycle with 7 vertices?",
+    "options": ["3", "2", "7", "4"],
+    "answer": 0,
+    "explain": "Odd cycles are not bipartite, so 2 colours fail. Alternating two colours and using a third for the last vertex works."
+  },
+  {
+    "q": "What is χ of the complete graph Kₙ?",
+    "options": ["n", "2", "n − 1", "3"],
+    "answer": 0,
+    "explain": "Every pair of vertices is adjacent, so all n colours must be different."
+  },
+  {
+    "q": "In m-colouring backtracking, when may vertex v receive colour c?",
+    "options": ["When no already-coloured neighbour of v has colour c", "When c is the smallest colour", "When v has degree less than c", "Always"],
+    "answer": 0,
+    "explain": "This is the bounding function. Uncoloured neighbours are checked later, when their turn comes."
+  },
+  {
+    "q": "In the Sudoku-as-a-graph view, what are the vertices and edges?",
+    "options": ["Cells; edges join cells in the same row, column or box", "Digits; edges join equal digits", "Rows; edges join adjacent rows", "Boxes; edges join neighbouring boxes"],
+    "answer": 0,
+    "explain": "A valid Sudoku is then a proper colouring with 9 colours that agrees with the given clues."
+  },
+  {
+    "type": "tf",
+    "q": "Deciding whether a graph can be coloured with 2 colours is NP-complete.",
+    "answer": 1,
+    "explain": "False. 2-colourability is the same as being bipartite, which BFS checks in O(V + E). It is 3-colourability that is NP-complete."
+  },
+  {
+    "q": "What is the worst-case number of colour assignments tried by m-colouring backtracking on n vertices?",
+    "options": ["O(mⁿ)", "O(n·m)", "O(n²)", "O(m!)"],
+    "answer": 0,
+    "explain": "Each of the n vertices can take m colours, so the tree has up to mⁿ leaves."
+  },
+  {
+    "q": "In a 9 × 9 Sudoku, for cell (r, c) with 0-based indices, where does its 3 × 3 box start?",
+    "options": ["Row r − r mod 3, column c − c mod 3", "Row r / 3, column c / 3", "Row 3r, column 3c", "Row r mod 3, column c mod 3"],
+    "answer": 0,
+    "explain": "For example, cell (5, 7) is in the box that starts at (3, 6)."
+  },
+  {
+    "type": "tf",
+    "q": "Colouring vertices in a fixed order with the smallest free colour (greedy) always uses χ(G) colours.",
+    "answer": 1,
+    "explain": "False. A bad vertex order can make greedy use many more colours than needed, even on bipartite graphs."
+  },
+  {
+    "q": "Exam timetabling: subjects are vertices and an edge joins two subjects that share a student. What does a colour stand for?",
+    "options": ["A time slot", "A student", "A room", "A subject"],
+    "answer": 0,
+    "explain": "Subjects with an edge between them must be in different slots. The chromatic number is the fewest slots needed."
+  }
+]

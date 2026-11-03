@@ -1,0 +1,27 @@
+[
+  {
+    "type": "nat",
+    "q": "In how many ways can the vertices of a cycle with 5 vertices be properly coloured using at most 3 colours? (Colourings that differ by a renaming of colours are counted as different.)",
+    "answer": 30,
+    "explain": "<p>The number of proper k-colourings of a cycle Cₙ is (k − 1)ⁿ + (−1)ⁿ(k − 1). For n = 5, k = 3:</p><pre>2⁵ + (−1)⁵ · 2 = 32 − 2 = 30</pre><p>Counting all 3⁵ = 243 assignments by program gives the same 30.</p>"
+  },
+  {
+    "q": "A wheel graph is a cycle of 5 vertices plus a centre vertex joined to all 5. What is its chromatic number?",
+    "options": ["4", "3", "5", "6"],
+    "answer": 0,
+    "explain": "<p>The 5-cycle alone needs 3 colours, because it is an odd cycle. The centre is adjacent to all five rim vertices, so it needs a colour none of them uses: 3 + 1 = 4.</p>"
+  },
+  {
+    "type": "nat",
+    "q": "A graph has vertices A, B, C, D, E and edges A–B, A–C, B–C, B–D, C–D, D–E. How many proper colourings use at most 3 colours?",
+    "answer": 12,
+    "explain": "<p>Colour the triangle A, B, C: 3 · 2 · 1 = 6 ways. D is adjacent to B and C, so it must take A's colour: 1 way. E is adjacent only to D: 2 ways.</p><pre>6 × 1 × 2 = 12</pre>"
+  },
+  {
+    "type": "multi",
+    "q": "Which statements are true?",
+    "options": ["A graph is 2-colourable if and only if it has no odd cycle", "Deciding 3-colourability is NP-complete", "Every planar graph can be coloured with 4 colours", "A graph containing a triangle can always be 3-coloured"],
+    "answer": [0, 1, 2],
+    "explain": "<p>(A) is the bipartite test. (B) is a classic NP-completeness result. (C) is the Four Colour Theorem. (D) is false: K₄ contains triangles and needs 4 colours.</p>"
+  }
+]
