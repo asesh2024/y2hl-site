@@ -18,6 +18,10 @@ At the end of each course outcome there is a **CO test**: 20 questions drawn at 
 
 All code on this site is plain **Python 3.10 or later**, using only the standard library.
 
+**No installation needed to start.** Every program on a topic page has a **Run** button: Python runs inside your browser, on your own device. Press **Edit** to change the code, then **Run** again. The first run downloads about 10 MB, and your edits are lost when you leave the page, so keep anything you want in your own files.
+
+For lab work and bigger programs, install Python yourself:
+
 1. Install Python from [python.org](https://www.python.org/downloads/). On Windows, tick *Add Python to PATH*.
 2. Save a program as, for example, `bst.py`, and run it:
 

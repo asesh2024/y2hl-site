@@ -341,8 +341,29 @@ figure.dot polygon[fill="black"] { fill: var(--ink); }
 figure.dot g.node:has(> :is(ellipse, polygon, path):not([fill="none"])) text:not([fill]) { fill: #111417; }
 .quiz-q figure.dot { margin: 0 0 12px; clear: both; }
 
+/* Run Python in the browser */
+.prose pre:has(+ .py-editor), .prose pre:has(+ .py-editor[hidden]) { margin-bottom: 0; }
+.py-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 8px 0 16px; }
+.py-btn { font: 600 .85rem var(--font); padding: 6px 12px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; }
+.py-btn:hover { border-color: var(--accent); }
+.py-run { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.py-run:hover { background: var(--accent-strong); border-color: var(--accent-strong); }
+.py-btn[hidden] { display: none; }
+.py-status { color: var(--muted); font-size: .85rem; }
+.py-editor, .py-stdin { display: block; width: 100%; box-sizing: border-box; background: var(--code-bg); color: var(--ink); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; font: .88em/1.5 var(--mono); tab-size: 4; white-space: pre; overflow-x: auto; resize: vertical; }
+.py-editor:focus, .py-stdin:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+.py-editor[hidden], .py-input[hidden], .py-output[hidden] { display: none; }
+.py-input { margin: 0 0 12px; font-size: .9rem; }
+.py-input summary { cursor: pointer; color: var(--muted); margin-bottom: 6px; }
+.py-stdin { padding: 10px 12px; }
+.prose pre.py-output { max-height: 24rem; overflow: auto; white-space: pre-wrap; overflow-wrap: anywhere; margin: 0 0 16px; }
+.py-err { color: #c0392b; }
+.py-note { color: var(--muted); font-style: italic; }
+:root[data-theme="dark"] .py-err { color: #ff8a80; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .py-err { color: #ff8a80; } }
+
 @media print {
-  .site-header, .site-footer, .course-nav, .pager, .mark-done, .copy-btn, .theme-toggle, .marks-actions, .marks-student .muted, .notice { display: none !important; }
+  .site-header, .site-footer, .course-nav, .pager, .mark-done, .copy-btn, .py-bar, .py-input, .py-output, .theme-toggle, .marks-actions, .marks-student .muted, .notice { display: none !important; }
   .print-only { display: block; }
   .marks-student input { border: 0; padding: 0; min-width: 0; color: #000; }
   .course-layout { display: block; }
