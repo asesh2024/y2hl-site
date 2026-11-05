@@ -30,11 +30,11 @@ My research interests include post‑quantum cryptography, decentralised system 
 
 All five courses are free to read and use, with no sign‑up:
 
-- **[Advanced Object‑Oriented Programming](/courses/aoop/)** (25CS2205E): build a Smart Parking System in Java over 12 weeks.
-- **[Theory of Computation](/courses/toc/)** (24CS3206): finite automata, grammars, pushdown automata and Turing machines, in 26 topics with quizzes.
-- **[Advanced Algorithms and Data Structures](/courses/aads/)** (23CS03HF): balanced trees, string matching, graphs, design techniques and NP‑completeness, in 34 topics with quizzes and GATE‑style practice.
-- **[Machine Learning Fundamentals](/courses/ml/)** (19CS3021S): decision trees, Bayesian learning, neural networks, genetic algorithms and Q‑learning, in 35 topics with quizzes and programs that run in your browser.
-- **[Learning ML through Project](/courses/mlng/)** (25SC2107E): build, evaluate and deploy a working ML system, in 25 topics with quizzes and programs that run in your browser.
+- **[Advanced Object‑Oriented Programming](/courses/aoop/)**: build a Smart Parking System in Java over 12 weeks.
+- **[Theory of Computation](/courses/toc/)**: finite automata, grammars, pushdown automata and Turing machines, in 26 topics with quizzes.
+- **[Advanced Algorithms and Data Structures](/courses/aads/)**: balanced trees, string matching, graphs, design techniques and NP‑completeness, in 34 topics with quizzes and GATE‑style practice.
+- **[Machine Learning Fundamentals](/courses/ml/)**: decision trees, Bayesian learning, neural networks, genetic algorithms and Q‑learning, in 35 topics with quizzes and programs that run in your browser.
+- **[Learning ML through Project](/courses/mlng/)**: build, evaluate and deploy a working ML system, in 25 topics with quizzes and programs that run in your browser.
 
 ### Projects I guide
 
