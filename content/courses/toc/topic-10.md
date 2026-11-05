@@ -1,5 +1,6 @@
 ---
 title: "Context-free grammars"
+keywords: "cfg"
 topic: 10
 co: "CO2"
 description: "Grammars whose rules rewrite one variable at a time, regardless of context: enough to describe nested structures like aⁿbⁿ, palindromes and programming-language syntax."

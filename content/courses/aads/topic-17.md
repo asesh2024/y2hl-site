@@ -1,5 +1,6 @@
 ---
 title: "Kruskal's minimum spanning tree"
+keywords: "mst"
 topic: 17
 co: "CO2"
 description: "Sort all edges by weight and take each one unless it would close a cycle. A union–find structure makes the cycle test almost free."

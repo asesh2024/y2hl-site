@@ -1,5 +1,6 @@
 ---
 title: "Recursive and recursively enumerable languages"
+keywords: "re"
 topic: 24
 co: "CO4"
 description: "Decidable (recursive) and recognisable (recursively enumerable) languages: their closure properties, and the link between them through complements."

@@ -33,6 +33,10 @@
         <a href="/courses/"{% if url.startswith('/courses') %} aria-current="page"{% endif %}>Courses</a>
         <a href="/research/"{% if url.startswith('/research') %} aria-current="page"{% endif %}>Research</a>
         <a href="/about/"{% if url.startswith('/about') %} aria-current="page"{% endif %}>About</a>
+        <button class="search-open" type="button" aria-label="Search the site" aria-keyshortcuts="/" title="Search the site" data-version="{{ search_version }}" hidden>
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14Zm9 16-4-4"/></svg>
+          <span>Search</span><kbd>/</kbd>
+        </button>
         <button class="theme-toggle" type="button" aria-label="Switch colour theme" title="Switch colour theme">
           <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.39 5.39 0 0 1-4.4 2.26 5.4 5.4 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1Z"/></svg>
         </button>
@@ -55,9 +59,22 @@
     </div>
   </footer>
 
+  <dialog class="search-dialog" id="search-dialog" aria-label="Search the site">
+    <div class="search-panel">
+      <div class="search-row">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14Zm9 16-4-4"/></svg>
+        <input class="search-input" type="search" role="combobox" aria-expanded="false" aria-autocomplete="list" aria-controls="search-results" aria-label="Search the site" placeholder="Search topics and courses" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="go">
+        <button class="search-close" type="button">Close</button>
+      </div>
+      <p class="search-status" role="status"></p>
+      <div class="search-results" id="search-results" role="listbox" aria-label="Search results"></div>
+    </div>
+  </dialog>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/java.min.js"></script>
   <script src="/static/js/site.js?v={{ asset_version }}"></script>
+  <script src="/static/js/search.js?v={{ asset_version }}"></script>
   {% if course %}<script src="/static/js/coderun.js?v={{ asset_version }}"></script>{% endif %}
   {% if course and course.has_quizzes %}<script src="/static/js/quiz.js?v={{ asset_version }}"></script>{% endif %}
 </body>

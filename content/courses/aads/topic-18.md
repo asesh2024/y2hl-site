@@ -1,5 +1,6 @@
 ---
 title: "Ford–Fulkerson and Edmonds–Karp"
+keywords: "maxflow"
 topic: 18
 co: "CO2"
 description: "How much can flow from a source to a sink through a network of capacities? Keep finding augmenting paths in the residual graph — and choose them by BFS to guarantee polynomial time."

@@ -1,5 +1,6 @@
 ---
 title: "Divide and conquer and merge sort"
+keywords: "mergesort"
 topic: 20
 co: "CO3"
 description: "Split a problem into smaller copies of itself, solve them recursively, and combine the answers. Merge sort is the model example: Θ(n log n) on every input."

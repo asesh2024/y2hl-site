@@ -1,5 +1,6 @@
 ---
 title: "Turing machines: model and notation"
+keywords: "tm"
 topic: 21
 co: "CO4"
 description: "A finite control with an unlimited tape that it can read, write and move along in both directions: the standard model of what an algorithm is."

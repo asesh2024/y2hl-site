@@ -14,6 +14,7 @@ import re
 import shutil
 import sys
 from datetime import date
+from html.parser import HTMLParser
 from pathlib import Path
 
 import markdown
@@ -72,6 +73,71 @@ def write(rel, template, **ctx):
     dest.write_text(html, encoding="utf-8")
     if not rel.startswith("404"):
         pages_built.append(url)
+
+
+class SectionText(HTMLParser):
+    """Splits a rendered page into plain-text sections at its headings, for the search index."""
+    BLOCKS = {"p", "li", "ul", "ol", "tr", "td", "th", "div", "section", "figure", "figcaption", "blockquote", "pre",
+              "br", "h1", "h4", "h5", "h6", "dt", "dd", "details", "summary", "article", "aside"}
+
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.sections = [{"id": "", "h": [], "text": []}]
+        self.skipping = None     # the tag whose contents are left out: scripts, styles and diagram sources
+        self.heading = None
+
+    def handle_starttag(self, tag, attrs):
+        attrs = dict(attrs)
+        if self.skipping:
+            return
+        if tag in ("script", "style") or (tag == "code" and "language-dot" in (attrs.get("class") or "")):
+            self.skipping = tag
+        elif tag in ("h2", "h3") and attrs.get("id"):
+            self.sections.append({"id": attrs["id"], "h": [], "text": []})
+            self.heading = tag
+        elif tag in self.BLOCKS:
+            self.sections[-1]["text"].append(" ")
+
+    def handle_endtag(self, tag):
+        if tag == self.skipping:
+            self.skipping = None
+        elif tag == self.heading:
+            self.heading = None
+        elif tag in self.BLOCKS and not self.skipping:
+            self.sections[-1]["text"].append(" ")
+
+    def handle_data(self, data):
+        if not self.skipping:
+            self.sections[-1]["h" if self.heading else "text"].append(data)
+
+
+def search_doc(where, title, url, description, html, keywords=""):
+    """One page in the search index: [where, title, url, description, keywords, [[anchor, heading, text], ...]]."""
+    parser = SectionText()
+    parser.feed(html)
+    clean = lambda parts: re.sub(r"\s+", " ", "".join(parts)).strip()
+    sections = [[s["id"], clean(s["h"]), clean(s["text"])] for s in parser.sections]
+    return [where, title, BASE_PATH + url, description, keywords, [s for s in sections if s[1] or s[2]]]
+
+
+def write_search_index(courses, pages):
+    """Write static/search-index.json and return a fingerprint of it, so browsers fetch it again when it changes."""
+    docs = []
+    for course in courses:
+        base, short = course["base"], course["short"]
+        for p in course["pages"]:
+            overview = p["slug"] == "overview"
+            docs.append(search_doc(short, course["title"] if overview else p["meta"]["title"],
+                                   base if overview else f"{base}{p['slug']}.html",
+                                   course["summary"] if overview else p["meta"].get("description", ""), p["html"]))
+        for w in course["weeks"]:
+            docs.append(search_doc(short, f"{course['unit']} {w['num']}: {w['meta']['title']}", f"{base}{w['slug']}.html",
+                                   w["meta"]["description"], w["html"], w["meta"].get("keywords", "")))
+    for name, (meta, html, _) in pages.items():
+        docs.append(search_doc("Site", meta["title"], f"/{name}/", meta.get("description", ""), html))
+    data = json.dumps(docs, ensure_ascii=False, separators=(",", ":")).encode("utf-8")
+    (OUT / "static" / "search-index.json").write_bytes(data)
+    return hashlib.sha1(data).hexdigest()[:8]
 
 
 def load_quiz(path):
@@ -153,17 +219,13 @@ def build():
 
     courses = [load_course(p) for p in (CONTENT / "courses").iterdir() if (p / "course.json").exists()]
     courses.sort(key=lambda c: (c.get("order", 99), c["slug"]))
+    pages = {name: read_page(CONTENT / f"{name}.md") for name in ("about", "research", "projects")}
+    env.globals["search_version"] = write_search_index(courses, pages)
 
     write("index.html", "home.html", courses=courses, page={"title": SITE["name"], "description": SITE["description"]})
 
-    about_meta, about_html, _ = read_page(CONTENT / "about.md")
-    write("about/index.html", "page.html", page=about_meta, body=about_html, section="about")
-
-    research_meta, research_html, _ = read_page(CONTENT / "research.md")
-    write("research/index.html", "page.html", page=research_meta, body=research_html, section="research")
-
-    projects_meta, projects_html, _ = read_page(CONTENT / "projects.md")
-    write("projects/index.html", "page.html", page=projects_meta, body=projects_html, section="projects")
+    for name, (meta, html, _) in pages.items():
+        write(f"{name}/index.html", "page.html", page=meta, body=html, section=name)
 
     write("courses/index.html", "courses.html", courses=courses,
           page={"title": "Courses", "description": "Free, open course materials for students at any university."})

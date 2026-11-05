@@ -1,5 +1,6 @@
 ---
 title: "Regular expressions and finite automata"
+keywords: "regex"
 topic: 3
 co: "CO1"
 description: "A compact algebra for describing patterns, the identities it obeys, and Kleene's theorem: regular expressions and finite automata describe exactly the same languages."

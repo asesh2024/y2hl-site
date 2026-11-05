@@ -47,6 +47,8 @@ python tools/check_links.py
 2. Edit its `course.json` and the Markdown pages; name the week files `week-01.md`, `week-02.md` and so on.
 3. Build. The course appears on the home page and on /courses/ automatically.
 
+Site-wide search is built automatically from every course page, plus About, Research and Projects. To make a topic easy to find by an abbreviation that is not in its title, add a line such as `keywords: "kmp"` to its front matter.
+
 A course can use topics instead of weeks: set `"unit": "Topic"`, `"unit_prefix": "topic"` and `"unit_template": "topic.html"` in `course.json` (see `content/courses/toc/course.json`), and name the files `topic-01.md`, `topic-02.md` and so on.
 
 ## Quizzes and marks

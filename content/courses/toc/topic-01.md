@@ -1,5 +1,6 @@
 ---
 title: "Deterministic finite automata (DFA)"
+keywords: "dfa"
 topic: 1
 co: "CO1"
 description: "The simplest model of a computer: a machine with a fixed, finite memory that reads a string once, left to right, and says yes or no."

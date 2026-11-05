@@ -1,5 +1,6 @@
 ---
 title: "Max-flow min-cut theorem"
+keywords: "maxflow mincut"
 topic: 19
 co: "CO2"
 description: "The largest flow through a network equals the smallest total capacity of edges whose removal separates source from sink. The theorem certifies that a flow is optimal — and turns matching problems into flow problems."

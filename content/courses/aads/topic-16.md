@@ -1,5 +1,6 @@
 ---
 title: "Prim's minimum spanning tree"
+keywords: "mst"
 topic: 16
 co: "CO2"
 description: "Connect every vertex as cheaply as possible: grow one tree from a start vertex, always adding the cheapest edge that reaches a new vertex."

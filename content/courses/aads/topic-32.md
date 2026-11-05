@@ -1,5 +1,6 @@
 ---
 title: "Travelling salesperson: FIFO and LC branch and bound"
+keywords: "tsp lcbb"
 topic: 32
 co: "CO4"
 description: "Find the cheapest tour that visits every city once and returns home. A reduced cost matrix gives a lower bound for every partial tour, and branch and bound uses it to skip most of the n! possible tours."

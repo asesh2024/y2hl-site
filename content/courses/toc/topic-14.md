@@ -1,5 +1,6 @@
 ---
 title: "Pushdown automata"
+keywords: "pda"
 topic: 14
 co: "CO3"
 description: "A finite automaton plus a stack: enough memory to match nested structure. The formal definition, transitions, and instantaneous descriptions."

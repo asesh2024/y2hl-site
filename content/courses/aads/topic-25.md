@@ -1,5 +1,6 @@
 ---
 title: "Dynamic programming and matrix-chain multiplication"
+keywords: "dp mcm"
 topic: 25
 co: "CO3"
 description: "When a recursive solution keeps solving the same subproblems, store each answer once and reuse it. Matrix-chain multiplication shows the full method: define subproblems, write the recurrence, fill a table, and trace back the choice."

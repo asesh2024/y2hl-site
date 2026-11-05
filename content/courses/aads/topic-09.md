@@ -1,5 +1,6 @@
 ---
 title: "Knuth–Morris–Pratt string matching"
+keywords: "kmp"
 topic: 9
 co: "CO1"
 description: "Find a pattern in a text without ever moving backwards in the text: a precomputed failure table tells the algorithm how far it can slide the pattern after a mismatch, giving O(n + m) time."

@@ -1,5 +1,6 @@
 ---
 title: "Longest common subsequence"
+keywords: "lcs"
 topic: 26
 co: "CO3"
 description: "The longest sequence of characters that appears, in order but not necessarily together, in two strings. A two-dimensional DP table gives its length in O(m·n), and a walk back through the table gives the subsequence itself."

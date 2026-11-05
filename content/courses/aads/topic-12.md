@@ -1,5 +1,6 @@
 ---
 title: "Breadth-first and depth-first search"
+keywords: "bfs dfs"
 topic: 12
 co: "CO2"
 description: "The two basic ways to explore a graph: breadth-first search spreads out in rings and finds shortest paths in unweighted graphs; depth-first search dives deep and reveals cycles, components and topological order."

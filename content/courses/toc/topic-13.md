@@ -1,5 +1,6 @@
 ---
 title: "Chomsky and Greibach normal forms"
+keywords: "cnf gnf"
 topic: 13
 co: "CO2"
 description: "Two standard shapes for grammars: Chomsky normal form (A → BC | a), which makes parse trees binary, and Greibach normal form (A → aα), where every step produces a terminal."
