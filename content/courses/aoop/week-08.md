@@ -80,6 +80,71 @@ public final class CircuitBreaker {           // simplified: HALF_OPEN lets call
 
 **Deliverable (L):** breaker state diagram and the annotated saga.
 
+### Try it: retry with backoff and a circuit breaker
+
+A fake sleeper and a fake clock keep this instant and repeatable. Watch the wait double on each retry, then watch the breaker open, wait and recover.
+
+```java
+import java.util.*;
+import java.util.function.*;
+
+public class Main {
+    static <T> T retry(Supplier<T> op, int maxAttempts, long baseMs, List<Long> waits) {
+        for (int attempt = 0; ; attempt++) {
+            try {
+                return op.get();
+            } catch (RuntimeException e) {
+                if (attempt + 1 >= maxAttempts) throw e;
+                waits.add(baseMs << attempt);      // real code sleeps a random time up to this ceiling
+            }
+        }
+    }
+
+    static final class CircuitBreaker {
+        enum State { CLOSED, OPEN, HALF_OPEN }
+        private State state = State.CLOSED;
+        private int failures;
+        private long openedAt;
+        private final int threshold;
+        private final long openForMs;
+
+        CircuitBreaker(int threshold, long openForMs) { this.threshold = threshold; this.openForMs = openForMs; }
+
+        boolean allowRequest(long now) {
+            if (state == State.OPEN && now - openedAt >= openForMs) state = State.HALF_OPEN;
+            return state != State.OPEN;
+        }
+        void onSuccess() { failures = 0; state = State.CLOSED; }
+        void onFailure(long now) {
+            if (state == State.HALF_OPEN || ++failures >= threshold) { state = State.OPEN; openedAt = now; }
+        }
+        State state() { return state; }
+    }
+
+    public static void main(String[] args) {
+        int[] calls = {0};
+        List<Long> waits = new ArrayList<>();
+        String paid = retry(() -> {
+            if (++calls[0] < 4) throw new RuntimeException("gateway timeout");
+            return "paid";
+        }, 5, 100, waits);
+        System.out.println(paid + " after " + calls[0] + " calls");   // paid after 4 calls
+        System.out.println(waits);                                    // [100, 200, 400]
+
+        CircuitBreaker breaker = new CircuitBreaker(2, 1000);
+        breaker.onFailure(0);
+        breaker.onFailure(10);
+        System.out.println(breaker.state());                          // OPEN
+        System.out.println(breaker.allowRequest(500));                // false
+        System.out.println(breaker.allowRequest(1010));               // true
+        breaker.onSuccess();
+        System.out.println(breaker.state());                          // CLOSED
+    }
+}
+```
+
+**Now change it:** Change the threshold to 3. What does the breaker's first printed state become, and why?
+
 ### Skill B — S16: chaos injection and duplicate‑charge prevention
 
 | Min | Step | In class | Your task |

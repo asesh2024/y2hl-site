@@ -74,6 +74,49 @@ UPDATE spot SET status = 'OCCUPIED', version = version + 1 WHERE spot_id = ? AND
 
 **Deliverable (L):** LED‑board fix and the safeguard comparison table.
 
+### Try it: a lost update stopped by a version number
+
+Two transactions read the same row. Without a check, the second write silently overwrites the first. Optimistic locking turns that into a visible conflict.
+
+```java
+public class Main {
+    static final class SpotRow {
+        int version = 0;
+        String holder = null;
+
+        /** Like: UPDATE spot SET holder = ?, version = version + 1 WHERE version = ? */
+        boolean commitIfUnchanged(int versionRead, String newHolder) {
+            if (version != versionRead) return false;
+            holder = newHolder;
+            version++;
+            return true;
+        }
+    }
+
+    public static void main(String[] args) throws Exception {
+        SpotRow blind = new SpotRow();
+        blind.holder = "car A";
+        blind.holder = "car B";                       // car A's booking has vanished, with no error
+        System.out.println(blind.holder);             // car B
+
+        SpotRow row = new SpotRow();
+        int readByA = row.version;
+        int readByB = row.version;
+        System.out.println(row.commitIfUnchanged(readByA, "car A"));  // true
+        System.out.println(row.commitIfUnchanged(readByB, "car B"));  // false
+        System.out.println(row.holder + " v" + row.version);          // car A v1
+
+        int[] data = {0};
+        Thread writer = new Thread(() -> data[0] = 42);
+        writer.start();
+        writer.join();                                // join() gives a happens-before edge
+        System.out.println(data[0]);                  // 42
+    }
+}
+```
+
+**Now change it:** What should car B's code do after `false`? Add a retry that reads the row again. When should it give up?
+
 ### Skill B — S19: happens‑before across threads
 
 | Min | Step | In class | Your task |

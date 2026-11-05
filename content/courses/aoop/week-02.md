@@ -114,6 +114,64 @@ open.contains(b);            // false: the booking is "lost" inside the set
 
 **Deliverable (L):** exit ticket with the entity/value classification for 4 types and the team's must‑not‑compile list.
 
+### Try it: exact money and a booking lost in a set
+
+Three of this week's ideas in one program: money that splits exactly, a typed ID that refuses bad input, and an entity whose equality uses a mutable field.
+
+```java
+import java.util.*;
+import java.util.regex.Pattern;
+
+public class Main {
+    record Money(long paise) {
+        Money {
+            if (paise < 0) throw new IllegalArgumentException("Money cannot be negative: " + paise);
+        }
+        static Money ofRupees(long rupees) { return new Money(Math.multiplyExact(rupees, 100)); }
+
+        /** Splits into n parts that add up exactly to this amount. */
+        List<Money> allocate(int n) {
+            long base = paise / n, extra = paise % n;
+            List<Money> parts = new ArrayList<>(n);
+            for (int i = 0; i < n; i++) parts.add(new Money(base + (i < extra ? 1 : 0)));
+            return List.copyOf(parts);
+        }
+        @Override public String toString() { return String.format("₹%d.%02d", paise / 100, paise % 100); }
+    }
+
+    record SpotId(String value) {
+        private static final Pattern FORMAT = Pattern.compile("^L\\d{1,2}-[A-Z]\\d{2}$");
+        SpotId {
+            if (!FORMAT.matcher(value).matches()) throw new IllegalArgumentException("Bad SpotId: " + value);
+        }
+    }
+
+    /** Wrong on purpose: equality depends on a field that changes. */
+    static final class Booking {
+        String status = "ACTIVE";
+        @Override public boolean equals(Object o) { return o instanceof Booking b && status.equals(b.status); }
+        @Override public int hashCode() { return Objects.hash(status); }
+    }
+
+    public static void main(String[] args) {
+        System.out.println(Money.ofRupees(100).allocate(3));        // [₹33.34, ₹33.33, ₹33.33]
+        System.out.println(new Money(150).equals(new Money(150)));  // true
+        try {
+            new SpotId("banana");
+        } catch (IllegalArgumentException e) {
+            System.out.println("Refused: " + e.getMessage());       // Refused: Bad SpotId: banana
+        }
+        Set<Booking> open = new HashSet<>();
+        Booking b = new Booking();
+        open.add(b);
+        b.status = "COMPLETED";
+        System.out.println(open.contains(b));                       // false
+    }
+}
+```
+
+**Now change it:** Give `Booking` a final `id` field and base `equals` and `hashCode` on it alone. What does the last line print now?
+
 ### Skill B — S4: typed IDs and illegal states made unrepresentable
 
 Folded in from the lab manual: Lab 3 (immutable `VehicleId` and `BookingId`, then `SpotId`).

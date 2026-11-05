@@ -29,6 +29,8 @@ Solo learners can do all four jobs. Do them in the order above, and still write 
 
 JDK 17 or later (JDK 21 recommended for switch pattern matching), Eclipse or IntelliJ IDEA, Maven, JUnit 5 and Git. ArchUnit is optional in Week 11 and H2 is optional in Week 10; each week page gives a no‑library fallback.
 
+**To try an idea without installing anything:** every week page has a short **Try it** program with a **Run** button. Java 21 compiles and runs inside your browser, on your own device. The first run can take a minute while Java downloads. Press **Edit** to change the code; your edits are lost when you leave the page. JUnit, Maven and files from your project aren't available there, so your project work still needs the full toolchain above. Java in the browser is built with [CheerpJ](https://cheerpj.com/).
+
 ### Inside a 100‑minute block
 
 | Minutes | Practical and Skill blocks | Lecture block |

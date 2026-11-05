@@ -70,6 +70,61 @@ public Result<Booking> book(BookingRequest req) {
 
 **Deliverable (L):** field classification and `moveVehicle` with ordered locking.
 
+### Try it: two cars, one spot
+
+The race is forced with a barrier so it happens on every run: both threads pass the check before either one writes. The safe version makes the check and the write one atomic step.
+
+```java
+import java.util.concurrent.*;
+import java.util.concurrent.atomic.*;
+
+public class Main {
+    static int unsafeWinners() throws Exception {
+        ConcurrentMap<String, String> taken = new ConcurrentHashMap<>();
+        AtomicInteger winners = new AtomicInteger();
+        CyclicBarrier bothChecked = new CyclicBarrier(2);
+        Runnable car = () -> {
+            try {
+                if (!taken.containsKey("L2-E07")) {   // check
+                    bothChecked.await();              // both cars have now seen the spot as free
+                    taken.put("L2-E07", "car");       // then act
+                    winners.incrementAndGet();
+                }
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        };
+        runBoth(car);
+        return winners.get();
+    }
+
+    static int safeWinners() throws Exception {
+        ConcurrentMap<String, String> taken = new ConcurrentHashMap<>();
+        AtomicInteger winners = new AtomicInteger();
+        Runnable car = () -> {
+            if (taken.putIfAbsent("L2-E07", "car") == null) winners.incrementAndGet();
+        };
+        runBoth(car);
+        return winners.get();
+    }
+
+    static void runBoth(Runnable car) throws Exception {
+        Thread a = new Thread(car), b = new Thread(car);
+        a.start();
+        b.start();
+        a.join();
+        b.join();
+    }
+
+    public static void main(String[] args) throws Exception {
+        System.out.println("check-then-act winners: " + unsafeWinners());  // check-then-act winners: 2
+        System.out.println("putIfAbsent winners: " + safeWinners());       // putIfAbsent winners: 1
+    }
+}
+```
+
+**Now change it:** Would adding `synchronized` around the check and the write fix the unsafe version? Work out what the barrier would then do. Try it; if the program hangs, press **Stop** and explain why.
+
 ### Skill B — S18: contention with atomics, locks and CompletableFuture
 
 | Min | Step | In class | Your task |

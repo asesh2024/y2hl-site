@@ -88,6 +88,54 @@ Reading: sensor traffic, not drivers, dominates at 50×, so the first box to add
 
 **Deliverable (L):** the context map and the team's own capacity table.
 
+### Try it: numbers before boxes, and a module rule
+
+Capacity arithmetic decides whether you need a bigger design at all, and a small graph check turns a module rule into something that can fail a build.
+
+```java
+import java.util.*;
+
+public class Main {
+    static long peakPerSecond(long facilities, long spotsEach, long turnsPerDay, long peakFactor) {
+        long perDay = facilities * spotsEach * turnsPerDay;
+        return Math.round(Math.ceil((double) perDay / 86_400 * peakFactor));
+    }
+
+    static boolean hasCycle(Map<String, List<String>> deps) {
+        Set<String> done = new HashSet<>();
+        for (String module : deps.keySet())
+            if (visit(module, deps, new HashSet<>(), done)) return true;
+        return false;
+    }
+
+    private static boolean visit(String m, Map<String, List<String>> deps, Set<String> path, Set<String> done) {
+        if (path.contains(m)) return true;
+        if (!done.add(m)) return false;
+        path.add(m);
+        for (String next : deps.getOrDefault(m, List.of()))
+            if (visit(next, deps, path, done)) return true;
+        path.remove(m);
+        return false;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(peakPerSecond(200, 500, 4, 10));       // 47
+        System.out.println(peakPerSecond(200 * 50, 500, 4, 10));  // 2315
+
+        Map<String, List<String>> clean = Map.of(
+                "booking", List.of("payment"), "payment", List.of("notification"));
+        System.out.println(hasCycle(clean));                      // false
+
+        Map<String, List<String>> tangled = Map.of(
+                "booking", List.of("payment"), "payment", List.of("notification"),
+                "notification", List.of("booking"));
+        System.out.println(hasCycle(tangled));                    // true
+    }
+}
+```
+
+**Now change it:** Change the turnover to 8 cars a day. At what peak rate would one database stop being enough for you? Write down your assumption and its cost.
+
 ### Skill B — S22: capacity for 50× load, caching and sharding trade‑offs
 
 | Min | Step | In class | Your task |

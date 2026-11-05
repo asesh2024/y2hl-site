@@ -78,6 +78,48 @@ public interface SpotAllocator {
 
 **Deliverable (L):** two written method contracts and the LSP judgement table.
 
+### Try it: checking a contract at run time
+
+A contract is only useful if it can catch a wrong implementation. This program checks the `SpotAllocator` postcondition against a correct allocator and a careless one.
+
+```java
+import java.util.*;
+
+public class Main {
+    enum Type { CAR, BIKE }
+    record Spot(String id, Type type, boolean free) {}
+
+    interface SpotAllocator {
+        /** Post: empty <=> no spot is FREE and fits; if present, the spot is in spots, FREE and fits. */
+        Optional<Spot> choose(Type type, List<Spot> spots);
+    }
+
+    static final SpotAllocator FIRST_AVAILABLE = (type, spots) ->
+            spots.stream().filter(s -> s.free() && s.type() == type).findFirst();
+
+    /** Forgets to check that the spot is free. */
+    static final SpotAllocator CARELESS = (type, spots) ->
+            spots.stream().filter(s -> s.type() == type).findFirst();
+
+    static String check(SpotAllocator allocator, Type type, List<Spot> spots) {
+        Optional<Spot> result = allocator.choose(type, spots);
+        boolean exists = spots.stream().anyMatch(s -> s.free() && s.type() == type);
+        if (result.isEmpty() != !exists) return "VIOLATED: empty must mean no spot fits";
+        if (result.isPresent() && !result.get().free()) return "VIOLATED: chose occupied " + result.get().id();
+        return "OK";
+    }
+
+    public static void main(String[] args) {
+        List<Spot> spots = List.of(new Spot("A1", Type.CAR, false), new Spot("A2", Type.CAR, true));
+        System.out.println(check(FIRST_AVAILABLE, Type.CAR, spots));  // OK
+        System.out.println(check(CARELESS, Type.CAR, spots));         // VIOLATED: chose occupied A1
+        System.out.println(check(FIRST_AVAILABLE, Type.BIKE, spots)); // OK
+    }
+}
+```
+
+**Now change it:** Write an allocator that always returns `Optional.empty()`. Does `check` catch it? Which part of the contract does it break?
+
 ### Skill B — S6: caller‑side substitutability and override rules
 
 | Min | Step | In class | Your task |

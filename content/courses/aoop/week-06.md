@@ -94,6 +94,51 @@ public @interface ValueObject {}
 
 **Deliverable (L):** completed transition table, `BookingStatus.next` code, and the 4‑snippet review.
 
+### Try it: a state machine, lambda fees and a reflection check
+
+An enum makes illegal booking transitions impossible, lambdas turn fee policies into values, and reflection checks a design rule the way this week's architecture test does.
+
+```java
+import java.lang.annotation.*;
+import java.lang.reflect.*;
+import java.util.*;
+
+public class Main {
+    enum State {
+        ACTIVE, COMPLETED, CANCELLED;
+        boolean canMoveTo(State next) { return this == ACTIVE && next != ACTIVE; }
+    }
+
+    @FunctionalInterface interface FeePolicy { long paiseFor(int hours); }
+
+    @Retention(RetentionPolicy.RUNTIME) @Target(ElementType.TYPE) @interface ValueObject {}
+    @ValueObject static final class GoodMoney { private final long paise = 0; }
+    @ValueObject static final class BadMoney { private long paise = 0; }
+
+    static String immutabilityCheck(Class<?> c) {
+        if (!c.isAnnotationPresent(ValueObject.class)) return c.getSimpleName() + ": not a value object";
+        for (Field f : c.getDeclaredFields())
+            if (!Modifier.isFinal(f.getModifiers())) return c.getSimpleName() + "." + f.getName() + " must be final";
+        return c.getSimpleName() + ": OK";
+    }
+
+    public static void main(String[] args) {
+        System.out.println(State.ACTIVE.canMoveTo(State.COMPLETED));     // true
+        System.out.println(State.COMPLETED.canMoveTo(State.ACTIVE));     // false
+
+        FeePolicy normal = hours -> hours * 4000L;
+        FeePolicy student = hours -> normal.paiseFor(hours) * 70 / 100;
+        System.out.println(normal.paiseFor(3));                          // 12000
+        System.out.println(student.paiseFor(3));                         // 8400
+
+        System.out.println(immutabilityCheck(GoodMoney.class));          // GoodMoney: OK
+        System.out.println(immutabilityCheck(BadMoney.class));           // BadMoney.paise must be final
+    }
+}
+```
+
+**Now change it:** Add a `weekend` fee policy at 80% of `normal`. Did you have to change any existing class?
+
 ### Skill B — S12: lambdas, streams and annotations for clarity and build‑time rules
 
 Folded in from the lab manual: Lab 8 (`ParkingRecord` list; `filter`/`map` for cars; `reduce` for total fees; fees above ₹75; car‑only total).

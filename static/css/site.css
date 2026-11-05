@@ -350,6 +350,7 @@ figure.dot g.node:has(> :is(ellipse, polygon, path):not([fill="none"])) text:not
 .py-run:hover { background: var(--accent-strong); border-color: var(--accent-strong); }
 .py-btn[hidden] { display: none; }
 .py-status { color: var(--muted); font-size: .85rem; }
+.java-frame { position: absolute; left: -9999px; width: 1px; height: 1px; border: 0; }
 .py-editor, .py-stdin { display: block; width: 100%; box-sizing: border-box; background: var(--code-bg); color: var(--ink); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; font: .88em/1.5 var(--mono); tab-size: 4; white-space: pre; overflow-x: auto; resize: vertical; }
 .py-editor:focus, .py-stdin:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
 .py-editor[hidden], .py-input[hidden], .py-output[hidden] { display: none; }

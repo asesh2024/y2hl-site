@@ -84,6 +84,61 @@ public final class BookingService {
 
 **Deliverable (L):** change‑request → principle → pattern table with costs.
 
+### Try it: swapping infrastructure with fakes
+
+`BookingService` owns the interfaces, and `main` is the composition root that wires concrete classes. Because time and notifications are injected, this runs with no database, SMS account or real clock.
+
+```java
+import java.time.*;
+import java.util.*;
+
+public class Main {
+    record Booking(String vehicle, Instant start) {}
+
+    interface BookingRepository { void save(Booking b); int count(); }
+    interface Notifier { void send(String message); }
+
+    static final class BookingService {
+        private final BookingRepository bookings;
+        private final Notifier notifier;
+        private final Clock clock;
+
+        BookingService(BookingRepository bookings, Notifier notifier, Clock clock) {
+            this.bookings = bookings;
+            this.notifier = notifier;
+            this.clock = clock;
+        }
+        Booking checkIn(String vehicle) {
+            Booking b = new Booking(vehicle, clock.instant());
+            bookings.save(b);
+            notifier.send("Parked " + vehicle);
+            return b;
+        }
+    }
+
+    static final class InMemoryBookings implements BookingRepository {
+        private final List<Booking> saved = new ArrayList<>();
+        public void save(Booking b) { saved.add(b); }
+        public int count() { return saved.size(); }
+    }
+
+    public static void main(String[] args) {
+        List<String> sent = new ArrayList<>();
+        InMemoryBookings store = new InMemoryBookings();
+        Clock fixed = Clock.fixed(Instant.parse("2026-11-05T10:00:00Z"), ZoneOffset.UTC);
+
+        BookingService service = new BookingService(store, sent::add, fixed);
+        Booking b = service.checkIn("AP07AB1234");
+
+        System.out.println(b.start());      // 2026-11-05T10:00:00Z
+        System.out.println(store.count());  // 1
+        System.out.println(sent);           // [Parked AP07AB1234]
+    }
+}
+```
+
+**Now change it:** Add a `CountingNotifier` class and pass it in. How many lines of `BookingService` did you need to change? That number is the blast radius.
+
 ### Skill B — S10: delete‑the‑infrastructure test and the Law of Demeter
 
 | Min | Step | In class | Your task |

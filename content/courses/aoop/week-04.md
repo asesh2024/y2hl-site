@@ -85,6 +85,56 @@ class SaboteurTest {
 
 **Deliverable (L):** the type‑choice table with costs, and the role‑interface split.
 
+### Try it: one contract suite, many implementations
+
+The same checks run against every implementation, so a substitute that breaks the contract is caught automatically. In your project this suite is a JUnit test; here it is plain Java so it can run on this page.
+
+```java
+import java.util.*;
+
+public class Main {
+    record Spot(String id, boolean free, boolean reserved) {}
+
+    interface SpotAllocator {
+        /** Post: a chosen spot is free and not reserved; empty only if no such spot exists. */
+        Optional<Spot> choose(List<Spot> spots);
+    }
+
+    static class FirstAvailable implements SpotAllocator {
+        public Optional<Spot> choose(List<Spot> spots) {
+            return spots.stream().filter(s -> s.free() && !s.reserved()).findFirst();
+        }
+    }
+    static class LastAvailable implements SpotAllocator {
+        public Optional<Spot> choose(List<Spot> spots) {
+            return spots.stream().filter(s -> s.free() && !s.reserved()).reduce((a, b) -> b);
+        }
+    }
+    /** The saboteur: it compiles and looks reasonable, but breaks the contract. */
+    static class ReservedFirst implements SpotAllocator {
+        public Optional<Spot> choose(List<Spot> spots) {
+            return spots.stream().filter(Spot::free).findFirst();
+        }
+    }
+
+    static List<String> verify(SpotAllocator a) {
+        List<String> problems = new ArrayList<>();
+        List<Spot> mixed = List.of(new Spot("R1", true, true), new Spot("A1", true, false));
+        if (!a.choose(mixed).map(s -> !s.reserved()).orElse(false)) problems.add("chose a reserved spot");
+        if (a.choose(List.of(new Spot("A1", false, false))).isPresent()) problems.add("chose a taken spot");
+        return problems;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(verify(new FirstAvailable()));   // []
+        System.out.println(verify(new LastAvailable()));    // []
+        System.out.println(verify(new ReservedFirst()));    // [chose a reserved spot]
+    }
+}
+```
+
+**Now change it:** Add a fourth allocator that returns the first spot in the list without checking anything. Which problems does `verify` report?
+
 ### Skill B — S8: diagnosing JDK errors caused by contract violations
 
 | Min | Step | In class | Your task |

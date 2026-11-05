@@ -91,6 +91,53 @@ public record NoSpotAvailable(VehicleType type) implements BookingFailure {}
 
 **Deliverable (L):** the sorted failure list and the idempotent pay‑at‑exit flow with a technique chosen per operation.
 
+### Try it: explicit outcomes and idempotent booking
+
+A sealed `Result` makes the compiler check that every failure is handled, and an idempotency key means a retried request cannot charge twice.
+
+```java
+import java.util.*;
+
+public class Main {
+    sealed interface Result permits Ok, NoSpot, Declined {}
+    record Ok(String bookingId) implements Result {}
+    record NoSpot(String type) implements Result {}
+    record Declined(String reason) implements Result {}
+
+    static String describe(Result r) {
+        return switch (r) {                 // no default: the compiler checks every case
+            case Ok ok -> "booked " + ok.bookingId();
+            case NoSpot n -> "no " + n.type() + " spot free";
+            case Declined d -> "payment declined: " + d.reason();
+        };
+    }
+
+    static final class BookingDesk {
+        private final Map<String, Result> byKey = new HashMap<>();
+        int charges = 0;
+
+        Result book(String idempotencyKey) {
+            return byKey.computeIfAbsent(idempotencyKey, key -> {
+                charges++;
+                return new Ok("B-" + charges);
+            });
+        }
+    }
+
+    public static void main(String[] args) {
+        System.out.println(describe(new NoSpot("CAR")));          // no CAR spot free
+        System.out.println(describe(new Declined("card")));       // payment declined: card
+
+        BookingDesk desk = new BookingDesk();
+        System.out.println(describe(desk.book("req-1")));         // booked B-1
+        System.out.println(describe(desk.book("req-1")));         // booked B-1
+        System.out.println(desk.charges);                         // 1
+    }
+}
+```
+
+**Now change it:** Add `record Duplicate(String key) implements Result {}` and put `Duplicate` in the `permits` list. Read the compile error. Why is that error a good thing?
+
 ### Skill B — S14: retries with exponential backoff, jitter and budgets
 
 | Min | Step | In class | Your task |

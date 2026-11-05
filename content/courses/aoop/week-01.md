@@ -98,6 +98,54 @@ public final class ParkingSpot {
 
 **Deliverable (L):** exit ticket with three invariants (one of each kind) and the doorway your team broke and fixed.
 
+### Try it: a spot that refuses a bad state
+
+This is the week's `ParkingSpot` as a complete program. Press **Run** and watch the object refuse a call that would break its invariant.
+
+```java
+public class Main {
+    enum SpotStatus { FREE, OCCUPIED }
+
+    /** Invariant: status == OCCUPIED <=> occupiedBy != null. */
+    static final class ParkingSpot {
+        private final String spotId;
+        private SpotStatus status = SpotStatus.FREE;
+        private String occupiedBy;
+
+        ParkingSpot(String spotId) {
+            if (spotId == null || spotId.isBlank()) throw new IllegalArgumentException("spotId required");
+            this.spotId = spotId;
+        }
+        void occupy(String registration) {
+            if (status != SpotStatus.FREE) throw new IllegalStateException(spotId + " is " + status);
+            status = SpotStatus.OCCUPIED;
+            occupiedBy = registration;
+        }
+        void release() {
+            if (status != SpotStatus.OCCUPIED) throw new IllegalStateException(spotId + " is not occupied");
+            status = SpotStatus.FREE;
+            occupiedBy = null;
+        }
+        @Override public String toString() { return spotId + " " + status + " " + occupiedBy; }
+    }
+
+    public static void main(String[] args) {
+        ParkingSpot spot = new ParkingSpot("L2-E07");
+        spot.occupy("AP07AB1234");
+        System.out.println(spot);                                   // L2-E07 OCCUPIED AP07AB1234
+        try {
+            spot.occupy("TS09XY0001");
+        } catch (IllegalStateException e) {
+            System.out.println("Refused: " + e.getMessage());       // Refused: L2-E07 is OCCUPIED
+        }
+        spot.release();
+        System.out.println(spot);                                   // L2-E07 FREE null
+    }
+}
+```
+
+**Now change it:** Add a public `setStatus` method, call it from `main`, and print the spot. Which sentence of the invariant did you just break?
+
 ### Skill B — S2: single‑field, multi‑field and temporal invariants
 
 | Min | Step | In class | Your task |

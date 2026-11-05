@@ -82,6 +82,62 @@ Plus a 10‑minute recorded walkthrough, submitted before the term‑end defence
 
 **Question bank for reviews:** What happens if the gateway times out after charging? Show the test that proves no double booking. Why a modular monolith and not microservices? Add a new vehicle type: how many files change? What breaks first at 50×? Which field in `BookingService` is guarded, and by what? What would you change if bookings had to work across two cities' databases?
 
+### Try it: the whole slice, and a decision record check
+
+A tiny end-to-end slice wired from a composition root, plus the rule this week's dossier depends on: a decision record is incomplete until it names a rejected alternative and a cost.
+
+```java
+import java.time.*;
+import java.util.*;
+
+public class Main {
+    record Money(long paise) {
+        @Override public String toString() { return String.format("₹%d.%02d", paise / 100, paise % 100); }
+    }
+    interface FeePolicy { Money feeFor(Duration stay); }
+
+    static final class ParkingDesk {
+        private final Map<String, Instant> entered = new HashMap<>();
+        private final FeePolicy fees;
+        private final Clock clock;
+
+        ParkingDesk(FeePolicy fees, Clock clock) { this.fees = fees; this.clock = clock; }
+
+        void enter(String vehicle, Instant at) { entered.put(vehicle, at); }
+        Money exit(String vehicle) {
+            Instant start = entered.remove(vehicle);
+            if (start == null) throw new IllegalStateException(vehicle + " is not parked");
+            return fees.feeFor(Duration.between(start, clock.instant()));
+        }
+    }
+
+    record Adr(String title, String rejected, String cost) {
+        boolean complete() { return !rejected.isBlank() && !cost.isBlank(); }
+    }
+
+    public static void main(String[] args) {
+        Instant now = Instant.parse("2026-11-05T13:00:00Z");
+        FeePolicy hourly = stay -> new Money((stay.toMinutes() + 59) / 60 * 4000);
+        ParkingDesk desk = new ParkingDesk(hourly, Clock.fixed(now, ZoneOffset.UTC));
+
+        desk.enter("AP07AB1234", now.minus(Duration.ofMinutes(130)));
+        System.out.println(desk.exit("AP07AB1234"));                 // ₹120.00
+        try {
+            desk.exit("AP07AB1234");
+        } catch (IllegalStateException e) {
+            System.out.println(e.getMessage());                      // AP07AB1234 is not parked
+        }
+
+        Adr good = new Adr("Modular monolith", "Microservices", "One deployable, so one release train");
+        Adr weak = new Adr("Use Redis", "", "");
+        System.out.println(good.complete());                         // true
+        System.out.println(weak.complete());                         // false
+    }
+}
+```
+
+**Now change it:** Write an `Adr` for one real decision in your own project. If you can't fill in `rejected` and `cost`, what does that tell you?
+
 ### Skill B — S24: HLD/UML evidence pack and mock defence
 
 | Min | Step | In class | Your task |
