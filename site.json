@@ -1,7 +1,7 @@
 {
   "name": "Y2HL Orbit",
   "tagline": "Yes to Happy Learning",
-  "description": "Free, open course materials on software design and object-oriented programming by Asesh Kumar Tripathy, for students at any university.",
+  "description": "Free educational site for university students: computer science courses in object-oriented programming, theory of computation and algorithms, by Dr. Asesh Kumar Tripathy.",
   "url": "https://www.y2hl.in",
   "domain": "www.y2hl.in",
   "author": {
@@ -9,7 +9,7 @@
     "title": "Dr.",
     "role": "Associate Professor, Department of Computer Science and Engineering, K L Deemed to be University",
     "photo": "/static/img/asesh-tripathy.jpg",
-    "email": "",
+    "email": "asesh.tripathy@gmail.com",
     "links": []
   },
   "books": [

@@ -18,13 +18,25 @@ description: "Dr. Asesh Kumar Tripathy, Associate Professor of Computer Science 
 </div>
 </div>
 
-I am an Associate Professor in the Department of Computer Science and Engineering at Koneru Lakshmaiah Education Foundation (K L Deemed to be University), where I teach Advanced Object‑Oriented Programming (25CS2205E). I hold a PhD in Computer Science and Technology from Berhampur University and have been teaching for 22 years.
+I am an Associate Professor in the Department of Computer Science and Engineering at Koneru Lakshmaiah Education Foundation (K L Deemed to be University). I hold a PhD in Computer Science and Technology from Berhampur University and have been teaching for 22 years.
 
 ### Research
 
 My research interests include post‑quantum cryptography, decentralised system security, privacy‑preserving machine learning, and the energy and sustainability implications of digital infrastructure. I have published over 25 peer‑reviewed papers. I am a Senior Member of IEEE and a member of ACM.
 
-[See my publications and patents →](/research/) · [Projects I guide →](/projects/)
+[See my publications and patents →](/research/)
+
+### Courses
+
+All three courses are free to read and use, with no sign‑up:
+
+- **[Advanced Object‑Oriented Programming](/courses/aoop/)** (25CS2205E): build a Smart Parking System in Java over 12 weeks.
+- **[Theory of Computation](/courses/toc/)** (24CS3206): finite automata, grammars, pushdown automata and Turing machines, in 26 topics with quizzes.
+- **[Advanced Algorithms and Data Structures](/courses/aads/)** (23CS03HF): balanced trees, string matching, graphs, design techniques and NP‑completeness, in 34 topics with quizzes and GATE‑style practice.
+
+### Projects I guide
+
+I guide B.Tech capstone projects in cybersecurity and blockchain, and some of this work has been accepted at conferences. [See the projects and papers →](/projects/)
 
 ### Why Y2HL Orbit
 
@@ -32,5 +44,9 @@ Y2HL Orbit ("Yes to Happy Learning") is where I publish my teaching materials. T
 
 ### Using these materials
 
-- **Students:** follow the weeks in order. Each week builds on the last, and the worksheets are meant to be attempted before you look anything up.
+- **Students:** follow the weeks or topics in order. Each one builds on the last, and the worksheets and problems are meant to be attempted before you look anything up.
 - **Instructors:** you are welcome to use the materials with your own classes. Please credit Y2HL Orbit and link back to this site.
+
+### Contact
+
+Questions, corrections and suggestions are welcome. Email me at [asesh.tripathy@gmail.com](mailto:asesh.tripathy@gmail.com).

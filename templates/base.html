@@ -32,6 +32,7 @@
       <nav class="main-nav" aria-label="Main">
         <a href="/courses/"{% if url.startswith('/courses') %} aria-current="page"{% endif %}>Courses</a>
         <a href="/research/"{% if url.startswith('/research') %} aria-current="page"{% endif %}>Research</a>
+        <a href="/projects/"{% if url.startswith('/projects') %} aria-current="page"{% endif %}>Projects</a>
         <a href="/about/"{% if url.startswith('/about') %} aria-current="page"{% endif %}>About</a>
         <button class="search-open" type="button" aria-label="Search the site" aria-keyshortcuts="/" title="Search the site" data-version="{{ search_version }}" hidden>
           <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14Zm9 16-4-4"/></svg>
