@@ -1,4 +1,4 @@
-"""Loads the PlacementPredict dataset for the Machine Learning course on y2hl.in.
+"""Loads the PlacementPredict dataset for the Learning ML through Project course on y2hl.in.
 
 The data is the course's placement_predict_50k file, hosted on y2hl.in. Its source is
 https://github.com/Naman213091/ML
