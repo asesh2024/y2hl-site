@@ -1,0 +1,10 @@
+[
+{"q":"Naive Bayes is called generative because it:","options":["Models how the data looks for each class","Generates new training labels by rule","Only predicts numbers","Directly searches for the boundary alone"],"answer":0,"explain":"It models P(x | class) and P(class), then applies Bayes theorem."},
+{"q":"For a numeric feature, Gaussian naive Bayes needs per class:","options":["A mean and a variance","Only a maximum","A count of each number","A decision tree"],"answer":0,"explain":"These define the bell curve for that class."},
+{"q":"75% of people have low income. A model that always says low has an accuracy of about:","options":["75%","25%","50%","100%"],"answer":0,"explain":"This is the baseline that any useful model must beat."},
+{"q":"To use numeric columns with categorical naive Bayes, you can:","options":["Convert them into bands","Delete the class labels","Multiply them by the prior","Sort the rows"],"answer":0,"explain":"KBinsDiscretizer does this, using quantiles here."},
+{"q":"Alpha = 1 in CategoricalNB refers to:","options":["Add-one (Laplace) smoothing","The number of classes","The learning rate","The number of bands"],"answer":0,"explain":"It avoids zero probabilities for unseen categories."},
+{"type":"nat","q":"A Gaussian has mean 0 and variance 1. What is its density at x = 0? Give 3 decimal places.","answer":0.399,"tolerance":0.002,"explain":"1/√(2π) = 0.399."},
+{"q":"Why is the income classifier's data here generated rather than downloaded?","options":["The real dataset is too large to fetch in every student's browser","The real dataset does not exist","Naive Bayes cannot use real data","Generated data is always better"],"answer":0,"explain":"The Adult dataset is available from UCI, and can be used on your own computer."},
+{"q":"For an imbalanced target, which should you read?","options":["Precision and recall of the rare class","Only overall accuracy","Only training accuracy","Only the number of rows"],"answer":0,"explain":"A high overall accuracy can hide poor performance on the rare class."}
+]

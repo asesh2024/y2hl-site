@@ -1,0 +1,10 @@
+[
+{"q":"KNN is called lazy because it:","options":["Does its work at prediction time, with no real training step","Trains for a very long time","Skips some test points","Uses only one feature"],"answer":0,"explain":"It simply stores the examples, and does the calculation for each query."},
+{"type":"nat","q":"What is the Euclidean distance between (1, 2) and (4, 6)?","answer":5,"tolerance":0.001,"explain":"√(3² + 4²) = 5."},
+{"q":"Using a very small k tends to:","options":["Fit noise, as one strange neighbour can decide","Make the boundary too smooth","Remove the need for scaling","Reduce prediction accuracy to zero"],"answer":0,"explain":"Low k means high variance."},
+{"q":"Using a very large k tends to:","options":["Blur the boundary towards the majority class","Fit noise exactly","Remove the need for data","Make the model linear"],"answer":0,"explain":"Too many far-away points get a vote."},
+{"q":"Why must features be scaled for KNN?","options":["Features with large numbers would dominate the distance","It needs integer inputs","It changes the labels","It removes ties"],"answer":0,"explain":"Unscaled, a feature measured in thousands would swamp one measured in units."},
+{"q":"The curse of dimensionality means that, with many features:","options":["Points become about equally far apart, so nearest neighbours mean little","Distances become zero","All the classes merge into one label","Training becomes impossible"],"answer":0,"explain":"The contrast between near and far fades as dimensions grow."},
+{"q":"Why choose an odd k for two classes?","options":["To avoid tied votes","To make the prediction faster","Because even numbers cannot be used","To scale the data"],"answer":0,"explain":"With two classes, an odd number of votes cannot tie."},
+{"q":"For query (3, 3) in the table, what does k = 3 return?","options":["B","A","A tie","No answer"],"answer":0,"explain":"The three nearest are A at 1.00, B at 1.00 and B at 1.41."}
+]

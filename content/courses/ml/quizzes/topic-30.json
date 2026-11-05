@@ -1,0 +1,10 @@
+[
+{"type":"nat","q":"TP = 40, FP = 10. What is precision?","answer":0.8,"tolerance":0.001,"explain":"40 / (40 + 10) = 0.8."},
+{"type":"nat","q":"TP = 30, FN = 10. What is recall?","answer":0.75,"tolerance":0.001,"explain":"30 / (30 + 10) = 0.75."},
+{"type":"nat","q":"Precision = 0.5, recall = 1. What is F1? Give 3 decimal places.","answer":0.667,"tolerance":0.002,"explain":"2 × 0.5 × 1 / 1.5 = 0.667."},
+{"type":"nat","q":"A model always predicts 'healthy' when 2% of people are ill. What is its accuracy, as a decimal?","answer":0.98,"tolerance":0.001,"explain":"It is right on the 98% who are healthy."},
+{"q":"A screening test for a serious illness should mainly maximise:","options":["Recall, because missing a case is very costly","Precision, whatever else happens","Training accuracy","Tree depth"],"answer":0,"explain":"A false negative is the costly mistake here."},
+{"q":"K-fold cross-validation gives:","options":["A more reliable estimate, from training and testing on k different splits","A larger training set from nowhere","A deeper tree","Perfect accuracy"],"answer":0,"explain":"Each part serves once as test data, and the results are averaged."},
+{"q":"In cost-complexity pruning, a larger α gives:","options":["A smaller tree","A larger tree","More training data","A different criterion"],"answer":0,"explain":"α is the penalty per leaf."},
+{"q":"Pruning α should be selected using:","options":["Cross-validation on the training data","The test set","The training accuracy alone","Random choice"],"answer":0,"explain":"The test set stays untouched until the final estimate."}
+]

@@ -1,0 +1,10 @@
+[
+{"q":"Logistic regression passes the linear score through a sigmoid so that:","options":["The output lies between 0 and 1, and can be read as a probability","The boundary becomes curved","Training needs no data","The weights become integers"],"answer":0,"explain":"The sigmoid squashes any real number into (0, 1)."},
+{"type":"nat","q":"w₀ = −4, w₁ = 2 and x = 2. What is the probability p?","answer":0.5,"tolerance":0.001,"explain":"The sum is 0, and σ(0) = 0.5."},
+{"type":"nat","q":"One example has y = 1 and p = 0.9. What is its logistic loss? Give 3 decimal places.","answer":0.105,"tolerance":0.002,"explain":"−ln 0.9 = 0.105."},
+{"q":"The decision boundary of logistic regression (with raw features) is:","options":["A straight line or hyperplane","Always a circle","A step in the probability only at zero","A tree"],"answer":0,"explain":"p = 0.5 happens where the linear sum is zero, which is a hyperplane."},
+{"q":"The gradient update for weight j is proportional to:","options":["(y − p) xⱼ","(y − p)²","p xⱼ only","y + p"],"answer":0,"explain":"Summed or averaged over examples, as in topic 9."},
+{"q":"Why scale features before gradient descent?","options":["Unequal scales make the error surface stretched and slow to descend","Scaling changes the labels","It gives a curved boundary","Gradient descent cannot use decimals"],"answer":0,"explain":"With similar scales, one learning rate suits all the weights."},
+{"q":"Gradient descent and logistic regression are:","options":["An optimiser and a model","Both models","Both optimisers","The same thing"],"answer":0,"explain":"The model defines predictions and the optimiser finds its weights."},
+{"q":"A learning rate that is too small causes:","options":["Very slow progress","Immediate divergence","A curved boundary","Missing labels"],"answer":0,"explain":"Each step is tiny, so the loss falls slowly."}
+]

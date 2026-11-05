@@ -1,0 +1,10 @@
+[
+{"q":"The perceptron training rule is:","options":["wᵢ ← wᵢ + η (t − o) xᵢ","wᵢ ← η xᵢ","wᵢ ← wᵢ − (t + o)","wᵢ ← wᵢ · t"],"answer":0,"explain":"The change is proportional to the error and to the input."},
+{"q":"The perceptron rule is guaranteed to converge when:","options":["The data is linearly separable and η is small enough","The data has noise","The network has hidden units","The weights start at 1"],"answer":0,"explain":"This is the perceptron convergence result."},
+{"type":"nat","q":"w₁ = 0.5, η = 0.1, t = 1, o = 0 and x₁ = 1. What is the new w₁?","answer":0.6,"tolerance":0.001,"explain":"0.5 + 0.1 × (1 − 0) × 1 = 0.6."},
+{"type":"nat","q":"The output is correct: t = 1, o = 1, x₁ = 1, w₁ = 0.3, η = 0.2. What is the new w₁?","answer":0.3,"tolerance":0.001,"explain":"t − o = 0, so nothing changes."},
+{"q":"The delta rule minimises:","options":["The squared error of the unthresholded linear output","The number of misclassified points","The size of the weights only","The number of epochs"],"answer":0,"explain":"E = ½ Σ (t − o)², with o = w·x, is smooth, so it has a gradient."},
+{"q":"On non-separable data, the delta rule:","options":["Approaches the minimum-squared-error weights","Never settles at all","Always classifies every point correctly","Sets all weights to zero in one step"],"answer":0,"explain":"E is a bowl with one minimum, so gradient descent reaches the best fit for a small η."},
+{"q":"Stochastic gradient descent updates the weights:","options":["After each example","Only after all examples","Only once per training run","Only when the error is zero"],"answer":0,"explain":"Batch descent sums over all examples, and stochastic descent updates incrementally."},
+{"type":"nat","q":"Linear unit: w = (0, 1), x = (1, 2) where the first input is the bias, t = 3, η = 0.1. What is the new second weight?","answer":1.2,"tolerance":0.001,"explain":"o = 0×1 + 1×2 = 2, so the error is 1. Δw₂ = 0.1 × 1 × 2 = 0.2, giving 1.2."}
+]

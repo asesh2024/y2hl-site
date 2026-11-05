@@ -1,0 +1,10 @@
+[
+{"q":"In Bayes theorem, P(h) is called the:","options":["Prior","Posterior","Likelihood","Evidence"],"answer":0,"explain":"P(h) is the belief in h before seeing the data."},
+{"q":"P(D|h) is called the:","options":["Likelihood","Prior","Posterior","Marginal hypothesis"],"answer":0,"explain":"It is how probable the data is if h were true."},
+{"q":"Which expression is Bayes theorem?","options":["P(h|D) = P(D|h) P(h) / P(D)","P(h|D) = P(h) P(D)","P(h|D) = P(D) / P(h)","P(h|D) = P(D|h) + P(h)"],"answer":0,"explain":"The posterior equals the likelihood times the prior, divided by the evidence."},
+{"type":"nat","q":"P(h) = 0.5, P(D|h) = 0.8 and P(D|¬h) = 0.2. What is P(h|D)?","answer":0.8,"tolerance":0.001,"explain":"P(D) = 0.8×0.5 + 0.2×0.5 = 0.5. Then P(h|D) = 0.4 / 0.5 = 0.8."},
+{"type":"nat","q":"Disease rate 2%, detection 90%, false positive 10%. What is P(disease | +)? Give 3 decimal places.","answer":0.155,"tolerance":0.002,"explain":"P(+) = 0.9×0.02 + 0.1×0.98 = 0.018 + 0.098 = 0.116. Then 0.018 / 0.116 = 0.155."},
+{"q":"Why is P(disease | +) low for a rare disease, even with a good test?","options":["Most positive results come from the much larger healthy group","The test does not work on rare diseases","The likelihood is always low","P(+) is zero"],"answer":0,"explain":"A small false alarm rate applied to a huge healthy group gives many false positives."},
+{"q":"After a second independent test, the prior to use is:","options":["The posterior from the first test","The original prior again","0.5","The false alarm rate"],"answer":0,"explain":"Each posterior becomes the prior for the next piece of evidence."},
+{"q":"P(D) can be calculated by:","options":["Summing P(D|hᵢ) P(hᵢ) over all hypotheses","Multiplying all the priors","Taking the largest likelihood","Subtracting the prior from 1"],"answer":0,"explain":"This is the theorem of total probability."}
+]

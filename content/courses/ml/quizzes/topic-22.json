@@ -1,0 +1,10 @@
+[
+{"q":"Induction as inverted deduction seeks h such that:","options":["B ∧ h ∧ xᵢ entails f(xᵢ) for every example","h has the highest prior","f(xᵢ) entails B","The tree is as short as possible"],"answer":0,"explain":"The hypothesis, with background knowledge and the description, must allow the classification to be deduced."},
+{"q":"Resolving P ∨ L with ¬L ∨ R gives:","options":["P ∨ R","L","P ∧ R","¬P ∨ ¬R"],"answer":0,"explain":"The complementary pair L and ¬L cancels."},
+{"q":"Resolve (A ∨ ¬B) and (B ∨ C):","options":["A ∨ C","A ∨ B","¬B ∨ C","A ∧ C"],"answer":0,"explain":"B and ¬B cancel, leaving A and C."},
+{"q":"Given C = A ∨ B and C₁ = B ∨ D, inverse resolution gives C₂ =","options":["A ∨ ¬D","A ∨ D","B ∨ ¬D","¬A ∨ D"],"answer":0,"explain":"L = D, C − {B} = {A}, and C₂ = A ∨ ¬D."},
+{"q":"In first-order resolution, a substitution θ is used to:","options":["Make two literals identical","Delete a clause","Add noise","Count bindings"],"answer":0,"explain":"For example, {x/Tom} unifies Parent(x, Bob) with Parent(Tom, Bob)."},
+{"q":"A limitation of inverted deduction is that:","options":["It does not handle noisy data well, and the hypothesis space can be huge","It cannot use background knowledge","It needs no examples","It works only on numbers"],"answer":0,"explain":"The strict entailment requirement fails on noisy examples, and many hypotheses can qualify."},
+{"q":"Inverse resolution is:","options":["Non-deterministic: it can give many possible clauses","Always unique","Identical to ID3","Only for numeric data"],"answer":0,"explain":"Different choices can all resolve to give C."},
+{"q":"Progol limits its search by:","options":["Using one example to build a most specific hypothesis that bounds the search","Testing only one rule","Removing all background knowledge","Using gradient descent"],"answer":0,"explain":"It searches between the most general rule and that most specific rule."}
+]

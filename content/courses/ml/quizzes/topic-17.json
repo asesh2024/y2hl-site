@@ -1,0 +1,10 @@
+[
+{"q":"Backpropagation minimises the error by:","options":["Gradient descent, using the chain rule to find each weight's gradient","Trying random weights","Adding hidden units until the error is zero","Sorting the training data"],"answer":0,"explain":"The error signal passes backwards through the layers via the chain rule."},
+{"q":"For a sigmoid output unit, δ_k equals:","options":["(t − o) · o(1 − o)","(t − o)","o(1 − o) only","t · o"],"answer":0,"explain":"The extra factor o(1 − o) is the sigmoid's slope."},
+{"type":"nat","q":"o = 0.5 and t = 1. What is δ for this output unit?","answer":0.125,"tolerance":0.001,"explain":"(1 − 0.5) × 0.5 × 0.5 = 0.125."},
+{"type":"nat","q":"With δ = 0.125, η = 0.8 and input to the weight 2, what is Δw?","answer":0.2,"tolerance":0.001,"explain":"0.8 × 0.125 × 2 = 0.2."},
+{"q":"Why should the weights not all start at zero?","options":["Hidden units would stay identical, since they receive identical updates","Zero weights make the sigmoid undefined","The data would become linearly separable","The error would be negative"],"answer":0,"explain":"Random values break the symmetry so that hidden units can learn different features."},
+{"q":"Backpropagation is guaranteed to reach:","options":["A local minimum of the error, not necessarily the global minimum","The global minimum","Zero training error","The smallest network"],"answer":0,"explain":"The error surface of a multilayer network can have many local minima."},
+{"q":"Momentum helps because it:","options":["Keeps some of the previous update, carrying the search through small dips and flat regions","Removes all local minima","Makes the learning rate zero","Adds hidden units"],"answer":0,"explain":"Δw(n) includes α·Δw(n−1)."},
+{"q":"Training error keeps falling, but validation error has started rising. You should:","options":["Stop, or go back to the weights with the lowest validation error","Train for longer","Add more hidden units","Use the test set to decide"],"answer":0,"explain":"The rising validation error signals overfitting. This is early stopping."}
+]

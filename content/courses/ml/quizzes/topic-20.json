@@ -1,0 +1,10 @@
+[
+{"q":"Sequential covering learns:","options":["One rule at a time, removing the examples each rule covers","All rules in one pass over one attribute","A tree first, then deletes it","Only rules that cover every example"],"answer":0,"explain":"It learns a rule, removes the covered positives, and repeats."},
+{"q":"General-to-specific Learn-One-Rule starts with:","options":["A rule with no conditions","A rule that has all conditions","A random rule","One rule per example"],"answer":0,"explain":"It then adds conditions one at a time."},
+{"q":"Beam search keeps:","options":["The best k candidates at each step","Only one candidate","All possible candidates","Only the worst candidates"],"answer":0,"explain":"It reduces the risk of a bad greedy choice without being exhaustive."},
+{"type":"nat","q":"A rule covers 10 examples and 8 are correct. What is its relative frequency?","answer":0.8,"tolerance":0.001,"explain":"n_c / n = 8/10."},
+{"type":"nat","q":"n = 8, n_c = 6, p = 0.5, m = 2. What is the m-estimate?","answer":0.7,"tolerance":0.001,"explain":"(6 + 2 × 0.5) / (8 + 2) = 7/10."},
+{"q":"ID3 is called simultaneous covering because:","options":["Each split chooses a test for all branches at once","It learns one rule at a time","It runs in parallel on several computers","It never uses attributes"],"answer":0,"explain":"A single choice of attribute partitions all the examples into its branches."},
+{"q":"Sequential covering usually needs more data than ID3 because:","options":["It makes more independent choices, each one for a single condition of a rule","It has no stopping rule","It uses no entropy","It only works on numeric data"],"answer":0,"explain":"Each rule's condition is its own decision, based on fewer examples as it goes on."},
+{"q":"Why prefer the m-estimate over relative frequency?","options":["It avoids overrating rules that cover very few examples","It always gives 1","It ignores the prior","It needs no counts"],"answer":0,"explain":"A rule right on 1 of 1 examples gets 1.0 by frequency, but the m-estimate pulls it towards p."}
+]

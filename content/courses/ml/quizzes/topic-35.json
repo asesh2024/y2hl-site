@@ -1,0 +1,10 @@
+[
+{"q":"Before training an MLP, inputs should usually be:","options":["Scaled","Sorted","Rounded to integers","Reversed"],"answer":0,"explain":"Gradient-based training works far better with inputs on similar scales."},
+{"type":"nat","q":"How many weights, counting biases, has a network with 5 inputs, one hidden layer of 16 and 1 output?","answer":113,"explain":"(5 + 1) × 16 = 96 for the hidden units, and (16 + 1) × 1 = 17 for the output. The total is 113."},
+{"q":"alpha in MLPClassifier sets the:","options":["Weight decay penalty","Number of layers","Number of classes","Train-test split"],"answer":0,"explain":"It penalises big weights to reduce overfitting."},
+{"q":"early_stopping=True stops training when:","options":["The score on a held-out part of the training data stops improving","Training loss reaches zero","All the weights reach zero","The test score falls"],"answer":0,"explain":"It keeps the test set unused."},
+{"q":"In a genetic optimiser for a network, an individual is:","options":["A vector of all the network's weights","One training example","One hidden unit","The learning rate"],"answer":0,"explain":"Fitness measures how well a network with those weights performs."},
+{"q":"A GA's main advantage over backpropagation is:","options":["It needs no gradients","It is faster on networks with millions of weights","It always finds the global optimum","It needs no fitness function"],"answer":0,"explain":"It can be used when the fitness cannot be differentiated."},
+{"q":"Backpropagation is usually preferred to a GA on big networks because:","options":["Gradients point directly downhill, so far fewer evaluations are needed","GAs cannot use numbers","Backpropagation needs no data","GAs always overfit"],"answer":0,"explain":"A GA must search blindly in a space with very many dimensions."},
+{"q":"Training accuracy is 0.99 and test accuracy is 0.80. The network is probably:","options":["Overfitting","Underfitting","Perfectly tuned","Too small"],"answer":0,"explain":"A big gap between the two points to overfitting, so use more data, more decay, or a smaller network."}
+]

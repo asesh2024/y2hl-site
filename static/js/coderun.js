@@ -3,7 +3,10 @@
 (function () {
   var blocks = [].filter.call(
     document.querySelectorAll(".prose pre > code.language-python, .prose pre > code.language-java"),
-    function (c) { return c.classList.contains("language-python") || /\bvoid\s+main\s*\(/.test(c.textContent); });
+    function (c) {
+      if (c.classList.contains("language-py")) return false;   // a py fence shows Python that can't run here, such as TensorFlow
+      return c.classList.contains("language-python") || /\bvoid\s+main\s*\(/.test(c.textContent);
+    });
   if (!blocks.length) return;
 
   var script = document.currentScript.src;
@@ -178,6 +181,11 @@
         } else if (m.type === "started") {
           engine.loaded = true;
           status.textContent = "Running…";
+        } else if (m.type === "image") {
+          var picture = el("img", "py-img");
+          picture.src = "data:image/png;base64," + m.data;
+          picture.alt = "Chart drawn by the program";
+          output.appendChild(picture);
         } else if (m.type === "out" || m.type === "err") {
           chars += m.text.length;
           append(m.text, m.type === "err" ? "py-err" : "");
@@ -192,7 +200,7 @@
             finish("Did not compile");
             return;
           }
-          if (!output.textContent) append("(The program finished without printing anything.)", "py-note");
+          if (!output.childNodes.length) append("(The program finished without printing anything.)", "py-note");
           finish("Finished in " + (m.ms < 1000 ? m.ms + " ms" : (m.ms / 1000).toFixed(1) + " s"));
         } else if (m.type === "failed") {
           engine.kill();

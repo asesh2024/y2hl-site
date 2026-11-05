@@ -1,0 +1,10 @@
+[
+{"q":"Data leakage occurs when:","options":["Information from the test data influences training","The training set is too small","A model has too few features","The test set is large"],"answer":0,"explain":"Then the accuracy estimate is unrealistically high."},
+{"q":"When should scaling values be calculated?","options":["On the training data only, then applied to the test data","On all the data before splitting","On the test data only","They never need calculating"],"answer":0,"explain":"This keeps the test data unseen."},
+{"type":"nat","q":"Normalise x = 30 where min = 10 and max = 50, to the range 0 to 1.","answer":0.5,"tolerance":0.001,"explain":"(30 − 10) / (50 − 10) = 0.5."},
+{"type":"nat","q":"Standardise x = 70 with mean 50 and standard deviation 10.","answer":2,"tolerance":0.001,"explain":"(70 − 50) / 10 = 2."},
+{"q":"For categories with no natural order, use:","options":["One-hot encoding","Ordinal numbers 1, 2, 3","The mean of the column","Removing the categories"],"answer":0,"explain":"Ordinal codes would invent an order that does not exist."},
+{"q":"Which model does NOT generally need feature scaling?","options":["A decision tree","K-nearest neighbours","K-means","A neural network"],"answer":0,"explain":"A tree tests one feature at a time, so the units don't matter."},
+{"q":"Income has a few huge values and some missing entries. The safest simple fill is the:","options":["Median","Mean","Maximum","Zero"],"answer":0,"explain":"The median is not pulled upward by the extreme incomes."},
+{"q":"What does a scikit-learn Pipeline help you do?","options":["Fit all preprocessing on training data only, as one model","Skip the test set","Avoid choosing a model","Fill in the labels"],"answer":0,"explain":"Each step is fitted in order on the training data, which prevents leakage."}
+]

@@ -1,0 +1,10 @@
+[
+{"q":"Inertia in k-means is:","options":["The total squared distance from points to their cluster means","The number of clusters","The number of iterations","The largest silhouette score"],"answer":0,"explain":"It is the objective k-means minimises."},
+{"q":"Why can inertia alone not choose k?","options":["It always falls as k rises","It is always zero","It only works for k = 2","It cannot be calculated"],"answer":0,"explain":"With k equal to the number of points, inertia is zero. So look for an elbow."},
+{"type":"nat","q":"A point has a = 2 and b = 8. What is its silhouette?","answer":0.75,"tolerance":0.001,"explain":"(8 − 2) / 8 = 0.75."},
+{"type":"nat","q":"A point has a = 5 and b = 5. What is its silhouette?","answer":0,"tolerance":0.001,"explain":"(5 − 5) / 5 = 0, so the point is on the border between two clusters."},
+{"q":"A silhouette near −1 suggests a point:","options":["Is probably in the wrong cluster","Is at the centre of its cluster","Has no neighbours","Is an exact duplicate"],"answer":0,"explain":"It is closer to another cluster than to its own."},
+{"q":"What does n_init=10 do?","options":["Runs 10 random starts and keeps the best result","Makes 10 clusters","Runs for 10 seconds","Uses 10 features"],"answer":0,"explain":"Restarts reduce the risk of a poor local optimum."},
+{"q":"K-means works poorly on:","options":["Long or curved clusters, such as two interlocking moons","Well-separated round clusters","Scaled data","Small values of k by definition"],"answer":0,"explain":"It assigns points by distance to a mean, so it prefers round shapes."},
+{"q":"K-means on pure random noise will:","options":["Still return k groups, though they mean nothing","Refuse to run","Return one cluster","Return the true labels"],"answer":0,"explain":"The algorithm always produces k clusters, so you must judge whether they mean anything."}
+]

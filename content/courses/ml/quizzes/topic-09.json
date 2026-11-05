@@ -1,0 +1,10 @@
+[
+{"q":"Minimising squared error gives the ML hypothesis when the noise is:","options":["Gaussian with mean 0 and fixed variance","Uniform over all labels","Absent from the inputs and targets only by chance","Exponential and one-sided"],"answer":0,"explain":"Taking the log of the Gaussian likelihood leaves exactly the sum of squared errors to minimise."},
+{"q":"Why can we maximise the log likelihood instead of the likelihood?","options":["The logarithm is increasing, so the maximiser does not change","Logs make the result always positive","It gives a different and better hypothesis","Likelihoods cannot be multiplied"],"answer":0,"explain":"The same h maximises both, and the log turns the product into an easier sum."},
+{"q":"When predicting a probability, the ML objective is:","options":["Σ [d ln h + (1−d) ln(1−h)]","Σ (d − h)²","Σ |d − h|","max(d − h)"],"answer":0,"explain":"This comes from the Bernoulli likelihood. Its negative is the cross entropy."},
+{"q":"The gradient-ascent rule for a sigmoid unit with this objective is:","options":["wⱼ ← wⱼ + η Σ (d − h) xⱼ","wⱼ ← wⱼ − η Σ (d − h)","wⱼ ← wⱼ + η Σ d h","wⱼ ← η xⱼ"],"answer":0,"explain":"The sigmoid derivative cancels neatly, leaving (d − h) times the input."},
+{"type":"nat","q":"x = 2, d = 1, h = 0.75, η = 0.1. What is the change Δw?","answer":0.05,"tolerance":0.0001,"explain":"Δw = 0.1 × (1 − 0.75) × 2 = 0.05."},
+{"type":"nat","q":"d = 1 and h = 0.5. What is this example's contribution to G? Give 3 decimal places.","answer":-0.693,"tolerance":0.002,"explain":"1 × ln 0.5 + 0 = −0.693."},
+{"q":"A few extreme outliers hurt least-squares fitting because:","options":["Squaring gives them great influence, and they break the Gaussian assumption","They are removed automatically","They reduce the number of weights","They make the gradient zero"],"answer":0,"explain":"Large errors dominate the sum of squares, and such errors are very unlikely under Gaussian noise."},
+{"q":"Maximising G is the same as minimising:","options":["The cross entropy","The learning rate","The number of examples","The prior"],"answer":0,"explain":"Cross entropy is −G."}
+]

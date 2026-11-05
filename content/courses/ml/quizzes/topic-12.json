@@ -1,0 +1,10 @@
+[
+{"q":"In a belief network, a node is conditionally independent of its non-descendants given:","options":["Its parents","Its children","All other nodes","Nothing"],"answer":0,"explain":"This is the defining assumption that lets the joint factor into small tables."},
+{"q":"The joint probability in a belief network equals:","options":["The product of P(xᵢ | Parents(xᵢ)) over all nodes","The sum of all priors","The largest table entry","The product of priors only"],"answer":0,"explain":"The chain rule simplifies because each node depends directly only on its parents."},
+{"type":"nat","q":"P(A)=0.5, P(B|A)=0.4 and P(C|B)=0.5, with chain A→B→C. What is P(A, B, C)?","answer":0.1,"tolerance":0.001,"explain":"0.5 × 0.4 × 0.5 = 0.1."},
+{"type":"nat","q":"Using the wet-grass tables, what is P(no rain, sprinkler on, wet)? Give 3 decimal places.","answer":0.288,"tolerance":0.001,"explain":"0.8 × 0.40 × 0.90 = 0.288."},
+{"q":"Learning from a known structure and full data needs:","options":["Counting to fill the tables","Gradient descent with hidden units","A search over all structures","Only the priors"],"answer":0,"explain":"Each table entry is just an observed frequency."},
+{"q":"Learning with some variables unobserved commonly uses:","options":["EM or gradient ascent","Simple counting alone","ID3","K-nearest neighbours"],"answer":0,"explain":"Hidden values cannot be counted directly, so they have to be estimated."},
+{"q":"Seeing the sprinkler was on lowers the probability of rain given wet grass. This is:","options":["Explaining away","Overfitting","Smoothing","Backpropagation"],"answer":0,"explain":"One cause explains the evidence, which makes the other cause less necessary."},
+{"q":"Naive Bayes, drawn as a belief network, has:","options":["Arrows from the class to each attribute","Arrows from each attribute to all others","No arrows","Arrows from attributes to the class only, and no tables"],"answer":0,"explain":"Each attribute has the class as its one parent, so attributes are independent given the class."}
+]

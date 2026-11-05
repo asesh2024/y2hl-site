@@ -1,0 +1,10 @@
+[
+{"q":"MDL prefers the hypothesis that minimises:","options":["The bits to describe h plus the bits to describe the data given h","The number of training examples","The bits to describe the data only","The depth of the tree only"],"answer":0,"explain":"L(h) + L(D|h) balances a hypothesis's complexity against its errors."},
+{"type":"nat","q":"An event has probability 1/16. How many bits does it take under an optimal code?","answer":4,"explain":"−log₂(1/16) = 4."},
+{"q":"h1 (0.4) says +, h2 (0.3) says −, h3 (0.3) says −. The Bayes optimal answer is:","options":["−","+","Cannot be decided","Whichever h1 says"],"answer":0,"explain":"P(−) = 0.6 beats P(+) = 0.4, even though the MAP hypothesis h1 says +."},
+{"q":"What does the Bayes optimal classifier do?","options":["Combines the predictions of all hypotheses, weighted by posterior probability","Uses the hypothesis with the highest prior","Picks a hypothesis at random","Uses the most recent hypothesis"],"answer":0,"explain":"It is a weighted vote over the entire hypothesis space."},
+{"q":"The Gibbs algorithm:","options":["Samples one hypothesis according to the posterior and uses it","Averages all hypotheses","Always uses the MAP hypothesis","Ignores the posterior"],"answer":0,"explain":"One sample from P(h|D) classifies the new instance."},
+{"q":"Under certain conditions, the Gibbs expected error is at most:","options":["Twice the Bayes optimal error","Equal to the Bayes optimal error","Ten times the Bayes optimal error","Half the Bayes optimal error"],"answer":0,"explain":"This is the classic bound, and it shows that a cheap method can do quite well."},
+{"type":"nat","q":"Tree A costs 30 bits with 2 errors, and each error costs 10 bits to list. What is its total MDL cost in bits?","answer":50,"explain":"30 + 2 × 10 = 50."},
+{"q":"Why is the Bayes optimal classifier rarely used directly?","options":["It requires evaluating every hypothesis, which is usually too costly","It is less accurate than MAP on average","It cannot handle two classes","It needs no prior"],"answer":0,"explain":"It is the best on average, but hypothesis spaces are usually enormous."}
+]

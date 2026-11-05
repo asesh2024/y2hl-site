@@ -1,0 +1,10 @@
+[
+{"q":"A perceptron's decision surface is:","options":["A hyperplane","A circle","Any curve","A decision tree"],"answer":0,"explain":"The equation w·x = 0 describes a straight line in 2D and a hyperplane in general."},
+{"q":"Which function can a single perceptron NOT represent?","options":["XOR","AND","OR","NAND"],"answer":0,"explain":"XOR is not linearly separable."},
+{"type":"nat","q":"Weights w₀=−1, w₁=2, w₂=1 and input x=(1, 0). What is the weighted sum?","answer":1,"tolerance":0.001,"explain":"−1 + 2×1 + 1×0 = 1."},
+{"q":"With inputs 0 and 1, the weights w₀=−0.8, w₁=0.5, w₂=0.5 compute:","options":["AND","OR","XOR","NOR"],"answer":0,"explain":"The sum is positive only when both inputs are 1: −0.8 + 1 = 0.2."},
+{"q":"What does the bias weight w₀ do?","options":["Lets the decision line move away from the origin","Scales all the inputs to 1","Sets the learning rate","Counts the hidden units"],"answer":0,"explain":"Without it, the separating surface must pass through the origin."},
+{"q":"Hidden units are used to:","options":["Build intermediate features that make hard problems separable","Store the training labels","Slow down training","Remove the need for weights"],"answer":0,"explain":"They change the representation so the final layer can separate the classes."},
+{"q":"Which problem suits neural network learning?","options":["Many noisy numeric inputs where long training is acceptable and quick prediction is needed","A small rule that must be readable by a judge","Exact tax calculation","Only two binary inputs and a known formula"],"answer":0,"explain":"Networks handle noisy, high-dimensional data, but the result is hard to read."},
+{"q":"Data is linearly separable if:","options":["A hyperplane can place all positives on one side and all negatives on the other","All the points are positive","The attributes are independent","The data has two attributes"],"answer":0,"explain":"This is the exact class of problems one perceptron can represent."}
+]

@@ -1,0 +1,10 @@
+[
+{"q":"Why are first-order rules more expressive than propositional rules?","options":["They use variables and relations, so one rule can cover all objects","They use more attributes","They run faster","They need no training data"],"answer":0,"explain":"Grandparent(x, y) ← Parent(x, z) ∧ Parent(z, y) holds for any family."},
+{"q":"In the clause H ← L₁ ∧ L₂, H is the:","options":["Head","Body","Binding","Constant"],"answer":0,"explain":"L₁ ∧ L₂ is the body. If it holds, the head H holds."},
+{"q":"Which is a correct definition of Grandparent?","options":["Grandparent(x, y) ← Parent(x, z) ∧ Parent(z, y)","Grandparent(x, y) ← Parent(x, y)","Grandparent(x, y) ← Parent(y, x)","Grandparent(x, y) ← Parent(x, x)"],"answer":0,"explain":"z must be the middle generation."},
+{"q":"In FOIL, each new literal must:","options":["Include at least one variable already in the rule","Use only constants","Be a negated literal","Introduce two new variables"],"answer":0,"explain":"This keeps the new literal connected to the existing rule."},
+{"type":"nat","q":"FOIL_Gain with p₀=4, n₀=4, p₁=4, n₁=0, t=4. Calculate the gain.","answer":4,"tolerance":0.001,"explain":"4 × (log₂(4/4) − log₂(4/8)) = 4 × (0 + 1) = 4."},
+{"q":"FOIL_Gain can be understood as:","options":["Bits saved in encoding the positive bindings","The number of attributes used","The accuracy on test data","The depth of a tree"],"answer":0,"explain":"t counts the positive bindings and the bracket gives the information saved per binding."},
+{"q":"A recursive rule is one where:","options":["The target predicate appears in the rule's body","The rule has no head","All variables are constants","It uses negative examples only"],"answer":0,"explain":"For example, Ancestor(x, y) ← Parent(x, z) ∧ Ancestor(z, y)."},
+{"q":"What does a binding mean in FOIL?","options":["An assignment of objects to the rule's variables","A numeric weight","A training epoch","A kind of literal"],"answer":0,"explain":"FOIL counts positive and negative bindings to choose literals."}
+]

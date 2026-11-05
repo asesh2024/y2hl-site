@@ -1,0 +1,10 @@
+[
+{"q":"Which call gives the mean, standard deviation and quartiles of numeric columns?","options":["df.describe()","df.head()","df.shape","df.dtypes"],"answer":0,"explain":"describe() summarises each numeric column."},
+{"q":"df.shape returns:","options":["The number of rows and columns","The first five rows","The column types","The missing values"],"answer":0,"explain":"For example (12, 5) means 12 rows and 5 columns."},
+{"q":"To compare how one number varies against another, use a:","options":["Scatter plot","Pie chart","Bar chart of counts","Table of names"],"answer":0,"explain":"A scatter plot shows the relationship between two numeric variables."},
+{"q":"df.groupby('section')['marks'].mean() gives:","options":["The average marks for each section","The total marks of everyone","The section with the most students","All marks sorted"],"answer":0,"explain":"It splits by section and then averages marks within each group."},
+{"q":"A correlation of 0.95 between hours and marks means:","options":["A strong positive linear relationship, but not necessarily cause","Hours definitely cause the marks","95% of students passed","Marks are 95% of hours"],"answer":0,"explain":"Correlation alone cannot establish cause."},
+{"q":"Which function counts missing values per column?","options":["df.isna().sum()","df.count_missing()","df.null()","df.sum().isna"],"answer":0,"explain":"isna() marks missing cells as True, and sum() adds them per column."},
+{"q":"A histogram with a long tail on the right tells you the data is:","options":["Right-skewed","Perfectly symmetric","Categorical","Sorted"],"answer":0,"explain":"A few large values stretch the distribution to the right."},
+{"q":"Why explore before modelling?","options":["To catch errors, outliers and missing values that would mislead a model","To make training slower","Because models cannot run without a plot","To avoid needing a test set"],"answer":0,"explain":"A model will happily fit mistakes unless you find them."}
+]

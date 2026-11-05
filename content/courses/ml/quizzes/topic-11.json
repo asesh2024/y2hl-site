@@ -1,0 +1,10 @@
+[
+{"q":"The naive Bayes assumption is that attributes are:","options":["Conditionally independent given the class","Independent of the class","All equally important in every dataset","Normally distributed"],"answer":0,"explain":"Given the class, each attribute's probability does not depend on the others."},
+{"q":"In the 14-day data, what is P(Sunny | Yes)?","options":["2/9","3/5","5/14","9/14"],"answer":0,"explain":"Of 9 Yes days, 2 are Sunny."},
+{"type":"nat","q":"Using the 14-day data, what is the naive Bayes score for No on (Sunny, Cool, High, Strong)? Give 4 decimal places.","answer":0.0206,"tolerance":0.0002,"explain":"(5/14)(3/5)(1/5)(4/5)(3/5) = 0.0206."},
+{"q":"Without smoothing, a zero count causes which problem?","options":["The whole product becomes zero, whatever the other evidence says","The class prior becomes one","The result is always positive","The vocabulary grows"],"answer":0,"explain":"One zero factor cancels everything else in the product."},
+{"type":"nat","q":"Add-one smoothing: a word occurs 3 times in a class with 100 words in total, and the vocabulary has 50 words. Give P(word | class) to 3 decimal places.","answer":0.027,"tolerance":0.001,"explain":"(3 + 1) / (100 + 50) = 4/150 = 0.027."},
+{"q":"Why add logarithms in a text classifier?","options":["Multiplying many small probabilities underflows to zero","Logs make the classifier more naive","Logs remove the need for a prior","Logs make the counts whole numbers"],"answer":0,"explain":"The sum of logs keeps the same ordering without underflow."},
+{"q":"A bag-of-words model ignores:","options":["The position and order of words","How often words occur","Which words occur","The class of the training document"],"answer":0,"explain":"Only the word counts are used."},
+{"q":"In the m-estimate, a larger m means:","options":["The prior p is given more weight compared with the observed data","The observed data is given more weight","Probabilities can go below zero","Fewer classes are used"],"answer":0,"explain":"m acts like that many extra virtual examples distributed according to p."}
+]

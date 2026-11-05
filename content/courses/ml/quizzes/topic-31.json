@@ -1,0 +1,10 @@
+[
+{"q":"Bagging trains each tree on:","options":["A sample of rows drawn with replacement","All rows, with no change","Only the rows that were misclassified","Rows from the test set"],"answer":0,"explain":"Bootstrap sampling gives each tree a different view of the data."},
+{"q":"In addition to bagging, random forests also:","options":["Consider a random subset of features at each split","Use only linear models","Remove half the labels","Prune each tree to one level"],"answer":0,"explain":"This makes the trees less correlated."},
+{"q":"For large n, the share of rows NOT in a given bootstrap sample approaches:","options":["About 36.8%","About 5%","About 50%","0%"],"answer":0,"explain":"(1 − 1/n)ⁿ approaches 1/e, which is about 0.368."},
+{"type":"nat","q":"Three independent classifiers are each 80% right. How often is the majority vote right? Give 3 decimal places.","answer":0.896,"tolerance":0.002,"explain":"3(0.8²)(0.2) + 0.8³ = 0.384 + 0.512 = 0.896."},
+{"q":"The OOB score is calculated using:","options":["Rows each tree did not see in its bootstrap sample","The separate test set","The training rows the tree saw","The feature importances"],"answer":0,"explain":"It acts as a built-in validation estimate."},
+{"q":"A random forest mainly reduces a single tree's:","options":["Variance","Bias, to zero in every case","Number of features","Training data"],"answer":0,"explain":"Averaging many noisy but different trees steadies the prediction."},
+{"q":"Adding more trees to a forest generally:","options":["Levels off in accuracy without much overfitting, at a cost in time","Always causes serious overfitting","Reduces accuracy sharply","Removes the need for data"],"answer":0,"explain":"The vote simply stabilises."},
+{"q":"Compared with one tree, a forest's main drawback is that it is:","options":["Harder to read and slower to run","Less accurate in nearly all cases","Unable to handle numbers","In need of feature scaling"],"answer":0,"explain":"Hundreds of trees cannot be read as simple rules."}
+]

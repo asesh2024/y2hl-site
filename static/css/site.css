@@ -375,6 +375,8 @@ figure.dot g.node:has(> :is(ellipse, polygon, path):not([fill="none"])) text:not
 .py-input summary { cursor: pointer; color: var(--muted); margin-bottom: 6px; }
 .py-stdin { padding: 10px 12px; }
 .prose pre.py-output { max-height: 24rem; overflow: auto; white-space: pre-wrap; overflow-wrap: anywhere; margin: 0 0 16px; }
+.py-img { display: block; max-width: 100%; height: auto; margin: 8px 0; background: #fff; border-radius: 8px; }
+.prose pre.py-output:has(.py-img) { max-height: none; }
 .py-err { color: #c0392b; }
 .py-note { color: var(--muted); font-style: italic; }
 :root[data-theme="dark"] .py-err { color: #ff8a80; }

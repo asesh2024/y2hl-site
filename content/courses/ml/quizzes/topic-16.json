@@ -1,0 +1,10 @@
+[
+{"q":"Why does a hidden layer solve XOR?","options":["Hidden units remap the inputs so they become linearly separable","It stores the four cases","It removes the bias","It uses a higher learning rate"],"answer":0,"explain":"In the space of the hidden outputs, the classes can be split by a line."},
+{"q":"Stacking layers of linear units:","options":["Still gives a linear function","Gives any non-linear function","Solves XOR","Requires a sigmoid output to train at all"],"answer":0,"explain":"A composition of linear functions is linear, so depth adds no power."},
+{"q":"Why does backpropagation use sigmoids instead of step functions?","options":["The sigmoid is differentiable, so gradients can be calculated","It is faster to compute","It always outputs integers","It removes the need for weights"],"answer":0,"explain":"A step has zero slope almost everywhere, so a gradient gives no direction."},
+{"type":"nat","q":"What is σ(0) for the sigmoid function?","answer":0.5,"tolerance":0.001,"explain":"1 / (1 + e⁰) = 1/2."},
+{"type":"nat","q":"σ(y) = 0.8. What is dσ/dy?","answer":0.16,"tolerance":0.001,"explain":"dσ/dy = σ(1 − σ) = 0.8 × 0.2 = 0.16."},
+{"type":"nat","q":"How many weights, including biases, has a network with 2 inputs, 2 hidden units and 1 output?","answer":9,"explain":"Each hidden unit has 2 inputs + 1 bias = 3, making 6. The output has 2 + 1 = 3. The total is 9."},
+{"q":"A network with one hidden layer of sigmoid units and a linear output can approximate:","options":["Any bounded continuous function, given enough hidden units","Only linear functions","Only Boolean functions","Only functions with two inputs"],"answer":0,"explain":"This is the classic capacity result, though it does not say training will find the weights."},
+{"q":"XOR can be written as:","options":["(x₁ OR x₂) AND NOT (x₁ AND x₂)","x₁ AND x₂","NOT x₁","x₁ OR x₂"],"answer":0,"explain":"Exactly one input must be on."}
+]

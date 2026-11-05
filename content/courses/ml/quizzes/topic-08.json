@@ -1,0 +1,10 @@
+[
+{"q":"h_MAP is the hypothesis that maximises:","options":["P(D|h) P(h)","P(D|h) only","P(h) only","P(D) only"],"answer":0,"explain":"P(D) is constant across hypotheses, so only the product needs to be compared."},
+{"q":"h_ML equals h_MAP when:","options":["All hypotheses have equal priors","The data is noisy","There are only two hypotheses","P(D) is 1"],"answer":0,"explain":"With a uniform prior, P(h) is just a constant factor."},
+{"q":"h1: P=0.8, likelihood 0.1. h2: P=0.2, likelihood 0.6. Which is the MAP hypothesis?","options":["h2","h1","Both are equal","Neither"],"answer":0,"explain":"h1 scores 0.08 and h2 scores 0.12."},
+{"type":"nat","q":"With equal priors and noise-free data, a version space has 5 hypotheses. What is P(h|D) for each?","answer":0.2,"tolerance":0.001,"explain":"P(h|D) = 1/|VS| = 1/5 = 0.2."},
+{"q":"The version space is:","options":["All hypotheses consistent with the training data","All hypotheses in H","The single best hypothesis","The set of training examples"],"answer":0,"explain":"It is the subset of H that agrees with every training example."},
+{"q":"Under noise-free data and a uniform prior, P(D|h) for a hypothesis that is inconsistent with D is:","options":["0","1","1/|H|","0.5"],"answer":0,"explain":"A hypothesis that disagrees with an example cannot have produced noise-free data."},
+{"q":"Why does the brute-force MAP learner matter if it is impractical?","options":["It gives a standard for judging and understanding practical algorithms","It is the fastest learner on small data","It needs no data","It always beats every algorithm on test data in practice"],"answer":0,"explain":"It explains what other algorithms achieve in Bayesian terms."},
+{"q":"A learner that outputs any consistent hypothesis is a MAP learner if:","options":["The data is noise-free and priors are uniform","It calculates all posteriors","It uses gradient descent","The hypothesis space is small"],"answer":0,"explain":"Under those conditions every consistent hypothesis has the same, highest posterior."}
+]

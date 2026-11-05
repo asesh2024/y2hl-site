@@ -1,0 +1,10 @@
+[
+{"q":"In EM, the E step:","options":["Estimates the hidden variables using the current parameters","Picks new parameters using known labels","Adds a new Gaussian","Throws away outliers"],"answer":0,"explain":"It calculates the expected membership of each point in each Gaussian."},
+{"q":"In EM, the M step:","options":["Re-estimates the parameters to maximise the expected log likelihood","Randomly restarts the means","Assigns each point to exactly one cluster","Chooses the number of clusters"],"answer":0,"explain":"For Gaussians, this means a responsibility-weighted average."},
+{"q":"K-means is like EM except that memberships are:","options":["Hard: 0 or 1","Soft probabilities","Negative","Fixed from the start"],"answer":0,"explain":"Each point is assigned entirely to its nearest mean."},
+{"q":"EM is guaranteed to:","options":["Never lower the likelihood, but it may reach only a local maximum","Always reach the global maximum","Finish in one step","Find the right value of k"],"answer":0,"explain":"The likelihood does not decrease, but the result depends on the start."},
+{"type":"nat","q":"Points 1, 2 and 6 are assigned to one cluster. What is its new mean?","answer":3,"tolerance":0.001,"explain":"(1 + 2 + 6) / 3 = 3."},
+{"type":"nat","q":"x = 0, μ₁ = 0, μ₂ = 2, σ = 1. Calculate E[z for Gaussian 1] to 3 decimal places.","answer":0.881,"tolerance":0.002,"explain":"e⁰ = 1 and e^(−2) = 0.135. So 1 / (1 + 0.135) = 0.881."},
+{"q":"Which objective does k-means reduce at every step?","options":["The total squared distance from points to their cluster means","The number of clusters","The largest distance between means","The entropy of the labels"],"answer":0,"explain":"Both the assignment and update steps can only lower this sum."},
+{"q":"Why run k-means from several random starts?","options":["Different starts can reach different local optima","It removes the need to choose k","It makes each step slower but exact","It adds labels to the data"],"answer":0,"explain":"Keep the run with the smallest total squared distance."}
+]

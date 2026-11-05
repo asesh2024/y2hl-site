@@ -1,0 +1,39 @@
+{
+  "order": 4,
+  "title": "Machine Learning",
+  "short": "ML",
+  "code": "19CS3021S",
+  "tagline": "Decision trees, Bayesian learning, neural networks and beyond, with programs that run in your browser",
+  "summary": "35 topics from decision trees to Q-learning, each with a clear explanation, Python programs you can run and edit on the page, practice problems and a self-marking quiz.",
+  "level": "Undergraduate, no prerequisites",
+  "language": "Python",
+  "stats": [
+    {"value": "35", "label": "topics"},
+    {"value": "280", "label": "quiz questions"},
+    {"value": "5", "label": "CO tests"},
+    {"value": "39", "label": "programs that run on the page"}
+  ],
+  "byline": true,
+  "unit": "Topic",
+  "unit_plural": "topics",
+  "unit_prefix": "topic",
+  "unit_template": "topic.html",
+  "units_heading": "The 35 topics",
+  "secondary_link": {"href": "how-to-study.html", "label": "How to study this course"},
+  "pass_percent": 60,
+  "co_test_size": 20,
+  "guide_pages": ["overview", "how-to-study", "labs", "project"],
+  "guide_titles": {
+    "overview": "Overview",
+    "how-to-study": "How to study this course",
+    "labs": "Lab and skill programs",
+    "project": "Project guide"
+  },
+  "outcomes": {
+    "CO1": "Machine learning basics and decision trees",
+    "CO2": "Bayesian learning",
+    "CO3": "Neural networks and genetic algorithms",
+    "CO4": "Rule learning, analytical learning and reinforcement learning",
+    "CO5": "Machine learning programs in Python"
+  }
+}

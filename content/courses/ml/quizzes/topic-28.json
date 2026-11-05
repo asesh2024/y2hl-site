@@ -1,0 +1,10 @@
+[
+{"q":"Least-squares regression minimises:","options":["The sum of squared vertical differences between the data and the line","The sum of the x values","The number of points on the line","The largest residual only"],"answer":0,"explain":"This is the squared-error objective."},
+{"type":"nat","q":"Data x = 1, 2, 3 and y = 2, 4, 5. What is the least-squares slope w₁?","answer":1.5,"tolerance":0.001,"explain":"Σ(x−x̄)(y−ȳ) = 3 and Σ(x−x̄)² = 2, so w₁ = 1.5."},
+{"type":"nat","q":"Mean x = 4, mean y = 10 and slope w₁ = 2. What is the intercept w₀?","answer":2,"tolerance":0.001,"explain":"w₀ = ȳ − w₁x̄ = 10 − 8 = 2."},
+{"type":"nat","q":"Targets 2, 5, 5 and predictions 2, 4, 6. What is the MSE? Give 3 decimal places.","answer":0.667,"tolerance":0.002,"explain":"(0 + 1 + 1) / 3 = 0.667."},
+{"q":"R² = 0 means the model:","options":["Does no better than always predicting the mean","Is perfect","Has no intercept","Has zero error"],"answer":0,"explain":"The residual sum of squares equals the total sum of squares."},
+{"q":"When a line classifies at 0.5, the decision boundary is where:","options":["The predicted value equals 0.5","The prediction is largest","x equals 0","All errors are zero"],"answer":0,"explain":"Points on one side give above 0.5, and points on the other give below."},
+{"q":"Why is linear regression poor for classification when there are far-away points?","options":["Squared error lets them tilt the line, moving the boundary","It cannot produce numbers","It needs one-hot labels","It cannot use two features"],"answer":0,"explain":"The points are classified correctly, yet still pull the line. Logistic regression does not suffer in this way."},
+{"q":"Filling many missing values with the median can:","options":["Flatten the fitted relationship by adding values off the trend","Always improve the model","Remove all noise","Change the number of columns"],"answer":0,"explain":"A constant fill ignores the relationship between the variables."}
+]

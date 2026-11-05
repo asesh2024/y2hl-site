@@ -1,0 +1,10 @@
+[
+{"q":"ID3 searches the space of trees using:","options":["Greedy top-down search with no backtracking","Exhaustive search of all trees","Random search","Bottom-up merging of leaves"],"answer":0,"explain":"It chooses the best attribute at each node and never reconsiders."},
+{"q":"ID3 returns a leaf with the most common label when:","options":["No attributes remain but the examples still disagree","All examples have the same label","The gain of an attribute is high","The tree has reached depth 3"],"answer":0,"explain":"With nothing left to test, the best available answer is the majority label."},
+{"q":"In the 14-day data, which attribute does ID3 test under Outlook = Sunny?","options":["Humidity","Wind","Temp","Outlook again"],"answer":0,"explain":"Humidity has gain 0.971 on the Sunny days, which is a perfect split."},
+{"q":"Under Outlook = Rain, ID3 tests:","options":["Wind","Humidity","Temp","Nothing, it is a leaf"],"answer":0,"explain":"Wind splits the Rain days perfectly, with gain 0.971."},
+{"q":"Which attribute never appears in the tree learned from the 14-day data?","options":["Temp","Wind","Humidity","Outlook"],"answer":0,"explain":"Temp is never the best choice at any node, so ID3 leaves it out."},
+{"type":"nat","q":"What is the entropy of the 5 Sunny days (2 Yes, 3 No)? Give 3 decimal places.","answer":0.971,"tolerance":0.002,"explain":"−0.4 log₂ 0.4 − 0.6 log₂ 0.6 = 0.529 + 0.442 = 0.971."},
+{"q":"How many leaves does the tree learned from the 14-day data have?","options":["5","3","7","14"],"answer":0,"explain":"Overcast gives 1 leaf, Humidity gives 2, and Wind gives 2."},
+{"q":"Why is a 'Day number' attribute a problem for plain information gain?","options":["It splits the data into pure single-example groups, so its gain is very high but it cannot generalise","It has a gain of zero","It cannot be turned into a branch","It makes the entropy negative"],"answer":0,"explain":"Every branch is pure, so gain is maximal, yet the attribute tells us nothing about a new day."}
+]
