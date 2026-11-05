@@ -26,11 +26,11 @@ My research interests include post‑quantum cryptography, decentralised system 
 
 [See my publications and patents →](/research/) · [Projects I guide →](/projects/)
 
-### Why Y2HL
+### Why Y2HL Orbit
 
-Y2HL ("Yes to Happy Learning") is where I publish my teaching materials. They are open to every student, at my university or any other, and to anyone teaching a similar course.
+Y2HL Orbit ("Yes to Happy Learning") is where I publish my teaching materials. They are open to every student, at my university or any other, and to anyone teaching a similar course.
 
 ### Using these materials
 
 - **Students:** follow the weeks in order. Each week builds on the last, and the worksheets are meant to be attempted before you look anything up.
-- **Instructors:** you are welcome to use the materials with your own classes. Please credit Y2HL and link back to this site.
+- **Instructors:** you are welcome to use the materials with your own classes. Please credit Y2HL Orbit and link back to this site.

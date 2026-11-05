@@ -1,4 +1,4 @@
-# Y2HL website (www.y2hl.in)
+# Y2HL Orbit website (www.y2hl.in)
 
 A static website: plain HTML pages generated from Markdown. There is no database, no plugins and no admin login, so there is nothing for attackers to break into the way they broke into the old WordPress site.
 
