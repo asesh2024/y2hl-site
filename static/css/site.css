@@ -382,6 +382,46 @@ figure.dot g.node:has(> :is(ellipse, polygon, path):not([fill="none"])) text:not
 :root[data-theme="dark"] .py-err { color: #ff8a80; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .py-err { color: #ff8a80; } }
 
+/* Study tools and flashcards */
+.study-open { position: fixed; right: 16px; bottom: 16px; z-index: 15; display: flex; align-items: center; gap: 8px; min-height: 40px; padding: 8px 14px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--ink); font: 600 .85rem var(--font); font-variant-numeric: tabular-nums; box-shadow: var(--shadow); cursor: pointer; }
+.study-open:hover { border-color: var(--accent); }
+.study-open.is-due { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent); }
+.study-badge { min-width: 22px; padding: 1px 6px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); text-align: center; font-size: .78rem; }
+.study-badge[hidden] { display: none; }
+.study-panel { position: fixed; right: 16px; bottom: 66px; z-index: 15; width: min(320px, calc(100vw - 32px)); max-height: calc(100vh - 170px); overflow-y: auto; padding: 14px 16px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); box-shadow: 0 16px 48px rgba(0, 0, 0, .25); }
+.study-panel[hidden] { display: none; }
+.study-head { display: flex; justify-content: space-between; align-items: center; }
+.study-head h2 { margin: 0; font-size: 1.1rem; }
+.study-close { font: 600 .8rem var(--font); padding: 4px 9px; border: 1px solid var(--line); border-radius: 7px; background: var(--surface); color: var(--muted); cursor: pointer; }
+.study-streak { display: flex; flex-direction: column; margin: 12px 0; padding: 10px 12px; border-radius: 8px; background: var(--accent-soft); }
+.study-streak span { color: var(--muted); font-size: .85rem; }
+.study-timer { text-align: center; }
+.study-label { margin: 0; color: var(--muted); font-size: .85rem; font-weight: 600; }
+.study-clock { margin: 0 0 8px; font: 700 2.4rem/1.2 var(--mono); font-variant-numeric: tabular-nums; }
+.study-controls { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
+.study-controls .btn { padding: 6px 12px; font-size: .85rem; cursor: pointer; }
+.study-notice { margin: 8px 0 0; color: var(--accent); font-size: .88rem; font-weight: 600; }
+.study-notice:empty { display: none; }
+.study-note { margin: 12px 0 0; color: var(--muted); font-size: .78rem; line-height: 1.45; }
+
+.flash-section { margin-top: 40px; padding-top: 8px; border-top: 1px solid var(--line); }
+.flashcards dt { font-weight: 600; margin-top: 10px; }
+.flashcards dd { margin: 0; }
+.flashcards[hidden] { display: none; }
+.flash-deck { max-width: 620px; }
+.flash-card { display: block; width: 100%; min-height: 170px; padding: 0; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); color: var(--ink); font: inherit; text-align: center; box-shadow: var(--shadow); cursor: pointer; }
+.flash-card:hover { border-color: var(--accent); }
+.flash-card.is-flipped { background: var(--accent-soft); }
+.flash-inner { display: flex; flex-direction: column; justify-content: center; gap: 8px; min-height: 170px; padding: 18px 20px; }
+.flash-side { color: var(--accent); font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; }
+.flash-text { font-size: 1.15rem; font-weight: 600; line-height: 1.4; overflow-wrap: anywhere; }
+.flash-card.is-flipped .flash-text { font-size: 1.02rem; font-weight: 500; }
+.flash-hint { color: var(--muted); font-size: .78rem; }
+.flash-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 10px; }
+.flash-bar .btn { padding: 6px 12px; font-size: .85rem; cursor: pointer; }
+.flash-bar .btn:disabled { opacity: .5; cursor: default; }
+.flash-count { color: var(--muted); font-size: .85rem; }
+
 /* Site-wide search */
 .search-dialog { width: min(680px, 100% - 32px); max-width: none; max-height: none; margin: 8vh auto 0; padding: 0; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); color: var(--ink); box-shadow: 0 16px 48px rgba(0, 0, 0, .3); }
 .search-dialog::backdrop { background: rgba(10, 12, 14, .5); }
@@ -406,7 +446,7 @@ figure.dot g.node:has(> :is(ellipse, polygon, path):not([fill="none"])) text:not
 .search-hit mark { background: var(--fill); color: inherit; border-radius: 3px; box-shadow: inset 0 -2px 0 var(--fill-line); }
 
 @media print {
-  .site-header, .site-footer, .course-nav, .pager, .mark-done, .copy-btn, .py-bar, .py-input, .py-output, .theme-toggle, .marks-actions, .marks-student .muted, .notice { display: none !important; }
+  .study-open, .study-panel, .flash-bar, .flash-section, .site-header, .site-footer, .course-nav, .pager, .mark-done, .copy-btn, .py-bar, .py-input, .py-output, .theme-toggle, .marks-actions, .marks-student .muted, .notice { display: none !important; }
   .print-only { display: block; }
   .marks-student input { border: 0; padding: 0; min-width: 0; color: #000; }
   .course-layout { display: block; }

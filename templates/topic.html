@@ -29,10 +29,18 @@
 
     <nav class="toc" aria-label="On this page">
       <p>On this page</p>
-      <ul>{% for t in week.toc %}<li><a href="#{{ t.id }}">{{ t.name }}</a></li>{% endfor %}{% if quiz %}<li><a href="#quiz">Quiz ({{ week.quiz | length }} questions)</a></li>{% endif %}{% if gate %}<li><a href="#gate">GATE-style practice ({{ week.gate | length }} questions)</a></li>{% endif %}</ul>
+      <ul>{% for t in week.toc %}<li><a href="#{{ t.id }}">{{ t.name }}</a></li>{% endfor %}{% if week.cards %}<li><a href="#flashcards">Flashcards ({{ week.cards | length }} cards)</a></li>{% endif %}{% if quiz %}<li><a href="#quiz">Quiz ({{ week.quiz | length }} questions)</a></li>{% endif %}{% if gate %}<li><a href="#gate">GATE-style practice ({{ week.gate | length }} questions)</a></li>{% endif %}</ul>
     </nav>
 
     <div class="prose week-body">{{ week.html | safe }}</div>
+
+    {% if week.cards %}
+    <section class="flash-section" id="flashcards">
+      <h2>Flashcards</h2>
+      <p class="muted">Say the meaning to yourself, then select the card to check.</p>
+      <dl class="flashcards">{% for c in week.cards %}<dt>{{ c[0] }}</dt><dd>{{ c[1] }}</dd>{% endfor %}</dl>
+    </section>
+    {% endif %}
 
     {% if quiz %}
     <section class="quiz-section" id="quiz">

@@ -199,6 +199,17 @@ def load_course(folder):
         if gate.exists():
             unit["gate"] = load_quiz(gate)
         course["weeks"].append(unit)
+    # Flashcards: {"unit number": [[term, meaning], ...]}. A slip here stops the build.
+    cards_path = folder / "flashcards.json"
+    if cards_path.exists():
+        cards = json.loads(cards_path.read_text(encoding="utf-8"))
+        numbers = {str(w["num"]) for w in course["weeks"]}
+        if set(cards) != numbers:
+            sys.exit(f"{cards_path}: flashcards don't match the units: {sorted(set(cards) ^ numbers)}")
+        for w in course["weeks"]:
+            w["cards"] = cards[str(w["num"])]
+            if any(len(c) != 2 or not all(c) for c in w["cards"]):
+                sys.exit(f"{cards_path}: unit {w['num']} has a card without both a term and a meaning")
     course["has_quizzes"] = any("quiz" in w for w in course["weeks"])
     # CO tests draw from the quizzes of every published unit under that CO.
     course["tests"] = []

@@ -38,10 +38,18 @@
 
     <nav class="toc" aria-label="On this page">
       <p>This week's blocks</p>
-      <ul>{% for t in week.toc %}<li><a href="#{{ t.id }}">{{ t.name }}</a></li>{% endfor %}</ul>
+      <ul>{% for t in week.toc %}<li><a href="#{{ t.id }}">{{ t.name }}</a></li>{% endfor %}{% if week.cards %}<li><a href="#flashcards">Flashcards ({{ week.cards | length }} cards)</a></li>{% endif %}</ul>
     </nav>
 
     <div class="prose week-body">{{ week.html | safe }}</div>
+
+    {% if week.cards %}
+    <section class="flash-section" id="flashcards">
+      <h2>Flashcards</h2>
+      <p class="muted">Say the meaning to yourself, then select the card to check.</p>
+      <dl class="flashcards">{% for c in week.cards %}<dt>{{ c[0] }}</dt><dd>{{ c[1] }}</dd>{% endfor %}</dl>
+    </section>
+    {% endif %}
 
     <div class="mark-done">
       <label><input type="checkbox" data-done="{{ week.slug }}"> I have finished Week {{ m.week }}</label>
