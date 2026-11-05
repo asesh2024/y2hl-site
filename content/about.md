@@ -49,6 +49,18 @@ Y2HL Orbit ("Yes to Happy Learning") is where I publish my teaching materials. T
 - **Students:** follow the weeks or topics in order. Each one builds on the last, and the worksheets and problems are meant to be attempted before you look anything up.
 - **Instructors:** you are welcome to use the materials with your own classes. Please credit Y2HL Orbit and link back to this site.
 
+### Support this site
+
+All the course material here is free. If it has helped you and you'd like to support it, you can contribute here. It's entirely optional, it unlocks nothing, and my own students are not expected to contribute.
+
+<div class="support-box">
+<img src="/static/img/support-qr.svg" alt="QR code that opens the payment page for Asesh Kumar Tripathy on Razorpay" width="132" height="132">
+<div>
+<p>Scan the code, or use the link. The payment page should show the name <strong>Asesh Kumar Tripathy</strong>.</p>
+<p><a class="btn" href="https://razorpay.me/@aseshkumartripathy" rel="noopener">Open the payment page</a></p>
+</div>
+</div>
+
 ### Contact
 
 Questions, corrections and suggestions are welcome. Email me at [asesh.tripathy@gmail.com](mailto:asesh.tripathy@gmail.com).
