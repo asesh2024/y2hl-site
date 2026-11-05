@@ -24,6 +24,18 @@
   </div>
 </section>
 
+{% if posts %}
+<section class="wrap section">
+  <div class="section-head">
+    <h2>Latest from the blog</h2>
+    <a href="/blog/">All posts →</a>
+  </div>
+  <div class="post-cards">
+    {% for post in posts %}{% include "_post_card.html" %}{% endfor %}
+  </div>
+</section>
+{% endif %}
+
 {% if site.books %}
 <section class="wrap section">
   <div class="section-head">

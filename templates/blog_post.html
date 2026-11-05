@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block main %}
+<article class="wrap narrow section blog-post">
+  <p class="crumbs"><a href="/blog/">Blog</a> / <a href="/blog/{{ post.series.slug }}/">{{ post.series.name }}</a></p>
+  <h1>{{ post.meta.title }}</h1>
+  <p class="byline">by <a href="/about/">{{ site.author.title }} {{ site.author.name }}</a> · {{ post.date_text }}</p>
+  <p class="lead">{{ post.meta.description }}</p>
+  <div class="prose">{{ post.html | safe }}</div>
+
+  {% set share_url = site.url ~ post.url %}
+  <div class="blog-share">
+    <strong>Share this post</strong>
+    <a class="btn" href="https://wa.me/?text={{ (post.meta.title ~ ' ' ~ share_url) | urlencode }}" rel="noopener">WhatsApp</a>
+    <a class="btn" href="https://www.linkedin.com/sharing/share-offsite/?url={{ share_url | urlencode }}" rel="noopener">LinkedIn</a>
+  </div>
+
+  {% if newer or older %}
+  <nav class="pager" aria-label="More posts">
+    {% if older %}<a class="prev" href="{{ older.url }}"><span>← Older</span>{{ older.meta.title }}</a>{% else %}<span></span>{% endif %}
+    {% if newer %}<a class="next" href="{{ newer.url }}"><span>Newer →</span>{{ newer.meta.title }}</a>{% endif %}
+  </nav>
+  {% endif %}
+</article>
+{% endblock %}

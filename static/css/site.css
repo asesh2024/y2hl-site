@@ -102,7 +102,7 @@ code, pre { font-family: var(--mono); font-size: .88em; }
 .hero { padding: 72px 0 48px; background: radial-gradient(1000px 400px at 85% -10%, var(--accent-soft), transparent 70%); border-bottom: 1px solid var(--line); }
 .hero h1 { max-width: 18ch; font-size: clamp(2.2rem, 6vw, 3.6rem); }
 .section-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; }
-.course-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
+.course-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr)); gap: 20px; }
 .course-card { display: flex; flex-direction: column; gap: 4px; padding: 24px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); color: var(--ink); text-decoration: none; transition: border-color .15s, transform .15s; }
 .course-card:hover { border-color: var(--accent); transform: translateY(-2px); color: var(--ink); }
 .course-card h3 { font-size: 1.4rem; margin: 12px 0 0; }
@@ -247,7 +247,7 @@ code, pre { font-family: var(--mono); font-size: .88em; }
   .progress-label { color: var(--muted); font-weight: 500; font-size: .85rem; }
 }
 /* Two-row header: name and icon buttons on top, menu links below. */
-@media (max-width: 760px) {
+@media (max-width: 860px) {
   html { scroll-padding-top: 116px; }
   .header-inner { position: relative; flex-wrap: wrap; height: auto; gap: 4px 16px; padding-top: 8px; padding-bottom: 6px; }
   .main-nav { width: 100%; }
@@ -270,9 +270,10 @@ code, pre { font-family: var(--mono); font-size: .88em; }
   .book-cover { max-width: 160px; }
   .about-teaser > div { flex-direction: column; align-items: flex-start; }
 }
-@media (max-width: 360px) {
+@media (max-width: 430px) {
   .main-nav { gap: 2px; }
-  .main-nav a { padding: 8px 6px; font-size: .9rem; }
+  .main-nav { justify-content: space-between; }
+  .main-nav a { padding: 8px 3px; font-size: .86rem; }
 }
 .byline { margin: -4px 0 12px; color: var(--muted); font-weight: 500; }
 .byline a { color: var(--ink); text-decoration: none; font-weight: 600; }
@@ -421,6 +422,25 @@ figure.dot g.node:has(> :is(ellipse, polygon, path):not([fill="none"])) text:not
 .flash-bar .btn { padding: 6px 12px; font-size: .85rem; cursor: pointer; }
 .flash-bar .btn:disabled { opacity: .5; cursor: default; }
 .flash-count { color: var(--muted); font-size: .85rem; }
+
+/* Blog */
+.blog-series { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
+.blog-series a { padding: 5px 12px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--ink); text-decoration: none; font-size: .85rem; font-weight: 500; }
+.blog-series a:hover { border-color: var(--accent); }
+.blog-series a[aria-current] { background: var(--accent-soft); color: var(--accent); border-color: var(--accent); font-weight: 600; }
+.blog-list { display: grid; gap: 14px; }
+.post-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr)); gap: 20px; }
+.post-card { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; padding: 18px 20px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); color: var(--ink); text-decoration: none; }
+.post-card:hover { border-color: var(--accent); color: var(--ink); }
+.post-card h3 { margin: 4px 0 0; font-size: 1.2rem; }
+.post-card p { margin: 0; color: var(--muted); font-size: .94rem; }
+.post-date { margin-top: auto; padding-top: 4px; font-size: .82rem; }
+.blog-post > h1 { font-size: clamp(1.8rem, 4vw, 2.5rem); margin-top: 8px; }
+.prose details { margin: 1em 0; padding: 10px 14px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+.prose summary { cursor: pointer; font-weight: 600; }
+.prose details[open] summary { margin-bottom: 8px; }
+.blog-share { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 32px 0 20px; padding-top: 18px; border-top: 1px solid var(--line); }
+.blog-share .btn { padding: 7px 14px; font-size: .88rem; }
 
 /* Site-wide search */
 .search-dialog { width: min(680px, 100% - 32px); max-width: none; max-height: none; margin: 8vh auto 0; padding: 0; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); color: var(--ink); box-shadow: 0 16px 48px rgba(0, 0, 0, .3); }

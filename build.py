@@ -13,7 +13,9 @@ import os
 import re
 import shutil
 import sys
-from datetime import date
+from datetime import date, datetime, timezone
+from email.utils import format_datetime
+from html import escape
 from html.parser import HTMLParser
 from pathlib import Path
 
@@ -53,7 +55,7 @@ def read_page(path):
             key, _, value = line.partition(":")
             meta[key.strip()] = json.loads(value.strip())
     md = markdown.Markdown(
-        extensions=["tables", "fenced_code", "toc", "sane_lists", "attr_list"],
+        extensions=["tables", "fenced_code", "toc", "sane_lists", "attr_list", "md_in_html"],
         extension_configs={"toc": {"slugify": slugify, "toc_depth": "3"}},
     )
     html = md.convert(text)
@@ -120,7 +122,7 @@ def search_doc(where, title, url, description, html, keywords=""):
     return [where, title, BASE_PATH + url, description, keywords, [s for s in sections if s[1] or s[2]]]
 
 
-def write_search_index(courses, pages):
+def write_search_index(courses, pages, posts):
     """Write static/search-index.json and return a fingerprint of it, so browsers fetch it again when it changes."""
     docs = []
     for course in courses:
@@ -135,9 +137,55 @@ def write_search_index(courses, pages):
                                    w["meta"]["description"], w["html"], w["meta"].get("keywords", "")))
     for name, (meta, html, _) in pages.items():
         docs.append(search_doc("Site", meta["title"], f"/{name}/", meta.get("description", ""), html))
+    for post in posts:
+        docs.append(search_doc("Blog", post["meta"]["title"], post["url"], post["meta"]["description"], post["html"]))
     data = json.dumps(docs, ensure_ascii=False, separators=(",", ":")).encode("utf-8")
     (OUT / "static" / "search-index.json").write_bytes(data)
     return hashlib.sha1(data).hexdigest()[:8]
+
+
+BLOG_SERIES = {
+    "weekly-challenge": {"name": "Weekly challenge", "description": "One small coding puzzle you can solve right on the page."},
+    "python-tips": {"name": "Python tips", "description": "Short, practical help with writing and fixing Python."},
+    "ai-for-school": {"name": "AI for school students", "description": "How AI works, explained simply, with programs to try."},
+    "careers": {"name": "Career guidance", "description": "Advice on projects, placements and interviews."},
+}
+
+
+def load_posts():
+    """Blog posts from content/blog, newest first. A wrong series or date stops the build."""
+    posts = []
+    for path in sorted((CONTENT / "blog").glob("*.md")):
+        meta, html, _ = read_page(path)
+        if meta["series"] not in BLOG_SERIES:
+            sys.exit(f"{path.name}: unknown series {meta['series']!r}")
+        when = date.fromisoformat(meta["date"])
+        posts.append({"slug": path.stem, "meta": meta, "html": html, "date": when, "date_text": f"{when.day} {when:%B %Y}",
+                      "url": f"/blog/{path.stem}.html", "series": dict(BLOG_SERIES[meta["series"]], slug=meta["series"])})
+    return sorted(posts, key=lambda p: (p["date"], p["slug"]), reverse=True)
+
+
+def write_blog(posts):
+    used = [dict(BLOG_SERIES[s], slug=s) for s in BLOG_SERIES if any(p["series"]["slug"] == s for p in posts)]
+    write("blog/index.html", "blog_index.html", posts=posts, series=used, section="blog", page={
+        "title": "Blog", "description": "Coding challenges, Python tips, career guidance and simple explanations of AI, for students."})
+    for s in used:
+        write(f"blog/{s['slug']}/index.html", "blog_index.html", posts=[p for p in posts if p["series"]["slug"] == s["slug"]],
+              series=used, active=s, section="blog", page={"title": s["name"], "description": s["description"]})
+    for i, post in enumerate(posts):
+        write(f"blog/{post['slug']}.html", "blog_post.html", post=post, section="blog",
+              newer=posts[i - 1] if i else None, older=posts[i + 1] if i + 1 < len(posts) else None,
+              page={"title": post["meta"]["title"], "description": post["meta"]["description"]})
+    base = SITE["url"].rstrip("/")
+    items = "".join(
+        f"<item><title>{escape(p['meta']['title'])}</title><link>{base}{p['url']}</link><guid>{base}{p['url']}</guid>"
+        f"<description>{escape(p['meta']['description'])}</description><category>{escape(p['series']['name'])}</category>"
+        f"<pubDate>{format_datetime(datetime(p['date'].year, p['date'].month, p['date'].day, tzinfo=timezone.utc))}</pubDate></item>\n"
+        for p in posts)
+    (OUT / "blog" / "feed.xml").write_text(
+        f'<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0"><channel><title>{escape(SITE["name"])} blog</title>'
+        f'<link>{base}/blog/</link><description>Coding challenges, Python tips, career guidance and AI explained for students.</description>\n'
+        f'{items}</channel></rss>\n', encoding="utf-8")
 
 
 def load_quiz(path):
@@ -231,9 +279,11 @@ def build():
     courses = [load_course(p) for p in (CONTENT / "courses").iterdir() if (p / "course.json").exists()]
     courses.sort(key=lambda c: (c.get("order", 99), c["slug"]))
     pages = {name: read_page(CONTENT / f"{name}.md") for name in ("about", "research", "projects")}
-    env.globals["search_version"] = write_search_index(courses, pages)
+    posts = load_posts()
+    env.globals["search_version"] = write_search_index(courses, pages, posts)
 
-    write("index.html", "home.html", courses=courses, page={"title": SITE["name"], "description": SITE["description"]})
+    write_blog(posts)
+    write("index.html", "home.html", courses=courses, posts=posts[:3], page={"title": SITE["name"], "description": SITE["description"]})
 
     for name, (meta, html, _) in pages.items():
         write(f"{name}/index.html", "page.html", page=meta, body=html, section=name)

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block main %}
+<section class="page-head">
+  <div class="wrap narrow">
+    {% if active %}<p class="crumbs"><a href="/blog/">Blog</a> / {{ active.name }}</p>{% endif %}
+    <h1>{{ page.title }}</h1>
+    <p class="lead">{{ page.description }}</p>
+    <nav class="blog-series" aria-label="Blog series">
+      <a href="/blog/"{% if not active %} aria-current="page"{% endif %}>All posts</a>
+      {% for s in series %}<a href="/blog/{{ s.slug }}/"{% if active and active.slug == s.slug %} aria-current="page"{% endif %}>{{ s.name }}</a>{% endfor %}
+      <a href="/blog/feed.xml">RSS feed</a>
+    </nav>
+  </div>
+</section>
+<div class="wrap narrow section blog-list">
+  {% for post in posts %}{% include "_post_card.html" %}{% endfor %}
+</div>
+{% endblock %}
