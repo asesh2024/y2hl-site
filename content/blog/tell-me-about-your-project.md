@@ -102,3 +102,9 @@ A good project interview is not about how many technologies you can name. It is 
 Don't just present your project. Demonstrate your understanding of it.
 
 **Building a project now?** The [Learning ML through Project](/courses/mlng/) course walks through a full system, from data to deployment.
+
+### What readers said
+
+> A remarkably well-articulated piece. Structured and highly engaging. Appreciate you sharing this.
+
+Md Aslam, Java Full Stack Developer, commenting on LinkedIn
