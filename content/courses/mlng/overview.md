@@ -7,7 +7,7 @@ description: "What the course covers, its course outcomes, and the books and onl
 
 This course is taught **outside-in**. On day one, you use **PlacementPredict**, a running service that estimates a student's chance of placement from academic and co-curricular data. Over the term, you open it up, layer by layer, until you can build, evaluate, deploy and monitor such a system yourself.
 
-**About the data.** All the programs use the course dataset, `placement_predict_50k`, with 50,000 student records and 32 columns. It is read from [its GitHub repository](https://github.com/Naman213091/ML) by a [small helper file](/static/data/placement_predict.py). To keep pages quick, most programs use a random sample of 5,000 rows. Use `load_data(n=None)` for all of them. The helper leaves out `Gender` and `City` on purpose, because a placement estimate shouldn't depend on them.
+**About the data.** All the programs use the course dataset, `placement_predict_50k`, with 50,000 student records and 32 columns. You can [download the CSV file](/static/data/placement_predict_50k.csv), which comes from [this GitHub repository](https://github.com/Naman213091/ML). A [small helper file](/static/data/placement_predict.py) loads it for each program. To keep pages quick, most programs use a random sample of 5,000 rows. Use `load_data(n=None)` for all of them. The helper leaves out `Gender` and `City` on purpose, because a placement estimate shouldn't depend on them.
 
 Most programs **run right on the page**. A few tools, such as FastAPI, ONNX and MLflow, can't run in a browser. Those programs are marked for use on your own computer.
 

@@ -1,6 +1,6 @@
 """Loads the PlacementPredict dataset for the Machine Learning course on y2hl.in.
 
-The data is the course's placement_predict_50k file, read from its GitHub repository:
+The data is the course's placement_predict_50k file, hosted on y2hl.in. Its source is
 https://github.com/Naman213091/ML
 
 Programs on the site can import this file directly. To run them on your own computer, save this file
@@ -11,7 +11,7 @@ from pathlib import Path
 
 import pandas as pd
 
-URL = "https://raw.githubusercontent.com/Naman213091/ML/main/placement_predict_50k%20Dataset.csv"
+URL = "https://www.y2hl.in/static/data/placement_predict_50k.csv"
 LOCAL = "placement_predict_50k.csv"
 
 NUMERIC = ["CGPA", "AttendancePercent", "Internships", "Projects", "Workshops", "Certifications", "Publications",
@@ -33,7 +33,7 @@ def load_data(n=5000, seed=42):
         df = pd.read_csv(LOCAL if Path(LOCAL).exists() else URL)
     except Exception as error:
         raise RuntimeError("Could not load the PlacementPredict dataset. Your network may be blocking "
-                           "raw.githubusercontent.com. Try another network.") from error
+                           "www.y2hl.in. Try another network.") from error
     if n is None or n >= len(df):
         return df
     return df.sample(n, random_state=seed).reset_index(drop=True)

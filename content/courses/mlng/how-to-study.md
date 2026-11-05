@@ -23,7 +23,7 @@ At the end of each course outcome there is a **CO test**: 20 questions drawn at 
 - **Your edits are lost** when you leave the page, so copy anything you want to keep.
 - **To stop** a program that runs too long, press **Stop**.
 
-If your network blocks `cdn.jsdelivr.net` or `raw.githubusercontent.com`, the programs can't load. Try another network, or use your own computer.
+If your network blocks `cdn.jsdelivr.net`, the programs can't load. Try another network, or use your own computer.
 
 ### Using your own computer
 
@@ -36,7 +36,7 @@ Programs headed **On your own computer** use tools that can't run in a browser. 
 python -m pip install numpy pandas scikit-learn matplotlib xgboost lightgbm pyyaml joblib
 ```
 
-3. Download [placement_predict.py](/static/data/placement_predict.py), and save it in the same folder as your program. It fetches the dataset for you. To work offline, also save the [CSV file](https://github.com/Naman213091/ML/blob/main/placement_predict_50k%20Dataset.csv) there as `placement_predict_50k.csv`.
+3. Download [placement_predict.py](/static/data/placement_predict.py), and save it in the same folder as your program. It fetches the dataset for you. To work offline, also save the [CSV file](/static/data/placement_predict_50k.csv) there.
 4. Run your program:
 
 ```bash

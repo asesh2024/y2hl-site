@@ -2,7 +2,6 @@
 // The page stops a program by terminating this worker and starting a new one.
 var PYODIDE = "https://cdn.jsdelivr.net/pyodide/v0.27.7/full/";
 var pyodide = null;
-var DATASET = "https://raw.githubusercontent.com/Naman213091/ML/main/placement_predict_50k%20Dataset.csv";
 var datasetLoaded = false;
 var LIBRARIES = [[/\bnumpy\b/, "NumPy"], [/\bpandas\b/, "pandas"], [/\bsklearn\b/, "scikit-learn"], [/\bmatplotlib\b/, "matplotlib"], [/\bxgboost\b/, "XGBoost"], [/\blightgbm\b/, "LightGBM"]];
 
@@ -80,7 +79,7 @@ onmessage = async function (e) {
       pyodide.FS.writeFile("/home/pyodide/placement_predict.py", helper);
       if (!datasetLoaded) {
         postMessage({ type: "status", text: "Loading the course dataset…" });
-        var data = await fetch(DATASET);
+        var data = await fetch(new URL("../data/placement_predict_50k.csv", location.href));
         if (data.ok) {
           pyodide.FS.writeFile("/home/pyodide/placement_predict_50k.csv", new Uint8Array(await data.arrayBuffer()));
           datasetLoaded = true;
