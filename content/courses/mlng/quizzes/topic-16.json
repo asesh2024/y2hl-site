@@ -1,0 +1,10 @@
+[
+{"q":"In Isolation Forest, an anomaly usually has:","options":["A short average path","A very long path","No path","The same path as all others"],"answer":0,"explain":"Random splits isolate it quickly."},
+{"type":"nat","q":"100 records are flagged, 15 of them are true anomalies. What is the precision?","answer":0.15,"tolerance":0.001,"explain":"15/100."},
+{"type":"nat","q":"20 true anomalies exist, and 15 are flagged. What is the recall?","answer":0.75,"tolerance":0.001,"explain":"15/20."},
+{"type":"nat","q":"Anomalies are 2% of the data. What accuracy, as a decimal, does labelling everything normal score?","answer":0.98,"tolerance":0.001,"explain":"It is right on the 98% that are normal."},
+{"q":"contamination in Isolation Forest sets:","options":["The share of records flagged, through the score threshold","The number of trees","The learning rate","The label column"],"answer":0,"explain":"It should reflect the share you expect."},
+{"q":"A flagged record is a rare but real case. You should:","options":["Keep it, and make sure the model can handle it","Always delete it","Change its label","Rename the column"],"answer":0,"explain":"Only errors should be removed."},
+{"q":"An autoencoder detects anomalies by:","options":["High reconstruction error on unusual data","Counting labels","Sorting by CGPA","Randomly flipping bits"],"answer":0,"explain":"It learns to rebuild normal data, and rebuilds unusual data poorly."},
+{"q":"Cluster features for a supervised model should be fitted on:","options":["Training data only","All the data","Test data only","Validation labels"],"answer":0,"explain":"Otherwise information leaks from unseen data."}
+]

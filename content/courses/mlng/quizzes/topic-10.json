@@ -1,0 +1,10 @@
+[
+{"q":"Bagging draws training rows:","options":["With replacement","Without replacement, all rows once","Only from misclassified rows","From the test set"],"answer":0,"explain":"Bootstrap sampling gives each tree a different view."},
+{"q":"In the long run, about what share of rows are left out of a bootstrap sample?","options":["36.8%","5%","50%","63.2%"],"answer":0,"explain":"(1 − 1/n)ⁿ approaches 1/e, about 0.368."},
+{"type":"nat","q":"σ² = 1, ρ = 0.5, B = 100. What is the variance of the average?","answer":0.505,"tolerance":0.001,"explain":"0.5 + 0.5/100 = 0.505."},
+{"q":"Feature subsampling helps because it:","options":["Lowers the correlation between trees","Makes each tree deeper","Removes the bootstrap","Reduces rows"],"answer":0,"explain":"Lower ρ means a lower floor on the ensemble's variance."},
+{"q":"The OOB score of a row uses:","options":["Only trees that did not train on that row","All trees","Only the first tree","The test set"],"answer":0,"explain":"It behaves like a built-in validation estimate."},
+{"q":"Adding more trees to a forest:","options":["Levels off, without causing overfitting in the usual sense","Always causes overfitting","Raises each tree's bias","Lowers the training data size"],"answer":0,"explain":"It reduces only the (1 − ρ)σ²/B term."},
+{"q":"A forest mainly reduces:","options":["Variance","Bias","The number of features in the data","Label noise in the data"],"answer":0,"explain":"Deep trees already have low bias, and averaging steadies them."},
+{"q":"The usual max_features for classification is:","options":["√p","p","1","p²"],"answer":0,"explain":"scikit-learn's classifier default is the square root of the number of features."}
+]

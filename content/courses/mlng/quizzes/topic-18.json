@@ -1,0 +1,10 @@
+[
+{"type":"nat","q":"TP = 80, FP = 20. What is precision?","answer":0.8,"tolerance":0.001,"explain":"80 / 100."},
+{"type":"nat","q":"TP = 80, FN = 40. What is recall? Give 3 decimal places.","answer":0.667,"tolerance":0.002,"explain":"80 / 120."},
+{"type":"nat","q":"Precision 0.8, recall 0.5. What is F1? Give 3 decimal places.","answer":0.615,"tolerance":0.002,"explain":"2 × 0.8 × 0.5 / 1.3 = 0.615."},
+{"type":"nat","q":"Errors 1, 1, 1, 9. What is the MAE?","answer":3,"tolerance":0.001,"explain":"12 / 4 = 3."},
+{"type":"nat","q":"Errors 1, 1, 1, 9. What is the RMSE? Give 2 decimal places.","answer":4.58,"tolerance":0.01,"explain":"√(84 / 4) = √21 = 4.58."},
+{"q":"ROC-AUC is the probability that:","options":["A random positive scores above a random negative","A prediction is correct","A student is placed","A threshold is 0.5"],"answer":0,"explain":"It measures ranking across all thresholds."},
+{"q":"ROC-AUC can mislead under heavy imbalance because:","options":["FPR stays small when true negatives are huge","It is undefined","It ignores recall","It needs regression targets"],"answer":0,"explain":"Many false alarms barely move FPR. PR-AUC shows them."},
+{"q":"A random model's PR-AUC is about:","options":["The positive class rate","0.5 always","1","0"],"answer":0,"explain":"Its precision matches the base rate at any recall."}
+]

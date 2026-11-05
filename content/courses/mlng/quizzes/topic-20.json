@@ -1,0 +1,10 @@
+[
+{"q":"A model is well calibrated if:","options":["Among students given about 0.7, about 70% are placed","It has 70% accuracy","Its AUC is 0.7","It predicts 0.7 for everyone"],"answer":0,"explain":"Predicted probabilities match observed frequencies."},
+{"type":"nat","q":"(p, y) = (0.8, 1) and (0.3, 0). What is the Brier score?","answer":0.065,"tolerance":0.001,"explain":"(0.04 + 0.09) / 2 = 0.065."},
+{"type":"nat","q":"McNemar: b = 10, c = 25. What is χ²?","answer":5.6,"tolerance":0.01,"explain":"(15 − 1)² / 35 = 196 / 35 = 5.6."},
+{"q":"χ² = 2.0 on McNemar's test with 1 degree of freedom, where the 5% cutoff is 3.84, means:","options":["The difference is not significant at the 5% level","Model A is significantly better","Model B is significantly better","The models are identical"],"answer":0,"explain":"2.0 is below the cutoff."},
+{"q":"Platt scaling fits:","options":["A sigmoid to the model's scores","A decision tree to the labels","A new set of features","A clustering of rows"],"answer":0,"explain":"It maps scores to probabilities with a logistic curve."},
+{"q":"Isotonic regression needs:","options":["More calibration data, since it is more flexible","No data","Exactly two parameters","Regression targets only"],"answer":0,"explain":"It can overfit on small samples."},
+{"q":"Calibration usually affects ROC-AUC:","options":["Little, as ranking mostly stays the same","Greatly","By doubling it","By making it 1"],"answer":0,"explain":"It reshapes probabilities while largely keeping their order."},
+{"q":"McNemar's test counts:","options":["Only the rows where the two models disagree","All rows equally","Only the rows both get right","Only positive rows"],"answer":0,"explain":"Agreements say nothing about which model is better."}
+]

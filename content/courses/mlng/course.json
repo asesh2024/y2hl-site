@@ -1,0 +1,40 @@
+{
+  "order": 5,
+  "title": "Machine Learning: PlacementPredict",
+  "short": "MLNG",
+  "code": "25SC2107E",
+  "tagline": "Build, evaluate and deploy a real ML system, from day one",
+  "summary": "25 topics that open up a working placement-prediction service, one layer at a time: linear models, tree ensembles, clustering, honest evaluation and ML engineering. Programs run on the page, and every topic has a self-marking quiz.",
+  "level": "Undergraduate, after Computational Foundations for AI",
+  "language": "Python",
+  "stats": [
+    {"value": "25", "label": "topics"},
+    {"value": "200", "label": "quiz questions"},
+    {"value": "6", "label": "CO tests"},
+    {"value": "25", "label": "programs that run on the page"}
+  ],
+  "byline": true,
+  "unit": "Topic",
+  "unit_plural": "topics",
+  "unit_prefix": "topic",
+  "unit_template": "topic.html",
+  "units_heading": "The 25 topics",
+  "secondary_link": {"href": "how-to-study.html", "label": "How to study this course"},
+  "pass_percent": 60,
+  "co_test_size": 20,
+  "guide_pages": ["overview", "how-to-study", "labs", "skilling"],
+  "guide_titles": {
+    "overview": "Overview",
+    "how-to-study": "How to study this course",
+    "labs": "Lab sessions",
+    "skilling": "Skilling projects"
+  },
+  "outcomes": {
+    "CO1": "The ML system lifecycle",
+    "CO2": "Linear models and feature engineering",
+    "CO3": "Tree-based models",
+    "CO4": "Unsupervised learning",
+    "CO5": "Evaluation and model selection",
+    "CO6": "ML engineering and MLOps"
+  }
+}

@@ -1,0 +1,10 @@
+[
+{"q":"Training-serving skew means:","options":["The inputs at prediction time differ from what the model saw in training","The model is too large to serve","Training took longer than serving","The API returns an HTTP error"],"answer":0,"explain":"Usually no error is raised, and the predictions are simply wrong."},
+{"q":"The strongest simple cure for skew is:","options":["Shipping the fitted feature pipeline with the model","Writing the features again for production","Retraining every hour","Using a larger model"],"answer":0,"explain":"The same code then runs on both sides of the boundary."},
+{"q":"Scoring all final-year students overnight is:","options":["Batch prediction","Real-time prediction","Reinforcement learning","Online training"],"answer":0,"explain":"It runs on a schedule rather than per request."},
+{"q":"Which matters most in real-time prediction?","options":["Latency","Overnight compute windows","Printing reports","Being able to rerun last week's job"],"answer":0,"explain":"The caller is waiting for the answer."},
+{"q":"In the serving code, the fitted pipeline should call:","options":["transform","fit_transform","fit","partial_fit"],"answer":0,"explain":"Fitting on a request would learn new statistics and cause skew."},
+{"q":"Why is skew so dangerous?","options":["It usually raises no error, while predictions quietly go wrong","It always crashes the server","It deletes the training data","It only occurs in deep learning"],"answer":0,"explain":"The service keeps responding, so nobody is alerted."},
+{"q":"A CGPA of 12 arrives in a request. It should be caught at:","options":["Validation","Inference","Monitoring only, weeks later","Model packaging"],"answer":0,"explain":"Input validation rejects impossible values with a clear error."},
+{"q":"A feature that uses information not available at prediction time causes:","options":["Leakage in training and skew at serving","Better real-world accuracy","Lower memory use","Faster inference only"],"answer":0,"explain":"The model relies on something it won't have when it matters."}
+]

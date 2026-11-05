@@ -1,0 +1,10 @@
+[
+{"type":"nat","q":"Accuracy falls from 0.85 to 0.70 when a column is shuffled. What is its permutation importance?","answer":0.15,"tolerance":0.001,"explain":"0.85 − 0.70 = 0.15."},
+{"type":"nat","q":"Base value 0.2, SHAP values +0.4 and −0.1. What is the raw score?","answer":0.5,"tolerance":0.001,"explain":"0.2 + 0.4 − 0.1 = 0.5."},
+{"q":"MDI importance is biased towards:","options":["Features with many distinct values","Features with few values","Features with missing values only","Target-encoded features only"],"answer":0,"explain":"They offer many split points, some good by chance."},
+{"q":"Permutation importance should usually be measured on:","options":["Validation data","Training data only","The feature names","Unscaled labels"],"answer":0,"explain":"It then reflects what helps on unseen data."},
+{"q":"SHAP values for one prediction:","options":["Add up, with the base value, to the model's output","Always sum to zero","Show causes in the real world","Apply only to linear models"],"answer":0,"explain":"This additive property is what makes them easy to read."},
+{"q":"Two strongly correlated features under permutation importance:","options":["Can each look unimportant, as one covers for the other","Always look most important","Cannot be shuffled","Become one feature automatically"],"answer":0,"explain":"The model can lean on the unshuffled partner."},
+{"q":"A global explanation answers:","options":["Which features matter most to the model overall","Why this one student got this score","Who will be placed for certain","Which row is missing"],"answer":0,"explain":"A local explanation deals with one prediction."},
+{"q":"Why do trees often do well on tabular data?","options":["They handle thresholds, mixed types and uninformative columns naturally","They need the most training data","They always use GPUs","They ignore all features but one"],"answer":0,"explain":"Each split works with one feature at a time."}
+]

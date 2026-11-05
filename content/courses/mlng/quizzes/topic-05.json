@@ -1,0 +1,10 @@
+[
+{"q":"The normal equations give:","options":["w = (XᵀX)⁻¹Xᵀy","w = Xy","w = (X + y)⁻¹","w = XᵀX"],"answer":0,"explain":"Setting the gradient of the MSE to zero leads to this result."},
+{"type":"nat","q":"Predictions 3 and 5, targets 2 and 7. What is the MSE?","answer":2.5,"tolerance":0.001,"explain":"(1² + 2²) / 2 = 2.5."},
+{"type":"nat","q":"The MSE is 9. What is the RMSE?","answer":3,"tolerance":0.001,"explain":"√9 = 3."},
+{"type":"nat","q":"One feature, one example: w = 0, x = 2, y = 4, η = 0.1. What is w after one gradient step on the MSE?","answer":1.6,"tolerance":0.001,"explain":"Gradient = 2 × 2 × (0 − 4) = −16. So w = 0 − 0.1 × (−16) = 1.6."},
+{"q":"Mini-batch gradient descent uses in each step:","options":["A small group of rows","Every row","Exactly one row","No rows"],"answer":0,"explain":"It balances the smoothness of batch with the speed of stochastic updates."},
+{"q":"Which method does not need feature scaling to converge well?","options":["The normal equations","Batch gradient descent","Mini-batch gradient descent","Stochastic gradient descent"],"answer":0,"explain":"It is a direct solution with no steps, so it has no zigzag problem."},
+{"q":"Why is scaling helpful for gradient descent?","options":["It makes the cost surface rounder, so steps head to the minimum","It changes the true relationship","It removes outliers","It reduces the number of rows"],"answer":0,"explain":"Unscaled features give a long narrow valley."},
+{"q":"The normal equations become impractical when:","options":["There are very many features, as inversion is costly","There are few rows","The target is numeric","Data has been scaled"],"answer":0,"explain":"The cost grows roughly with the cube of the number of features."}
+]

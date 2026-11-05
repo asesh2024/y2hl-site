@@ -1,0 +1,10 @@
+[
+{"q":"A key weakness of notebooks for production is:","options":["Hidden state and dependence on the order of cells","They cannot run Python","They cannot plot","They cannot read files"],"answer":0,"explain":"Scripts run top to bottom in a known way."},
+{"q":"Settings such as C belong:","options":["In a config file","Hard-coded in many places","In the model's output","In the raw data"],"answer":0,"explain":"They can then be changed and recorded without code edits."},
+{"q":"Which is a suitable ML unit test?","options":["Predicted probabilities lie between 0 and 1","The screen is wide enough","The model file has a nice name","The notebook has many cells"],"answer":0,"explain":"It checks a guarantee that the service relies on."},
+{"q":"Which should never go into logs?","options":["Personal data of students","Row counts","Model version","Validation AUC"],"answer":0,"explain":"Logs spread widely and are hard to clean."},
+{"q":"A quality gate:","options":["Stops a run when metrics are below a limit","Encrypts the model","Trains more trees","Replaces the test set"],"answer":0,"explain":"It keeps a bad model from being released."},
+{"q":"Reproducibility needs:","options":["Recorded seeds, pinned versions and versioned data","Only a faster computer","A larger model","Removing logs"],"answer":0,"explain":"Without these, nobody can recreate the result."},
+{"q":"Which logging level suits a run that failed the quality gate?","options":["ERROR","DEBUG","INFO","TRACE-ONLY"],"answer":0,"explain":"It reports a failure that needs attention."},
+{"q":"argparse is used to:","options":["Read command-line options","Train models","Scale features","Draw charts"],"answer":0,"explain":"It lets one run override settings."}
+]

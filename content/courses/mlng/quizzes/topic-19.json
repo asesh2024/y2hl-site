@@ -1,0 +1,10 @@
+[
+{"type":"nat","q":"A grid has 4 × 5 × 3 combinations, with 5-fold CV. How many fits?","answer":300,"explain":"60 × 5 = 300."},
+{"type":"nat","q":"A grid of 9 points over two settings tests how many distinct values of each?","answer":3,"explain":"3 × 3 = 9."},
+{"q":"Random search often beats grid search because:","options":["Usually few settings matter, and it tries more distinct values of each","It always finds the optimum","It needs no scoring","It uses the test set"],"answer":0,"explain":"This is the Bergstra and Bengio argument."},
+{"q":"Bayesian optimisation chooses the next point by:","options":["Modelling results so far and picking promising settings","Choosing at random only","Trying every combination","Using the training labels only"],"answer":0,"explain":"It balances exploring and exploiting."},
+{"q":"Train and validation scores are both low and close. This is:","options":["Underfitting","Overfitting","Leakage","Skew"],"answer":0,"explain":"The model is too simple, so try richer features or a stronger model."},
+{"q":"Train is high, and validation much lower. This is:","options":["Overfitting","Underfitting","A perfect fit","Class balance"],"answer":0,"explain":"Regularise, simplify or add data."},
+{"q":"A validation score still rising at the largest training size suggests:","options":["More data would help","More data will not help","The model has leaked","The metric is wrong"],"answer":0,"explain":"The curve has not levelled off."},
+{"q":"Hyperparameters are:","options":["Settings chosen before or outside training","Weights learned by training","The labels","The rows of data"],"answer":0,"explain":"Max depth and learning rate are examples."}
+]

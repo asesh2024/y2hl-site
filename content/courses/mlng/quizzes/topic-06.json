@@ -1,0 +1,10 @@
+[
+{"q":"The sigmoid maps any real number to:","options":["A value between 0 and 1","A value between −1 and 1","A whole number","Only 0 or 1"],"answer":0,"explain":"That is why its output can be read as a probability."},
+{"type":"nat","q":"z = 0. What is p = σ(z)?","answer":0.5,"tolerance":0.001,"explain":"1 / (1 + e⁰) = 0.5."},
+{"type":"nat","q":"y = 1 and p = 0.1. What is the cross-entropy loss for this example? Give 3 decimal places.","answer":2.303,"tolerance":0.003,"explain":"−ln 0.1 = 2.303."},
+{"q":"With a threshold of 0.5, the decision boundary of logistic regression is:","options":["A hyperplane where z = 0","A curve shaped like the sigmoid","A circle around the mean","A tree of splits"],"answer":0,"explain":"p ≥ 0.5 exactly when the linear score is at least 0."},
+{"type":"nat","q":"Softmax scores are 2, 1, 0. What is the probability of the first class? Give 3 decimal places.","answer":0.665,"tolerance":0.002,"explain":"7.389 / (7.389 + 2.718 + 1) = 0.665."},
+{"q":"Softmax outputs for all classes:","options":["Add up to 1","Are each above 0.5","Add up to the number of classes","Are all equal"],"answer":0,"explain":"Each is divided by the same total."},
+{"type":"nat","q":"A scaled feature has weight w = ln 2. One standard deviation more multiplies the odds by what?","answer":2,"tolerance":0.001,"explain":"e^(ln 2) = 2."},
+{"q":"Why not train logistic regression with the normal equations?","options":["The sigmoid makes the problem non-linear, so no such closed form exists","It has no weights","Normal equations need categories","It would be too accurate"],"answer":0,"explain":"We use iterative methods instead. The loss is convex, so they reach the minimum."}
+]

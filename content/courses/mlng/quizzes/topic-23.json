@@ -1,0 +1,10 @@
+[
+{"q":"Why should you never load a pickle from an untrusted source?","options":["Loading can run arbitrary code","It deletes the model","It only works once","It makes the model less accurate"],"answer":0,"explain":"Pickle can execute code while it loads."},
+{"q":"ONNX is mainly used for:","options":["Portable models that run across languages and runtimes","Drawing charts","Cleaning data","Clustering"],"answer":0,"explain":"It is an open model format with fast runtimes."},
+{"q":"Which interface suits very low-latency internal calls?","options":["gRPC","CSV over email","A batch file","A PDF report"],"answer":0,"explain":"Its binary format is compact and quick."},
+{"q":"FastAPI is:","options":["A Python framework for building REST APIs","A boosting library","A feature store","A clustering method"],"answer":0,"explain":"It also validates requests through type hints."},
+{"q":"Scoring all students overnight is best done:","options":["As a batch job","With a per-request endpoint for each student","By hand","With gRPC only"],"answer":0,"explain":"Batch is simpler and cheaper when no one is waiting."},
+{"q":"A /health endpoint lets:","options":["Infrastructure check that the service is running","Students read their marks","The model retrain","Data be cleaned"],"answer":0,"explain":"Deployments use it to detect failures."},
+{"q":"A container helps because it:","options":["Packs code and libraries so it runs the same everywhere","Trains faster","Replaces monitoring","Removes the need for tests"],"answer":0,"explain":"It avoids 'works on my machine' problems."},
+{"q":"Alongside the model file, you should save:","options":["Library versions, feature list and metrics","Only the file name","Students' personal contact details","Nothing else"],"answer":0,"explain":"These are needed to reproduce and trust the model."}
+]

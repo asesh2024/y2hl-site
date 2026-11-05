@@ -2,11 +2,12 @@
 // The page stops a program by terminating this worker and starting a new one.
 var PYODIDE = "https://cdn.jsdelivr.net/pyodide/v0.27.7/full/";
 var pyodide = null;
-var LIBRARIES = [[/\bnumpy\b/, "NumPy"], [/\bpandas\b/, "pandas"], [/\bsklearn\b/, "scikit-learn"], [/\bmatplotlib\b/, "matplotlib"]];
+var LIBRARIES = [[/\bnumpy\b/, "NumPy"], [/\bpandas\b/, "pandas"], [/\bsklearn\b/, "scikit-learn"], [/\bmatplotlib\b/, "matplotlib"], [/\bxgboost\b/, "XGBoost"], [/\blightgbm\b/, "LightGBM"]];
 
 var WRAPPER = [
   "import os, sys, traceback, base64, io",
   "import y2hl_page",
+  "sys.path.insert(0, '/home/pyodide')",
   "os.environ['MPLBACKEND'] = 'AGG'",
   "import logging; logging.getLogger('matplotlib.font_manager').setLevel(logging.ERROR)",
   // Every open matplotlib figure becomes a picture in the output; plt.show() or the end of the program sends it.
@@ -68,11 +69,20 @@ onmessage = async function (e) {
     postMessage({ type: "failed" });
     return;
   }
+  // The course's practice data is one small Python file, fetched when a program imports it.
+  var imports = e.data.code;
+  if (/\bplacement_predict\b/.test(imports)) {
+    try {
+      var helper = await (await fetch(new URL("../data/placement_predict.py", location.href))).text();
+      pyodide.FS.writeFile("/home/pyodide/placement_predict.py", helper);
+      imports += "\nimport numpy\nimport pandas\nimport sklearn\n";
+    } catch (err) { /* the program's own import error will explain it */ }
+  }
   // NumPy, pandas, scikit-learn and matplotlib download only when a program imports them.
-  var libs = LIBRARIES.filter(function (l) { return l[0].test(e.data.code); }).map(function (l) { return l[1]; });
+  var libs = LIBRARIES.filter(function (l) { return l[0].test(imports); }).map(function (l) { return l[1]; });
   if (libs.length) postMessage({ type: "status", text: "Loading " + libs.join(", ") + " (this can take a minute or two)…" });
   try {
-    await pyodide.loadPackagesFromImports(e.data.code, { messageCallback: function () {}, errorCallback: function () {} });
+    await pyodide.loadPackagesFromImports(imports, { messageCallback: function () {}, errorCallback: function () {} });
   } catch (err) { /* the program's own import error will explain it */ }
   postMessage({ type: "started" });
   var lines = (e.data.stdin || "").split("\n");

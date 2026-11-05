@@ -1,0 +1,10 @@
+[
+{"type":"nat","q":"Standardise x = 70, where the mean is 50 and the standard deviation is 10.","answer":2,"tolerance":0.001,"explain":"(70 − 50) / 10 = 2."},
+{"type":"nat","q":"MinMax scale x = 5, where min = 0 and max = 20.","answer":0.25,"tolerance":0.001,"explain":"(5 − 0) / 20 = 0.25."},
+{"type":"nat","q":"A column has 6 categories. How many columns does one-hot encoding make?","answer":6,"explain":"One per category."},
+{"q":"Which encoding suits Low, Mid, High?","options":["Ordinal","One-hot only, since order must be hidden","Target encoding is required","No encoding is possible"],"answer":0,"explain":"The categories have a real order."},
+{"q":"Which model does not need feature scaling?","options":["A decision tree","Logistic regression trained by gradient descent","K-means","KNN"],"answer":0,"explain":"A tree tests one feature at a time, so units don't matter."},
+{"q":"MissingIndicator adds:","options":["A column that records whether the value was missing","The mean of the column","A new row","An encoding of the target"],"answer":0,"explain":"Being missing can itself carry information."},
+{"q":"All preprocessing statistics must be learned from:","options":["Training data only","All the data","Test data only","The latest request"],"answer":0,"explain":"Anything else leaks information from unseen data."},
+{"q":"handle_unknown='ignore' in OneHotEncoder protects you when:","options":["A new category arrives at serving time","Numbers have gaps","The target is unbalanced","The model is too large"],"answer":0,"explain":"The unseen category encodes to all zeros rather than raising an error."}
+]

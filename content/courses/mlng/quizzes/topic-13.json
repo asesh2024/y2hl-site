@@ -1,0 +1,10 @@
+[
+{"q":"Lloyd's algorithm alternates between:","options":["Assigning points to centroids and moving centroids to means","Splitting and pruning","Encoding and decoding","Bagging and boosting"],"answer":0,"explain":"Both steps can only lower the inertia."},
+{"type":"nat","q":"Points 2, 4 and 9 are assigned to one centroid. Where does it move?","answer":5,"tolerance":0.001,"explain":"(2 + 4 + 9) / 3 = 5."},
+{"type":"nat","q":"A point has a = 2 and b = 8. What is its silhouette?","answer":0.75,"tolerance":0.001,"explain":"(8 − 2) / 8 = 0.75."},
+{"q":"K-means++ improves on random starts by:","options":["Spreading the initial centroids apart","Choosing k for you","Removing outliers","Using labels"],"answer":0,"explain":"Distant points are more likely to be chosen."},
+{"q":"Mini-batch K-means trades:","options":["A little inertia for much greater speed","Speed for perfect results","Scaling for encoding","Clusters for labels"],"answer":0,"explain":"It updates from small samples instead of all the data."},
+{"q":"Why can inertia alone not choose k?","options":["It always falls as k rises","It always rises as k rises","It needs labels","It is undefined for k above 2"],"answer":0,"explain":"So look for an elbow, or use the silhouette."},
+{"type":"nat","q":"Two points are at distances 1 and 2 from their centroid. What is their contribution to inertia?","answer":5,"tolerance":0.001,"explain":"1² + 2² = 5."},
+{"q":"Lloyd's algorithm is guaranteed to reach:","options":["A local minimum of inertia","The global minimum","The true labels","k = 3"],"answer":0,"explain":"The start matters, which is why several are used."}
+]

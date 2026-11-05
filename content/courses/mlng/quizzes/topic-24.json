@@ -1,0 +1,10 @@
+[
+{"q":"Data (covariate) drift means a change in:","options":["The distribution of inputs","The model's code","The API's port","The test set's size"],"answer":0,"explain":"P(X) changes."},
+{"q":"Concept drift means a change in:","options":["The relationship between inputs and outcome","Only the number of rows","The file format","The learning rate"],"answer":0,"explain":"The same profile now has a different outcome."},
+{"type":"nat","q":"Expected shares 0.5, 0.5, actual 0.7, 0.3. What is the PSI? Give 3 decimal places.","answer":0.17,"tolerance":0.002,"explain":"0.2 ln 1.4 − 0.2 ln 0.6 = 0.067 + 0.102 = 0.170."},
+{"q":"A PSI of 0.35 is usually read as:","options":["Significant drift","Stable","Moderate shift","An error in the formula"],"answer":0,"explain":"Above 0.2 is usually treated as significant."},
+{"q":"Before swapping in a retrained model, you should:","options":["Pass it through a quality gate","Delete the old one first","Skip evaluation to save time","Change the API"],"answer":0,"explain":"New doesn't necessarily mean better."},
+{"q":"MLflow is used to:","options":["Track experiments and register models","Cluster data","Serve as a database of students","Calibrate probabilities"],"answer":0,"explain":"It logs parameters, metrics and artifacts."},
+{"q":"DVC adds to Git:","options":["Versioning for large data files","A web server","Hyperparameter search","Clustering"],"answer":0,"explain":"Git stores small pointer files, and DVC stores the data."},
+{"q":"Why is PSI not enough on its own?","options":["It looks at inputs, not whether predictions remain right","It cannot use numbers","It needs labels","It always returns zero"],"answer":0,"explain":"Concept drift can occur with stable inputs."}
+]

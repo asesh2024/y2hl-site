@@ -32,7 +32,7 @@ env = Environment(loader=FileSystemLoader(ROOT / "templates"), autoescape=select
 env.globals.update(site=SITE, year=date.today().year)
 # A short fingerprint of the CSS/JS, appended as ?v=… so browsers fetch them again whenever they change.
 env.globals["asset_version"] = hashlib.sha1(b"".join(
-    p.read_bytes() for p in sorted((ROOT / "static").rglob("*")) if p.suffix in (".css", ".js"))).hexdigest()[:8]
+    p.read_bytes() for p in sorted((ROOT / "static").rglob("*")) if p.suffix in (".css", ".js", ".py"))).hexdigest()[:8]
 
 pages_built = []
 

@@ -1,0 +1,10 @@
+[
+{"type":"nat","q":"A group has 3 placed and 1 not placed. What is its Gini impurity?","answer":0.375,"tolerance":0.001,"explain":"1 − 0.75² − 0.25² = 0.375."},
+{"type":"nat","q":"What is the entropy of a group with 2 of each class?","answer":1,"tolerance":0.001,"explain":"−0.5 log₂ 0.5 − 0.5 log₂ 0.5 = 1."},
+{"type":"nat","q":"A split leaves groups of 6 (Gini 0) and 4 (Gini 0.5). What is the weighted impurity?","answer":0.2,"tolerance":0.001,"explain":"0.6 × 0 + 0.4 × 0.5 = 0.2."},
+{"q":"CART chooses each split:","options":["Greedily, for the largest impurity decrease at that node","By searching all whole trees","At random","By gradient descent"],"answer":0,"explain":"It never revisits an earlier choice."},
+{"q":"A regression tree's leaf predicts:","options":["The mean target of its rows","The most common class","Always zero","A weighted sum of features"],"answer":0,"explain":"The mean minimises squared error within a leaf."},
+{"q":"Increasing max_depth tends to:","options":["Lower bias and raise variance","Raise bias and lower variance","Lower both forever","Have no effect on training accuracy"],"answer":0,"explain":"Deep trees fit the training data ever more closely."},
+{"q":"In cost-complexity pruning, a larger α gives:","options":["A smaller tree","A larger tree","More rows","A different impurity measure"],"answer":0,"explain":"α is the price per leaf."},
+{"q":"Why do trees not need feature scaling?","options":["Each split compares one feature with a threshold","They convert everything to text","They only use categories","They use gradient descent on standardised inputs"],"answer":0,"explain":"Rescaling a feature only moves the threshold."}
+]

@@ -1,0 +1,10 @@
+[
+{"q":"High variance shows up as:","options":["High training score but much lower validation score","Low scores on both","A negative learning rate","Missing values"],"answer":0,"explain":"The model fits noise in the training data."},
+{"q":"High bias shows up as:","options":["Poor scores on both training and validation","Perfect training score","A large gap between the scores","An error during serving"],"answer":0,"explain":"The model is too simple to capture the pattern."},
+{"q":"Which penalty can set weights to exactly zero?","options":["L1 (lasso)","L2 (ridge) alone","Neither","Only the intercept penalty"],"answer":0,"explain":"The corners of the L1 diamond lie on the axes."},
+{"type":"nat","q":"MSE = 4, weights (2, −1), α = 0.5. What is the ridge cost?","answer":6.5,"tolerance":0.001,"explain":"4 + 0.5 × (4 + 1) = 6.5."},
+{"type":"nat","q":"MSE = 4, weights (2, −1), α = 0.5. What is the lasso cost?","answer":5.5,"tolerance":0.001,"explain":"4 + 0.5 × (2 + 1) = 5.5."},
+{"q":"In scikit-learn's LogisticRegression, a smaller C means:","options":["Stronger regularisation","Weaker regularisation","More features","A higher learning rate"],"answer":0,"explain":"C is the inverse of the penalty strength."},
+{"q":"Why scale features before regularising?","options":["The penalty depends on weight size, which depends on a feature's units","Scaling removes noise features","Regularisation only works on integers","It increases the number of rows"],"answer":0,"explain":"Otherwise features in large units are penalised less."},
+{"q":"Elastic net is useful because it:","options":["Combines sparsity with stable handling of correlated features","Removes the need for a penalty","Only works without scaling","Always uses more features than ridge"],"answer":0,"explain":"It mixes the L1 and L2 penalties."}
+]

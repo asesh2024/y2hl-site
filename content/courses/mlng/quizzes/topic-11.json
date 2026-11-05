@@ -1,0 +1,10 @@
+[
+{"q":"Boosting mainly reduces:","options":["Bias, by adding weak learners in sequence","Only the size of the data","Variance only, as bagging does","The number of classes"],"answer":0,"explain":"Each new learner corrects the remaining errors."},
+{"type":"nat","q":"AdaBoost: ε = 0.2. What is α = ½ ln((1−ε)/ε)? Give 3 decimal places.","answer":0.693,"tolerance":0.002,"explain":"½ ln 4 = 0.693."},
+{"type":"nat","q":"y = 10, prediction 8, η = 0.1, and the tree predicts the residual exactly. What is the new prediction?","answer":8.2,"tolerance":0.001,"explain":"8 + 0.1 × 2 = 8.2."},
+{"q":"For squared error, the negative gradient that gradient boosting fits is:","options":["The residuals","The original features","The labels only","Random noise"],"answer":0,"explain":"−∂(½(y−F)²)/∂F = y − F."},
+{"q":"Unlike a random forest, too many boosting rounds:","options":["Can overfit, so early stopping is used","Can never affect the model","Reduce training accuracy","Remove trees automatically"],"answer":0,"explain":"Each round fits more of the training noise."},
+{"q":"A smaller learning rate usually needs:","options":["More trees","Fewer trees","No trees","A different target"],"answer":0,"explain":"Each tree contributes less, so more are needed."},
+{"q":"LightGBM grows trees:","options":["Leaf-wise, splitting the best leaf","Only one level at a time","By random splits only","With one feature only"],"answer":0,"explain":"This can be faster and more accurate, so num_leaves must be limited."},
+{"q":"Histogram-based splitting speeds up training by:","options":["Grouping feature values into bins, then testing bin boundaries","Removing rows","Removing the loss function","Using only one tree"],"answer":0,"explain":"There are far fewer thresholds to test."}
+]

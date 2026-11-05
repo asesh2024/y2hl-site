@@ -1,0 +1,10 @@
+[
+{"q":"PlacementPredict predicting placed or not placed is:","options":["Supervised binary classification","Unsupervised clustering","Reinforcement learning","Regression"],"answer":0,"explain":"It learns from past students with known outcomes, and the output is one of two classes."},
+{"q":"Predicting expected salary in LPA is:","options":["Regression","Binary classification","Clustering","Reinforcement learning"],"answer":0,"explain":"The output is a number."},
+{"q":"Predicting CGPA tier (Low, Mid, High) is:","options":["Multi-class classification","Binary classification","Regression","Clustering"],"answer":0,"explain":"There are three possible categories."},
+{"q":"Grouping students by similar profiles with no labels is:","options":["Unsupervised learning","Supervised learning","Reinforcement learning","Binary classification"],"answer":0,"explain":"There are inputs but no correct answers."},
+{"q":"A response says placed_probability is 0.81. This means:","options":["The model estimates an 81% chance, based on patterns in past data","The student will certainly be placed","81% of students are placed","The model is 81% accurate"],"answer":0,"explain":"It is an estimate for this profile, not a guarantee and not the model's accuracy."},
+{"q":"Why test on students the model has not seen?","options":["Scores on training data can look good through memorising","It makes prediction faster","Seen data cannot be predicted","It increases the number of features"],"answer":0,"explain":"We care about new students, so that is what we must measure."},
+{"q":"Which task is NOT something PlacementPredict does?","options":["Writing a student's résumé","Estimating the chance of placement","Reading a profile's features","Returning a prediction response"],"answer":0,"explain":"Writing text is a generative AI task."},
+{"type":"nat","q":"With a threshold of 0.5, how many of the probabilities 0.2, 0.55, 0.9 and 0.49 are predicted as Placed?","answer":2,"explain":"Only 0.55 and 0.9 are at or above 0.5."}
+]

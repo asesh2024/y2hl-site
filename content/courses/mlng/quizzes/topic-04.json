@@ -1,0 +1,10 @@
+[
+{"q":"Which file should hold the code that turns records into model inputs?","options":["feature_pipeline.py","app.py","monitor.py","train.yaml"],"answer":0,"explain":"Each module has one job, and features belong here."},
+{"q":"Why keep raw data untouched?","options":["So results can be repeated and traced","Because CSV files cannot be edited","To make the data load faster","Because models need missing values"],"answer":0,"explain":"Hand edits leave no record, so nobody can reproduce the work."},
+{"q":"Settings such as the learning rate belong:","options":["In a config file, outside the code","Hard-coded in several scripts","In the raw data","In the HTTP response"],"answer":0,"explain":"Then they can be changed and recorded without editing code."},
+{"q":"Which belongs to this course rather than a later one?","options":["Gradient-boosted trees on tabular data","Training a language model","Training an image generator","Writing an LLM chatbot"],"answer":0,"explain":"This course covers classical ML and ML engineering."},
+{"q":"df.isna().sum() gives:","options":["The number of missing values in each column","The sum of each column","The number of rows","The class balance"],"answer":0,"explain":"isna marks gaps as True, and sum counts them."},
+{"q":"For tabular data, tree ensembles are:","options":["Often very hard to beat","Obsolete","Unable to use numbers","Only useful for images"],"answer":0,"explain":"Topic 12 compares them with other models."},
+{"q":"A correlation of 0 between a feature and the target means:","options":["No linear relationship, though another pattern may exist","The feature is useless in all models","The feature has missing values","The target is constant"],"answer":0,"explain":"Correlation measures only linear association."},
+{"type":"nat","q":"350 of 1000 students are placed. What is the placement rate, as a decimal?","answer":0.35,"tolerance":0.001,"explain":"350 / 1000 = 0.35."}
+]

@@ -1,0 +1,10 @@
+[
+{"type":"nat","q":"Eigenvalues 6, 2, 1, 1. What fraction of variance does PC1 explain?","answer":0.6,"tolerance":0.001,"explain":"6 / 10 = 0.6."},
+{"type":"nat","q":"Eigenvalues 5, 3, 1, 1. How many components are needed to reach at least 80%?","answer":2,"explain":"5 + 3 = 8 out of 10."},
+{"q":"PCA should usually follow:","options":["Standardisation","One-hot encoding of the target","Clustering","Pruning"],"answer":0,"explain":"Variance depends on units, so unscaled large features dominate."},
+{"q":"Principal components are:","options":["Orthogonal directions of greatest variance","Clusters","Original features, sorted","Labels"],"answer":0,"explain":"They are the eigenvectors of the covariance matrix."},
+{"q":"Which is true of basic t-SNE?","options":["It is for visualisation, and can't transform new points","It is linear","It preserves global distances exactly","It needs labels"],"answer":0,"explain":"It makes a map of the data it is given."},
+{"q":"perplexity in t-SNE roughly sets:","options":["The effective number of neighbours","The number of clusters","The output dimensions","The learning rate of PCA"],"answer":0,"explain":"Values from 5 to 50 are common."},
+{"q":"In UMAP, min_dist controls:","options":["How tightly points may pack in the map","The number of rows","The number of labels","The train/test split"],"answer":0,"explain":"Smaller values give tighter clumps."},
+{"q":"In a t-SNE plot, the distance between two clusters:","options":["Often means little","Equals their true distance","Gives class probability","Equals the variance explained"],"answer":0,"explain":"Only local neighbourhoods are reliably kept."}
+]

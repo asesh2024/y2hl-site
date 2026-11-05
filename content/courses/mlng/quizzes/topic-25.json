@@ -1,0 +1,10 @@
+[
+{"q":"The production model should be selected using:","options":["Validation results, with the test set used once at the end","The test set, repeatedly","Training accuracy","The largest file"],"answer":0,"explain":"The test set stays out of all decisions."},
+{"q":"A model registry records:","options":["Model versions and their stages, such as Production","Student addresses","Only raw CSV files","HTTP port numbers only"],"answer":0,"explain":"It says which version is live, and where it came from."},
+{"q":"Why log ECE as well as AUC?","options":["People read the probability, so its calibration matters","AUC cannot be logged","ECE replaces all metrics","ECE counts rows"],"answer":0,"explain":"A model can rank well and still give misleading probabilities."},
+{"q":"Where do the fitted scaling statistics live at serving time?","options":["In the saved pipeline","In each HTTP request","In the test set","In the browser cookies"],"answer":0,"explain":"The pipeline goes with the model, which prevents skew."},
+{"q":"Which pairing is correct?","options":["Bagging reduces variance; boosting mainly reduces bias","Bagging reduces bias only; boosting has no effect","Both train trees in sequence","Both remove the need for data"],"answer":0,"explain":"This is the central contrast of Module 3."},
+{"q":"PSI above 0.2 on a key feature suggests you should:","options":["Investigate, and consider retraining with a quality gate","Delete the feature at once","Ignore it","Stop logging"],"answer":0,"explain":"It's a signal to act on, and automatic replacement still needs a check."},
+{"q":"Which matters for an honest end-to-end demo?","options":["Every statistic was fitted on training data","The test set was used for tuning","Features differ between training and serving","Labels were included as features"],"answer":0,"explain":"The other three are all kinds of leak or skew."},
+{"type":"nat","q":"Stages in this program run from data to monitoring. How many stages does it print?","answer":7,"explain":"1 data, 2 experiments, 3 registered, 4 test, 5 packaged, 6 request, 7 monitoring."}
+]

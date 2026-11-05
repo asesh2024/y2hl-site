@@ -1,0 +1,10 @@
+[
+{"q":"Single linkage measures the distance between clusters by:","options":["The closest pair of points","The farthest pair","The mean of all pairs","The added variance"],"answer":0,"explain":"This makes it follow chains."},
+{"q":"Ward linkage merges the pair that:","options":["Adds the least within-cluster variance","Has the closest pair of points","Has the most points","Has the farthest pair"],"answer":0,"explain":"It tends to make compact clusters."},
+{"q":"To get k clusters from a dendrogram, you:","options":["Cut it at a height crossing k branches","Delete k leaves","Rerun with k labels","Multiply heights by k"],"answer":0,"explain":"The number of branches crossed is the number of clusters."},
+{"type":"nat","q":"1D points 1, 2, 3, 3.9, 10, with ε = 1 and minPts = 3. How many are core points?","answer":2,"explain":"2 has {1, 2, 3}; 3 has {2, 3, 3.9}. Point 1 has {1, 2}, and 3.9 has {3, 3.9}, so neither is core."},
+{"q":"DBSCAN labels a point −1 when it is:","options":["Noise","A core point","The first cluster's border","A centroid"],"answer":0,"explain":"It is neither core nor within ε of a core point."},
+{"q":"Which method can find two interlocking crescents?","options":["DBSCAN","K-means","Ward linkage, always","None of them"],"answer":0,"explain":"It follows dense regions, whatever their shape."},
+{"q":"ε for DBSCAN is commonly chosen from:","options":["The bend in a k-distance plot","The class labels","The inertia curve","Random search on labels"],"answer":0,"explain":"The bend separates dense points from the sparse ones."},
+{"q":"DBSCAN struggles most with:","options":["Clusters of very different densities","Non-round clusters","Data with outliers","Choosing k"],"answer":0,"explain":"One ε cannot suit both dense and sparse clusters."}
+]

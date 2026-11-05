@@ -1,0 +1,10 @@
+[
+{"q":"The online store is used for:","options":["Fast access to the latest values during serving","Storing full history for training","Hyperparameter search","Drawing dendrograms"],"answer":0,"explain":"It answers in milliseconds."},
+{"q":"The offline store is mainly used for:","options":["Building training datasets from history","Answering live requests","Serving models","Logging HTTP errors"],"answer":0,"explain":"It keeps the full history."},
+{"type":"nat","q":"Scores: 50 (Feb), 60 (Apr), 80 (Jul). What value is point-in-time correct for a label on 1 May?","answer":60,"explain":"It is the last value known before 1 May."},
+{"q":"Using a later value than the label date causes:","options":["Leakage from the future","Underfitting","Lower training scores","Faster serving"],"answer":0,"explain":"The model would see information it can't have in production."},
+{"q":"pandas merge_asof helps because it:","options":["Takes the latest row at or before a given time","Sorts columns by name","Drops all duplicates","Encodes categories"],"answer":0,"explain":"That is the point-in-time join."},
+{"q":"For one model with simple features, a good choice is:","options":["A shared pipeline saved with the model","A full feature store with many teams","A separate feature rewrite in each language","No preprocessing"],"answer":0,"explain":"A store adds work that may not pay off yet."},
+{"q":"Feast is:","options":["An open-source feature store","A clustering algorithm","A web framework","A calibration method"],"answer":0,"explain":"It serves features for training and for live use."},
+{"q":"A main benefit of a feature store is:","options":["One definition of each feature, for training and serving","More hidden layers","A higher learning rate","No need for labels"],"answer":0,"explain":"It removes a major cause of skew."}
+]
