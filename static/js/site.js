@@ -36,6 +36,8 @@
     if (!vizReady) vizReady = new Promise(function (resolve, reject) {
       var s = document.createElement("script");
       s.src = "https://cdn.jsdelivr.net/npm/@viz-js/viz@3.11.0/lib/viz-standalone.js";
+      s.integrity = "sha384-6ECxW8G4FmLMEr8fKkk617NsYhxb7AhsiyyT6Gey/Sru4R+lyRpVM12ekzlOD08g";
+      s.crossOrigin = "anonymous";
       s.onload = function () { window.Viz.instance().then(resolve, reject); };
       s.onerror = reject;
       document.head.appendChild(s);
