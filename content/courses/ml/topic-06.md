@@ -48,7 +48,7 @@ Another common measure is **Gini impurity**: 1 − Σ pᵢ². For 9 Yes and 5 No
 
 ### Run it: seeing overfitting and pruning
 
-This uses scikit-learn on a real medical dataset that ships with the library. The first run downloads the library, which can take a minute or two.
+This uses scikit-learn on a real medical dataset that ships with the library. Loading the library can take a minute or two.
 
 ```python
 from sklearn.datasets import load_breast_cancer

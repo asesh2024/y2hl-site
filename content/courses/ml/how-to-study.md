@@ -19,7 +19,7 @@ At the end of each course outcome there is a **CO test**: 20 questions drawn at 
 
 **You don't need to install anything.** Every program has a **Run** button, and Python runs inside your browser, on your own device.
 
-- **Downloads.** The first run loads Python, about 10 MB. Programs that use NumPy, pandas, scikit-learn or matplotlib load those libraries too, which adds more: it can take a minute or two on a slow connection. After that your browser normally keeps them, so later runs start much faster. If you are on mobile data, Topics 1 to 5 and most of Topics 7 to 25 need only plain Python.
+- **Loading.** The first run on a page loads Python, about 10 MB. Programs that use NumPy, pandas, scikit-learn or matplotlib load those libraries too, which can take a minute or two, each time you open a new page. Once loaded, running again on the same page takes only seconds. So press **Run** a little before you need the result. If you are on mobile data, Topics 1 to 5 and most of Topics 7 to 25 need only plain Python, and they start much sooner.
 - **Charts** appear below the program's output.
 - **Your edits are lost** when you leave the page, so copy anything you want to keep.
 - **To stop** a program that runs too long, press **Stop**.

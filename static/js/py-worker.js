@@ -70,7 +70,7 @@ onmessage = async function (e) {
   }
   // NumPy, pandas, scikit-learn and matplotlib download only when a program imports them.
   var libs = LIBRARIES.filter(function (l) { return l[0].test(e.data.code); }).map(function (l) { return l[1]; });
-  if (libs.length) postMessage({ type: "status", text: "Loading " + libs.join(", ") + " (the first time can take a minute or two)…" });
+  if (libs.length) postMessage({ type: "status", text: "Loading " + libs.join(", ") + " (this can take a minute or two)…" });
   try {
     await pyodide.loadPackagesFromImports(e.data.code, { messageCallback: function () {}, errorCallback: function () {} });
   } catch (err) { /* the program's own import error will explain it */ }
