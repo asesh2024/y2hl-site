@@ -53,6 +53,8 @@
           });
           svg.removeAttribute("width");
           svg.removeAttribute("height");
+          // Natural size, so a small graph is not stretched across the page. CSS still shrinks wide ones to fit.
+          svg.style.width = Math.ceil(svg.viewBox.baseVal.width * 1.2) + "px";
           var fig = document.createElement("figure");
           fig.className = "dot";
           fig.appendChild(svg);
