@@ -85,14 +85,14 @@ def threshold_analysis(p, y, recall_target=0.95):
 table = threshold_analysis(p, y_val.to_numpy())
 print(table.iloc[::3].round(3).to_string(index=False))
 
-print("\nThe same ranking, with placed students made rare (5%)")
+print("\nThe same ranking, with placed students made rare (only 25 kept)")
 rng = np.random.default_rng(0)
 pos, neg = np.where(y_val == 1)[0], np.where(y_val == 0)[0]
 keep = np.r_[rng.choice(pos, 25, replace=False), neg]
 print(f"ROC-AUC {roc_auc_score(y_val.iloc[keep], p[keep]):.3f} barely moves. PR-AUC falls to {average_precision_score(y_val.iloc[keep], p[keep]):.3f}")
 
-placed = df.dropna(subset=["SalaryLPA", "Internships"])
-A, y = placed[["CodingScore", "CGPA", "Internships"]], placed["SalaryLPA"]
+placed = df[df["PlacementStatus"] == 1].dropna(subset=["CodingTestScore"])
+A, y = placed[["CodingTestScore", "CGPA", "Internships"]], placed["Salary Package"]
 fit = LinearRegression().fit(A, y).predict(A)
 print(f"\nSalary regression: RMSE {np.sqrt(mean_squared_error(y, fit)):.3f}, MAE {mean_absolute_error(y, fit):.3f}, R2 {r2_score(y, fit):.3f}")
 broken = fit.copy(); broken[0] += 100

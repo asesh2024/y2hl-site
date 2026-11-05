@@ -106,16 +106,17 @@ def predict_endpoint(body):
     p = float(probability(served, row)[0])
     return json.dumps({"placed_probability": round(p, 3), "prediction": "Placed" if p >= 0.5 else "Not placed", "model_run": best["run"]})
 
-print("6 Request:", predict_endpoint('{"Stream": "CSE", "CGPA": 8.2, "CodingScore": 78, "AptitudeScore": 70, "Internships": 1, "CommunicationScore": 66}'))
+print("6 Request:", predict_endpoint('{"CollegeTier": "Tier2", "Stream": "CS", "Hostel": "No", "HistoryOfBacklogs": "No", "Specialisation": "AI", "CGPA": 8.2, "CodingTestScore": 78, "AptitudeTestScore": 70, "Internships": 1, "MockInterviewScore": 66}'))
 
 live = X_test.copy()
-live["CodingScore"] = (live["CodingScore"] + 12).clip(upper=100)
-edges = np.quantile(X_train["CodingScore"], np.linspace(0, 1, 11))
+live["CodingTestScore"] = (live["CodingTestScore"] + 12).clip(upper=100)
+reference, current = X_train["CodingTestScore"].dropna(), live["CodingTestScore"].dropna()
+edges = np.quantile(reference, np.linspace(0, 1, 11))
 edges[0], edges[-1] = -np.inf, np.inf
-e = np.clip(np.histogram(X_train["CodingScore"], edges)[0] / len(X_train), 1e-4, None)
-a = np.clip(np.histogram(live["CodingScore"], edges)[0] / len(live), 1e-4, None)
+e = np.clip(np.histogram(reference, edges)[0] / len(reference), 1e-4, None)
+a = np.clip(np.histogram(current, edges)[0] / len(current), 1e-4, None)
 psi = float(np.sum((a - e) * np.log(a / e)))
-print(f"7 Monitoring: PSI of CodingScore = {psi:.3f}, so {'retrain' if psi > 0.2 else 'keep watching'}")
+print(f"7 Monitoring: PSI of CodingTestScore = {psi:.3f}, so {'retrain' if psi > 0.2 else 'keep watching'}")
 ```
 
 **Try this:** add a fourth candidate with LightGBM. Does the Production choice change? Then trace its run back through the tracker.

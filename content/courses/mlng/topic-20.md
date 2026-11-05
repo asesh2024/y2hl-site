@@ -84,12 +84,12 @@ stat = (abs(only_a - only_b) - 1) ** 2 / (only_a + only_b)
 print(f"\nMcNemar: logistic accuracy {(a == y).mean():.3f}, forest accuracy {(b == y).mean():.3f}")
 print(f"Only logistic right: {only_a}. Only forest right: {only_b}. chi2 = {stat:.2f}, p = {chi2.sf(stat, 1):.3f}")
 
-placed = df.dropna(subset=["SalaryLPA", "Internships"])
-cols = ["CodingScore", "CGPA", "Internships"]
+cols = ["CodingTestScore", "CGPA", "Internships"]
+placed = df[df["PlacementStatus"] == 1].dropna(subset=cols)
 split = int(0.7 * len(placed))
 train, test = placed.iloc[:split], placed.iloc[split:]
-e1 = LinearRegression().fit(train[cols], train["SalaryLPA"]).predict(test[cols]) - test["SalaryLPA"].to_numpy()
-e2 = DecisionTreeRegressor(max_depth=3, random_state=0).fit(train[cols], train["SalaryLPA"]).predict(test[cols]) - test["SalaryLPA"].to_numpy()
+e1 = LinearRegression().fit(train[cols], train["Salary Package"]).predict(test[cols]) - test["Salary Package"].to_numpy()
+e2 = DecisionTreeRegressor(max_depth=3, random_state=0).fit(train[cols], train["Salary Package"]).predict(test[cols]) - test["Salary Package"].to_numpy()
 rng = np.random.default_rng(0)
 diffs = []
 for _ in range(2000):

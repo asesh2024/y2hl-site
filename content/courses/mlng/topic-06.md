@@ -51,7 +51,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import classification_report
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
-from placement_predict import FEATURES, load_data, preprocessor, train_val_test
+from placement_predict import NUMERIC, load_data, preprocessor, train_val_test
 
 df = load_data()
 X_train, X_val, X_test, y_train, y_val, y_test = train_val_test(df)
@@ -69,12 +69,12 @@ model = evaluate_classifier(make_pipeline(preprocessor(), LogisticRegression(max
 clf = model[-1]
 names = model[0].get_feature_names_out()
 weights = pd.Series(clf.coef_[0], index=names).sort_values()
-print("Odds multiplier for one standard deviation more")
+print("Odds multiplier: per standard deviation for numbers, for being in that group for categories")
 for name in list(weights.index[-3:][::-1]) + list(weights.index[:2]):
     print(f"  {name:20} {np.exp(weights[name]):.2f}")
 
 print("\nMultinomial: predict CGPA_Tier without using CGPA")
-tier_features = [c for c in FEATURES if c not in ("CGPA", "Stream")]
+tier_features = [c for c in NUMERIC if c != "CGPA"]
 tier = df.dropna(subset=tier_features)
 X2, y2 = tier[tier_features], tier["CGPA_Tier"]
 split = int(0.8 * len(tier))
@@ -89,11 +89,13 @@ plt.tight_layout()
 plt.show()
 ```
 
+Look at `CodingTestScore`. On its own it correlates strongly with placement (Topic 4), yet here its weight can be negative. Features in this data overlap heavily, so the model shares credit among them in ways that can flip a sign. That is one more reason not to read a coefficient as a cause.
+
 **Try this:** compare `StandardScaler` with unscaled features using `model[-1].n_iter_`, the number of iterations the solver needed.
 
 ### Common mistakes
 
-- **Using accuracy alone.** With 65% not placed, always saying "not placed" scores 65%.
+- **Using accuracy alone.** With about 65% placed, always saying "placed" scores about 65%.
 - **Thinking 0.5 is always the right threshold.** Topic 18 shows how to choose it.
 - **Reading coefficients as causes.** They describe a pattern in this data, not what would happen if you changed a student's score.
 
@@ -101,6 +103,6 @@ plt.show()
 
 1. Calculate σ(0), σ(2) and σ(−2).
 2. Find the softmax probabilities for scores 1, 1 and 0.
-3. A coefficient is −1.2 on scaled `Backlogs`. Describe it in terms of odds.
+3. A coefficient is −1.2 on `HistoryOfBacklogs_Yes`. Describe it in terms of odds.
 4. **Lab 4:** write `evaluate_classifier` so that it compares three models in one table.
 5. Why is the boundary still linear, though the sigmoid is curved?

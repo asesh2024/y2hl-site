@@ -27,7 +27,7 @@ Trees do not need scaling, as they compare one feature at a time.
 
 | Method | Example | Use for | Watch out |
 | --- | --- | --- | --- |
-| One-hot | CSE → 1,0,0,… | No natural order, few values | Many values means many columns |
+| One-hot | CS → 1,0,0,… | No natural order, few values | Many values means many columns |
 | Ordinal | Low, Mid, High → 0,1,2 | A real order | Invents an order if there isn't one |
 | Target | Stream → its placement rate | Many values | Leaks the target unless fitted carefully |
 | Embedding (preview) | Stream → a learned vector | Very many values | Needs a neural network; see DLAC |
@@ -92,7 +92,7 @@ print("\nRows lost if we simply deleted gaps:", int(X_train.isna().any(axis=1).s
 
 Here the imputers score about the same. That is a useful result too: use the simplest choice that does the job.
 
-**Try this:** make `Internships` go missing only for students with no internships, using `df.loc[df.Internships == 0, "Internships"] = np.nan`. Does the indicator now help?
+**Try this:** make `Workshops` go missing only for students with no workshops, using `df.loc[df.Workshops == 0, "Workshops"] = np.nan`. Does the indicator now help?
 
 ### Common mistakes
 

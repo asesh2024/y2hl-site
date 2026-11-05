@@ -16,7 +16,7 @@ When you join a team, you inherit a running system and learn it by reading it. A
 
 ```text
 placement-predict/
-  data/placement_predict.csv     raw records (never edited by hand)
+  data/placement_predict_50k.csv raw records (never edited by hand)
   src/
     data_loader.py               read and validate the data
     feature_pipeline.py          turn records into features
@@ -56,7 +56,7 @@ Classical ML is not out of date. On tables of numbers and categories, like ours,
 ```python
 import pandas as pd
 import matplotlib.pyplot as plt
-from placement_predict import load_data
+from placement_predict import NUMERIC, load_data
 
 def summarise_dataset(df, target=None):
     """Print the shape, type groups, missing values and class balance of any DataFrame."""
@@ -71,23 +71,25 @@ def summarise_dataset(df, target=None):
 df = load_data()
 summarise_dataset(df, target="PlacementStatus")
 
-print("\nPlacement rate by stream")
-print(df.groupby("Stream")["PlacementStatus"].mean().sort_values(ascending=False).round(3))
+for column in ["Stream", "CollegeTier", "HistoryOfBacklogs"]:
+    print(f"\nPlacement rate by {column}")
+    print(df.groupby(column)["PlacementStatus"].mean().sort_values(ascending=False).round(3))
 print("\nCorrelation with PlacementStatus")
-print(df.drop(columns=["SalaryLPA", "IsAnomaly"]).corr(numeric_only=True)["PlacementStatus"]
-      .drop("PlacementStatus").sort_values(ascending=False).round(2))
+print(df[NUMERIC + ["PlacementStatus"]].corr()["PlacementStatus"].drop("PlacementStatus").sort_values(ascending=False).round(2))
 
 fig, ax = plt.subplots(1, 3, figsize=(11, 3.1))
 ax[0].hist(df["CGPA"], bins=25, color="#0f766e"); ax[0].set(title="CGPA", xlabel="CGPA")
-df.groupby("Stream")["PlacementStatus"].mean().sort_values().plot.barh(ax=ax[1], color="#2563eb")
-ax[1].set(title="Placement rate by stream", ylabel="")
-df.boxplot(column="CodingScore", by="PlacementStatus", ax=ax[2], grid=False)
-ax[2].set(title="CodingScore by outcome", xlabel="PlacementStatus"); fig.suptitle("")
+df.groupby("CollegeTier")["PlacementStatus"].mean().sort_values().plot.barh(ax=ax[1], color="#2563eb")
+ax[1].set(title="Placement rate by college tier", ylabel="")
+df.boxplot(column="CodingTestScore", by="PlacementStatus", ax=ax[2], grid=False)
+ax[2].set(title="CodingTestScore by outcome", xlabel="PlacementStatus"); fig.suptitle("")
 plt.tight_layout()
 plt.show()
 ```
 
-**Try this:** run `summarise_dataset` with `target="CGPA_Tier"`.
+Stream makes little difference here, but college tier and backlog history make a large one. Finding this kind of thing is why you look before you model.
+
+**Try this:** run `summarise_dataset` with `target="CGPA_Tier"`. Then compare `df.groupby("CGPA_Tier")["CGPA"].describe()`. Is the tier always what the CGPA says it should be?
 
 ### Common mistakes
 
@@ -100,5 +102,5 @@ plt.show()
 1. Which module changes if the college adds a new attribute, "Language certification"? List all that apply.
 2. **Lab 1:** extend `summarise_dataset(df)` so that it also lists columns with more than 5% missing values.
 3. **Lab 2:** export a 5-page EDA report as a PDF with `PdfPages`: missing values, 6 histograms, placement rate by stream, correlation heatmap and box plots. Do this on your own computer.
-4. Why is `SalaryLPA` removed before calculating correlation with placement?
+4. Why is `Salary Package` left out when calculating correlation with placement?
 5. Name a real problem suited to each of the four courses in the table above.

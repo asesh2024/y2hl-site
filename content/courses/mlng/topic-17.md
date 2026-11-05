@@ -25,7 +25,7 @@ A student who sees the exam paper early scores high, and learns little. Models a
 | Type | Example |
 | --- | --- |
 | Preprocessing leak | Fitting the scaler before splitting |
-| Target leak | Using `SalaryLPA` to predict placement. It exists only if placed! |
+| Target leak | Using `Salary Package` to predict placement. It is above 0 only if placed! |
 | Time leak | Using data from after the prediction date |
 | Group leak | The same student's records in both train and test |
 
@@ -58,8 +58,8 @@ df = load_data()
 X_train, X_val, X_test, y_train, y_val, y_test = train_val_test(df)
 model = make_pipeline(preprocessor(), LogisticRegression(max_iter=1000))
 
-print("\nA target leak: adding SalaryLPA as a 'was it recorded' feature")
-leak = X_train.assign(HasSalary=df.loc[X_train.index, "SalaryLPA"].notna().astype(float))
+print("\nA target leak: adding 'has a salary' as a feature")
+leak = X_train.assign(HasSalary=(df.loc[X_train.index, "Salary Package"] > 0).astype(float))
 print(f"  CV accuracy with the leak: {cross_val_score(make_pipeline(StandardScaler(), LogisticRegression()), leak[['CGPA', 'HasSalary']], y_train, cv=5).mean():.3f}")
 
 print("\nClass balance across folds (rare class: 10% of a small sample)")

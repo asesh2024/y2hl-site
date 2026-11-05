@@ -10,7 +10,7 @@ reading: ["Textbook 1, Ch. 6, pp. 185–214", "Textbook 3, Ch. 8, pp. 303–336"
 
 ### Intuition
 
-Placement decisions can be written as questions: is the coding score above 65? Any internships? More than two backlogs? A decision tree learns these questions from data. It handles mixed features, needs no scaling, and you can read it.
+Placement decisions can be written as questions: is the CGPA above 6.6? More than one project? Any internships? A decision tree learns these questions from data. It handles mixed features, needs no scaling, and you can read it.
 
 ### How it works
 
@@ -107,4 +107,4 @@ The depth sweep shows the usual shape: training accuracy keeps climbing, and val
 2. Calculate the entropy of the same group.
 3. A split leaves groups of 6 (Gini 0) and 4 (Gini 0.5). Find the weighted impurity.
 4. **Lab 6:** write `dt_report` so it also plots curves and prints the best row.
-5. Train a `DecisionTreeRegressor` to predict `SalaryLPA` for placed students, and report the RMSE.
+5. Train a `DecisionTreeRegressor` to predict `Salary Package` for placed students, and report the RMSE.

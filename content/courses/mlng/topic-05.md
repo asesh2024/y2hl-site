@@ -60,8 +60,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from placement_predict import load_data
 
-df = load_data().dropna(subset=["Attendance", "CommunicationScore"])
-names = ["Attendance", "AptitudeScore", "CodingScore", "CommunicationScore", "Backlogs"]
+names = ["AttendancePercent", "AptitudeTestScore", "CodingTestScore", "MockInterviewScore", "Projects"]
+df = load_data().dropna(subset=names)
 X_train, X_test, y_train, y_test = train_test_split(df[names].to_numpy(), df["CGPA"].to_numpy(), test_size=0.2, random_state=0)
 
 scaler = StandardScaler().fit(X_train)
@@ -120,4 +120,4 @@ plt.show()
 2. Solve by hand with the normal equation, for x = 1, 2 and y = 2, 4, using no intercept.
 3. **Lab 3:** implement mini-batch GD with `batch_size=32` and 1000 epochs, and assert that its RMSE is within 0.3 of scikit-learn's.
 4. Why does the normal equation struggle with 100,000 features?
-5. Predict `SalaryLPA` for placed students. Why must you first drop those not placed?
+5. Predict `Salary Package` for placed students. Why must you first drop those not placed?

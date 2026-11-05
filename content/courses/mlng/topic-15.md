@@ -70,7 +70,7 @@ idx = np.random.default_rng(0).choice(len(S), 600, replace=False)
 colour = df["PlacementStatus"].to_numpy()[idx]
 P = pca.transform(S[idx])[:, :2]
 fig, ax = plt.subplots(1, 4, figsize=(13, 3))
-ax[0].bar(range(1, 11), ratio, color="#0f766e"); ax[0].set(title="Scree plot", xlabel="component")
+ax[0].bar(range(1, len(ratio) + 1), ratio, color="#0f766e"); ax[0].set(title="Scree plot", xlabel="component")
 ax[1].scatter(*P.T, c=colour, s=6, cmap="coolwarm"); ax[1].set_title("PCA, 2 components")
 for i, perplexity in enumerate([5, 40], 2):
     T = TSNE(perplexity=perplexity, init="pca", random_state=0).fit_transform(S[idx])

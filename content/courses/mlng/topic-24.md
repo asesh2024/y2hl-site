@@ -85,10 +85,10 @@ print(psi_report(X_train, next_year[FEATURES], NUMERIC).head(3).round(3).to_stri
 
 drifted = next_year.copy()
 rng = np.random.default_rng(1)
-drifted["CodingScore"] = np.clip(drifted["CodingScore"] + 15, 0, 100)
+drifted["CodingTestScore"] = np.clip(drifted["CodingTestScore"] + 15, 0, 100)
 drifted["Internships"] = drifted["Internships"] + rng.poisson(1, len(drifted))
 # Recruiters' tastes have changed: projects now matter far more than they did.
-new_score = -1 + 0.9 * (drifted["Projects"] - 2) + 0.03 * (drifted["CodingScore"] - 73)
+new_score = -1 + 0.9 * (drifted["Projects"] - 2) + 0.03 * (drifted["CodingTestScore"].fillna(70) - 73)
 drifted["PlacementStatus"] = (rng.random(len(drifted)) < 1 / (1 + np.exp(-new_score))).astype(int)
 print("\nA cohort with simulated drift")
 print(psi_report(X_train, drifted[FEATURES], NUMERIC).head(3).round(3).to_string(index=False))
@@ -110,9 +110,9 @@ new_model = retrain_if_drifted(psi_report(X_train, drifted[FEATURES], NUMERIC), 
 print("Decision:", "swap in the new model" if new_model is not model else "keep the current model")
 
 plt.figure(figsize=(6, 3))
-plt.hist(X_train["CodingScore"], bins=30, density=True, alpha=0.6, label="training", color="#0f766e")
-plt.hist(drifted["CodingScore"], bins=30, density=True, alpha=0.6, label="production", color="#c2410c")
-plt.xlabel("CodingScore"); plt.title("Data drift"); plt.legend()
+plt.hist(X_train["CodingTestScore"], bins=30, density=True, alpha=0.6, label="training", color="#0f766e")
+plt.hist(drifted["CodingTestScore"], bins=30, density=True, alpha=0.6, label="production", color="#c2410c")
+plt.xlabel("CodingTestScore"); plt.title("Data drift"); plt.legend()
 plt.show()
 ```
 

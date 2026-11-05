@@ -20,7 +20,7 @@ An ensemble of 200 trees cannot be read by eye. Explainability tools ask two que
 | **Permutation** | Shuffle one column, and see how much the score drops | Works for any model, on validation data | Correlated features share or hide importance |
 | **SHAP** | Share out one prediction among the features fairly | Local and global, adds up exactly | Slower, and describes the model, not causes |
 
-**Permutation, worked.** Validation accuracy is 0.80. After shuffling `CodingScore`, it falls to 0.72. The importance is 0.08.
+**Permutation, worked.** Validation accuracy is 0.92. After shuffling `CGPA`, it falls to 0.80. The importance is 0.12.
 
 **SHAP's additive property:**
 

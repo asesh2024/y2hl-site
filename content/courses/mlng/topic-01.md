@@ -12,14 +12,14 @@ reading: ["Textbook 1, Ch. 1, pp. 3–37"]
 
 Most courses begin with equations and reach a working system at the end. This one runs the other way. **PlacementPredict** already works on day one: give it a student's profile, and it returns the chance of that student being placed. All term, we open it up, one layer at a time, until you can build and run the whole thing yourself.
 
-The students in our data are made up by a program, so no real person's record is used. You can [read how the data is generated](/static/data/placement_predict.py).
+All the programs use the course dataset of 50,000 students, `placement_predict_50k`. To keep the page quick, most take a random sample of 5,000 of them. You can [read the small file that loads the data](/static/data/placement_predict.py).
 
 ### How it works
 
 A prediction service has a simple contract:
 
 ```text
-Request:   {"CGPA": 8.2, "CodingScore": 74, "Internships": 1, ...}
+Request:   {"CGPA": 8.2, "CodingTestScore": 74, "Internships": 1, ...}
 Response:  {"placed_probability": 0.81, "prediction": "Placed"}
 ```
 
@@ -62,19 +62,23 @@ def predict(request):
     p = float(model.predict_proba(row)[0, 1])
     return {"placed_probability": round(p, 3), "prediction": "Placed" if p >= 0.5 else "Not placed"}
 
-strong = {"Stream": "CSE", "CGPA": 8.6, "Attendance": 88, "Internships": 2, "Projects": 4, "Certifications": 2,
-          "AptitudeScore": 78, "CodingScore": 82, "CommunicationScore": 72, "Backlogs": 0, "Hackathons": 1}
-weak = {"Stream": "CIVIL", "CGPA": 6.1, "Attendance": 60, "Internships": 0, "Projects": 1, "Certifications": 0,
-        "AptitudeScore": 45, "CodingScore": 40, "CommunicationScore": 50, "Backlogs": 4, "Hackathons": 0}
+strong = {"CollegeTier": "Tier1", "Stream": "CS", "Specialisation": "AI", "Hostel": "Yes", "HistoryOfBacklogs": "No",
+          "CGPA": 8.6, "AttendancePercent": 88, "Internships": 2, "Projects": 4, "Workshops": 2, "Certifications": 3,
+          "Publications": 1, "AptitudeTestScore": 78, "SoftSkillsRating": 3.8, "CodingTestScore": 82,
+          "MockInterviewScore": 72, "ExtraCurricular": 1}
+weak = {"CollegeTier": "Tier3", "Stream": "Civil", "Specialisation": "Embedded", "Hostel": "No", "HistoryOfBacklogs": "Yes",
+        "CGPA": 5.4, "AttendancePercent": 58, "Internships": 0, "Projects": 1, "Workshops": 0, "Certifications": 0,
+        "Publications": 0, "AptitudeTestScore": 45, "SoftSkillsRating": 1.8, "CodingTestScore": 30,
+        "MockInterviewScore": 30, "ExtraCurricular": 0}
 
 print("Strong profile:", json.dumps(predict(strong)))
 print("Weak profile:  ", json.dumps(predict(weak)))
-print("Missing fields:", json.dumps(predict({"CGPA": 7.5, "Stream": "ECE"})))
+print("Missing fields:", json.dumps(predict({"CGPA": 7.5, "Stream": "ECE", "CollegeTier": "Tier2"})))
 print(f"\nOverall: {len(df)} students, {df['PlacementStatus'].mean():.0%} placed")
 print(f"Accuracy on students the model has not seen: {model.score(X_val, y_val):.3f}")
 ```
 
-**Try this:** press **Edit** and raise only the weak student's `CodingScore`. How much does the probability move?
+**Try this:** press **Edit** and raise only the weak student's `CodingTestScore`. How much does the probability move?
 
 ### Common mistakes
 

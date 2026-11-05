@@ -2,12 +2,15 @@
 // The page stops a program by terminating this worker and starting a new one.
 var PYODIDE = "https://cdn.jsdelivr.net/pyodide/v0.27.7/full/";
 var pyodide = null;
+var DATASET = "https://raw.githubusercontent.com/Naman213091/ML/main/placement_predict_50k%20Dataset.csv";
+var datasetLoaded = false;
 var LIBRARIES = [[/\bnumpy\b/, "NumPy"], [/\bpandas\b/, "pandas"], [/\bsklearn\b/, "scikit-learn"], [/\bmatplotlib\b/, "matplotlib"], [/\bxgboost\b/, "XGBoost"], [/\blightgbm\b/, "LightGBM"]];
 
 var WRAPPER = [
   "import os, sys, traceback, base64, io",
   "import y2hl_page",
   "sys.path.insert(0, '/home/pyodide')",
+  "os.chdir('/home/pyodide')",
   "os.environ['MPLBACKEND'] = 'AGG'",
   "import logging; logging.getLogger('matplotlib.font_manager').setLevel(logging.ERROR)",
   // Every open matplotlib figure becomes a picture in the output; plt.show() or the end of the program sends it.
@@ -75,6 +78,14 @@ onmessage = async function (e) {
     try {
       var helper = await (await fetch(new URL("../data/placement_predict.py", location.href))).text();
       pyodide.FS.writeFile("/home/pyodide/placement_predict.py", helper);
+      if (!datasetLoaded) {
+        postMessage({ type: "status", text: "Loading the course dataset…" });
+        var data = await fetch(DATASET);
+        if (data.ok) {
+          pyodide.FS.writeFile("/home/pyodide/placement_predict_50k.csv", new Uint8Array(await data.arrayBuffer()));
+          datasetLoaded = true;
+        }
+      }
       imports += "\nimport numpy\nimport pandas\nimport sklearn\n";
     } catch (err) { /* the program's own import error will explain it */ }
   }

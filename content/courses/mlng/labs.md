@@ -3,7 +3,7 @@ title: "Lab sessions"
 description: "The 13 lab sessions, what each one covers, the function each asks you to write, and the topic to study first."
 ---
 
-Each lab has a demonstration part and a function for you to write. The topic linked below contains a program you can run, and in most cases a working version of the function. Read it, understand it, then write and test your own on the class dataset.
+Each lab has a demonstration part and a function for you to write. The topic linked below contains a program you can run, and in most cases a working version of the function. Read it, understand it, then write and test your own on the full class dataset, using `load_data(n=None)`.
 
 | Session | Lab | Function to write | Study first |
 | --- | --- | --- | --- |

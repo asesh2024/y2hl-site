@@ -17,13 +17,13 @@ At the end of each course outcome there is a **CO test**: 20 questions drawn at 
 
 **You don't need to install anything for most programs.** They run inside your browser, on your own device.
 
-- **Loading.** Programs load Python plus NumPy, pandas and scikit-learn, and some load matplotlib, XGBoost or LightGBM. This can take a minute or two each time you open a new page. Once loaded, running again on the same page takes only seconds, so press **Run** a little before you need the result.
+- **Loading.** Programs load Python plus NumPy, pandas and scikit-learn, and some load matplotlib, XGBoost or LightGBM. They also fetch the course dataset, about 2 MB. This can take a minute or two each time you open a new page. Once loaded, running again on the same page takes only seconds, so press **Run** a little before you need the result.
 - **Mobile data.** These downloads are large, so use Wi-Fi if you can.
 - **Charts** appear below the output.
 - **Your edits are lost** when you leave the page, so copy anything you want to keep.
 - **To stop** a program that runs too long, press **Stop**.
 
-If your network blocks `cdn.jsdelivr.net`, the programs can't load. Try another network, or use your own computer.
+If your network blocks `cdn.jsdelivr.net` or `raw.githubusercontent.com`, the programs can't load. Try another network, or use your own computer.
 
 ### Using your own computer
 
@@ -36,7 +36,7 @@ Programs headed **On your own computer** use tools that can't run in a browser. 
 python -m pip install numpy pandas scikit-learn matplotlib xgboost lightgbm pyyaml joblib
 ```
 
-3. Download [placement_predict.py](/static/data/placement_predict.py), and save it in the same folder as your program.
+3. Download [placement_predict.py](/static/data/placement_predict.py), and save it in the same folder as your program. It fetches the dataset for you. To work offline, also save the [CSV file](https://github.com/Naman213091/ML/blob/main/placement_predict_50k%20Dataset.csv) there as `placement_predict_50k.csv`.
 4. Run your program:
 
 ```bash

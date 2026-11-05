@@ -91,7 +91,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-On the students, DBSCAN finds one large crowd plus some outliers, because this data has no dense, separate groups. That is an honest result, and it shows DBSCAN is useful here mainly for spotting unusual records.
+On the students, the result depends heavily on ε. Small values give several groups and many noise points, and larger ones give one big crowd with a few outliers. When a result changes this much with one setting, be careful about calling the groups real. DBSCAN is most useful here for spotting unusual records.
 
 **Try this:** change `eps=0.2` in the moons `DBSCAN` to `0.05`, then to `0.5`. Explain what breaks each time.
 

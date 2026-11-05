@@ -60,8 +60,10 @@ pipeline = preprocessor()
 clf = LogisticRegression(max_iter=1000)
 model = make_pipeline(pipeline, clf).fit(X_train, y_train)
 
-request = {"Stream": "IT", "CGPA": 8.1, "Attendance": 84, "Internships": 1, "Projects": 3, "Certifications": 1,
-           "AptitudeScore": 70, "CodingScore": 76, "CommunicationScore": 68, "Backlogs": 0, "Hackathons": 1}
+request = {"CollegeTier": "Tier2", "Stream": "IT", "Specialisation": "DataScience", "Hostel": "No", "HistoryOfBacklogs": "No",
+           "CGPA": 8.1, "AttendancePercent": 84, "Internships": 1, "Projects": 3, "Workshops": 2, "Certifications": 2,
+           "Publications": 0, "AptitudeTestScore": 70, "SoftSkillsRating": 3.4, "CodingTestScore": 76,
+           "MockInterviewScore": 68, "ExtraCurricular": 1}
 
 print("1 Received: ", request["CGPA"], request["Stream"], "...")
 assert 0 <= request["CGPA"] <= 10, "CGPA out of range"
@@ -78,7 +80,7 @@ print("\nTraining-serving skew")
 print(f"Correct serving code:                accuracy = {accuracy_score(y_val, model.predict(X_val)):.3f}")
 
 skewed = X_val.copy()
-skewed["Attendance"] = skewed["Attendance"] / 100                 # the serving team used fractions
+skewed["AttendancePercent"] = skewed["AttendancePercent"] / 100   # the serving team used fractions
 print(f"Attendance sent as a fraction:       accuracy = {accuracy_score(y_val, model.predict(skewed)):.3f}")
 
 skewed = X_val.copy()
@@ -86,13 +88,13 @@ skewed["CGPA"] = skewed["CGPA"] * 9.5                             # the serving 
 print(f"CGPA sent as a percentage:           accuracy = {accuracy_score(y_val, model.predict(skewed)):.3f}")
 
 skewed = X_val.copy()
-skewed["CommunicationScore"] = skewed["CommunicationScore"].fillna(0)   # a different meaning for missing
+skewed["MockInterviewScore"] = skewed["MockInterviewScore"].fillna(0)   # a different meaning for missing
 print(f"Missing values filled with 0:        accuracy = {accuracy_score(y_val, model.predict(skewed)):.3f}")
 
 print("\nNo error was raised in any of these runs.")
 ```
 
-**Try this:** change the attendance bug to `skewed["Attendance"] * 2`. Compare what the fractions do with what the larger values do. Which is harder to notice?
+**Try this:** change the attendance bug to `skewed["AttendancePercent"] * 2`. Compare what the fractions do with what the larger values do. Which is harder to notice?
 
 ### Common mistakes
 

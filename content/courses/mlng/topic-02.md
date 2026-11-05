@@ -79,11 +79,11 @@ one = X_test.iloc[[0]]
 print(f"6 Serving:    request -> P(placed) = {served.predict_proba(one)[0, 1]:.3f}")
 
 # 7. MONITORING: compare live data against training data
-live = X_test["CodingScore"].to_numpy() - 15                  # pretend coding scores fell this year
-print(f"7 Monitoring: mean CodingScore {X_train['CodingScore'].mean():.1f} in training, {np.mean(live):.1f} live")
+live = X_test["CodingTestScore"] - 15                  # pretend coding scores fell this year
+print(f"7 Monitoring: mean CodingTestScore {X_train['CodingTestScore'].mean():.1f} in training, {live.mean():.1f} live")
 
 # 8. RETRAINING
-if abs(np.mean(live) - X_train["CodingScore"].mean()) > 5:
+if abs(live.mean() - X_train["CodingTestScore"].mean()) > 5:
     print("8 Retraining: drift is large, so schedule a new training run")
 ```
 

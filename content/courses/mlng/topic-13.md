@@ -75,7 +75,7 @@ for name, algo in [("KMeans", KMeans(4, n_init=5, random_state=0)), ("MiniBatch"
 
 profile = pd.DataFrame(X, columns=NUMERIC).assign(cluster=labels[4], Placed=df["PlacementStatus"].to_numpy())
 print("\nCluster profiles for k = 4 (placement was not used in clustering)")
-print(profile.groupby("cluster")[["CGPA", "CodingScore", "AptitudeScore", "Internships", "Backlogs", "Placed"]].mean().round(2))
+print(profile.groupby("cluster")[["CGPA", "CodingTestScore", "AptitudeTestScore", "Internships", "MockInterviewScore", "Placed"]].mean().round(2).to_string())
 
 fig, ax = plt.subplots(1, 2, figsize=(10, 3.1))
 ax[0].plot(summary["K"], summary["inertia"], "o-", color="#0f766e"); ax[0].set(title="Elbow", xlabel="k", ylabel="inertia")

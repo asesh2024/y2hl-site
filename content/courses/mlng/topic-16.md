@@ -10,7 +10,7 @@ reading: ["Textbook 1, Ch. 9, pp. 295–316", "Textbook 3, Ch. 12, pp. 497–530
 
 ### Intuition
 
-A student has a CGPA of 9.8, seven backlogs and 45% attendance. Could that be real? Could it be a data entry mistake? Anomaly detection flags records like this for someone to look at. Our data has a hidden `IsAnomaly` column, so we can check how well the detector does, which you can rarely do in real work.
+One record in our data has a CGPA of 4.4, a coding test score of 0.1 and 51% attendance, and yet shows the student as placed on 18 LPA. Could that be real? Could it be a data entry mistake? Anomaly detection flags records like this for someone to look at. Our data has an `IsAnomaly` column, so we can check how well the detector does, which you can rarely do in real work.
 
 ### How it works
 
@@ -66,7 +66,7 @@ def anomaly_benchmark(S, truth, contamination_values):
         rows.append({"contamination": c, "precision": precision_score(truth, flagged), "recall": recall_score(truth, flagged), "F1": f1_score(truth, flagged)})
     return pd.DataFrame(rows).sort_values("F1", ascending=False)
 
-print(anomaly_benchmark(S, truth, [0.005, 0.01, 0.02, 0.05, 0.1]).round(3).to_string(index=False))
+print(anomaly_benchmark(S, truth, [0.01, 0.02, 0.04, 0.08, 0.15]).round(3).to_string(index=False))
 
 sample = S[:2000]
 flagged = OneClassSVM(nu=0.02, gamma="scale").fit_predict(sample) == -1

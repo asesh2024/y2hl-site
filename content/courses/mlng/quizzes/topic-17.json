@@ -1,7 +1,7 @@
 [
 {"q":"The test set should be used for:","options":["One final estimate, after all decisions are made","Choosing hyperparameters","Fitting the scaler","Early stopping"],"answer":0,"explain":"Any decision based on it makes it no longer unseen."},
 {"q":"Fitting a scaler before splitting causes:","options":["Data leakage","Underfitting","Skew in serving only","Class imbalance"],"answer":0,"explain":"Test data has influenced the training input."},
-{"q":"Why is SalaryLPA a target leak for predicting placement?","options":["It is recorded only if the student was placed","It is a float","It has outliers","It needs scaling"],"answer":0,"explain":"It would not be available when predicting."},
+{"q":"Why is Salary Package a target leak for predicting placement?","options":["It is known only after the student is placed","It is a float","It has outliers","It needs scaling"],"answer":0,"explain":"It would not be available when predicting."},
 {"q":"StratifiedKFold keeps:","options":["The class ratio similar in each fold","Rows in time order","The same students together","All positives in one fold"],"answer":0,"explain":"This matters most for rare classes."},
 {"type":"nat","q":"The best inner CV score is 0.91, and the nested score is 0.87. What is the optimism?","answer":0.04,"tolerance":0.001,"explain":"0.91 − 0.87 = 0.04."},
 {"type":"nat","q":"In 5-fold CV, how many times is a model trained?","answer":5,"explain":"Once per held-out fold."},

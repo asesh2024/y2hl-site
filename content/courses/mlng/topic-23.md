@@ -72,7 +72,7 @@ def end_to_end_check(bundle, data, n_batch=20):
     print("Pipeline check PASSED")
 
 scored = batch_predict(loaded, X_test.head(5))
-print(scored[["Stream", "CGPA", "CodingScore", "placed_probability", "prediction"]].to_string(index=False))
+print(scored[["Stream", "CGPA", "CodingTestScore", "placed_probability", "prediction"]].to_string(index=False))
 end_to_end_check(loaded, X_test)
 ```
 
@@ -93,17 +93,23 @@ X_train, _, _, y_train, _, _ = train_val_test(load_data())
 model = make_pipeline(preprocessor(), LogisticRegression(max_iter=1000)).fit(X_train, y_train)
 
 class Student(BaseModel):
+    CollegeTier: str
     Stream: str
+    Specialisation: str = "AI"
+    Hostel: str = "No"
+    HistoryOfBacklogs: str = "No"
     CGPA: float = Field(ge=0, le=10)
-    Attendance: float | None = None
-    Internships: float | None = None
+    AttendancePercent: float = Field(default=75, ge=0, le=100)
+    Internships: int = 0
     Projects: int = 0
+    Workshops: float | None = None
     Certifications: int = 0
-    AptitudeScore: float
-    CodingScore: float
-    CommunicationScore: float | None = None
-    Backlogs: int = 0
-    Hackathons: int = 0
+    Publications: int = 0
+    AptitudeTestScore: float | None = None
+    SoftSkillsRating: float | None = None
+    CodingTestScore: float | None = None
+    MockInterviewScore: float | None = None
+    ExtraCurricular: int = 0
 
 app = FastAPI()
 
@@ -119,7 +125,7 @@ def predict(student: Student):
 
 client = TestClient(app)
 print(client.get("/health").json())
-good = {"Stream": "CSE", "CGPA": 8.5, "AptitudeScore": 75, "CodingScore": 80}
+good = {"CollegeTier": "Tier1", "Stream": "CS", "CGPA": 8.5, "AptitudeTestScore": 75, "CodingTestScore": 80}
 print(client.post("/predict", json=good).json())
 print("CGPA of 12 returns status", client.post("/predict", json={**good, "CGPA": 12}).status_code)
 ```
