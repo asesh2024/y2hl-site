@@ -14,6 +14,25 @@
     <a class="btn" href="https://www.linkedin.com/sharing/share-offsite/?url={{ share_url | urlencode }}" rel="noopener">LinkedIn</a>
   </div>
 
+  <section class="blog-discuss" aria-labelledby="discuss-heading">
+    <h2 id="discuss-heading">Did this help?</h2>
+    <p>To rate this post, press the smiley button and choose 👍 or 👎. You can also leave a comment. You'll need a free <a href="https://github.com/signup" rel="noopener">GitHub account</a>. Comments are public, so please be respectful and don't share personal details.</p>
+    <div class="giscus"
+         data-repo="asesh2024/y2hl-site"
+         data-repo-id="R_kgDOVhDabA"
+         data-category="Announcements"
+         data-category-id="DIC_kwDOVhDabM4DKiN-"
+         data-mapping="specific"
+         data-term="{{ post.url }}"
+         data-strict="1"
+         data-reactions-enabled="1"
+         data-emit-metadata="0"
+         data-input-position="top"
+         data-lang="en"
+         data-loading="lazy"></div>
+    <noscript><p>Likes and comments need JavaScript turned on.</p></noscript>
+  </section>
+
   {% if newer or older %}
   <nav class="pager" aria-label="More posts">
     {% if older %}<a class="prev" href="{{ older.url }}"><span>← Older</span>{{ older.meta.title }}</a>{% else %}<span></span>{% endif %}

@@ -430,6 +430,11 @@ figure.dot g.node:has(> :is(ellipse, polygon, path):not([fill="none"])) text:not
 .prose .support-box p { margin: 0 0 10px; }
 .prose .support-box p:last-child { margin-bottom: 0; }
 
+/* Blog likes and comments */
+.blog-discuss { margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--line); }
+.blog-discuss h2 { margin: 0 0 8px; font-size: 1.3rem; }
+.blog-discuss p { color: var(--muted); font-size: .95rem; }
+
 /* Blog */
 .blog-series { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
 .blog-series a { padding: 5px 12px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--ink); text-decoration: none; font-size: .85rem; font-weight: 500; }

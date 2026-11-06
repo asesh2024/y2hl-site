@@ -25,7 +25,23 @@
     root.dataset.theme = next;
     store("theme", next);
     applyHighlightTheme();
+    var frame = document.querySelector("iframe.giscus-frame");
+    if (frame) frame.contentWindow.postMessage({ giscus: { setConfig: { theme: next } } }, "https://giscus.app");
   });
+
+  // Blog likes and comments: Giscus, stored in this repo's GitHub Discussions.
+  var giscusBox = document.querySelector(".giscus");
+  if (giscusBox) {
+    var giscusScript = document.createElement("script");
+    giscusScript.src = "https://giscus.app/client.js";
+    giscusScript.crossOrigin = "anonymous";
+    giscusScript.async = true;
+    Array.prototype.forEach.call(giscusBox.attributes, function (a) {
+      if (a.name.indexOf("data-") === 0) giscusScript.setAttribute(a.name, a.value);
+    });
+    giscusScript.setAttribute("data-theme", root.dataset.theme || "preferred_color_scheme");
+    giscusBox.parentNode.appendChild(giscusScript);
+  }
 
   // Diagrams: ```dot blocks become SVG via Graphviz (viz.js), loaded only when a page has one.
   // If the script can't load, the DOT source stays on the page as plain text.
