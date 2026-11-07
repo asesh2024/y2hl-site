@@ -3,7 +3,7 @@ title: "Projects guided"
 description: "Student projects guided by Dr. Asesh Kumar Tripathy, including B.Tech capstone projects in cybersecurity and blockchain."
 ---
 
-<p class="lead">Student projects I guide. Each B.Tech capstone runs over two semesters (CP1 and CP2) and must end in a complete, independently tested engineering system. Every team below has already had a paper from its work accepted at a conference.</p>
+<p class="lead">Student projects I guide. Each B.Tech capstone runs over two semesters (CP1 and CP2) and must end in a complete, independently tested engineering system. Every team below has already had a conference paper accepted.</p>
 
 ### B.Tech capstone projects
 
@@ -35,7 +35,7 @@ Web applications have a huge attack surface, and OWASP Top 10 flaws such as inje
 
 *Team:* Singirikonda Saimahima, Podila Lakshmi Prasanna, Mandru Sirisha.
 
-**Paper accepted:** “Protocol-Invariant Cross-Chain Attack Detection: Domain-Generalized Monitoring for Previously Unseen Bridges”, International Conference on Intelligent Networks and Data-driven Intelligent Applications (ICon INDIA 2026). Registered and presented papers will be considered for IEEE Xplore.
+**Paper accepted, on a separate topic from this project:** “Protocol-Invariant Cross-Chain Attack Detection: Domain-Generalized Monitoring for Previously Unseen Bridges”, International Conference on Intelligent Networks and Data-driven Intelligent Applications (ICon INDIA 2026). Registered and presented papers will be considered for IEEE Xplore.
 
 #### C20 (Cyber-20): Federated Collaborative Threat Detection
 
