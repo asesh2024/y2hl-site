@@ -216,6 +216,11 @@
     };
 
     function runCode() {
+      // Analytics: at most one count per page view that someone ran a program here.
+      if (!window.y2hlRunCounted && window.goatcounter && window.goatcounter.count) {
+        window.y2hlRunCounted = true;
+        window.goatcounter.count({ path: "run" + location.pathname, title: "Ran a program", event: true });
+      }
       if (current) current.halt("Stopped, because another program was started.");
       current = task;
       chars = 0;

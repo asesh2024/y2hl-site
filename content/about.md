@@ -61,6 +61,10 @@ All the course material here is free. If it has helped you and you'd like to sup
 </div>
 </div>
 
+### Privacy
+
+This site counts visits with [GoatCounter](https://www.goatcounter.com/), which uses no cookies and doesn't track you across other websites. It shows me totals, such as which pages are read, where visitors came from, and how many pages had a program run on them. Your quiz marks, flashcards and study streak stay in your own browser. If you comment on a blog post, your comment is stored publicly on GitHub.
+
 ### Contact
 
 Questions, corrections and suggestions are welcome. Email me at [asesh.tripathy@gmail.com](mailto:asesh.tripathy@gmail.com).

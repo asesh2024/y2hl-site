@@ -81,5 +81,9 @@
   <script src="/static/js/gadgets.js?v={{ asset_version }}"></script>
   {% if course or post %}<script src="/static/js/coderun.js?v={{ asset_version }}"></script>{% endif %}
   {% if course and course.has_quizzes %}<script src="/static/js/quiz.js?v={{ asset_version }}"></script>{% endif %}
+  {% if site.analytics_code %}
+  <script>window.goatcounter = { path: function (p) { return p.split("?")[0]; } };</script>
+  <script data-goatcounter="https://{{ site.analytics_code }}.goatcounter.com/count" async src="https://gc.zgo.at/count.v4.js" integrity="sha384-nRw6qfbWyJha9LhsOtSb2YJDyZdKvvCFh0fJYlkquSFjUxp9FVNugbfy8q1jdxI+" crossorigin="anonymous"></script>
+  {% endif %}
 </body>
 </html>
