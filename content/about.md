@@ -40,6 +40,10 @@ All five courses are free to read and use, with no sign‑up:
 
 I guide B.Tech capstone projects in cybersecurity and blockchain, and some of this work has been accepted at conferences. [See the projects and papers →](/projects/)
 
+### Academic service
+
+- **Session Chair**, S12: Finance, Business and Decision Analytics – I, IEEE 11th International Conference on Research in Intelligent Computing in Engineering (RICE 2026), CMR Engineering College, Hyderabad, 5 November 2026.
+
 ### Why Y2HL Orbit
 
 Y2HL Orbit ("Yes to Happy Learning") is where I publish my teaching materials. They are open to every student, at my university or any other, and to anyone teaching a similar course.
