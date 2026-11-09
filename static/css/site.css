@@ -101,6 +101,10 @@ code, pre { font-family: var(--mono); font-size: .88em; }
 /* Home */
 .hero { padding: 72px 0 48px; background: radial-gradient(1000px 400px at 85% -10%, var(--accent-soft), transparent 70%); border-bottom: 1px solid var(--line); }
 .hero h1 { max-width: 18ch; font-size: clamp(2.2rem, 6vw, 3.6rem); }
+.try-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; margin-top: 24px; }
+.try-cta .muted { font-size: .92rem; }
+.btn.btn-large { padding: 14px 24px; font-size: 1.08rem; }
+.try-cta + .actions { margin-top: 16px; }
 .section-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; }
 .course-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr)); gap: 20px; }
 .course-card { display: flex; flex-direction: column; gap: 4px; padding: 24px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); color: var(--ink); text-decoration: none; transition: border-color .15s, transform .15s; }

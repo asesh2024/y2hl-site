@@ -6,9 +6,13 @@
     <p class="eyebrow">Open course materials</p>
     <h1>Computer science, taught step by step.</h1>
     <p class="lead">Free, step-by-step courses by {{ site.author.name }}. Built for my own students and open to students at any university.</p>
+    <div class="try-cta">
+      <a class="btn primary btn-large" href="/try/">▶ Run your first program</a>
+      <span class="muted">Real Python in your browser. Nothing to install.</span>
+    </div>
     <div class="actions">
       {% for c in courses %}
-      <a class="btn{% if loop.first %} primary{% endif %}" href="{{ c.base }}">Explore {{ c.short }}</a>
+      <a class="btn" href="{{ c.base }}">Explore {{ c.short }}</a>
       {% endfor %}
     </div>
   </div>
