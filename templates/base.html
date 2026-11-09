@@ -79,7 +79,7 @@
   <script src="/static/js/site.js?v={{ asset_version }}"></script>
   <script src="/static/js/search.js?v={{ asset_version }}"></script>
   <script src="/static/js/gadgets.js?v={{ asset_version }}"></script>
-  {% if course or post %}<script src="/static/js/coderun.js?v={{ asset_version }}"></script>{% endif %}
+  {% if course or post or section == "try" %}<script src="/static/js/coderun.js?v={{ asset_version }}"></script>{% endif %}
   {% if course and course.has_quizzes %}<script src="/static/js/quiz.js?v={{ asset_version }}"></script>{% endif %}
   {% if site.analytics_code %}
   <script>window.goatcounter = { path: function (p) { return p.split("?")[0]; } };</script>

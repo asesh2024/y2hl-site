@@ -288,6 +288,10 @@ def build():
     for name, (meta, html, _) in pages.items():
         write(f"{name}/index.html", "page.html", page=meta, body=html, section=name)
 
+    # Landing page for ads: a program to run straight away, then the courses. Not in the menu or search.
+    try_meta, try_html, _ = read_page(CONTENT / "try.md")
+    write("try/index.html", "try.html", page=try_meta, body=try_html, courses=courses, section="try")
+
     write("courses/index.html", "courses.html", courses=courses,
           page={"title": "Courses", "description": "Free, open course materials for students at any university."})
 

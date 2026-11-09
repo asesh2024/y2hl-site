@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block main %}
+{# Landing page for ads: something to run straight away, then the courses. #}
+<section class="page-head">
+  <div class="wrap narrow">
+    <h1>{{ page.title }}</h1>
+  </div>
+</section>
+{% set parts = body.split("<!-- courses -->", 1) %}
+<article class="wrap narrow prose section try-page">
+  {{ parts[0] | safe }}
+</article>
+<section class="wrap section">
+  <div class="section-head"><h2>Pick a free course</h2></div>
+  <div class="course-cards">
+    {% for c in courses %}{% include "_course_card.html" %}{% endfor %}
+  </div>
+</section>
+{% if parts | length > 1 %}
+<div class="wrap narrow prose section">{{ parts[1] | safe }}</div>
+{% endif %}
+{% endblock %}
