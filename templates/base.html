@@ -6,7 +6,7 @@
   <title>{% if page.title != site.name %}{{ page.title }} · {% endif %}{{ site.name }}</title>
   <meta name="description" content="{{ page.description }}">
   <meta name="author" content="{{ site.author.name }}">
-  <link rel="canonical" href="{{ site.url }}{{ url }}">
+  {% if url != "/404.html" %}<link rel="canonical" href="{{ site.url }}{{ url }}">{% endif %}
   <meta property="og:title" content="{{ page.title }}">
   <meta property="og:description" content="{{ page.description }}">
   <meta property="og:url" content="{{ site.url }}{{ url }}">
@@ -82,7 +82,12 @@
   {% if course or post or section == "try" %}<script src="/static/js/coderun.js?v={{ asset_version }}"></script>{% endif %}
   {% if course and course.has_quizzes %}<script src="/static/js/quiz.js?v={{ asset_version }}"></script>{% endif %}
   {% if site.analytics_code %}
+  {% if url == "/404.html" %}
+  {# GitHub Pages serves this page at the missing address: count it as 404/<that address>. #}
+  <script>window.goatcounter = { path: function () { return "404" + location.pathname; }, title: "Page not found" };</script>
+  {% else %}
   <script>window.goatcounter = { path: function (p) { return p.split("?")[0]; } };</script>
+  {% endif %}
   <script data-goatcounter="https://{{ site.analytics_code }}.goatcounter.com/count" async src="https://gc.zgo.at/count.v4.js" integrity="sha384-nRw6qfbWyJha9LhsOtSb2YJDyZdKvvCFh0fJYlkquSFjUxp9FVNugbfy8q1jdxI+" crossorigin="anonymous"></script>
   {% endif %}
 </body>
