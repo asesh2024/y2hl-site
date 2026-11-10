@@ -232,6 +232,17 @@
     }
 
     run.addEventListener("click", runCode);
+
+    // Try page: a large button above the first program, so phones see it without scrolling.
+    var top = pre.closest("article") && pre.closest("article").querySelector("[data-run-first]");
+    if (top && !top.dataset.wired) {
+      top.dataset.wired = "1";
+      top.parentNode.hidden = false;
+      top.addEventListener("click", function () {
+        runCode();
+        bar.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    }
     stop.addEventListener("click", function () {
       if (current === task) task.halt("Stopped by you.");
     });

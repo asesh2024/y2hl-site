@@ -105,6 +105,14 @@ code, pre { font-family: var(--mono); font-size: .88em; }
 .try-cta .muted { font-size: .92rem; }
 .btn.btn-large { padding: 14px 24px; font-size: 1.08rem; }
 .try-cta + .actions { margin-top: 16px; }
+/* Try page: keep the Run button on a phone's first screen. */
+.try-head { padding: 24px 0 16px; }
+.try-head h1 { margin-bottom: 0; }
+.try-page.section { padding-top: 16px; }
+.try-page .lead { margin: 0 0 12px; }
+.try-run-top { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; margin: 0 0 14px; }
+.try-run-top[hidden] { display: none; }
+.try-run-top .muted { font-size: .9rem; }
 .section-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; }
 .course-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr)); gap: 20px; }
 .course-card { display: flex; flex-direction: column; gap: 4px; padding: 24px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); color: var(--ink); text-decoration: none; transition: border-color .15s, transform .15s; }

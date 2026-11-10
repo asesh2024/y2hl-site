@@ -3,7 +3,9 @@ title: "Run your first program"
 description: "Press Run and a real Python program runs in your browser, with nothing to install and no sign-up. Then pick one of five free computer science courses."
 ---
 
-<p class="lead">This is real Python, running in your browser. Press <strong>▶ Run</strong> below. The first run takes a few seconds while Python loads.</p>
+<p class="lead">Real Python, running in your browser. Nothing to install, no sign-up.</p>
+
+<p class="try-run-top" hidden><button type="button" class="btn primary btn-large" data-run-first>▶ Run this program</button><span class="muted">The first run takes a few seconds while Python loads.</span></p>
 
 ```python
 # Marks as a bar chart. Change a number
