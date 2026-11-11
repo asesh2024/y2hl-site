@@ -465,6 +465,12 @@ figure.dot g.node:has(> :is(ellipse, polygon, path):not([fill="none"])) text:not
 .prose details[open] summary { margin-bottom: 8px; }
 .blog-share { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 32px 0 20px; padding-top: 18px; border-top: 1px solid var(--line); }
 .blog-share .btn { padding: 7px 14px; font-size: .88rem; }
+.blog-share-top { margin: 4px 0 24px; padding-top: 0; border-top: 0; gap: 8px; }
+.blog-share-top .btn { padding: 5px 11px; font-size: .82rem; }
+.blog-share-top strong { font-size: .9rem; }
+.blog-share .share-wa { border-color: #25d366; }
+.blog-share .share-note { font-size: .85rem; }
+.blog-share [hidden] { display: none; }
 
 /* Site-wide search */
 .search-dialog { width: min(680px, 100% - 32px); max-width: none; max-height: none; margin: 8vh auto 0; padding: 0; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); color: var(--ink); box-shadow: 0 16px 48px rgba(0, 0, 0, .3); }

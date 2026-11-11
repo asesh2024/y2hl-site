@@ -150,4 +150,30 @@
   }
   syncNav();
   narrow.addEventListener("change", syncNav);
+
+  // Blog share rows: Copy link, and the phone's own share sheet where the browser has one.
+  document.querySelectorAll(".blog-share").forEach(function (row) {
+    var note = row.querySelector(".share-note");
+    function say(text) {
+      note.textContent = text;
+      setTimeout(function () { if (note.textContent === text) note.textContent = ""; }, 3000);
+    }
+    var copy = row.querySelector("[data-share-copy]");
+    copy.addEventListener("click", function () {
+      var url = copy.dataset.shareCopy;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(function () { say("Link copied."); },
+          function () { prompt("Copy this link:", url); });
+      } else {
+        prompt("Copy this link:", url);
+      }
+    });
+    var more = row.querySelector("[data-share-native]");
+    if (navigator.share) {
+      more.hidden = false;
+      more.addEventListener("click", function () {
+        navigator.share({ title: more.dataset.shareTitle, url: more.dataset.shareNative }).catch(function () {});
+      });
+    }
+  });
 })();

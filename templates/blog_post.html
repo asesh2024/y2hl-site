@@ -1,18 +1,31 @@
 {% extends "base.html" %}
+{# Share links are plain URLs: no third-party scripts. Each carries utm tags so GoatCounter shows visits from shares. #}
+{% macro share_row(where) -%}
+{%- set base = site.url ~ post.url -%}
+{%- set title = post.meta.title -%}
+{%- set q = "&utm_medium=share&utm_campaign=blog-share" -%}
+<div class="blog-share blog-share-{{ where }}">
+  <strong>Share{% if where == "end" %} this post{% endif %}</strong>
+  <a class="btn share-wa" href="https://wa.me/?text={{ (title ~ ' ' ~ (base ~ '?utm_source=whatsapp' ~ q)) | urlencode }}" rel="noopener" target="_blank" data-goatcounter-click="share-whatsapp" data-goatcounter-title="Shared on WhatsApp">WhatsApp</a>
+  <a class="btn share-fb" href="https://www.facebook.com/sharer/sharer.php?u={{ (base ~ '?utm_source=facebook' ~ q) | urlencode }}" rel="noopener" target="_blank" data-goatcounter-click="share-facebook" data-goatcounter-title="Shared on Facebook">Facebook</a>
+  <a class="btn share-x" href="https://x.com/intent/post?text={{ title | urlencode }}&url={{ (base ~ '?utm_source=x' ~ q) | urlencode }}" rel="noopener" target="_blank" data-goatcounter-click="share-x" data-goatcounter-title="Shared on X">X</a>
+  <a class="btn share-li" href="https://www.linkedin.com/sharing/share-offsite/?url={{ (base ~ '?utm_source=linkedin' ~ q) | urlencode }}" rel="noopener" target="_blank" data-goatcounter-click="share-linkedin" data-goatcounter-title="Shared on LinkedIn">LinkedIn</a>
+  <a class="btn share-tg" href="https://t.me/share/url?url={{ (base ~ '?utm_source=telegram' ~ q) | urlencode }}&text={{ title | urlencode }}" rel="noopener" target="_blank" data-goatcounter-click="share-telegram" data-goatcounter-title="Shared on Telegram">Telegram</a>
+  <button class="btn" type="button" data-share-copy="{{ (base ~ '?utm_source=copy' ~ q) }}" data-goatcounter-click="share-copy" data-goatcounter-title="Copied the link">Copy link</button>
+  <button class="btn" type="button" data-share-native="{{ (base ~ '?utm_source=more' ~ q) }}" data-share-title="{{ title }}" data-goatcounter-click="share-more" data-goatcounter-title="Shared with More" hidden>More…</button>
+  <span class="share-note muted" role="status"></span>
+</div>
+{%- endmacro %}
 {% block main %}
 <article class="wrap narrow section blog-post">
   <p class="crumbs"><a href="/blog/">Blog</a> / <a href="/blog/{{ post.series.slug }}/">{{ post.series.name }}</a></p>
   <h1>{{ post.meta.title }}</h1>
   <p class="byline">by <a href="/about/">{{ site.author.title }} {{ site.author.name }}</a> · {{ post.date_text }}</p>
   <p class="lead">{{ post.meta.description }}</p>
+  {{ share_row("top") }}
   <div class="prose">{{ post.html | safe }}</div>
 
-  {% set share_url = site.url ~ post.url %}
-  <div class="blog-share">
-    <strong>Share this post</strong>
-    <a class="btn" href="https://wa.me/?text={{ (post.meta.title ~ ' ' ~ share_url) | urlencode }}" rel="noopener">WhatsApp</a>
-    <a class="btn" href="https://www.linkedin.com/sharing/share-offsite/?url={{ share_url | urlencode }}" rel="noopener">LinkedIn</a>
-  </div>
+  {{ share_row("end") }}
 
   <section class="blog-discuss" aria-labelledby="discuss-heading">
     <h2 id="discuss-heading">Did this help?</h2>
