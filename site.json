@@ -5,6 +5,11 @@
   "url": "https://www.y2hl.in",
   "domain": "www.y2hl.in",
   "analytics_code": "y2hl",
+  "social": [
+    {"id": "linkedin", "label": "LinkedIn", "url": "https://www.linkedin.com/company/y2hl-orbit/"},
+    {"id": "youtube", "label": "YouTube", "url": "https://www.youtube.com/@Y2HLOrbit"},
+    {"id": "instagram", "label": "Instagram", "url": "https://www.instagram.com/y2hl.orbit/"}
+  ],
   "author": {
     "name": "Asesh Kumar Tripathy",
     "title": "Dr.",

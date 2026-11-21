@@ -53,6 +53,10 @@ Y2HL Orbit ("Yes to Happy Learning") is where I publish my teaching materials. T
 - **Students:** follow the weeks or topics in order. Each one builds on the last, and the worksheets and problems are meant to be attempted before you look anything up.
 - **Instructors:** you are welcome to use the materials with your own classes. Please credit Y2HL Orbit and link back to this site.
 
+### Follow Y2HL Orbit
+
+New lessons, puzzles and GATE-style questions are posted on [LinkedIn](https://www.linkedin.com/company/y2hl-orbit/), [YouTube](https://www.youtube.com/@Y2HLOrbit) and [Instagram](https://www.instagram.com/y2hl.orbit/).
+
 ### Support this site
 
 All the course material here is free. If it has helped you and you'd like to support it, you can contribute here. It's entirely optional, it unlocks nothing, and my own students are not expected to contribute.
