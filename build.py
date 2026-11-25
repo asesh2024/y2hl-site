@@ -292,6 +292,10 @@ def build():
     try_meta, try_html, _ = read_page(CONTENT / "try.md")
     write("try/index.html", "try.html", page=try_meta, body=try_html, courses=courses, section="try")
 
+    # Free practice companion for the book "Quantum Computing Made Clear" (linked from the book section).
+    qc_meta, qc_html, _ = read_page(CONTENT / "qc-practice.md")
+    write("books/qc-practice/index.html", "page.html", page=qc_meta, body=qc_html, section="books")
+
     write("courses/index.html", "courses.html", courses=courses,
           page={"title": "Courses", "description": "Free, open course materials for students at any university."})
 

@@ -8,7 +8,7 @@
     <p class="book-by">by {{ site.author.title }} {{ site.author.name }}</p>
     <p>{{ b.blurb }}</p>
     <p class="book-details">{{ b.details }}</p>
-    <a class="btn primary" href="{{ b.url }}" rel="noopener">Buy on {{ b.store }} ↗</a>
+    <p class="book-actions"><a class="btn primary" href="{{ b.url }}" rel="noopener">Buy on {{ b.store }} ↗</a>{% if b.practice %} <a class="btn" href="{{ b.practice }}">Free practice problems</a>{% endif %}</p>
   </div>
   {% if b.reviews %}
   <div class="book-reviews">
