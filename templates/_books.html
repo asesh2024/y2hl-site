@@ -12,7 +12,7 @@
   </div>
   {% if b.reviews %}
   <div class="book-reviews">
-    <p class="eyebrow">Early response</p>
+    <p class="eyebrow">{{ b.reviews_heading or "Early response" }}</p>
     {% for r in b.reviews %}
     <figure>
       <blockquote>“{{ r.quote }}”</blockquote>
